@@ -1,0 +1,6 @@
+* devos
+** COMMANDS
+*** print available commands
+#+BEGIN_SRC shell :results drawer
+  menu
+#+END_SRC
