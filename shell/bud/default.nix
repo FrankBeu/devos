@@ -6,5 +6,11 @@
       help = "Copy the desired template to DEST";
       script = ./get.bash;
     };
+    nuke = {
+      writer = budUtils.writeBashWithPaths [ nixUnstable     coreutils ];
+      synopsis = "nuke";
+      help = "removes result and virtualisation-related-files";
+      script = ./nuke.bash;
+    };
   };
 }

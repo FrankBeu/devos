@@ -4,3 +4,7 @@
 #+BEGIN_SRC shell :results drawer
   menu
 #+END_SRC
+*** remove all build-files
+#+BEGIN_SRC shell :results drawer
+  bud nuke
+#+END_SRC
