@@ -1,7 +1,7 @@
 { profiles, mainUser, ... }:
 {
   imports = [
-    profiles.users.root                                        ### make sure to configure ssh keys  
+    profiles.users.root                                        ### make sure to configure ssh keys
     profiles.users.${mainUser}
 
     # profiles.networking

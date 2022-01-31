@@ -4,6 +4,10 @@
 #+BEGIN_SRC shell :results drawer
   menu
 #+END_SRC
+*** check editorconfig
+#+BEGIN_SRC shell :results drawer
+  editorconfig-checker
+#+END_SRC
 *** remove all build-files
 #+BEGIN_SRC shell :results drawer
   bud nuke
