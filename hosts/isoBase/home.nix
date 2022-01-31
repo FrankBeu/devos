@@ -1,22 +1,25 @@
-{ inputs
+{ colorScheme
+, inputs
+, lib
 , mainUser
 , profiles
 , ...
 }:
+let
+  customSchemes   = (import ../../users/profiles/themes);
+  nixColorSchemes = inputs.nix-colors.colorSchemes;
+in
 {
   home-manager.users.${mainUser} = { inputs, profiles, suites, ... }: {
     imports = [
       profiles.filemanager.ranger
-      profiles.test
+      profiles.colortest
 
       inputs.nix-colors.homeManagerModule
     ];
 
-    # colorscheme = inputs.nix-colors.colorSchemes.nord;
-    # colorscheme = inputs.nix-colors.colorSchemes.${theme};
-    # config.colorscheme = inputs.nix-colors.colorSchemes.dracula;
-    colorscheme = inputs.nix-colors.colorSchemes.horizon-dark;
-    # colorscheme = inputs.nix-colors.colorSchemes.tokyonight;
-
+    colorscheme =
+      let scheme = if lib.hasPrefix "custom-" colorScheme then customSchemes else nixColorSchemes;
+      in (builtins.getAttr colorScheme scheme);
   };
 }

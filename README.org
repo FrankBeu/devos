@@ -8,3 +8,9 @@
 #+BEGIN_SRC shell :results drawer
   bud nuke
 #+END_SRC
+** TODO TODOS
+*** documentation
+**** color
+***** ranger uses terminal colors
+https://github.com/ranger/ranger/blob/master/doc/colorschemes.md
+
