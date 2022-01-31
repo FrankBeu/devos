@@ -1,0 +1,46 @@
+"""
+""
+" ** vimrc
+"
+
+"""
+""
+" *** DEFAULTS
+"
+source $VIMRUNTIME/defaults.vim
+
+"""
+""
+" *** MISC
+"
+colorscheme default
+
+set nonumber
+
+set nowrap
+
+"""
+""
+" *** BACKUP
+"
+let &directory = expand('~/.local/state/vimdata/swap//')
+
+set backup
+let &backupdir = expand('~/.local/state/vimdata/backup//')
+
+set undofile
+let &undodir   = expand('~/.local/state/vimdata/undo//')
+
+if !isdirectory(&undodir)   | call mkdir(&undodir, "p")   | endif
+if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
+if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
+
+"""
+""
+" *** hjkl -> jkl;
+"
+noremap h ;
+noremap j h
+noremap k k
+noremap l j
+noremap ; l
