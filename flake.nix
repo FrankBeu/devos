@@ -39,6 +39,14 @@
       naersk.inputs.nixpkgs.follows = "nixos";
 
       nixos-hardware.url = "github:nixos/nixos-hardware";
+
+      nix-colors = {
+        url = "github:misterio77/nix-colors";
+        inputs = {
+          nixpkgs.follows = "latest";
+        };
+      };
+
     };
 
   outputs =
@@ -47,6 +55,7 @@
     , bud
     , nixos
     , home
+    , nix-colors
     , nixos-hardware
     , nur
     , agenix
@@ -116,7 +125,9 @@
 
         home = {
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
-          modules = [ ];
+          modules = [
+            nix-colors.homeManagerModule
+          ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {

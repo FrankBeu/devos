@@ -390,6 +390,21 @@
         "type": "github"
       }
     },
+    "nix-colors": {
+      "locked": {
+        "lastModified": 1643016200,
+        "narHash": "sha256-l9I0u/8/oYsxvpF4pXx/L3bYgmkiFxZmv4IlYV61gJE=",
+        "owner": "misterio77",
+        "repo": "nix-colors",
+        "rev": "07357aead79ec7c458303d71feafc9c992f808b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misterio77",
+        "repo": "nix-colors",
+        "type": "github"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1640478849,
@@ -583,6 +598,7 @@
         "home": "home",
         "latest": "latest_2",
         "naersk": "naersk",
+        "nix-colors": "nix-colors",
         "nixos": "nixos",
         "nixos-hardware": "nixos-hardware",
         "nur": "nur",
