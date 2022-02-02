@@ -12,6 +12,17 @@
 #+BEGIN_SRC shell :results drawer
   bud nuke
 #+END_SRC
+*** create iso
+#+BEGIN_SRC shell :results drawer
+  bud build isoBase bootstrapIso --extra-experimental-features nix-command --extra-experimental-features flakes
+#+END_SRC
+*** burn iso onto stick
+#+BEGIN_SRC shell :results drawer
+  bud nuke
+#+END_SRC
+#+BEGIN_SRC shell :results drawer
+  sudo -E $(which bud) burn
+#+END_SRC
 ** TODO TODOS
 *** documentation
 **** color

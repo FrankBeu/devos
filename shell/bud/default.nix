@@ -1,16 +1,22 @@
 { pkgs, lib, budUtils, ... }: {
   bud.cmds = with pkgs; {
     get = {
-      writer = budUtils.writeBashWithPaths [ nixUnstable git coreutils ];
+      help     = "Copy the desired template to DEST";
+      script   = ./get.bash;
       synopsis = "get [DEST]";
-      help = "Copy the desired template to DEST";
-      script = ./get.bash;
+      writer   = budUtils.writeBashWithPaths [ coreutils git nixUnstable ];
     };
     nuke = {
-      writer = budUtils.writeBashWithPaths [ nixUnstable     coreutils ];
+      help     = "removes result and virtualisation-related-files";
+      script   = ./nuke.bash;
       synopsis = "nuke";
-      help = "removes result and virtualisation-related-files";
-      script = ./nuke.bash;
+      writer   = budUtils.writeBashWithPaths [ coreutils     nixUnstable ];
+    };
+    sburn = {
+      help     = "sudo-wrapper for `bud burn`";
+      script   = ./sudoBurn.bash;
+      synopsis = "burn iso";
+      writer   = budUtils.writeBashWithPaths [ coreutils     nixUnstable ];
     };
   };
 }
