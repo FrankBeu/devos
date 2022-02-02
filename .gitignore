@@ -10,3 +10,4 @@ doi
 pkgs/_sources/.shake*
 
 /IGNORE/
+*.qcow2
