@@ -1,0 +1,26 @@
+* Cachix
+https://docs.cachix.org/
+** add cache
+#+BEGIN_SRC shell :results none
+sudo nix-shell -p cachix --run "cachix use nrdxp"
+#+END_SRC
+** user must be a trusted one
+#+BEGIN_EXAMPLE shell
+warning: ignoring the user-specified setting 'trusted-public-keys', because it is a restricted setting and you are not a trusted user
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE nix
+  nix.trustedUsers = [ demo variables.mainUser.name ];
+#+END_EXAMPLE
+** files
+https://docs.cachix.org/faq#what-happens-when-i-run-cachix-use-both-immediately-and-any-stateful-effects-for-the-future
+adding a cache will create the following files
+=/etc/nixos/cachix/nrdxp.nix=
+=/etc/nixos/cachix.nix=
+=~/.local/share/nix/trusted-settings.json=
+*** if added without sudo:
+=~/.config/nix/nix.conf=
+will be created
+*** =/etc/nixos/cachix.nix= must be imported
+and the configuration has to be switched again
+** *TODOS*
+*** TODO create this file dynamically from module

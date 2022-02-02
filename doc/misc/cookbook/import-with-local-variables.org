@@ -1,0 +1,30 @@
+* import with local variables
+** =default.nix=
+#+BEGIN_EXAMPLE nix
+{profiles , ... }:
+let
+  mainUser    = "nixos";
+in
+{
+  imports = [
+    (import ./system.nix   {inherit mainUser profiles;})
+  ];
+
+  ### ...
+
+}
+#+END_EXAMPLE
+** =system.nix=
+#+BEGIN_EXAMPLE nix
+{ mainUser, profiles, ... }:
+{
+  imports = [
+    profiles.users.${mainUser}
+  ];
+
+  ### ...
+
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

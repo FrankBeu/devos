@@ -1,0 +1,6 @@
+* variables
+Variables are provided by =modules/variables=
+Values are set per host in =host/<HOSTNAME>/variables=
+** *TODOS*
+*** TODO create this file dynamically from module
+

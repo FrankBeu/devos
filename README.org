@@ -23,8 +23,8 @@
 #+BEGIN_SRC shell :results drawer
   sudo -E $(which bud) burn
 #+END_SRC
-** TODO TODOS
-*** documentation
+** TODOS
+*** TODO documentation
 **** color
 ***** ranger uses terminal colors
 https://github.com/ranger/ranger/blob/master/doc/colorschemes.md
