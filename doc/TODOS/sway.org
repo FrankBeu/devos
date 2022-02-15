@@ -1,0 +1,35 @@
+* sway
+** ROADMAP
+*** implement after ryzen and iso is running
+*** sway runs on ryzen but not on qemu
+qemu speeds the development of devos
+** INFO
+https://wiki.archlinux.org/title/Sway#Virtualization
+** TODO TODOS
+*** cannot be virtualized
+https://github.com/NixOS/nixpkgs/issues/94315#issuecomment-673457950
+*** try running built iso directly with qemu
+https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/virtualisation/qemu-vm.nix
+**** running
+https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
+**** virtualisation error
+https://www.reddit.com/r/swaywm/comments/plcq6r/swaywm_doesnt_work_when_opened_inside_of/
+*** [#A] migration
+list of tool-mappingss
+https://github.com/swaywm/sway/wiki/i3-Migration-Guide
+*** ??
+**** VFIO setup on Nixos
+related??
+https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
+**** nixos on qemu
+https://alpmestan.github.io/notes/nixos-qemu.html
+**** PCI passthrough
+The Peripheral Component Interconnect (PCI) passthrough feature enables you to access and manage hardware devices from a virtual machine.
+When PCI passthrough is configured, the PCI devices function as if they were physically attached to the guest operating system.
+https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
+https://alexbakker.me/post/nixos-pci-passthrough-qemu-vfio.html
+**** GPU virtualisation on kvm
+https://www.golem.de/news/kvmgt-intels-gpu-virtualisierung-fuer-kvm-1412-110964.html
+https://nixos.wiki/wiki/IGVT-g#Attaching_GPU
+**** wayland on qemu
+https://github.com/robtaylor/qemu-wayland-runner/blob/master/README.md

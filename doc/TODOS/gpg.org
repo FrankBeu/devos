@@ -1,0 +1,140 @@
+* gpg
+** INFO
+*** abrev.
+*sec* => SEC ret key
+*ssb* => S ecret S u B key
+*pub* => PUB lic key
+*sub* => public SUB key
+*** signs
+A ~#~ after the initial tags ~sec~ or ~ssb~ means that the secret key or subkey is currently not usable.
+We also say that this key has been taken offline (for example, a primary key can be taken offline by exporting the key using the command ~--export-secret-subkeys~).
+A ~>~ after these tags indicate that the key is stored on a smartcard.
+*** keyType
+[C] create
+[S] sign
+[A] authenticate
+[E] encrypt
+*** examples
+https://www.mankier.com/1/gpg#Examples_(TL;DR)
+** renew expired key
+https://sites.lafayette.edu/newquisk/archives/504
+*** import external keys
+**** check keyring
+#+BEGIN_SRC shell :results drawer
+gpg -K
+gpg -k
+#+END_SRC
+**** import folder from external stick
+#+BEGIN_EXAMPLE shell
+sudo cp -r ~/MEDIA/EXTERN/KEY/ ~/UNBAKED/
+#+END_EXAMPLE
+**** chmod/chown
+#+BEGIN_EXAMPLE shell
+sudo chown -R frank:users KEY
+sudo chmod 700 KEY
+sudo chmod 600 KEY/*
+#+END_EXAMPLE
+**** check keys
+#+BEGIN_EXAMPLE shell
+gpg --show-keys keys.asc
+#+END_EXAMPLE
+**** import key
+#+BEGIN_EXAMPLE shell
+gpg --import keys.asc
+#+END_EXAMPLE
+**** check keyring
+#+BEGIN_SRC shell :results drawer
+gpg -K
+gpg -k
+#+END_SRC
+*** *extend expiration*
+**** find key
+#+begin_src shell
+  gpg -–list-keys
+#+end_src
+#+begin_src shell
+  gpg -–list-key <NAME>
+#+end_src
+#+begin_src shell
+  gpg -–list-key <ID-FROM-GOPASS>
+#+end_src
+**** edit key
+#+begin_src shell
+  gpg --edit-key <ID>
+#+end_src
+***** interactive
+****** lists the available subkeys
+#+BEGIN_EXAMPLE
+gpg> list
+#+END_EXAMPLE
+****** choose key
+******* choose subkey
+#+BEGIN_EXAMPLE
+gpg> key 1
+#+END_EXAMPLE
+******** command toggles
+******** if a * is present, the key is selected
+#+BEGIN_EXAMPLE
+ssb* ed25519/xxxxxxxxxxxxxxxx
+#+END_EXAMPLE
+******** unselect all keys
+#+BEGIN_EXAMPLE
+gpg> key
+#+END_EXAMPLE
+****** set new expire date
+#+BEGIN_EXAMPLE
+gpg> expire
+#+END_EXAMPLE
+****** save and exit
+#+BEGIN_EXAMPLE
+gpg> save
+#+END_EXAMPLE
+*** remove secret key again
+**** export private keys
+have to be separated because only subkeys will be imported again
+#+BEGIN_EXAMPLE shell
+gpg --armor --output privateKey`date '+%s'`.asc     --export-secret-keys
+gpg --armor --output privateSubkeys`date '+%s'`.asc --export-secret-subkeys
+#+END_EXAMPLE
+**** check keys
+#+BEGIN_EXAMPLE shell
+gpg --show-keys privateKey1643934157.asc
+gpg --show-keys privateSubkeys1643934220.asc
+#+END_EXAMPLE
+**** delete private keys
+***** get info
+#+BEGIN_EXAMPLE shell
+gpg -K
+gpg -K --with-fingerprint
+#+END_EXAMPLE
+***** delete key
+#+BEGIN_EXAMPLE shell
+gpg --delete-secret-key 65F2C4B222C53C6544F25A7D9F815F61A410D6A7
+#+END_EXAMPLE
+****** use output of ~gpg -K~ for command
+****** compare the returned handle *ed25519/xxxxxxxxxxxxxxxx* with the last 8 bytes of the finger print
+****** check
+#+BEGIN_EXAMPLE shell
+gpg -K
+#+END_EXAMPLE
+***** import subkeys
+#+BEGIN_EXAMPLE shell
+gpg --import privateSubkeys1643934220.asc
+#+END_EXAMPLE
+****** check
+#+BEGIN_EXAMPLE shell
+gpg -K
+#+END_EXAMPLE
+***** cleanup
+****** move exported keys to external stick
+#+BEGIN_EXAMPLE shell
+mv -t ~/MEDIA/EXTERN/KEY privateKey1643934157.asc privateSubkeys1643934220.asc
+#+END_EXAMPLE
+****** remove keyfiles
+#+BEGIN_EXAMPLE shell
+rm -r ~/UNBAKED/KEY
+#+END_EXAMPLE
+** TODO TODOS
+** backup external Stick
+*** use paperkey
+https://search.nixos.org/packages?channel=unstable&show=paperkey&from=0&size=50&sort=relevance&type=packages&query=paperkey

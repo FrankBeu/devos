@@ -1,0 +1,22 @@
+* dotLocal
+** delimitation
+*** dotLocal - scripts
+=~/.local/bin=
+scripts
+containing all other functions
+will get loaded lazily
+will be useable in ~ranger~ (bash)
+*** zsh - functions
+=~/.config/zsh/zshrc.d/functions=
+functions
+all function whose sideEffects target the current shell and not a spawned subprocess
+will affect zsh-initialisation-duration
+*** aliases
+=~/.config/zsh/zshrc.d/alias=
+will target the current shell
+cannot be used in ranger
+arguments are only available as appended strings
+convenient
+shortcuts
+** *TODOS*
+*** TODO create this file dynamically from module

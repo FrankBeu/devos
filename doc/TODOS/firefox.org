@@ -1,0 +1,4 @@
+* firefox
+** tridactyl
+*** searchurls and quickmarks
+**** can be shown with ~trili~ (TRIdactylLInks)

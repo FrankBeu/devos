@@ -1,0 +1,36 @@
+* vbox
+** *TODOS*
+*** TODO create this file dynamically from module
+*** TODO machine path has to be set
+#+BEGIN_SRC shell :results drawer
+VBoxManage setproperty machinefolder ~/VIRTUALISATION/VirtualBoxVMs
+#+END_SRC
+**** use system.activationScripts
+
+=~/SRC/GITEA/INFRA/nixpkgs=
+
+#+BEGIN_SRC shell :results drawer
+  rg activationScripts
+#+END_SRC
+
+#+BEGIN_SRC shell :results drawer
+  manix system.activationScript
+#+END_SRC
+
+#+RESULTS:
+:results:
+NixOS Options
+────────────────────
+# system.activationScripts
+A set of shell script fragments that are executed when a NixOS
+system configuration is activated.  Examples are updating
+/etc, creating accounts, and so on.  Since these are executed
+every time you boot the system or run
+<command>nixos-rebuild</command>, it's important that they are
+idempotent and fast.
+
+type: attribute set of string or submodules
+:end:
+**** find solution which does not run on each boot
+**** shellScript
+https://nixos.wiki/wiki/Shell_Scripts

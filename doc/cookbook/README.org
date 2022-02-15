@@ -1,0 +1,7 @@
+* Cookbook
+** recipes
+howTos
+nixosRelated
+** ingredients
+snippets, buildingblocks for recipies
+nixlangRelated

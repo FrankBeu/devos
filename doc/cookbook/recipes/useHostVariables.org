@@ -1,0 +1,58 @@
+* useVariables
+** hostVariables
+hostWide
+** globalVariables
+domainWide
+** cf. documentation for modules/variables
+** definition in =hosts/<HOSTNAME>/variables/default.nix=
+#+BEGIN_EXAMPLE nix
+### ...
+{
+  variables = rec {
+    <VARIABLE>        = <VALUE>;
+
+    ### ...
+  };
+}
+#+END_EXAMPLE
+** usage e.g.:
+=profiles/graphical/greetd/default.nix=
+#+BEGIN_EXAMPLE nix
+  { config
+  , pkgs
+  , variables
+  , ...
+  }:
+  {
+    services.greetd = {
+      enable = true;
+      restart = false;
+      let
+        greeterCommand = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember  --asterisks --time --greeting \"Welcome to Nix\" --cmd sway";
+        # greeterCommand = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd sway";
+        defaultSession = {
+          command = greeterCommand
+          user = "greeter";
+        };
+      in
+      settings = {
+        if variables.autologin
+            ##################
+        then
+        default_session = defaultSession;
+        initial_session = {
+          command = greeterCommand
+          user    =  variables.mainUser.name;
+                      #######################
+        };
+        terminal = {
+          vt = 1;
+        };
+        else
+        default_session = defaultSession;
+      };
+    }
+#+END_EXAMPLE
+*** TODO check usageExample
+** TODO TODOS
+*** hugoify

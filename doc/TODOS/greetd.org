@@ -1,0 +1,20 @@
+* Greetd
+https://man.sr.ht/~kennylevinsen/greetd/
+** autologin
+- NixOS Search - Options
+  https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=greetd
+
+- nixpkgs/greetd.nix at nixos-unstable · NixOS/nixpkgs
+  https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/display-managers/greetd.nix
+
+- NixOS Search - Options
+  https://search.nixos.org/options?channel=unstable&show=services.greetd.restart&from=0&size=50&sort=relevance&type=packages&query=autologin
+
+- index - man.sr.ht
+  https://man.sr.ht/~kennylevinsen/greetd/#setting-up-auto-login
+** greeter
+https://wiki.archlinux.org/title/Greetd#Greeters
+*** tuigreet
+https://github.com/apognu/tuigreet
+** *TODOS*
+*** TODO create this file dynamically from profile
