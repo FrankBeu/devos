@@ -1,9 +1,13 @@
 {
   description = "A highly structured configuration database.";
 
+  # nixConfig.extra-experimental-features = "nix-command flakes";
+  # nixConfig.extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
+  # nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4 = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs =";
+
   nixConfig.extra-experimental-features = "nix-command flakes";
   nixConfig.extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
-  nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4 = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs =";
+  nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
 
   inputs = {
     nixos.url  = "github:nixos/nixpkgs/release-21.11";
@@ -132,7 +136,9 @@
         imports = [ (digga.lib.importHosts ./hosts) ];
         hosts   = {
           /* set host specific properties here */
-          NixOS = { };
+          NixOS = {
+            tests = [ digga.lib.allProfilesTest ];
+          };
         };
         importables = rec {
           profiles  = digga.lib.rakeLeaves ./profiles // {
@@ -170,6 +176,33 @@
       templates.bud.path        = ./.;
       templates.bud.description = "bud template";
 
+      ### RUN WITH:
+      ### nix build .#tests.test.x86_64-linux
+      tests = digga.lib.eachDefaultSystem (system: {
+          test =
+              with import (inputs.latest + "/nixos/lib/testing-python.nix") {
+                inherit system;
+              };
+
+              makeTest {
+                nodes = {
+                  client = { ... }: {
+                    # imports = [ self.nixosModules.dwarffs ];
+                    # nixpkgs.overlays = [ nix.overlay ];
+                  };
+                };
+
+                testScript =
+                  ''
+                    start_all()
+                    client.wait_for_unit("multi-user.target")
+                    client.screenshot("postboot")
+                  '';
+                    # client.succeed("dwarffs --version")
+                    # client.succeed("cat /run/dwarffs/README")
+                    # client.succeed("[ -e /run/dwarffs/.build-id/00 ]")
+              };
+      });
     }
     //
     {
