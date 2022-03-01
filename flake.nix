@@ -28,7 +28,8 @@
     };
 
     deploy = {
-      url                    = "github:input-output-hk/deploy-rs";
+      # url                    = "github:input-output-hk/deploy-rs";
+      url                    = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixos";
     };
 
