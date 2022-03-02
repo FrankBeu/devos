@@ -46,9 +46,19 @@ nix build .#tests.integrationTests.test.x86_64-linux.pythonTest
 #+BEGIN_EXAMPLE shell
 > :lf ./.
 #+END_EXAMPLE
+
+** INFO
+*** testing
+**** view used sources for python-tests
+on repl
+load flake
+and
+~:e nixosConfigurations.NixOS.pkgs.path~
+navigate to
+- =nixos/tests/make-test-python.nix=
+- =nixos/lib/testing-python.nix=
 ** TODOS
 *** TODO documentation
 **** color
 ***** ranger uses terminal colors
 https://github.com/ranger/ranger/blob/master/doc/colorschemes.md
-
