@@ -23,6 +23,16 @@
 #+BEGIN_SRC shell :results drawer
   sudo -E $(which bud) burn
 #+END_SRC
+*** checks / tests
+**** checks
+#+BEGIN_SRC shell :results drawer
+nix --extra-experimental-features nix-command --extra-experimental-features flakes  flake check
+nix flake check
+#+END_SRC
+**** integrationTests
+#+BEGIN_SRC shell :results drawer
+nix build .#tests.integrationTests.test.x86_64-linux.pythonTest
+#+END_SRC
 ** TODOS
 *** TODO documentation
 **** color
