@@ -9,5 +9,5 @@ doi
 
 pkgs/_sources/.shake*
 
-/IGNORE/
+**/IGNORE/
 *.qcow2
