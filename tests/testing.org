@@ -1,9 +1,21 @@
 * TODO testing
-** types
-*** system
-*** package
-*** content
+** creation
+- create a directory with a =default.nix=
+- the name of the directory will be used automatically as the testname (nec. for ~collectTests~)
+- the uppercaseTestname is used in the derivationName =/nix/store/<hash>-nixos-test-driver-TESTNAME.drv=
+- just copy a working test and adjust it
+- tests are automatically registered via ~collectTests~
+** run
+#+BEGIN_EXAMPLE shell
+nix build .#tests.screenshot
+#+END_EXAMPLE
 ** INFO
+*** general information
+**** types
+***** system
+***** package
+***** content
+**** docs
 - NixOS - NixOS 21.11 manual
   https://nixos.org/manual/nixos/stable/index.html#sec-nixos-tests
 
@@ -22,12 +34,12 @@
 - devos/default.nix at 235d9befc2495850d4679b73541c894b266e5d8a · d4hines/devos
   https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
 
-*** github search
+**** github search
 - Search · mkTest extension:nix
     https://github.com/search?q=mkTest+extension%3Anix&type=Code&ref=advsearch&l=&l=
 
-*** tutorials
-**** nixosTests
+**** tutorials
+***** nixosTests
 - Running integration tests the nix way #howto
     https://gist.github.com/573/5df7e2e6d72fe31f85a26dd700d08ded
 
@@ -43,16 +55,19 @@
 - Integration testing using virtual machines (VMs) — nix.dev documentation
     https://nix.dev/tutorials/integration-testing-using-virtual-machines
 
-*** examples
+**** examples
 https://github.com/impl/nix-sops/blob/92ce97b8e2ac64fc1fae55fff307aeee83fecdc5/tests/home-manager/make-test.nix
 https://github.com/tweag/trustix/blob/e89875c2a40588c7badeb52ec31ea23fa2e0c7b6/packages/trustix/tests/default.nix
 https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/nat.nix#L67
 https://github.com/tubleronchik/kuka-airapkgs/blob/d3bea431b0a092c67256f0c92e362f641182af8b/pkgs/build-support/rust/build-rust-crate/test/default.nix
-**** devos
-***** [#A]
+***** devos
+****** [#A]
 https://github.com/jbl-proglove/devos/blob/4dd727c4015885ba0a300042fccee76599c1dfa9/tests/default.nix
 https://github.com/rafifos/devos/tree/bb9dc54af8a83d498ce3ef529a8efc575758952b/tests
-***** [#B]
+****** [#B]
 https://github.com/divnix/digga/blob/main/src/tests.nix
-***** [#C]
+****** [#C]
 https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
+
+** *TODOS*
+*** TODO create this file dynamically from module

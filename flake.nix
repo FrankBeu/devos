@@ -176,7 +176,8 @@
       templates.bud.path        = ./.;
       templates.bud.description = "bud template";
 
-      tests = import ./tests {inherit self inputs digga;};
+      ### TODO use checks instead of tests after native-flakes
+      tests  = import ./tests { inherit self; };
 
     }
     //

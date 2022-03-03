@@ -1,14 +1,12 @@
-{ self, inputs, digga, ... }:
+{ self }:
 let
   ### use modified mkTest based on digga
   ### TODO -> upstream changes
-  lib = inputs.digga.inputs.nixlib.lib;
+  lib = self.inputs.digga.inputs.nixlib.lib;
   mkTest = (import ../lib/testing { inherit lib; }).mkTest;
-in
-{
-  integrationTests = digga.lib.eachDefaultSystem (system: {
-    ### TODO register tests automatically with inputs.digga.lib.rakeLeaves
-    test  = (import ./pythonTest { inherit              inputs system; });
-    testy = (import ./test       { inherit self mkTest;                });
-  });
-}
+
+  rakedTestPaths = self.inputs.digga.lib.rakeLeaves ./. ;                                               ### rakedTestPaths = { dirname = path; ... };
+  tests          = builtins.mapAttrs (name: path: import path { inherit self mkTest;} ) rakedTestPaths; ### tests          = { dirname = { dirname = { testAttr } }; ... }
+
+in builtins.mapAttrs (name: value: value.${builtins.elemAt (builtins.attrNames value) 0} ) tests
+# in collectTests ./.
