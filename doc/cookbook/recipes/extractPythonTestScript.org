@@ -1,0 +1,77 @@
+* extract pythonTestScript
+** infile
+#+BEGIN_EXAMPLE nix
+{ self, inputs, system, mkTest, ...}:
+let
+  host = self.nixosConfigurations.NixOS;
+
+  test = {
+    name = "SCREENSHOT";
+
+    nodes = {
+      machine =
+      { suites, ... }: {
+        imports = suites.base;
+      };
+    };
+
+    enableOcr = true;
+
+    testScript =
+      ''
+        start_all()
+        machine.wait_for_unit("multi-user.target")
+        machine.screenshot("postboot")
+      '';
+  };
+in
+{
+  profilesTest   = mkTest host   test;
+  # profilesTest = mkTest host ./testScript.nix;
+}
+#+END_EXAMPLE
+** extracted testsscript
+*** =test.nix=
+#+BEGIN_EXAMPLE nix
+{ self, inputs, system, mkTest, ...}:
+let
+  host = self.nixosConfigurations.NixOS;
+
+  test = {
+    name = "SCREENSHOT";
+
+    nodes = {
+      machine =
+      { suites, ... }: {
+        imports = suites.base;
+      };
+    };
+
+    enableOcr = true;
+
+    # testScript =
+    #   ''
+    #     start_all()
+    #     machine.wait_for_unit("multi-user.target")
+    #     machine.screenshot("postboot")
+    #   '';
+  };
+in
+{
+  # profilesTest = mkTest host   test;
+  profilesTest   = mkTest host ./testScript.nix;
+}
+#+END_EXAMPLE
+*** =testscript.nix=
+#+BEGIN_EXAMPLE nix
+{
+testScript =
+''
+start_all()
+machine.wait_for_unit("multi-user.target")
+machine.screenshot("digga")
+'';
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

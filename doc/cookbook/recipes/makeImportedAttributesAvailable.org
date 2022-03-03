@@ -1,0 +1,6 @@
+* makeImportedAttributesAvailable
+** make all attributes defined in the file =definitions.nix= available
+as if they were defined locally in a let-expression.
+#+BEGIN_EXAMPLE nix
+with (import ./definitions.nix); ...
+#+END_EXAMPLE

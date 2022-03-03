@@ -1,0 +1,43 @@
+* TODO nix
+** COMMANDS
+*** if flakes are not enabled run
+#+BEGIN_SRC shell :results drawer
+  alias nix='nix --extra-experimental-features nix-command --extra-experimental-features flakes'
+#+END_SRC
+*** help
+#+BEGIN_SRC shell :results drawer
+  nix help
+#+END_SRC
+*** get version
+#+BEGIN_SRC shell :results drawer
+  nix -vv --version
+#+END_SRC
+*** logs
+#+BEGIN_SRC shell :results drawer
+  sudo nix log nixpkgs#hello
+#+END_SRC
+**** if a build is failing get derivation from cli and view directly
+#+BEGIN_SRC shell :results drawer
+  nix log /nix/store/y9lkdfixdnacl92f90bsp6xpfi6wn49h-openhab-cli.drv
+#+END_SRC
+*** build
+#+BEGIN_SRC shell :results drawer
+  nix-build hello.nix
+#+END_SRC
+*** find package providing executable
+#+BEGIN_SRC shell :results drawer
+  nix-locate bin/find -w
+#+END_SRC
+*** show derivation
+#+BEGIN_SRC shell :results drawer
+  nix show-derivation /nix/store/z3hhlxbckx4g3n9sw91nnvlkjvyw754p-myname.drv
+#+END_SRC
+#+BEGIN_SRC shell :results drawer
+  nix show-derivation ./result
+#+END_SRC
+** REPL
+*** load nix-packages
+#+BEGIN_EXAMPLE shell
+:l <nixpkgs>
+#+END_EXAMPLE
+

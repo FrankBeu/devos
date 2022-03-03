@@ -1,0 +1,32 @@
+* add to set without intermediary attribute
+** ~tests.test{x,y}~
+#+BEGIN_EXAMPLE nix
+tests = {}
+// import ./testx { inherit self; };
+// import ./testy { inherit self; };
+#+END_EXAMPLE
+*** =./testx=
+#+BEGIN_EXAMPLE nix
+{ self }:
+let
+# ...
+in
+{ testx = #... }
+#+END_EXAMPLE
+*** =./testy=
+#+BEGIN_EXAMPLE nix
+{ self }:
+let
+# ...
+in
+{ testy = #... }
+#+END_EXAMPLE
+** ~tests.test1.testx~ / ~tests.test2.testy~
+#+BEGIN_EXAMPLE nix
+tests = {
+  test1 =  import ./testx { inherit self; };
+  test2 =  import ./testy { inherit self; };
+};
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

@@ -1,0 +1,6 @@
+* assert with custom message
+#+BEGIN_EXAMPLE nix
+assert (lib.isInt n) || abort "Type error since supplied argument is no int!";
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

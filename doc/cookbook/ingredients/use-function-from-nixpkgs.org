@@ -1,0 +1,10 @@
+* use-function-from-nixpkgs
+#+BEGIN_EXAMPLE nix
+with import <nixpkgs> {};
+{
+  ex0 = lib.min 5 3;
+  ex1 = lib.max 9 4;
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

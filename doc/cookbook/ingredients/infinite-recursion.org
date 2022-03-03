@@ -1,0 +1,9 @@
+* infinite-recursion
+#+BEGIN_EXAMPLE nix
+rec {
+  x = y;
+  y = x;
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

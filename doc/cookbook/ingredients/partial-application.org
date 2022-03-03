@@ -1,0 +1,12 @@
+* partial-application
+#+BEGIN_EXAMPLE nix
+  let f    = "f";
+      o    = "o";
+      func = a: b: c: a + b + c;
+  in rec {
+    fo  = func f o ;
+    foo = fo "o";
+  }.foo
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify
