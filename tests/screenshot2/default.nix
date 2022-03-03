@@ -11,7 +11,7 @@ let
         };
     };
 
-    enableOcr = true;
+    enableOcr  = true;
 
     testScript =
       ''

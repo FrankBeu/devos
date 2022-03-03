@@ -9,8 +9,14 @@
 #+BEGIN_EXAMPLE shell
 nix build .#tests.screenshot
 #+END_EXAMPLE
+*** available test
+1. enter the ~nix repl~
+2. load flake ~:lf ./.~
+3. check for possible completions (tab) for the ~tests.~ attribute
 ** INFO
-*** general information
+*** naming
+in order to be collectable and callable with the shortest name possible, *the testname must be created automatically* (based on dirname).
+*** general information concerning testing in the nix-ecosystem
 **** types
 ***** system
 ***** package
@@ -61,12 +67,12 @@ https://github.com/tweag/trustix/blob/e89875c2a40588c7badeb52ec31ea23fa2e0c7b6/p
 https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/nat.nix#L67
 https://github.com/tubleronchik/kuka-airapkgs/blob/d3bea431b0a092c67256f0c92e362f641182af8b/pkgs/build-support/rust/build-rust-crate/test/default.nix
 ***** devos
-****** [#A]
+****** 1
 https://github.com/jbl-proglove/devos/blob/4dd727c4015885ba0a300042fccee76599c1dfa9/tests/default.nix
 https://github.com/rafifos/devos/tree/bb9dc54af8a83d498ce3ef529a8efc575758952b/tests
-****** [#B]
+****** 2
 https://github.com/divnix/digga/blob/main/src/tests.nix
-****** [#C]
+****** 3
 https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
 
 ** *TODOS*
