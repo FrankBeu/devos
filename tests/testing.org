@@ -5,6 +5,7 @@
 - the uppercaseTestname is used in the derivationName =/nix/store/<hash>-nixos-test-driver-TESTNAME.drv=
 - just copy a working test and adjust it
 - tests are automatically registered via ~collectTests~
+- tests have to be staged in order to be available to the flake !!!
 ** run
 #+BEGIN_EXAMPLE shell
 nix build .#tests.screenshot
@@ -77,3 +78,7 @@ https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/l
 
 ** *TODOS*
 *** TODO create this file dynamically from module
+*** TODO test lib like digga
+currently not working because of flake-util error
+reopen after realign with digga
+
