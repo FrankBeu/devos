@@ -1,10 +1,6 @@
 {
   description = "A highly structured configuration database.";
 
-  # nixConfig.extra-experimental-features = "nix-command flakes";
-  # nixConfig.extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
-  # nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4 = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs =";
-
   nixConfig.extra-experimental-features = "nix-command flakes";
   nixConfig.extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
   nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
@@ -135,9 +131,23 @@
 
         imports = [ (digga.lib.importHosts ./hosts) ];
         hosts   = {
-          /* set host specific properties here */
+          ### set host specific properties here
+          bootstrap = {
+          };
+          isoBase = {
+          };
+          mac = {
+            channelName = "latest";
+          };
           NixOS = {
-            tests = [ digga.lib.allProfilesTest ];
+            channelName = "latest";
+            tests       = [ digga.lib.allProfilesTest ];
+          };
+          nuc = {
+            channelName = "latest";
+          };
+          ryzen = {
+            channelName = "latest";
           };
         };
         importables = rec {
@@ -176,8 +186,11 @@
       templates.bud.path        = ./.;
       templates.bud.description = "bud template";
 
-      ### TODO use checks instead of tests after native-flakes
+      ### integrationTests (vm)
       tests  = import ./tests { inherit self; };
+
+      ### TODO libUnitTests after native-flakes
+      # checks = ./checks;
 
     }
     //
