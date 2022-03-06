@@ -118,6 +118,8 @@
         hostDefaults = {
           system      = "x86_64-linux";
           channelName = "nixos";
+          ### TODO undefined variable 'agenix'
+          # channelName = "latest";
           imports     = [ (digga.lib.importExportableModules ./modules) ];
           modules     = [
             { lib.our = self.lib; }
@@ -132,10 +134,8 @@
         imports = [ (digga.lib.importHosts ./hosts) ];
         hosts   = {
           ### set host specific properties here
-          bootstrap = {
-          };
-          isoBase = {
-          };
+          bootstrap = {};
+          isoBase = {};
           mac = {
             channelName = "latest";
           };
