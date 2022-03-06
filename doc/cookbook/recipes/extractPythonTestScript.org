@@ -30,7 +30,7 @@ in
   # profilesTest = mkTest host ./testScript.nix;
 }
 #+END_EXAMPLE
-** extracted testsscript
+** extracted testsScript.nix
 *** =test.nix=
 #+BEGIN_EXAMPLE nix
 { self, inputs, system, mkTest, ...}:
@@ -62,7 +62,7 @@ in
   profilesTest   = mkTest host ./testScript.nix;
 }
 #+END_EXAMPLE
-*** =testscript.nix=
+*** =testsScript.nix=
 #+BEGIN_EXAMPLE nix
 {
 testScript =
@@ -72,6 +72,46 @@ machine.wait_for_unit("multi-user.target")
 machine.screenshot("digga")
 '';
 }
+#+END_EXAMPLE
+** extracted composeable testsScript.py
+*** =test.nix=
+#+BEGIN_EXAMPLE nix
+{ self, inputs, system, mkTest, ...}:
+let
+  host = self.nixosConfigurations.NixOS;
+
+  test = {
+    name = "SCREENSHOT";
+
+    nodes = {
+      machine =
+      { suites, ... }: {
+        imports = suites.base;
+      };
+    };
+
+    enableOcr = true;
+
+    testScript =
+      ''
+        start_all()
+        ${testScriptExternal}
+      '';
+      
+  };
+  
+  testScriptExternal = builtins.readFile ./testScript.py;
+  
+in
+{
+  profilesTest = mkTest host   test;
+  # profilesTest   = mkTest host ./testScript.nix;
+}
+#+END_EXAMPLE
+*** =testScript.py=
+#+BEGIN_EXAMPLE python
+machine.wait_for_unit("multi-user.target")
+machine.screenshot("digga")
 #+END_EXAMPLE
 ** TODO TODOS
 *** hugoify

@@ -7,6 +7,8 @@
 
     etc."vimrc".source = ./vimrc;
 
+    # variables.EDITOR = "vim";
+
     shellAliases =
       {
         v = "vim";

@@ -1,0 +1,4 @@
+test for vim
+for vim test
+vim test for
+test for vim
