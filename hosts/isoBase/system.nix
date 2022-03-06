@@ -1,8 +1,23 @@
-{ profiles, mainUser, ... }:
+{ inputs
+, lib
+, profiles
+, self
+, variables
+, ...
+}:
+let
+  customSchemes   = (import ../../profiles/customthemes);
+  nixColorSchemes = inputs.nix-colors.colorSchemes;
+
+  lib          = self.inputs.digga.inputs.nixlib.lib;
+  loadColorScheme = (import ../../lib/colorscheme { inherit self lib; }).loadColorScheme;
+in
 {
   imports = [
-    profiles.users.root                                        ### make sure to configure ssh keys
-    profiles.users.${mainUser}
+    profiles.users.root                  ### make sure to configure ssh keys
+    ### TODO
+    # profiles.users.${mainUser}
+    profiles.users.nixos
 
     # profiles.networking
     profiles.core
@@ -12,6 +27,8 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
+
+  colorscheme = loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
 
   environment.variables = {
     EDITOR = "vim";
