@@ -7,7 +7,7 @@ machine.wait_for_unit("multi-user.target")
 #     machine.succeed('test $(basename "$EDITOR") = vim')
 
 with subtest("==================================================================================================== Check if vim is available"):
-    output = machine.succeed('whereis vim')
+    output = machine.succeed('vim -h')
     machine.log(output)
 
 

@@ -17,6 +17,9 @@ nix build .#tests.screenshot
 ** INFO
 *** naming
 in order to be collectable and callable with the shortest name possible, *the testname must be created automatically* (based on dirname).
+*** testing
+**** do not use ~whereis COMMAND~
+will always exit with 0
 *** general information concerning testing in the nix-ecosystem
 **** types
 ***** system

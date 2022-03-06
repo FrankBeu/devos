@@ -4,8 +4,9 @@
 machine.wait_for_unit("multi-user.target")
 
 with subtest("==================================================================================================== Check if RANGER is available"):
-    output = machine.succeed('whereis ranger')
+    output = machine.succeed('ranger -h')
     machine.log(output)
+    # machine.succeed('whereis ranger')
 
 # machine.sleep(5)
 
