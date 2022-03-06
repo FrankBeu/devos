@@ -1,0 +1,45 @@
+* fileCreation
+** create file in =/etc=
+*** from source
+#+BEGIN_EXAMPLE nix
+   environment.etc."FILENAME".source = ./PATH-TO-SOURCE;
+#+END_EXAMPLE
+*** from text (fileConcatenation, ...)
+#+BEGIN_EXAMPLE nix
+  environment.etc."FILENAME".text = ''
+    ${(builtins.readFile ./PATH-TO-FILE)}
+    ${(builtins.readFile ./PATH-TO-FILE)}
+  '';
+#+END_EXAMPLE
+** create arbitrary file
+#+BEGIN_EXAMPLE nix
+  systemd.tmpfiles.rules =
+    let 
+    variablesTestActual = ''
+      ${variables.test}\n${variables.test2}\n
+    '';
+    in 
+    [
+      "f /tmp/variablesTestActual - - - - ${variablesTestActual}"
+    ];
+#+END_EXAMPLE
+*** INFO
+**** man
+#+BEGIN_SRC shell :results drawer
+  man tmpfiles.d
+#+END_SRC
+
+**** multiline
+***** whitespace will not work
+***** only inline ~\n~
+**** test on current host
+#+BEGIN_SRC shell :results drawer
+systemd-tmpfiles --user --create
+#+END_SRC
+=~/.config/user-tmpfiles.d/1.conf=
+#+BEGIN_EXAMPLE
+f+ /home/user/TEST - - - - test\ntest
+#+END_EXAMPLE
+
+** TODO TODOS
+*** hugoify

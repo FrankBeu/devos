@@ -5,6 +5,8 @@ in
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### NixOS is only used as test-host
   imports =   [
+    ./variables
+
     profiles.users."${mainUser}"
     profiles.users.root
   ];

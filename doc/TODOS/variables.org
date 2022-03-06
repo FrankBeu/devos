@@ -1,6 +1,12 @@
 * variables
 Variables are provided by =modules/variables=
 Values are set per host in =host/<HOSTNAME>/variables=
+
+** debug
+*** repl
+#+BEGIN_EXAMPLE nix
+nixosConfigurations.<HOSTNAME>.options.variables.value.currentColorSchemeName
+#+END_EXAMPLE
 ** *TODOS*
 *** TODO create this file dynamically from module
 
