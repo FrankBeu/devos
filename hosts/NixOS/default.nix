@@ -9,4 +9,9 @@
   networking.networkmanager.enable = true;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
+
+  ### autologin on console
+  ### TODO use variable user
+  services.getty.autologinUser = "nixos";
+
 }
