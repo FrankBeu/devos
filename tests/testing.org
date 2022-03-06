@@ -40,6 +40,13 @@ in order to be collectable and callable with the shortest name possible, *the te
 
 - devos/default.nix at 235d9befc2495850d4679b73541c894b266e5d8a · d4hines/devos
   https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
+**** src
+***** nixosTests-commands
+=nixpkgs/nixos/lib/test-driver/test_driver/machine.py=
+***** noteworthy examples:
+=nixpkgs/nixos/tests/atop.nix=
+=nixpkgs/nixos/tests/chromium.nix=
+=nixpkgs/nixos/tests/fcitx/default.nix=
 
 **** github search
 - Search · mkTest extension:nix
