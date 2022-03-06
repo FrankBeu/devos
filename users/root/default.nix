@@ -1,5 +1,7 @@
 { ... }:
 # recommend using `hashedPassword`
 {
-  users.users.root.password = "";
+  ### TODO use sops
+  users.users.root.password = "root";
+  # users.users.root.password = "";
 }

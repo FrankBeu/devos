@@ -1,7 +1,16 @@
-{ suites, ... }:
+{ suites, profiles, ... }:
+let mainUser = "nixos";
+in
 {
-  ### root password is empty by default ###
-  imports = suites.base;
+  ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
+  ### NixOS is only used as test-host
+  imports =   [
+    profiles.users."${mainUser}"
+    profiles.users.root
+  ];
+
+  ### autologin on console
+  services.getty.autologinUser = "${mainUser}";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -9,9 +18,4 @@
   networking.networkmanager.enable = true;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
-
-  ### autologin on console
-  ### TODO use variable user
-  services.getty.autologinUser = "nixos";
-
 }

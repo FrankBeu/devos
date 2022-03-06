@@ -155,10 +155,7 @@
             users = digga.lib.rakeLeaves ./users;
           };
           suites = with profiles; rec {
-            base = [
-              users.nixos users.root
-              core editor.vim
-            ];
+            base = [ core ];
           };
         };
       };

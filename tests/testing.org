@@ -20,6 +20,8 @@ in order to be collectable and callable with the shortest name possible, *the te
 *** testing
 **** do not use ~whereis COMMAND~
 will always exit with 0
+*** profiles
+**** all profiles enabled in host will be available during tests
 *** general information concerning testing in the nix-ecosystem
 **** types
 ***** system
