@@ -4,20 +4,17 @@ let
   host = self.nixosConfigurations.NixOS;
 
   # meta.timeout = 1800;
-  # meta.timeout = 50;
 
   test = {
     nodes = {
       machine =
         { suites, profiles, ... }: {
-          imports = suites.base;
-          # imports = suites.vim;
-          # imports = profiles.editor.vim;
+          imports = [ profiles.editor.vim ];
           # environment.variables.EDITOR = "vim";
         };
     };
 
-    enableOcr  = true;
+    enableOcr  = false;
     ############################################### TEST-CONFIG-END
 
     testScript =

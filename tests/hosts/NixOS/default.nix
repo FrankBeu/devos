@@ -11,12 +11,7 @@ let
     nodes = {
       machine =
         { ... }: {};
-        # { suites, profiles, ... }: {
-        # };
     };
-
-
-
 
     enableOcr  = true;
     ############################################### TEST-CONFIG-END
