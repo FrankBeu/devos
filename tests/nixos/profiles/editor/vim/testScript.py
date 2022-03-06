@@ -6,7 +6,7 @@ machine.wait_for_unit("multi-user.target")
 # with subtest("Check if $EDITOR is set to vim"):
 #     machine.succeed('test $(basename "$EDITOR") = vim')
 
-with subtest("==================================================================================================== Check if vim is available"):
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if vim is available"):
     output = machine.succeed('vim -h')
     machine.log(output)
 
