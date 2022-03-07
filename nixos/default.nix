@@ -22,23 +22,18 @@ in
   };
 
   imports = [ (digga.lib.importHosts ../hosts) ];
+
   hosts   = {
     ### set host specific properties here
     bootstrap = {};
-    isoBase = {};
-    mac = {
-      channelName = "latest";
-    };
-    NixOS = {
+    isoBase   = {};
+    mac       = { channelName = "latest"; };
+    NixOS     = {
       channelName = "latest";
       tests       = [ digga.lib.allProfilesTest ];
     };
-    nuc = {
-      channelName = "latest";
-    };
-    ryzen = {
-      channelName = "latest";
-    };
+    nuc       = { channelName = "latest"; };
+    ryzen     = { channelName = "latest"; };
   };
 
   importables = rec {
