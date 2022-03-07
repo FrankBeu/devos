@@ -40,12 +40,11 @@ in
       channelName = "latest";
     };
   };
+
   importables = rec {
-    profiles  = digga.lib.rakeLeaves ./profiles // {
-      users = digga.lib.rakeLeaves ../users;
+    profiles = digga.lib.rakeLeaves ./profiles // {
+      users  = digga.lib.rakeLeaves ../users;
     };
-    suites = with profiles; rec {
-      base = [ core ];
-    };
+    suites = import ./suites { inherit profiles; };
   };
 }

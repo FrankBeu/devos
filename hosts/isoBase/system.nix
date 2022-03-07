@@ -2,6 +2,7 @@
 , lib
 , profiles
 , self
+, suites
 , variables
 , ...
 }:
@@ -9,7 +10,7 @@ let
   customSchemes   = (import ../../profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
 
-  lib          = self.inputs.digga.inputs.nixlib.lib;
+  lib             = self.inputs.digga.inputs.nixlib.lib;
   loadColorScheme = (import ../../lib/colorscheme { inherit self lib; }).loadColorScheme;
 in
 {
@@ -20,11 +21,10 @@ in
     profiles.users.nixos
 
     # profiles.networking
-    profiles.core
 
     profiles.editor.vim
     profiles.filemanager.ranger
-  ];
+  ] ++ suites.base;
 
   boot.loader.systemd-boot.enable = true;
 
