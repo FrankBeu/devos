@@ -8,7 +8,7 @@
 let
   mainUser = variables.mainUser;
 
-  customSchemes   = (import ../../profiles/customthemes);
+  customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
 
   lib          = self.inputs.digga.inputs.nixlib.lib;
