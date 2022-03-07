@@ -9,9 +9,6 @@
 let
   customSchemes   = (import ../../profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
-
-  lib             = self.inputs.digga.inputs.nixlib.lib;
-  loadColorScheme = (import ../../lib/colorscheme { inherit self lib; }).loadColorScheme;
 in
 {
   imports = [
@@ -28,7 +25,7 @@ in
 
   boot.loader.systemd-boot.enable = true;
 
-  colorscheme = loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
+  colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
 
   environment.variables = {
     EDITOR = "vim";

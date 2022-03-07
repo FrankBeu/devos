@@ -11,8 +11,6 @@ let
   customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
 
-  lib          = self.inputs.digga.inputs.nixlib.lib;
-  loadColorScheme = (import ../../lib/colorscheme { inherit self lib; }).loadColorScheme;
 in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
@@ -30,7 +28,7 @@ in
     efi.canTouchEfiVariables = true;
   };
 
-  colorscheme = loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
+  colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };  ### will be overridden by the bootstrapIso instrumentation
 
