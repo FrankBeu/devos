@@ -114,24 +114,8 @@
         })
       ];
 
-      nixos = ./nixos;
-
-      home = {
-        imports = [ (digga.lib.importExportableModules ./users/modules) ];
-        modules = [
-          nix-colors.homeManagerModule
-        ];
-        importables = rec {
-          profiles = digga.lib.rakeLeaves ./users/profiles;
-          suites   = with profiles; rec {
-            base = [ direnv git ];
-          };
-        };
-        users = {
-          nixos = { suites, ... }: { imports = suites.base; };
-        }; # digga.lib.importers.rakeLeaves ./users/hm;
-      };
-
+      nixos    = ./nixos;
+      home     = ./home;
       devshell = ./shell;
 
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
