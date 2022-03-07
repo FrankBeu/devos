@@ -1,4 +1,4 @@
 {
   ### MUST NOT BE CHANGED (GOLDEN FILES)
-  colorScheme = "dracula";
+  colorScheme = "custom-base24-dracula";
 }
