@@ -15,9 +15,9 @@ let
           # };
 
           systemd.tmpfiles.rules =
-            let 
+            let
             variablesTestActual = ''${variables.test}\n${variables.test2}\n'';
-            in 
+            in
             [
               "f /tmp/variablesTestActual - - - - ${variablesTestActual}"
             ];

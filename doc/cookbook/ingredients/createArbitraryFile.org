@@ -2,7 +2,7 @@
 ** create file in =/etc=
 *** from source
 #+BEGIN_EXAMPLE nix
-   environment.etc."FILENAME".source = ./PATH-TO-SOURCE;
+  environment.etc."FILENAME".source = ./PATH-TO-SOURCE;
 #+END_EXAMPLE
 *** from text (fileConcatenation, ...)
 #+BEGIN_EXAMPLE nix
@@ -14,11 +14,11 @@
 ** create arbitrary file
 #+BEGIN_EXAMPLE nix
   systemd.tmpfiles.rules =
-    let 
+    let
     variablesTestActual = ''
       ${variables.test}\n${variables.test2}\n
     '';
-    in 
+    in
     [
       "f /tmp/variablesTestActual - - - - ${variablesTestActual}"
     ];

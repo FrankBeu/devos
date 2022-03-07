@@ -18,7 +18,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 # machine.succeed("ranger")
 # machine.execute("man ranger")
-# machine.get_screen_text 
+# machine.get_screen_text
 # man = machine.succeed("man ranger")
 # print(f"\n{man}\n")
 # machine.sleep(5)
