@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+
+###
+##
+# * HardwareSetup on MAC
+#
+
+###
+##
+# ** Partitioning
+#
+echo -e "\e[34m\nPartitioning\e[0m"
+###
+##
+# *** sda == SDD
+#
+parted /dev/sda -- mklabel gpt
+
+###
+##
+# **** BOOT
+#
+echo -e "\e[33mboot\e[0m"
+parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
+parted /dev/sda -- set 1 esp on
+parted /dev/sda -- name 1 boot
+
+###
+##
+# **** ROOT
+#
+echo -e "\e[33mroot\e[0m"
+parted /dev/sda -- mkpart primary btrfs 512MiB 100%
+parted /dev/sda -- name 2 nixos
+
+###
+##
+# *** sdb == HDD
+#
+parted /dev/sdb -- mklabel gpt
+
+###
+##
+# **** HOME
+#
+echo -e "\e[33mhome\e[0m"
+parted --align optimal /dev/sdb -- mkpart primary btrfs 1Mib -34G
+parted /dev/sdb -- name 1 home
+
+###
+##
+# **** SWAP
+#
+echo -e "\e[33mswap\e[0m"
+parted --align optimal /dev/sdb -- mkpart primary linux-swap -34G 100%
+parted /dev/sdb -- set 2 swap on
+parted /dev/sdb -- name 2 swap
+
+
+###
+##
+# ** Formatting
+#
+echo -e "\e[34m\nFormatting\e[0m"
+
+###
+##
+# *** BOOT
+#
+echo -e "\e[33mboot\e[0m"
+mkfs.fat -F 32 -n BOOT /dev/sda1
+
+###
+##
+# *** ROOT
+#
+echo -e "\e[33mroot\e[0m"
+mkfs.btrfs -f -L NIXOS -n 16k /dev/sda2
+
+mount -o compress=zstd -L NIXOS /mnt
+cd /mnt
+btrfs subvolume create @
+cd /
+umount /mnt
+
+###
+##
+# *** HOME
+#
+echo -e "\e[33mhome\e[0m"
+mkfs.btrfs -f -L HOME -n 16k /dev/sdb1
+
+mount -o compress=zstd -L HOME /mnt
+cd /mnt
+btrfs subvolume create home
+cd /
+umount /mnt
+###
+##
+# *** SWAP
+#
+echo -e "\e[33mswap\e[0m"
+mkswap -L SWAP /dev/sdb2
+
+###
+##
+# ** Mounting
+#
+echo -e "\e[34m\nMounting\e[0m"
+
+###
+##
+# *** ROOT
+#
+echo -e "\e[33mroot\e[0m"
+
+mount -o compress=zstd,subvol=@ /dev/disk/by-label/NIXOS /mnt
+
+###
+##
+# *** BOOT
+#
+echo -e "\e[33mboot\e[0m"
+mkdir -p /mnt/boot
+mount /dev/disk/by-label/BOOT /mnt/boot
+
+###
+##
+# *** HOME
+#
+echo -e "\e[33mhome\e[0m"
+mkdir -p /mnt/home
+mount -o compress=zstd,subvol=home /dev/disk/by-label/HOME /mnt/home
+
+###
+##
+# *** SWAP
+#
+echo -e "\e[33mswap\e[0m"
+#swapon /dev/sdb2
+swapon -L SWAP
+
+###
+##
+# ** Checks
+#
+echo -e "\e[34mTesting\e[0m"
+
+###
+##
+# *** check labels and swap
+#
+#lsblk -o+label,partlabel
+#lsblk -fo+partlabel
+lsblk --json -o name,label,partlabel  ### labels
+free                                  ### compare swap to memory
+
+
+
+###
+##
+# ** Commands
+#
+#swapoff -L SWAP
+
+###
+##
+# ** DOCS
+#    https://nixos.org/manual/nixos/stable/index.html#sec-installation-partitioning-UEFI
