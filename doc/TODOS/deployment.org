@@ -1,0 +1,22 @@
+* TODO deployment
+*** after =./hardwareSetup/hardwareSetup.org= ~devos~ can be deployed
+**** copy/update =/etc/devos= on remote host
+#+BEGIN_SRC shell
+  rsync -raP --delete /home/frank/ROUTINES/infra/devOs/devos root@192.168.0.31:/etc
+#+END_SRC
+***** re-sync
+#+BEGIN_SRC shell
+rsync -raP root@192.168.0.31:/etc/devos /home/frank/ROUTINES/infra/devOs/
+#+END_SRC
+**** deploy
+[[*switch configuration][switch configuration]]
+*** bud
+**** on ryzen
+***** build configuration
+#+BEGIN_SRC shell :results drawer
+  bud rebuild ryzen build
+#+END_SRC
+***** switch configuration
+ #+BEGIN_SRC shell :res
+   bud rebuild ryzen switch
+ #+END_SRC

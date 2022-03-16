@@ -1,0 +1,19 @@
+* TODO flakes
+** INFO
+https://nixos.wiki/wiki/Flakes
+*** all versionControlled files will be copied to the store
+** COMMANDS
+*** update single dependency
+#+BEGIN_SRC shell :results drawer
+nix flake lock --update-input home-manager
+#+END_SRC
+*** create a flake
+#+BEGIN_SRC shell :results drawer
+  nix flake init
+  git init
+  git add flake.nix
+#+END_SRC
+*** get help
+#+BEGIN_SRC shell :results drawer
+  nixos-help
+#+END_SRC

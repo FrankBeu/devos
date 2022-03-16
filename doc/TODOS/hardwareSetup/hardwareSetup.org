@@ -1,0 +1,89 @@
+* HardwareSetup
+** PROCEDURE
+*** planning
+- create the partitioning-Scheme
+- create nec. subvolumes
+- create the directory-structure
+**** EXAMPLE
+ryzen
+***** nvme1
+****** partition
+******* boot
+******* root
+******** subvols
+- @
+***** nvme2
+****** partition
+******* nvme2
+******** subvols
+- tmp
+- nvme
+- docker
+***** ssd
+****** partition
+******* swap
+******* home
+***** directory-structure
+#+BEGIN_EXAMPLE shell :results drawer
+exa --group-directories-first --tree STRUCTURES
+#+END_EXAMPLE
+
+#+RESULTS:
+:results:
+STRUCTURES
+└── root
+   ├── home
+   │  ├── nvme
+   │  └── USERS
+   ├── tmp
+   └── var
+      └── lib
+         └── docker
+:end:
+*** create setupScript
+=hosts/<HOST>/setup/0-preparation.bsh=
+**** partitioning
+partition-labels in lowerCase
+**** formatting
+filesystem-labels in upperCase
+***** submoduling
+submodule-names in lowerCase
+**** mounting
+*** setup
+=hosts/<HOST>/setup/0-preparation.bsh=
+*** nix-hardware-config
+=./setup/1-configuration.bsh=
+*** adjust generated =configuration.nix=
+**** boot
+only 'boot' lines
+#+BEGIN_EXAMPLE nix
+  boot.loader.systemd-boot.enable  = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+#+END_EXAMPLE
+**** ssh
+if required
+#+BEGIN_EXAMPLE nix
+  services.openssh.enable          = true;
+  services.openssh.permitRootLogin = "yes";
+#+END_EXAMPLE
+**** hostname
+ is needed, to apply the proper devos-configuration
+#+BEGIN_EXAMPLE nix
+  networking.hostName = "ryzen";
+#+END_EXAMPLE
+*** nixos-install
+=./setup/2-installation.bsh=
+*** remove channel
+**** get alias
+#+BEGIN_EXAMPLE shell
+nix-channel --list
+#+END_EXAMPLE
+nixos https://nixos.org/channels/nixos-21.05
+**** remove
+#+BEGIN_EXAMPLE shell
+nix-channel --remove nixos
+#+END_EXAMPLE
+*** deploy =devos=
+**** [[../deployment.org][deployment.org]]
+
+

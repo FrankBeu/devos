@@ -1,0 +1,172 @@
+#!/usr/bin/env bash
+
+###
+##
+# * HardwareSetupExample for Machines
+#   store them under ../machines/<MACHINE>/setup/0-preparation.bsh
+#
+
+BLUE="\e[34m"
+YELLOW="\e[33m"
+RESET="\e[0m"
+
+echo -e ""
+echo -e "${YELLOW}create a ${RESET}../machines/<MACHINE>/setup/0-preparation.bsh"
+echo -e "${YELLOW}for the desired machine-configuration with the following parts:${RESET}"
+echo -e "${BLUE}PARTITIONING${RESET}"
+echo -e "${BLUE}FORMATTING${RESET}"
+echo -e "${BLUE}MOUNTING${RESET}"
+echo -e "${YELLOW}a rudimentary example can be found in ${RESET}./0-EXAMPLE.bsh"
+echo -e ""
+
+exit
+##############################################################################################
+
+###
+##
+# ** DEVICES
+#
+SDD="sd<X>"
+
+###
+##
+# ** Coloring
+#
+BLUE="\e[34m"
+YELLOW="\e[33m"
+RESET="\e[0m"
+
+###
+##
+# ** Partitioning
+#
+echo -e "${BLUE}\nPARTITIONING${RESET}"
+
+
+###
+##
+# *** NVME-1
+#
+parted /dev/${SDD} -- mklabel gpt
+
+###
+##
+# **** BOOT
+#
+echo -e "${YELLOW}boot${RESET}"
+parted /dev/${SDD} -- mkpart ESP fat32 1MiB 512MiB
+parted /dev/${SDD} -- set  1 esp on
+parted /dev/${SDD} -- name 1 boot
+
+###
+##
+# **** ROOT
+#
+echo -e "${YELLOW}root${RESET}"
+parted /dev/${SDD} -- mkpart primary btrfs 512MiB -34G
+parted /dev/${SDD} -- name 2 root
+
+
+###
+##
+# **** SWAP
+#
+echo -e "${YELLOW}swap${RESET}"
+parted --align optimal /dev/${SDD} -- mkpart primary linux-swap -34G 100%
+parted /dev/${SDD} -- set  3 swap on
+parted /dev/${SDD} -- name 3 swap
+
+
+###
+##
+# ** Formatting
+#
+echo -e "${BLUE}\nFORMATTING${RESET}"
+
+###
+##
+# *** BOOT
+#
+echo -e "${YELLOW}BOOT${RESET}"
+mkfs.fat -F 32 -n BOOT /dev/${SDD}1
+
+###
+##
+# *** ROOT
+#
+echo -e "${YELLOW}NIXOS${RESET}"
+mkfs.btrfs -f -L NIXOS -n 16k /dev/${SDD}2
+
+mount -o compress=zstd -L NIXOS /mnt
+cd /mnt
+btrfs subvolume create @
+cd /
+umount /mnt
+
+###
+##
+# *** SWAP
+#
+echo -e "${YELLOW}SWAP${RESET}"
+mkswap -L SWAP /dev/${SDD}3
+
+
+###
+##
+# ** MOUNTING
+#
+echo -e "${BLUE}\nMOUNTING${RESET}"
+
+###
+##
+# *** ROOT
+#
+echo -e "${YELLOW}root${RESET}"
+mount -o compress=zstd,subvol=@ /dev/disk/by-label/NIXOS /mnt
+
+###
+##
+# *** BOOT
+#
+echo -e "${YELLOW}boot${RESET}"
+mkdir -p /mnt/boot
+mount /dev/disk/by-label/BOOT /mnt/boot
+
+
+###
+##
+# *** SWAP
+#
+echo -e "${YELLOW}swap${RESET}"
+#swapon /dev/${NVME1}2
+swapon -L SWAP
+
+
+###
+##
+# ** Checks
+#
+echo -e "\n${BLUE}Testing${RESET}"
+echo -e ""
+
+###
+##
+# *** check labels and swap
+#
+#lsblk -o+label,partlabel
+#lsblk -fo+partlabel
+lsblk --json -o name,label,partlabel  ### labels
+free                                  ### compare swap to memory
+
+
+
+###
+##
+# ** Commands
+#
+#swapoff -L SWAP
+
+###
+##
+# ** DOCS
+#    https://nixos.org/manual/nixos/stable/index.html#sec-installation-partitioning-UEFI

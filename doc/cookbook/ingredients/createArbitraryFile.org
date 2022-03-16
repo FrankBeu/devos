@@ -43,3 +43,11 @@ f+ /home/user/TEST - - - - test\ntest
 
 ** TODO TODOS
 *** hugoify
+*** check escaped spaces
+#+BEGIN_EXAMPLE nix
+  options =
+    [ (builtins.replaceStrings [" "] ["\\040"]
+        "ssh_command=${pkgs.openssh}/bin/ssh -v -L 8080:localhost:80")
+    ];
+#+END_EXAMPLE
+

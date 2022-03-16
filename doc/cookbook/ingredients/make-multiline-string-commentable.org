@@ -1,0 +1,9 @@
+* make multiline string commentable
+#+BEGIN_EXAMPLE nix
+    xkbOptions = builtins.concatStringsSep "," [
+      "grp:caps_toggle"                           ### switch layout with capsLock
+      # "grp:shifts_toggle"                       ### Both Shift together
+    ];
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

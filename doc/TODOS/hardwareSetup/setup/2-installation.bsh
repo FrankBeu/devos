@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+###
+##
+# * Install nixos
+#
+nixos-install
+
+
+###
+##
+# ** DOCS
+#    https://nixos.org/manual/nixos/stable/index.html#sec-installation-partitioning-UEFI
