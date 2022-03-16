@@ -1,0 +1,245 @@
+#!/usr/bin/env bash
+
+###
+##
+# * HardwareSetup on RYZEN
+#
+
+###
+##
+# ** DEVICES
+#
+NVME0="nvme0n1"
+NVME1="nvme1n1"
+SDD="sda"
+
+###
+##
+# ** Coloring
+#
+BLUE="\e[34m"
+YELLOW="\e[33m"
+RESET="\e[0m"
+
+###
+##
+# ** Partitioning
+#
+echo -e "${BLUE}\nPARTITIONING${RESET}"
+echo -e "${BLUE}\nignore: ${YELLOW}Information: You may need to update /etc/fstab.${RESET}"
+
+
+###
+##
+# *** NVME-1
+#
+parted /dev/${NVME0} -- mklabel gpt
+
+###
+##
+# **** BOOT
+#
+echo -e "${YELLOW}boot${RESET}"
+parted /dev/${NVME0} -- mkpart ESP fat32 1MiB 512MiB
+parted /dev/${NVME0} -- set  1 esp on
+parted /dev/${NVME0} -- name 1 boot
+
+###
+##
+# **** ROOT
+#
+echo -e "${YELLOW}root${RESET}"
+parted /dev/${NVME0} -- mkpart primary btrfs 512MiB 100%
+parted /dev/${NVME0} -- name 2 root
+
+
+###
+##
+# *** NVME-2
+#
+parted /dev/${NVME1} -- mklabel gpt
+
+###
+##
+# **** FAST
+#
+echo -e "${YELLOW}fast${RESET}"
+parted --align optimal /dev/${NVME1} -- mkpart primary btrfs 1Mib 100%
+parted /dev/${NVME1} -- name 1 fast
+
+
+###
+##
+# *** SDD
+#
+parted /dev/${SDD} -- mklabel gpt
+
+###
+##
+# **** HOME
+#
+echo -e "${YELLOW}home${RESET}"
+parted --align optimal /dev/${SDD} -- mkpart primary btrfs 1Mib -34G
+parted /dev/${SDD} -- name 1 home
+
+###
+##
+# **** SWAP
+#
+echo -e "${YELLOW}swap${RESET}"
+parted --align optimal /dev/${SDD} -- mkpart primary linux-swap -34G 100%
+parted /dev/${SDD} -- set  2 swap on
+parted /dev/${SDD} -- name 2 swap
+
+
+###
+##
+# ** Formatting
+#
+echo -e "${BLUE}\nFORMATTING${RESET}"
+
+###
+##
+# *** BOOT
+#
+echo -e "${YELLOW}BOOT${RESET}"
+mkfs.fat -F 32 -n BOOT /dev/${NVME0}p1
+
+###
+##
+# *** ROOT
+#
+echo -e "${YELLOW}NIXOS${RESET}"
+mkfs.btrfs -f -L NIXOS -n 16k /dev/${NVME0}p2
+
+mount -o compress=zstd -L NIXOS /mnt
+cd /mnt
+btrfs subvolume create @
+cd /
+umount /mnt
+
+###
+##
+# *** FAST
+#
+echo -e "${YELLOW}FAST${RESET}"
+mkfs.btrfs -f -L FAST -n 16k /dev/${NVME1}p1
+
+mount -o compress=zstd -L FAST /mnt
+cd /mnt
+btrfs subvolume create docker
+btrfs subvolume create nvme
+btrfs subvolume create tmp
+cd /
+umount /mnt
+
+###
+##
+# *** HOME
+#
+echo -e "${YELLOW}HOME${RESET}"
+mkfs.btrfs -f -L HOME -n 16k /dev/${SDD}1
+
+mount -o compress=zstd -L HOME /mnt
+cd /mnt
+btrfs subvolume create home
+cd /
+umount /mnt
+
+###
+##
+# *** SWAP
+#
+echo -e "${YELLOW}SWAP${RESET}"
+mkswap -L SWAP /dev/${SDD}2
+
+
+###
+##
+# ** MOUNTING
+#
+echo -e "${BLUE}\nMOUNTING${RESET}"
+
+###
+##
+# *** root
+#
+echo -e "${YELLOW}root${RESET}"
+mount -o compress=zstd,subvol=@ /dev/disk/by-label/NIXOS /mnt
+
+###
+##
+# *** boot
+#
+echo -e "${YELLOW}boot${RESET}"
+mkdir -p /mnt/boot
+mount /dev/disk/by-label/BOOT /mnt/boot
+
+###
+##
+# *** home
+#
+echo -e "${YELLOW}home${RESET}"
+mkdir -p /mnt/home
+mount -o compress=zstd,subvol=home /dev/disk/by-label/HOME /mnt/home
+
+###
+##
+# *** swap
+#
+echo -e "${YELLOW}swap${RESET}"
+swapon -L SWAP
+
+###
+##
+# *** docker
+#
+echo -e "${YELLOW}docker${RESET}"
+mkdir -p /mnt/var/lib/docker
+mount -o compress=zstd,subvol=docker /dev/disk/by-label/FAST /mnt/var/lib/docker
+
+###
+##
+# *** nvme
+#
+echo -e "${YELLOW}nvme${RESET}"
+mkdir -p /mnt/home/nvme
+mount -o compress=zstd,subvol=nvme /dev/disk/by-label/FAST /mnt/home/nvme
+
+###
+##
+# *** tmp
+#
+echo -e "${YELLOW}tmp${RESET}"
+mkdir -p /mnt/tmp
+mount -o compress=zstd,subvol=tmp /dev/disk/by-label/FAST /mnt/tmp
+
+
+###
+##
+# ** Checks
+#
+echo -e "${BLUE}\nTesting${RESET}"
+echo -e ""
+
+###
+##
+# *** check labels and swap
+#
+#lsblk -o+label,partlabel
+#lsblk -fo+partlabel
+lsblk --json -o name,label,partlabel  ### labels
+free                                  ### compare swap to memory
+
+
+
+###
+##
+# ** Commands
+#
+#swapoff -L SWAP
+
+###
+##
+# ** DOCS
+#    https://nixos.org/manual/nixos/stable/index.html#sec-installation-partitioning-UEFI
