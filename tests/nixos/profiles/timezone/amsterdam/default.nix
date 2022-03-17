@@ -1,4 +1,4 @@
-{ self, mkTest, ...}:
+{ self, mkTest, testHelpers, ... }:
 let
   host = self.nixosConfigurations.NixOS;
 
@@ -25,7 +25,6 @@ let
   name = with builtins; baseNameOf (toString ./.);
 
   testScriptExternal = builtins.readFile ./testScript.py;
-  testHelpers = builtins.readFile ../../../../aux.py; ### TODO import globally
 
 in
 {

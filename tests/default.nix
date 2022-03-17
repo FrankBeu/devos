@@ -6,3 +6,4 @@ let
 
 in collectTests ./.
 ### TODO use self.lib.testing.collectTests ./. (self.nixosConfiguration is not available??)
+### TODO documentation make testing.org available

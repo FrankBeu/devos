@@ -29,11 +29,12 @@ let
   in
   nixosTesting.makeTest (maybeCallTest pkgs (maybeImport test));
 
+  testHelpers = builtins.readFile ./auxiliary.py;
 
   /* importTestIfAttributeIsPath walks all attributes (DFS) and imports the test if a path is found */
   importTestIfAttributeIsPath =
     setOfPaths: builtins.mapAttrs (name: value: if builtins.isPath value
-                                                then import value { inherit self mkTest;}
+                                                then import value { inherit self mkTest testHelpers;}
                                                 else importTestIfAttributeIsPath value ) setOfPaths;
 
   /* eliminateNestedDuplicatedTestname walks all attributes (DFS) and removes the first of two identical consecutive attributeNames

@@ -1,5 +1,3 @@
-### TODO: make globally available via lib
-
 def assert_contains(haystack, needle):
     if needle not in haystack:
         print("The haystack that will cause the following exception is:")

@@ -22,6 +22,10 @@ in order to be collectable and callable with the shortest name possible, *the te
 will always exit with 0
 *** profiles
 **** all profiles enabled in host will be available during tests
+*** testHelpers
+**** are globally defined in =lib/testing/auxiliary.py=
+***** usage
+cf. =tests/nixos/profiles/timezone/amsterdam/default.nix=
 *** general information concerning testing in the nix-ecosystem
 **** types
 ***** system
