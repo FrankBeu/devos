@@ -20,3 +20,6 @@ error: Module imports can't be nested lists. Perhaps you meant to remove one lev
     profiles.users.root
   ] ++ suites.base;
 #+END_EXAMPLE
+** bud
+*** scripts-src
+https://github.com/divnix/bud/tree/main/scripts
