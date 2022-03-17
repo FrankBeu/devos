@@ -22,6 +22,7 @@ in
 
 
     ### PROFILES
+    profiles.bud
     profiles.console
     profiles.editor.vim
     profiles.filemanager.ranger
