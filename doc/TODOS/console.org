@@ -1,0 +1,8 @@
+* console
+** INFO
+*** fonts
+https://alexandre.deverteuil.net/docs/archlinux-consolefonts/
+*** available fonts
+=/run/current-system/sw/share/consolefonts=
+** *TODOS*
+*** TODO create this file dynamically from module

@@ -20,6 +20,26 @@ in order to be collectable and callable with the shortest name possible, *the te
 *** testing
 **** do not use ~whereis COMMAND~
 will always exit with 0
+*** ~copy_from_host~
+can only copy files, which are in the nix store
+cannot be used directly from python
+cf. =tests/nixos/profiles/console/default.nix=
+*** screenshots
+**** python commands do not produce a result
+#+BEGIN_EXAMPLE python
+machine.succeed("cat /home/nixos/test.txt")
+#+END_EXAMPLE
+**** use
+***** XOR
+#+BEGIN_EXAMPLE python
+machine.send_chars("cat /home/nixos/test.txt")
+machine.send_key(  "ret")
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE python
+machine.send_chars("cat /home/nixos/test.txt\n")
+#+END_EXAMPLE
+**** console
+if a screenshot is taken from a console the cursor has to be invisible.
 *** profiles
 **** all profiles enabled in host will be available during tests
 *** testHelpers
@@ -97,4 +117,15 @@ https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/l
 *** TODO test lib like digga
 currently not working because of flake-util error
 reopen after realign with digga
-
+*** TODO test profiles
+- profiles.core
+- profiles.i18n
+- profiles.services.printing
+- profiles.services.ssh
+- profiles.services.xserver
+- profiles.sound
+- profiles.systemd.sleepDisable
+*** snippets
+#+BEGIN_EXAMPLE python
+machine.wait_until_succeeds("pgrep -u nixos bash")
+#+END_EXAMPLE
