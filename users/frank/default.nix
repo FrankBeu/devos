@@ -6,7 +6,7 @@
     description    = "Frank Beutelschiess";
     isNormalUser   = true;
     extraGroups    = [
-      "wheel"
+      "wheel" ### Enable ‘sudo’ for the user.
       "docker"
     ];
     ### TODO if enabled docker : docker

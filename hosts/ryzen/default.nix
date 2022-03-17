@@ -8,8 +8,6 @@
     ./system.nix
   ];
 
-  bud.enable = true;
-  bud.localFlakeClone = "/etc/devos";
 }
 
 ### TODO extract to documentation

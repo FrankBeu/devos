@@ -12,21 +12,39 @@ let
 in
 {
   imports = [
-    ./configuration.nix
+
+    ### FILES
+    ./hardware/hardware-configuration.nix          ### include the results of the hardware scan
+    ./boot
+    ./env
+    ./misc
+    ./networking
+
+
+    ### PROFILES
+    profiles.console
+    profiles.editor.vim
+    profiles.filemanager.ranger
+    profiles.i18n
+    profiles.networking.dhcp
+    profiles.networking.nameserver
+    # profiles.networking.wireless
+    # profiles.services.printing
+    profiles.services.ssh
+    profiles.services.xserver
+    profiles.sound
+    profiles.systemd.sleepDisable
+    profiles.timezone.amsterdam
+
+
+    ### USERS
     profiles.users.root
     ### TODO
     # profiles.users.${mainUser}
     profiles.users.nixos
 
-    # profiles.networking
 
-    profiles.editor.vim
-    profiles.filemanager.ranger
   ] ++ suites.base;
 
   # colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
-
-  environment.variables = {
-    EDITOR = "vim";
-  };
 }
