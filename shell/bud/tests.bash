@@ -17,3 +17,5 @@ nix build .#tests.nixos.profiles.timezone.amsterdam
 
 ### HOSTS
 nix build .#tests.hosts.NixOS
+nix build .#tests.hosts.ryzen
+

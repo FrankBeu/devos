@@ -22,7 +22,7 @@ in
 
 
     ### PROFILES
-    profiles.bud
+    # profiles.bud ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
     profiles.console
     profiles.editor.vim
     profiles.filemanager.ranger

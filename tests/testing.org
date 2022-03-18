@@ -135,3 +135,4 @@ reopen after realign with digga
 #+BEGIN_EXAMPLE python
 machine.wait_until_succeeds("pgrep -u nixos bash")
 #+END_EXAMPLE
+*** TODO check user nixos and root on hosts *NixOS*
