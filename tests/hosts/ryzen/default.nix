@@ -22,7 +22,10 @@ let
 
           systemd.tmpfiles.rules = [] ++
           ### colorTest{Target,Actual}
-          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles;
+          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles ++
+          ### variablesTest{Target,Actual}
+          ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   } ).tmpfiles
+          ;
         };
     };
 
@@ -37,6 +40,7 @@ let
       start_all()
 
       ${colorscheme}
+      ${variables}
 
       ${vim}
       ${ranger}
@@ -44,7 +48,6 @@ let
 
     '';
 
-    # ${variables}
     # ${console}
 
     name = self.inputs.latest.lib.toUpper name;

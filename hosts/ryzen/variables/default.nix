@@ -5,7 +5,7 @@ in
   variables = rec {
     autoLogin        = true;
 
-    hostname         = "mac";
+    hostname         = "ryzen";
 
     mainUser = {
       abbreviation   = "fb";
@@ -17,5 +17,7 @@ in
     };
 
     inherit currentColorSchemeName;
+
+    test  = "TEST";
   };
 }
