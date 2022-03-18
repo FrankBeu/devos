@@ -21,5 +21,7 @@ error: Module imports can't be nested lists. Perhaps you meant to remove one lev
   ] ++ suites.base;
 #+END_EXAMPLE
 ** bud
+*** changes
+changes to bud require a direnv-reload (=dr=)
 *** scripts-src
 https://github.com/divnix/bud/tree/main/scripts

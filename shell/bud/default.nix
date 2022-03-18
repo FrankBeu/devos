@@ -18,5 +18,11 @@
       synopsis = "burn iso";
       writer   = budUtils.writeBashWithPaths [ coreutils     nixUnstable ];
     };
+    tests = {
+      help     = "run all tests";
+      script   = ./tests.bash;
+      synopsis = "tests";
+      writer   = budUtils.writeBashWithPaths [ coreutils git nixUnstable ];
+    };
   };
 }
