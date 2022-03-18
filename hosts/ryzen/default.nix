@@ -2,9 +2,8 @@
 {
 
   imports = [
-    # ./variables
+    ./variables
     # ./home.nix
-
     ./system.nix
   ];
 

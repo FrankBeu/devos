@@ -3,10 +3,6 @@
 let
   host = self.nixosConfigurations.ryzen;
 
-  # meta.timeout = 1800;
-  # meta.timeout = 50;
-
-
   colorscheme = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
   variables   = builtins.readFile ../../nixos/modules/variables/testScript.py;
 
@@ -19,19 +15,28 @@ let
     nodes = {
       machine =
         { suites, profiles, variables, colorscheme, ... }: {
+          ### ARRANGE
           variables = {
-            currentColorSchemeName = "dracula"; ### always use same colorscheme for tests
+            currentColorSchemeName = "custom-base24-dracula"; ### always use the same colorscheme for tests (has to be aligned with NixOS)
           };
+
+          systemd.tmpfiles.rules = [] ++
+          ### colorTest{Target,Actual}
+          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles;
         };
     };
 
     enableOcr  = true;
 
+    ### ACT and ASSERT
     testScript =
       ''
 
       ${testHelpers}
+
       start_all()
+
+      ${colorscheme}
 
       ${vim}
       ${ranger}
@@ -41,7 +46,6 @@ let
 
     # ${variables}
     # ${console}
-    # ${colorscheme}
 
     name = self.inputs.latest.lib.toUpper name;
   };

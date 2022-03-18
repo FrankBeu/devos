@@ -3,12 +3,12 @@
 , profiles
 , self
 , suites
-# , variables
+, variables
 , ...
 }:
 let
-  # customSchemes   = (import ../../profiles/customthemes);
-  # nixColorSchemes = inputs.nix-colors.colorSchemes;
+  customSchemes   = (import ../../nixos/profiles/customthemes);
+  nixColorSchemes = inputs.nix-colors.colorSchemes;
 in
 {
   imports = [
@@ -47,5 +47,5 @@ in
 
   ] ++ suites.base;
 
-  # colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
+  colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
 }
