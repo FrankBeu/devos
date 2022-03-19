@@ -7,7 +7,11 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = [ profiles.console ];
+
           services.getty.autologinUser = "nixos";
+
+          ### golden/consoleFont.png
+          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
         };
     };
 
@@ -17,7 +21,6 @@ let
       ''
         ${testHelpers}
         start_all()
-        ${testPreparation}
         ${testScriptExternal}
       '';
 
@@ -26,7 +29,6 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testPreparation    = (import ./testPreparation.nix).testPreparation;
   testScriptExternal = builtins.readFile ./testScript.py;
 
 in

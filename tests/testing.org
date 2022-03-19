@@ -135,4 +135,8 @@ reopen after realign with digga
 #+BEGIN_EXAMPLE python
 machine.wait_until_succeeds("pgrep -u nixos bash")
 #+END_EXAMPLE
+**** change tty
+#+BEGIN_EXAMPLE python
+machine.send_key("ctrl-alt-f2")
+#+END_EXAMPLE
 *** TODO check user nixos and root on hosts *NixOS*

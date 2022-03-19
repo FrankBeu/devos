@@ -3,29 +3,36 @@
 let
   host = self.nixosConfigurations.ryzen;
 
-  colorscheme = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
-  variables   = builtins.readFile ../../nixos/modules/variables/testScript.py;
-
-  console     = builtins.readFile ../../nixos/profiles/console/testScript.py;
-  vim         = builtins.readFile ../../nixos/profiles/editor/vim/testScript.py;
-  ranger      = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
-  timezone    = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
+  colorscheme  = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
+  variables    = builtins.readFile ../../nixos/modules/variables/testScript.py;
+  consPreamble = builtins.readFile ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
+  console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScriptIntegration.py;
+  vim          = builtins.readFile ../../nixos/profiles/editor/vim/testScript.py;
+  ranger       = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
+  timezone     = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
 
   test = {
     nodes = {
       machine =
         { suites, profiles, variables, colorscheme, ... }: {
           ### ARRANGE
+
+          services.getty.autologinUser                         = "root";
+          # services.xserver.displayManager.gdm.autoLogin.user   = "root";
+          # services.xserver.displayManager.gdm.autoLogin.enable = true;
+
           variables = {
             currentColorSchemeName = "custom-base24-dracula"; ### always use the same colorscheme for tests (has to be aligned with NixOS)
           };
 
-          systemd.tmpfiles.rules = [] ++
-          ### colorTest{Target,Actual}
-          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles ++
-          ### variablesTest{Target,Actual}
-          ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   } ).tmpfiles
-          ;
+          systemd.tmpfiles.rules = [
+            ### colorscheme: colorTest{Target,Actual}
+            ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles
+            ### variables: variablesTest{Target,Actual}
+            ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   } ).tmpfiles
+            ### console: golden/consoleFont.png
+            ( import ../../nixos/profiles/console/testPreparation.nix                             ).tmpfiles
+          ];
         };
     };
 
@@ -34,23 +41,21 @@ let
     ### ACT and ASSERT
     testScript =
       ''
+        ${testHelpers}
 
-      ${testHelpers}
+        start_all()
 
-      start_all()
+        ${colorscheme}
+        ${variables}
 
-      ${colorscheme}
-      ${variables}
+        ${console}
+        ${vim}
+        ${ranger}
+        ${timezone}
+      '';
 
-      ${vim}
-      ${ranger}
-      ${timezone}
 
-    '';
-
-    # ${console}
-
-    name = self.inputs.latest.lib.toUpper name;
+      name = self.inputs.latest.lib.toUpper name;
   };
 
   name = with builtins; baseNameOf (toString ./.);

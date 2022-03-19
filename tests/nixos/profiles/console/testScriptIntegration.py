@@ -1,6 +1,10 @@
-machine.wait_for_unit("multi-user.target")
+machine.wait_for_unit("graphical.target")
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if consoleFont is set"):
+
+    # machine.shell_interact()
+    machine.send_key("ctrl-alt-f1")
+
     prepare_console_for_scrot()
 
     machine.send_chars("showconsolefont\n")
