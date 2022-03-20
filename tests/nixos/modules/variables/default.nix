@@ -7,7 +7,7 @@ let
       machine =
         { suites, profiles, variables, ... }: {
           ### variablesTest{Target,Actual}
-          systemd.tmpfiles.rules = [] ++ ( import ./testPreparation.nix { inherit variables; } ).tmpfiles;
+          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit variables; } ).tmpfiles ];
         };
     };
 

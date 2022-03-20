@@ -8,7 +8,7 @@ let
       machine =
         { suites, profiles, variables, colorscheme, ... }: {
           ### colorTest{Target,Actual}
-          systemd.tmpfiles.rules = [] ++ ( import ./testPreparation.nix { inherit colorscheme; } ).tmpfiles;
+          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit colorscheme; } ).tmpfiles ];
         };
     };
 
