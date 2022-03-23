@@ -6,7 +6,7 @@ let
   colorscheme  = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
   variables    = builtins.readFile ../../nixos/modules/variables/testScript.py;
   consPreamble = builtins.readFile ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
-  console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScriptIntegration.py;
+  console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScript.py;
   vim          = builtins.readFile ../../nixos/profiles/editor/vim/testScript.py;
   ranger       = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
