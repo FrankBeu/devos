@@ -1,5 +1,6 @@
-{ profiles, ...}:
+{ profiles, ... }:
 with profiles; rec
 {
-  base = [ core ];
+  base     = [ core                        ];
+  docLocal = [      services.documentation ];
 }

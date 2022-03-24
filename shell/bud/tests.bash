@@ -2,20 +2,28 @@
 ###       get all attributes of tests and pass them to `nix build`
 ###       here: order can be easily specified
 
+allTests=(
 ### HOME
-
+# tests.home.profiles.git
 
 ### NIXOS
-nix build .#tests.nixos.modules.colorscheme
-nix build .#tests.nixos.modules.variables
+tests.nixos.modules.colorscheme
+tests.nixos.modules.variables
 
-nix build .#tests.nixos.profiles.console
-nix build .#tests.nixos.profiles.editor.vim
-nix build .#tests.nixos.profiles.filemanager.ranger
-nix build .#tests.nixos.profiles.timezone.amsterdam
+tests.nixos.profiles.console
+tests.nixos.profiles.editor.vim
+tests.nixos.profiles.filemanager.ranger
+tests.nixos.profiles.services.documentation
+tests.nixos.profiles.timezone.amsterdam
 
+tests.nixos.suites.docLocal
 
 ### HOSTS
-nix build .#tests.hosts.NixOS
-nix build .#tests.hosts.ryzen
+tests.hosts.NixOS
+tests.hosts.ryzen
+)
 
+for i in "${allTests[@]}"; do
+  echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ nix build .#${i}"
+  nix build .#${i}
+done

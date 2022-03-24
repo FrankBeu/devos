@@ -1,0 +1,40 @@
+baseURL = "http://nixos.thesym.site/"
+languageCode = "en-us"
+title = "Docs"
+
+theme = "theme"
+
+[menu]
+  [[menu.page]]
+    name	= "NixOS Wiki"
+    url		= "https://nixos.wiki/"
+    weight	= "10"
+    pre		= "question"
+  [[menu.page]]
+    name	= "Gitea"
+    url		= "https://gitea.thesym.site/infra/nixos"
+    weight	= "20"
+    pre		= "coffee"
+  [[menu.page]]
+    name	= "Website"
+    url		= "https://thesym.site"
+    weight	= "30"
+    pre		= "home"
+
+[markup.highlight]
+  anchorLineNos = false
+  codeFences = true
+  guessSyntax = false
+  hl_Lines = ""
+  lineAnchors = ""
+  lineNoStart = 1
+  # lineNos = true
+  lineNos = false
+  lineNumbersInTable = true
+  noClasses = false
+  tabWidth = 4
+
+[params]
+  description	= "documentation for nixos@thesym.site"
+  author	= "theSymSiteAuthors"
+  website	= "https://thesym.site"

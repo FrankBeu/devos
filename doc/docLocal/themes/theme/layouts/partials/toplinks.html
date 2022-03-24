@@ -1,0 +1,7 @@
+<span class="navbar-item logo"><img src="{{ .Site.BaseURL }}images/theSymSite.png" alt="{{ .Site.Title }}"></span>
+{{ $currentNode := . }}{{ range .Site.Menus.page }}
+	<a class="navbar-item" href="{{ .URL }}">
+		<i class="fa fa-{{ .Pre }}"></i>&nbsp;
+		{{ .Name }}
+	</a>
+{{ end }}

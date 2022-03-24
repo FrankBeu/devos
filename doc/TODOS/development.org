@@ -5,3 +5,22 @@ if ~bud vm HOST~ is used to devel,
 disable ~interface.INTERFACE.useDHCP~ in
 =hosts/HOST/networking/default.nix=
 *** check ssh-firewall
+** Feature
+*** write documentation
+think *BDD*
+*** update =tests/hosts/HOSTNAME/default.nix=
+*** host-test: red
+*** write test
+=tests/nixos/[modules,profiles,suites]/NAME/default.nix=
+think *TDD*
+stage ! -> nec for flake
+*** single-test: red
+*** implement
+=[nixos,home]/[modules,profiles,suites]/NAME/default.nix=
+*** single-test: green
+*** refactor
+*** host test: green
+*** register test in =shell/bud/tests.bash=
+*** ~bud tests~: green
+*** switch
+*** check documentation in browser

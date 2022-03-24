@@ -1,0 +1,10 @@
+---
+title: "system"
+slug: "system"
+toc: true
+draft: false
+menu:
+  sidebar:
+    name: "system"
+    identifier: "system"
+---

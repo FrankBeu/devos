@@ -1,0 +1,240 @@
+@import './variables';
+@import './syntax';
+// @import '../node_modules/bulmaswatch/flatly/variables';
+@import "../node_modules/bulma/bulma";
+@import '../node_modules/bulmaswatch/flatly/overrides';
+
+
+$strongColor:      $pink;
+$contentLinkColor: $blue;
+
+
+*, *:hover, *:active, *:focus{
+    outline: none;
+}
+
+.homepage-hero{
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+
+    .hero-body .container{
+	padding: 3em 0 1em;
+
+	.button:first-child{
+	    margin-right: 1em;
+	}
+    }
+
+    .hero-foot img {
+	max-width: 100vw;
+	width: 1000px;
+	display: block;
+	margin: 0 auto;
+    }
+}
+
+.feature-shoutout {
+    font-size: 1.2em;
+
+    svg{
+	height: 36px;
+	vertical-align: middle;
+	padding-right: 5px;
+	fill: $white;
+    }
+
+    a{
+	color: darken($turquoise, 20%) !important;
+    }
+}
+
+.page .card{
+    margin-bottom: 2em;
+
+    background-color: $white;
+    box-shadow: 0 2px 3px rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.1);
+    color: $grey;
+    max-width: 100%;
+    position: relative;
+    border: none;
+    border-radius: 0.2em;
+
+    .media-content a{
+	display: block;
+    }
+}
+
+// Mobile Styles
+
+.navbar-background{
+    -webkit-transition: opacity ease 300ms;
+    transition: opacity ease 300ms;
+
+    opacity: 0;
+}
+
+.navbar-menu{
+    -webkit-transition: all ease 300ms;
+    transition: all ease 300ms;
+}
+
+@media screen and (max-width:1023px){
+    .navbar-menu{
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: -160px;
+	z-index: 2;
+	opacity: 1;
+	display: block;
+    }
+}
+
+.navbar-menu .logo{
+    display: none;
+}
+
+.navbar-menu.is-active{
+    -webkit-transition: all ease 300ms;
+    transition: all ease 300ms;
+    left: 0;
+
+    .navbar-item{
+	padding: 0.5em 2em 0.5em 1.5em;
+    }
+
+    .logo{
+	display: block;
+    }
+}
+
+.navbar-burger.burger{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+
+nav.navbar {
+      position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-background.is-active{
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 1;
+}
+
+.toc {
+    padding-bottom: 10px;
+}
+
+.menu {
+    font-size: 1rem;
+}
+.menu.is-small {
+    font-size: 0.85em;
+}
+.menu.is-medium {
+    font-size: 1.25rem;
+}
+.menu.is-large {
+    font-size: 1.5rem;
+}
+
+.menu-list {
+    line-height: 1;
+    font-size: 0.9em;
+}
+.menu-list a {
+    border-radius: 3px;
+    color: $grey;
+    display: block;
+    padding: 0.5em 0.75em;
+}
+.menu-list a:hover {
+    background-color: $white;
+    color: $grey;
+}
+.menu-list a.is-active {
+    background-color: $black;
+    color: $yellow;
+}
+.menu-list li ul {
+    border-left: 1px solid $white;
+    margin: 0.75em;
+    padding-left: 0.75em;
+}
+
+.menu-label {
+    color: $black;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.menu-label:not(:first-child) {
+    margin-top: 1em;
+}
+
+.menu-label:not(:last-child) {
+    margin-bottom: 0.5em;
+}
+
+body {
+    position: relative;
+    padding-bottom: 8rem;
+}
+
+section.section {
+    margin-top: 3rem;
+    min-height: 1000px;
+}
+
+footer {
+    position: absolute;
+    margin-top: 1em;
+    width:    100%;
+    bottom:   0;
+
+    .fa-heart {
+	color: $pink;
+    }
+}
+
+aside.sticky {
+    position: sticky;
+    top: 20px;
+}
+
+.src {
+    margin-bottom: 1rem;
+}
+
+// h1,
+// h2,
+h3,
+h4 {
+    margin-top: 1.0em;
+}
+
+strong {
+    color: $strongColor;
+}
+
+.content a {
+    color: $contentLinkColor;
+}
+
+//// fix anchorJumps behind the sticky header
+[id] {
+    scroll-margin-top: $navbar-height + 1rem;
+}

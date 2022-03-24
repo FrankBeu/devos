@@ -6,7 +6,12 @@ in
     test  = "TEST";
     test2 = "TEST2";
 
-    mainUser = "nixos";
+    mainUser = {
+      abbreviation   = "nixos";
+      name           = "nixos";
+      email          = "nixos@thesym.site";
+      description    = "Nixos Testuser";
+    };
 
     inherit currentColorSchemeName;
   };

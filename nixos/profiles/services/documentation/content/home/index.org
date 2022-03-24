@@ -1,0 +1,33 @@
+---
+title: "home"
+slug: "home"
+url: "/"
+menu:
+  sidebar:
+    parent: "global"
+    name: "home"
+    identifier: "home"
+    weight: 10
+toc: true
+draft: false
+---
+* Nixos-Documentation
+This is the documentation for the current machine's configuration.
+** Purpose
+Nixos makes it possible to have the same configuration deployed to different machines. \\
+Each workflow will be the same - everywhere. \\
+Each Keypress will have the same effect.
+** Global
+Only used for documentation, \\
+contains:
+- the homepage
+  - file is in home/ (to prevent sidebar-glitch)
+- the project's readme
+- documentation's documentation
+- manualActions
+- secrets
+** System
+All system-installation, hardware, services... \\
+Nixos-commands have to be executed with ~sudo~
+** Homemanager
+Userspace (programs and config-files) is implemented using home-manager.

@@ -45,7 +45,12 @@ in
     profiles.users.nixos
 
 
-  ] ++ suites.base;
+  ] ++ suites.base
+    ++ suites.docLocal
+  ;
 
   colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
+
+  # services.getty.autologinUser = "root";
+
 }

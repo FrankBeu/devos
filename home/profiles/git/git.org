@@ -1,0 +1,29 @@
+---
+title: git
+linktitle: git
+description: documentation for git
+categories:
+keywords: [git, vcs]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "git"
+    identifier: "git"
+draft: false
+toc: true
+---
+* git
+** emacs
+use magit
+*** merge
+ediff with smerge
+** cli
+*** list aliases
+=gal=
+*** git-fuzzy
+https://github.com/bigH/git-fuzzy/
+**** ALT
+https://github.com/wfxr/forgit/
+*** delta
+https://github.com/dandavison/delta
+

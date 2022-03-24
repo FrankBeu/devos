@@ -42,4 +42,7 @@
     };
 
   };
+
+  ### documentation
+  home.file.".docLocal/content/homemanager/git.org".source = ./git.org;
 }

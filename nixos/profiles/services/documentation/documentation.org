@@ -1,0 +1,48 @@
+---
+title: documentation
+linktitle: documentation
+description: documentation for the nixos-configuration
+categories:
+keywords: [nixos, documentation]
+menu:
+  sidebar:
+    parent: "global"
+    weight: 30
+draft: false
+toc: true
+---
+* documentation
+** help
+*** configuration.nix(5) man page
+#+BEGIN_SRC shell :results drawer
+man configuration.nix
+#+END_SRC
+*** NixOS manual
+#+BEGIN_SRC shell :results drawer
+nixos-help
+#+END_SRC
+** hugo
+*** resources have to be writeable if ~hugo serve~ is used
+** =doc.local=
+documentation of all *available* features is accessible  on each host via =doc.local=.
+documentation for development is available on every host via =doc.local=.
+*** TODO TODOS
+**** TODO domain =*.local.=
+**** DONE hugo server
+**** DONE systemd service
+**** DONE deployment on switch
+**** TODO configurable theme
+**** TODO manual actions
+*** categories
+**** mirror devos-structure
+**** difference
+***** feature documentation
+***** development documentation
+*** structure
+**** =./content=
+***** empty folders are kept for category-reference
+***** names are used as part of the url (cf. homemanager instead of home-manager)
+***** resides directly in each [profils,module,...]-directory
+***** or in =nixos/profiles/services/documentation/content/=
+***** hugo-files resides in =doc/docLocal/=
+****** TODO colors are defined in  =nixos/profiles/services/documentation/colors/colors.scss.nix=

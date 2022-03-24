@@ -1,0 +1,10 @@
+---
+title: "home-manager"
+slug: "home-manager"
+toc: true
+draft: false
+menu:
+  sidebar:
+    name: "home-manager"
+    identifier: "home-manager"
+---

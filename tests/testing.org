@@ -139,4 +139,20 @@ machine.wait_until_succeeds("pgrep -u nixos bash")
 #+BEGIN_EXAMPLE python
 machine.send_key("ctrl-alt-f2")
 #+END_EXAMPLE
+**** test systemdservice
+#+BEGIN_EXAMPLE python
+machine.wait_for_unit("documentation.service")
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if DOCUMENTATION-TEST-FILES are available"):
+    _, doc = machine.systemctl("status hugo.service --no-pager")
+    machine.log(doc)
+
+    log = machine.succeed("journalctl -b -u hugo.service --no-pager")
+    machine.log(print(log))
+
+    etc = machine.succeed("ls -r /etc/docLocal")
+    machine.log(print(etc))
+    machine.log('=====================================================')
+#+END_EXAMPLE
 *** TODO check user nixos and root on hosts *NixOS*
+*** TODO move ~machine.wait_for_unit("multi-user.target")~ to =default.nix=, everywhere
+

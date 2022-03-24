@@ -11,6 +11,8 @@ let
   ranger       = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
 
+  docLocal     = (import ../../nixos/suites/docLocal/testScript.nix).testScript;
+
   test = {
     nodes = {
       machine =
@@ -52,8 +54,10 @@ let
         ${vim}
         ${ranger}
         ${timezone}
-      '';
 
+        ${docLocal}
+
+      '';
 
       name = self.inputs.latest.lib.toUpper name;
   };

@@ -1,0 +1,9 @@
+name = "theme"
+license = "Apache-2.0"
+description = "general theme for theSymSite pages"
+homepage = "https://gitea.thesym.site/frank/theme"
+min_version = 0.17
+
+[author]
+  name = "TheSymSite Authors"
+  homepage = "https://thesym.site"
