@@ -17,6 +17,10 @@ rsync -raP root@192.168.0.31:/etc/devos /home/frank/ROUTINES/infra/devOs/
   bud rebuild ryzen build
 #+END_SRC
 ***** switch configuration
- #+BEGIN_SRC shell :res
-   bud rebuild ryzen switch
- #+END_SRC
+#+BEGIN_SRC shell :res
+  bud rebuild ryzen switch
+#+END_SRC
+****** ??
+#+BEGIN_SRC shell :res
+  bud ryzen switch
+#+END_SRC
