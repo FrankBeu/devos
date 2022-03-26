@@ -1,0 +1,16 @@
+* hosts
+** bootstrap
+** isoBase
+** mac
+** NixOS
+used for testing
+** nuc
+** ryzen
+*** development/deployment
+**** (dis|en)able dhcp for interfaces
+=hosts/ryzen/networking/default.nix=
+**** (dis|en)able bud in
+=hosts/ryzen/system.nix=
+** work
+** *TODOS*
+*** TODO create this file dynamically from module
