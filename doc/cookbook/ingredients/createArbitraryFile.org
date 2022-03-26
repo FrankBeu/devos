@@ -1,16 +1,24 @@
 * fileCreation
-** create file in =/etc=
-*** from source
+** create in =/etc=
+*** file
+**** from source
 #+BEGIN_EXAMPLE nix
   environment.etc."FILENAME".source = ./PATH-TO-SOURCE;
 #+END_EXAMPLE
-*** from text (fileConcatenation, ...)
+**** from text (fileConcatenation, ...)
 #+BEGIN_EXAMPLE nix
   environment.etc."FILENAME".text = ''
     ${(builtins.readFile ./PATH-TO-FILE)}
     ${(builtins.readFile ./PATH-TO-FILE)}
   '';
 #+END_EXAMPLE
+*** folder
+#+BEGIN_EXAMPLE nix
+  environment.etc."FOLDERNAME".source = ./PATH-TO-SOURCE;
+#+END_EXAMPLE
+**** BE CAREFUL !!!!
+folder must not contain a =.git=-Folder
+otherwise it will not be created
 ** create arbitrary file
 #+BEGIN_EXAMPLE nix
   systemd.tmpfiles.rules =
