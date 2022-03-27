@@ -11,6 +11,9 @@ let
   ranger       = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
 
+  gitPreamble  = builtins.readFile ../../home/profiles/git/testScriptIntegrationPreamble.py;
+  git          = gitPreamble + builtins.readFile ../../home/profiles/git/testScript.py;
+
   docLocal     = (import ../../nixos/suites/docLocal/testScript.nix).testScript;
 
   test = {
@@ -32,8 +35,10 @@ let
             ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles
             ### variables: variablesTest{Target,Actual}
             ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   } ).tmpfiles
-            ### console: golden/consoleFont.png
+            ### console: golden/consoleFontTarget.png
             ( import ../../nixos/profiles/console/testPreparation.nix                             ).tmpfiles
+            ### console: golden/gitVersionTarget.png
+            ( import ../../home/profiles/git/testPreparation.nix                                  ).tmpfiles
           ];
         };
     };
@@ -47,17 +52,22 @@ let
 
         start_all()
 
+
         ${colorscheme}
         ${variables}
+
 
         ${console}
         ${vim}
         ${ranger}
         ${timezone}
 
+
         ${docLocal}
 
+        ${git}
       '';
+        # ${console}
 
       name = self.inputs.latest.lib.toUpper name;
   };

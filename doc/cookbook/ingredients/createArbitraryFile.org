@@ -18,7 +18,8 @@
 #+END_EXAMPLE
 **** BE CAREFUL !!!!
 folder must not contain a =.git=-Folder
-otherwise it will not be created
+otherwise it will not be created (because it will not be recognized by nix-flake)
+
 ** create arbitrary file
 #+BEGIN_EXAMPLE nix
   systemd.tmpfiles.rules =
@@ -31,16 +32,49 @@ otherwise it will not be created
       "f /tmp/variablesTestActual - - - - ${variablesTestActual}"
     ];
 #+END_EXAMPLE
+*** whitespace
+#+BEGIN_EXAMPLE nix
+  "f+ /home/${name}/debug 0755 1000 100 - ${name}\\x09${group}" ### \t
+  "f+ /home/${name}/debug 0755 1000 100 - ${name}\\x0A${group}" ### \n
+  "f+ /home/${name}/debug 0755 1000 100 - ${name}\\x20${group}" ### space
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE nix
+  "f+ /home/${name}/debug 0755 1000 100 - ${name}\\t${group}" ### \t
+  "f+ /home/${name}/debug 0755 1000 100 - ${name}\\n${group}" ### \n
+#+END_EXAMPLE
+https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences
+**** keep it readable
+if ~L~ is not suitable substitute all newlines
+=./test=
+#+BEGIN_EXAMPLE
+qwer qwer
+asdf
+aaaaaaaaaa
+qqqqqq qqqqqq
+asdfasdfasdf
+asdfasdf
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE nix
+let
+  file = (builtins.replaceStrings ["\n"] ["\\n"] (builtins.readFile ./test));
+in
+  systemd.tmpfiles.rules =
+    [
+        "f+ /home/${name}/debug 0755 1000 100 - ${file}"
+    ];
+#+END_EXAMPLE
 *** INFO
-**** man
+**** systemd-tmpfiles
+***** man
 #+BEGIN_SRC shell :results drawer
   man tmpfiles.d
 #+END_SRC
 
-**** multiline
-***** whitespace will not work
-***** only inline ~\n~
-**** test on current host
+***** multiline
+****** whitespace will not work
+****** only inline ~\n~
+***** test on current host
 #+BEGIN_SRC shell :results drawer
 systemd-tmpfiles --user --create
 #+END_SRC
@@ -48,14 +82,5 @@ systemd-tmpfiles --user --create
 #+BEGIN_EXAMPLE
 f+ /home/user/TEST - - - - test\ntest
 #+END_EXAMPLE
-
 ** TODO TODOS
 *** hugoify
-*** check escaped spaces
-#+BEGIN_EXAMPLE nix
-  options =
-    [ (builtins.replaceStrings [" "] ["\\040"]
-        "ssh_command=${pkgs.openssh}/bin/ssh -v -L 8080:localhost:80")
-    ];
-#+END_EXAMPLE
-

@@ -14,6 +14,7 @@ in
       description    = "Frank Beutelschiess";
       # defaultBrowser = "chromium-browser";
       defaultBrowser = "firefox";
+      group          = "users";
     };
 
     inherit currentColorSchemeName;

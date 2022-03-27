@@ -31,5 +31,5 @@ in
 
   ### autologin on console
   # services.getty.autologinUser = "root";
-  # services.getty.autologinUser = ${variables.mainUser.name};
+  # services.getty.autologinUser = variables.mainUser.name;
 }

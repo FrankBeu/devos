@@ -78,6 +78,7 @@ in
         nr   =             "np remove";
         ns   =             "n  search --no-update-lock-file";
         nf   =             "n  flake";
+        nl   =             "n  log";
         nepl =             "n  repl '<nixpkgs>'";
         srch =             "ns nixos";
         orch =             "ns override";

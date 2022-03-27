@@ -11,6 +11,7 @@ in
       name           = "nixos";
       email          = "nixos@thesym.site";
       description    = "Nixos Testuser";
+      group          = "users";
     };
 
     inherit currentColorSchemeName;

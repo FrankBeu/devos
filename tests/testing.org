@@ -158,6 +158,8 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 gitVersion = machine.get_screen_text()
 machine.log(print(gitVersion))
 #+END_EXAMPLE
+*** prefer ~check_screen_text~ over ~check_golden_scrot~
+because of reduced brittleness in host-tests
 *** TODO check user nixos and root on hosts *NixOS*
 *** TODO move ~machine.wait_for_unit("multi-user.target")~ to =default.nix=, everywhere
 

@@ -18,12 +18,19 @@
   };
 
   ### create repository
-  systemd.tmpfiles.rules = [
-    "L+ /etc/docLocal/content/homemanager - - - - /home/${variables.mainUser.name}/.docLocal/content/homemanager"
+  systemd.tmpfiles.rules = let
+    name  = variables.mainUser.name;
+    group = variables.mainUser.group;
+  in
+  [
+    "d  /home/${name}/.docLocal                      0755    ${name}  ${group}  -   -"
+    "d  /home/${name}/.docLocal/content              0755    ${name}  ${group}  -   -"
+    "d  /home/${name}/.docLocal/content/homemanager  0755    ${name}  ${group}  -   -"
+    "L+ /etc/docLocal/content/homemanager            -       -        -         -   /home/${name}/.docLocal/content/homemanager"
 
-    "L+ /etc/docLocal/archetypes          - - - - ${../../../../doc/docLocal/archetypes}"
-    "L+ /etc/docLocal/themes              - - - - ${../../../../doc/docLocal/themes}"
-    "L+ /etc/docLocal/config.toml         - - - - ${../../../../doc/docLocal/config.toml}"
+    "L+ /etc/docLocal/archetypes                     -       -        -         -   ${../../../../doc/docLocal/archetypes}"
+    "L+ /etc/docLocal/themes                         -       -        -         -   ${../../../../doc/docLocal/themes}"
+    "L+ /etc/docLocal/config.toml                    -       -        -         -   ${../../../../doc/docLocal/config.toml}"
   ];
 
   ### global/documentation

@@ -8,5 +8,6 @@
     description  = "default";
     isNormalUser = true;
     extraGroups  = [ "wheel" ];
+    uid          = 1000;
   };
 }

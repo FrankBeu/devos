@@ -4,7 +4,7 @@
 
 allTests=(
 ### HOME
-# tests.home.profiles.git
+tests.home.profiles.git
 
 ### NIXOS
 tests.nixos.modules.colorscheme

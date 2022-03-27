@@ -1,6 +1,7 @@
 import os.path
+from typing import List
 
-def assert_contains(haystack, needle) -> None:
+def assert_contains(haystack: str, needle: str) -> None:
     if needle not in haystack:
         print("The haystack that will cause the following exception is:")
         print("---")
@@ -8,7 +9,7 @@ def assert_contains(haystack, needle) -> None:
         print("---")
         raise Exception(f"Expected string '{needle}' was not found")
 
-def assert_lacks(haystack, needle) -> None:
+def assert_lacks(haystack: str, needle: str) -> None:
     if needle in haystack:
         print("The haystack that will cause the following exception is:")
         print("---")
@@ -62,12 +63,12 @@ def restore_console_after_scrot() -> None:
     machine.send_chars("bash\n")
 
 
-def check_golden_scrot(file_name_golden, scrot_name_actual, debug=False) -> None:
+def check_golden_scrot(file_name_golden: str, scrot_name_actual: str, debug=False) -> None:
     '''
     check_golden_scrot takes
     the name to a goldenFile, which has to be found in the machines's /tmp folder,
     a name for the actual scrot to compare,
-    and optionaly a debug-flag, because a screenshot will not be made available if the function fails.
+    and optionally a debug-flag, because a screenshot will not be made available if the function fails.
     Both binary files are diffed.
     The golden file has to be imported seperately from devos:...currentTest/golden/... to machine:/tmp
     '''
@@ -77,6 +78,28 @@ def check_golden_scrot(file_name_golden, scrot_name_actual, debug=False) -> None
     if not debug:
         filename_actual = os.path.join(_out_dir(), "{}.png".format(scrot_name_actual))
         machine.succeed(f"cmp /tmp/{file_name_golden} {filename_actual}")
+
+
+def check_screen_text(command: str, assertions: List[str], debug=False) -> None:
+    '''
+    check_screen_text takes
+    the command to be send to the shell,
+    an array of string-assertions to test the output of the command against.
+    and optionally a debug-flag, which enables logging the commandOutput
+    '''
+    prepare_console_for_scrot()
+
+    machine.send_chars(f"{command}\n")
+    machine.sleep(2)
+    commandOutput = machine.get_screen_text()
+
+    for assertion in assertions:
+        assert_contains(commandOutput, assertion)
+
+    if debug:
+        machine.log(print(commandOutput))
+
+    restore_console_after_scrot()
 
 
 def _out_dir() -> str:

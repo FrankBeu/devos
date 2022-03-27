@@ -1,21 +1,28 @@
 { self, mkTest, testHelpers, ... }:
 let
-  ################################################### TEST-CONFIG
   host = self.nixosConfigurations.NixOS;
 
-  # meta.timeout = 1800;
-
   test = {
+
     nodes = {
       machine =
-        ### TODO: find home-manager-profiles
         { suites, profiles, ... }: {
-          imports = with profiles; [ git services.documentation ];
+          imports = with profiles; [ services.documentation ];
+
+          services.getty.autologinUser = "nixos";
+
+          ### golden/gitVersionTarget.png
+          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
+
+          home-manager.users.nixos = { profiles, suites, ... }: {
+            imports = [
+              profiles.git
+            ];
+          };
         };
     };
 
-    enableOcr  = false;
-    ############################################### TEST-CONFIG-END
+    enableOCR = true;
 
     testScript =
       ''
