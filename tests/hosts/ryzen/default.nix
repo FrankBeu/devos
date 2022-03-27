@@ -38,7 +38,7 @@ let
         };
     };
 
-    enableOcr  = true;
+    enableOCR  = true;
 
     ### ACT and ASSERT
     testScript =

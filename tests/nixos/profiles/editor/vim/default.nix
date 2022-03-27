@@ -14,7 +14,7 @@ let
         };
     };
 
-    enableOcr  = false;
+    enableOCR  = false;
     ############################################### TEST-CONFIG-END
 
     testScript =

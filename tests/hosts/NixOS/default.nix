@@ -13,7 +13,7 @@ let
         { ... }: {};
     };
 
-    enableOcr  = true;
+    enableOCR  = true;
     ############################################### TEST-CONFIG-END
 
     testScript =
