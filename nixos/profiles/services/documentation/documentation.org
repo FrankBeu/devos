@@ -27,10 +27,11 @@ nixos-help
 documentation of all *available* features is accessible  on each host via =doc.local=.
 documentation for development is available on every host via =doc.local=.
 *** TODO TODOS
-**** TODO domain =*.local.=
+**** DONE domain =*.local.=
 **** DONE hugo server
 **** DONE systemd service
 **** DONE deployment on switch
+**** DONE reverseProxy doc.local -> localhost:41503
 **** TODO configurable theme
 **** TODO manual actions
 *** categories

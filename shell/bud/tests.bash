@@ -11,6 +11,7 @@ tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
 
 tests.nixos.profiles.console
+tests.nixos.profiles.domain.local
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
 tests.nixos.profiles.services.documentation

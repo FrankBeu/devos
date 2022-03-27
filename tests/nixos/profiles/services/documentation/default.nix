@@ -1,20 +1,18 @@
 { self, mkTest, testHelpers, ... }:
 let
-  ################################################### TEST-CONFIG
   host = self.nixosConfigurations.NixOS;
-
-  # meta.timeout = 1800;
 
   test = {
     nodes = {
       machine =
         { suites, profiles, ... }: {
-          imports = [ profiles.services.documentation ];
+          imports = [
+            profiles.services.documentation
+          ];
         };
     };
 
     enableOCR  = false;
-    ############################################### TEST-CONFIG-END
 
     testScript =
       ''

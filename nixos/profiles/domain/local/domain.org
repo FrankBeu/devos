@@ -1,0 +1,17 @@
+---
+title: domain
+linktitle: domain
+description: documentation for domains
+categories:
+keywords: [nixos, documentation, web]
+menu:
+  sidebar:
+    parent: "system"
+    weight: 30
+draft: false
+toc: true
+---
+* domain
+** =doc.local=
+** cf. documentation
+*** TODO use link

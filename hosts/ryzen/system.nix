@@ -8,14 +8,14 @@
 let
   customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
-  ### prevent 'error: infinite recursion encountered'
-  variables       = with self; (import ./variables { inherit config; }).variables;
+  variables       = with self; (import ./variables { inherit config; }).variables;  ### prevent 'error: infinite recursion encountered'
 in
 {
   imports = [
 
+
     ### FILES
-    ./hardware/hardware-configuration.nix          ### include the results of the hardware scan
+    ./hardware/hardware-configuration.nix  ### include the results of the hardware scan
     ./boot
     ./env
     ./misc
@@ -23,7 +23,7 @@ in
 
 
     ### PROFILES
-    # profiles.bud ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
+    # profiles.bud  ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
     profiles.console
     profiles.editor.vim
     profiles.filemanager.ranger
@@ -37,6 +37,7 @@ in
     profiles.sound
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
+    profiles.tools.network
 
 
     ### USERS

@@ -23,6 +23,9 @@ bud tests
 ** INFO
 *** naming
 in order to be collectable and callable with the shortest name possible, *the testname must be created automatically* (based on dirname).
+*** snippets
+- are available in emacs ~python-mode~ and ~nix-mode~
+- start with ~devosTest~  / ~devte~ (name / key )
 *** testing
 **** do not use ~whereis COMMAND~
 will always exit with 0
@@ -162,4 +165,3 @@ machine.log(print(gitVersion))
 because of reduced brittleness in host-tests
 *** TODO check user nixos and root on hosts *NixOS*
 *** TODO move ~machine.wait_for_unit("multi-user.target")~ to =default.nix=, everywhere
-

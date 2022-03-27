@@ -7,8 +7,14 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-            tools.network ### DEV
-          ] ++ suites.docLocal;
+            domain.docLocal
+            domain.local
+            networking.nameserver
+            services.documentation
+            tools.network          ### DEV
+          ];
+
+          services.getty.autologinUser = "nixos";
         };
     };
 
@@ -18,7 +24,6 @@ let
       ''
         ${testHelpers}
         start_all()
-        machine.wait_for_unit("multi-user.target")
         ${testScriptExternal}
       '';
 
@@ -27,7 +32,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = (import ./testScript.nix).testScript;
+  testScriptExternal = builtins.readFile ./testScript.py;
 
 in
 {

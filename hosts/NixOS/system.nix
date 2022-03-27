@@ -13,9 +13,12 @@ in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### NixOS is only used as test-host
-  imports = [
-    profiles.users.root
-    profiles.users.${variables.mainUser.name}
+  imports = with profiles; [
+    users.root
+    users.${variables.mainUser.name}
+    # ];
+  ] ++ [
+    ### DEBUG
   ];
 
   boot.loader = {
