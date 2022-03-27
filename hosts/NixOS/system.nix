@@ -2,25 +2,20 @@
 , lib
 , profiles
 , self
-, variables
 , ...
 }:
 let
-  mainUser = variables.mainUser;
-
   customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
-
+  ### prevent 'error: infinite recursion encountered'
+  variables       = with self; (import ./variables { inherit config; }).variables;
 in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### NixOS is only used as test-host
   imports = [
-    ### TODO infinite recursion
-    # profiles.users.${variables.mainUser}
-    # profiles.users."${mainUser}"
     profiles.users.root
-    profiles.users.nixos
+    profiles.users.${variables.mainUser.name}
   ];
 
   boot.loader = {
@@ -35,7 +30,6 @@ in
   networking.networkmanager.enable = true;
 
   ### autologin on console
-  # services.getty.autologinUser = "${variables.mainUser}";
-  # services.getty.autologinUser = "${mainUser}";
-  # services.getty.autologinUser = "nixos";
+  # services.getty.autologinUser = "root";
+  # services.getty.autologinUser = ${variables.mainUser.name};
 }

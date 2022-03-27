@@ -27,7 +27,7 @@
 
   imports = [
     ./variables
-    # ./home.nix
+    ./home.nix
     ./system.nix
   ];
 

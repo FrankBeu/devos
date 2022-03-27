@@ -3,12 +3,13 @@
 , profiles
 , self
 , suites
-, variables
 , ...
 }:
 let
   customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
+  ### prevent 'error: infinite recursion encountered'
+  variables       = with self; (import ./variables { inherit config; }).variables;
 in
 {
   imports = [
@@ -40,9 +41,7 @@ in
 
     ### USERS
     profiles.users.root
-    ### TODO
-    # profiles.users.${mainUser}
-    profiles.users.nixos
+    profiles.users.${variables.mainUser.name}
 
 
   ] ++ suites.base
@@ -51,6 +50,8 @@ in
 
   colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
 
+  ### autologin on console
   # services.getty.autologinUser = "root";
+  # services.getty.autologinUser = ${variables.mainUser.name};
 
 }
