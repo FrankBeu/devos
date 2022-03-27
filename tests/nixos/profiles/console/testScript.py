@@ -5,6 +5,6 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
     machine.send_chars("showconsolefont\n")
 
-    check_golden_scrot("consoleFont.png", "consoleFontActual")
+    check_golden_scrot("consoleFontTarget.png", "consoleFontActual")
 
     restore_console_after_scrot()

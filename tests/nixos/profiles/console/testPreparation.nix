@@ -1,3 +1,3 @@
 {
-  tmpfiles = "L /tmp/consoleFont.png - - - - ${./golden/consoleFontTarget.png}";
+  tmpfiles = "L /tmp/consoleFontTarget.png - - - - ${./golden/consoleFontTarget.png}";
 }

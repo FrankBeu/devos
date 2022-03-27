@@ -10,7 +10,7 @@ let
 
           services.getty.autologinUser = "nixos";
 
-          ### golden/consoleFont.png
+          ### golden/consoleFontTarget.png
           systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
         };
     };
