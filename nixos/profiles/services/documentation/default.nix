@@ -30,6 +30,7 @@
 
     "L+ /etc/docLocal/archetypes                     -       -        -         -   ${../../../../doc/docLocal/archetypes}"
     "L+ /etc/docLocal/themes                         -       -        -         -   ${../../../../doc/docLocal/themes}"
+
     "L+ /etc/docLocal/config.toml                    -       -        -         -   ${../../../../doc/docLocal/config.toml}"
   ];
 
@@ -47,8 +48,15 @@
   ### colors
   ### TODO: if not variables fixedColors = true;
   ### TODO: make icon svg with dynamic color support
-  # environment.etc."/docLocal/themes/theme/src/colors.scss"    .source = (import ./colors/colors.scss.nix) {TODO: colorscheme};
+  ### only theme/{layouts,static} are needed (cannot be symlinks!?!)
+  ### disable "L+ /etc/docLocal/themes - - - - ${../../../../doc/docLocal/themes}"
+  # environment.etc."/docLocal/themes/theme"                   .source = ../../../../doc/docLocal/themes/theme;
+  # environment.etc."/docLocal/themes/theme/src/colors.scss"   .text = (import ./colors/colors.scss.nix {colorscheme = {grey = "777777";};}).colors;
+  ### needs build-step for scss->css:
+  ### package: theme; sources; patch colors.scss from colors.scss.nix {inherit colorscheme;}; build; take {layout,static}
 
-  ### TODO: check all available pages visually after graphical+browser
+  ### TODO: AFTER GRAPHICAL+BROWSER:
+  ### TODO: check all available pages visually
+  ### TODO: check if dynamic colors have to be tweaked (mapped??)
   ### TODO: documentation
 }

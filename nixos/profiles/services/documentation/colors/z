@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+rm ztest
+systemctl restart documentation
+sleep 1
+curl localhost:41503 -o ./ztest

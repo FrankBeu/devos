@@ -17,9 +17,11 @@
   environment.etc."FOLDERNAME".source = ./PATH-TO-SOURCE;
 #+END_EXAMPLE
 **** BE CAREFUL !!!!
+***** git
 folder must not contain a =.git=-Folder
 otherwise it will not be created (because it will not be recognized by nix-flake)
-
+***** FOLDERNAME
+must not end with a slash
 ** create arbitrary file
 #+BEGIN_EXAMPLE nix
   systemd.tmpfiles.rules =
