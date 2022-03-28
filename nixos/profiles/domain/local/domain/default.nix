@@ -12,5 +12,5 @@
   };
 
   ### doc.local/system/domain/
-  environment.etc."/docLocal/content/system/domain.org".source = ./domain.org;
+  environment.etc."/docLocal/content/system/domain.org".source = ../domain.org;
 }

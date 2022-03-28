@@ -7,8 +7,8 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-            domain.docLocal
-            domain.local
+            domain.local.domain
+            domain.local.doc
             networking.nameserver
             services.documentation
             tools.network          ### DEV
