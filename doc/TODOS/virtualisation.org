@@ -1,0 +1,25 @@
+* virtualisation
+** vbox
+** qemu
+*** options
+https://wiki.gentoo.org/wiki/QEMU/Options
+can be set as env
+#+BEGIN_EXAMPLE shell
+export QEMU_OPTS="-vga std"
+export QEMU_OPTS="-vga qxl"
+export QEMU_OPTS="-m 1024M"
+export QEMU_OPTS="-vga none -device virtio-gpu-pci"
+#+END_EXAMPLE
+**** cf. ssh
+[[file:ssh.org::*make guest available][make guest available]]
+** INFO
+*** get command which has started the vm
+after start
+#+BEGIN_EXAMPLE shell
+pgrep -a qemu
+#+END_EXAMPLE
+
+** TODO TODOS
+*** TODO create this file dynamically from module
+*** TODO add vm to path
+https://nixos.wiki/wiki/Adding_VMs_to_PATH

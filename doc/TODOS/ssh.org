@@ -1,0 +1,17 @@
+* ssh
+** connect to guest from host
+*** make guest available
+**** prepare shell
+#+BEGIN_EXAMPLE shell
+export QEMU_NET_OPTS="hostfwd=tcp::2222-:22"
+#+END_EXAMPLE
+**** start vm
+#+BEGIN_EXAMPLE shell
+bud vm ryzen
+#+END_EXAMPLE
+*** connect from host
+#+BEGIN_EXAMPLE shell
+ssh frank@localhost -p 2222
+#+END_EXAMPLE
+** INFO
+** TODO TODOS

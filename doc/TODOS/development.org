@@ -24,3 +24,18 @@ stage ! -> nec for flake
 *** ~bud tests~: green
 *** switch
 *** check documentation in browser
+** TODO TODOS
+*** editor
+**** enable nix-lsp
+**** enable python-lsp
+***** import driver from <nixpkgs>
+***** import helpers
+***** make ~machine~ available
+**** enable navigation
+***** if cursor is on {module,profile,suite}.NAME navigate to
+- test
+- profile
+i- ask if nixos or ~home~i
+***** change to test
+***** make available via dir.locals
+
