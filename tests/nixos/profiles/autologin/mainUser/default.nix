@@ -3,27 +3,17 @@ let
   host = self.nixosConfigurations.NixOS;
 
   test = {
-
     nodes = {
       machine =
-        { suites, profiles, ... }: {
+        { suites, profiles, variables, ... }: {
           imports = with profiles; [
-            services.documentation
             autologin.mainUser
           ];
-
-          ### golden/gitVersionTarget.png
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = [
-              profiles.git
-            ];
-          };
         };
+
     };
 
-    enableOCR = true;
+    enableOCR  = true;
 
     testScript =
       ''
@@ -37,7 +27,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  username = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.mainUser.name;
+  testScriptExternal = (import ./testScript.py.nix {inherit username;});
 
 in
 {

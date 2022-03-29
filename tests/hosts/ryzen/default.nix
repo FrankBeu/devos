@@ -21,10 +21,10 @@ let
       machine =
         { suites, profiles, variables, colorscheme, ... }: {
           ### ARRANGE
-
-          services.getty.autologinUser                         = "root";
-          # services.xserver.displayManager.gdm.autoLogin.user   = "root";
-          # services.xserver.displayManager.gdm.autoLogin.enable = true;
+          imports = with profiles; [
+            # autologin.mainUser
+            autologin.root
+          ];
 
           variables = {
             currentColorSchemeName = "custom-base24-dracula"; ### always use the same colorscheme for tests (has to be aligned with NixOS)

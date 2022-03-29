@@ -6,9 +6,10 @@ let
     nodes = {
       machine =
         { suites, profiles, ... }: {
-          imports = [ profiles.console ];
-
-          services.getty.autologinUser = "nixos";
+          imports = with profiles; [
+            autologin.mainUser
+            console
+          ];
 
           ### golden/consoleFontTarget.png
           systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];

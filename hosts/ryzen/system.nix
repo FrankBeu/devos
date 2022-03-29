@@ -42,7 +42,11 @@ in
 
     ### USERS
     profiles.users.root
-    profiles.users.${variables.mainUser.name}
+    profiles.users.${variables.mainUser.name}  ### TODO: handle like autologin.mainUser
+
+    ### AUTOLOGIN ON CONSOLE
+    # autologin.mainUser
+    # autologin.root
 
 
   ] ++ suites.base
@@ -50,9 +54,5 @@ in
   ;
 
   colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
-
-  ### autologin on console
-  # services.getty.autologinUser = "root";
-  # services.getty.autologinUser = ${variables.mainUser.name};
 
 }

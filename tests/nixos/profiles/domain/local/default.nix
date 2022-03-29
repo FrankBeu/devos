@@ -7,14 +7,13 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
+            autologin.mainUser
             domain.local.domain
             domain.local.doc
             networking.nameserver
             services.documentation
             tools.network          ### DEV
           ];
-
-          services.getty.autologinUser = "nixos";
         };
     };
 

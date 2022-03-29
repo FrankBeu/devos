@@ -10,6 +10,8 @@ tests.home.profiles.git
 tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
 
+tests.nixos.profiles.autologin.mainUser
+tests.nixos.profiles.autologin.root
 tests.nixos.profiles.console
 tests.nixos.profiles.domain.local
 tests.nixos.profiles.editor.vim

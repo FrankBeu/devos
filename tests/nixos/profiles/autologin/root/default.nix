@@ -3,27 +3,16 @@ let
   host = self.nixosConfigurations.NixOS;
 
   test = {
-
     nodes = {
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-            services.documentation
-            autologin.mainUser
+            autologin.root
           ];
-
-          ### golden/gitVersionTarget.png
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = [
-              profiles.git
-            ];
-          };
         };
     };
 
-    enableOCR = true;
+    enableOCR  = true;
 
     testScript =
       ''
