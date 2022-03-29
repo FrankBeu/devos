@@ -2,13 +2,13 @@
 , lib
 , profiles
 , self
+, suites
 , ...
 }:
 let
   customSchemes   = (import ../../nixos/profiles/customthemes);
   nixColorSchemes = inputs.nix-colors.colorSchemes;
-  ### prevent 'error: infinite recursion encountered'
-  variables       = with self; (import ./variables { inherit config; }).variables;
+  variables       = with self; (import ./variables { inherit config; }).variables;  ### prevent 'error: infinite recursion encountered'
 in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
@@ -16,10 +16,13 @@ in
   imports = with profiles; [
     users.root
     users.${variables.mainUser.name}
-    # ];
-  ] ++ [
-    ### DEBUG
-  ];
+  ]
+  ################################################################################################
+  ### DEBUG
+  ++ [] ++ suites.debug
+  ################################################################################################
+  ;
+
 
   boot.loader = {
     systemd-boot.enable      = true;
@@ -32,7 +35,4 @@ in
 
   networking.networkmanager.enable = true;
 
-  ### autologin on console
-  # services.getty.autologinUser = "root";
-  # services.getty.autologinUser = variables.mainUser.name;
 }
