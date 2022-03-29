@@ -1,0 +1,7 @@
+export QEMU_OPTS=""
+export QEMU_NET_OPTS="hostfwd=tcp::2223-:22"
+
+
+# Local Variables:
+# mode: sh
+# End:
