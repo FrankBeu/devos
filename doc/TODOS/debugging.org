@@ -1,0 +1,21 @@
+* debugging
+** build fails
+*** file not found
+**** keep failing buildDir
+#+BEGIN_SRC shell :results drawer
+  nix build .#tests.nixos.profiles.display.statusBar.statusGo --keep-failed
+#+END_SRC
+**** check =.gitignore=
+only files recognized by flake will be available
+*** inspect variables
+#+BEGIN_EXAMPLE nix
+  preBuild = ''
+    echo -e "==========================================================================================================="
+    echo ${unpackPhase}
+    echo -e "==========================================================================================================="
+    ls -r .
+    echo -e "==========================================================================================================="
+  '';
+#+END_EXAMPLE
+** *TODOS*
+*** TODO create this file dynamically from module

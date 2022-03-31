@@ -1,0 +1,93 @@
+* i3StatusBar
+i3status using barista
+** build with barista
+https://github.com/soumya92/barista
+*** groups
+https://barista.run/group/switching
+*** functions
+https://barista.run/modules/funcs#example-1
+*** additional modules
+https://martinohmann.github.io/barista-contrib/
+** configuration
+*** colors are taken from =~/.config/i3/config=
+#+begin_example shell
+bar {
+    id 1
+    modifier                $alt
+
+    status_command exec ~/SRC/GITEA/i3statusBar/i3statusBar
+
+    font pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+    binding_mode_indicator  no
+    mode                    hide
+    position top
+
+    colors {
+        background          #2e2a31
+        statusline          #b6b6b2
+        separator           #AF3A03
+        ###             ###                 BORDER  FILLING TEXT
+        focused_workspace   #000000 $color  #000000
+        active_workspace    #444444 #5f676a #ffffff
+        inactive_workspace  #333333 #222222 #888888
+        urgent_workspace    #2f343a #900000 #ffffff
+        binding_mode        #2f343a #900000 #ffffff
+    }
+  }
+    #+end_example
+** devel
+*** activate config
+**** make config writeable
+#+begin_src shell :results drawer
+mv ~/.config/i3 ~/.config/i3SYM
+cp -Lr ~/.config/i3SYM ~/.config/i3
+#+end_src
+**** switch comments
+#+begin_example shell
+ status_command exec ~/SRC/GITEA/i3statusBar/i3statusBar
+ # status_command exec i3statusBar
+#+end_example
+*** if alsa is used, nix-shell has to be used
+#+begin_src shell :results drawer
+nix-shell
+#+end_src
+
+*** build i3statusBar and reload i3-status
+#+begin_src shell :results drawer
+  ./build.sh -o ./i3statusBar && i3-msg restart
+#+end_src
+** build
+#+begin_src shell :results drawer
+./build.sh -o ./i3statusBar
+#+end_src
+*** extraBars
+**** time
+#+begin_src shell :results drawer
+go build -o ./i3statusBarTime ./extraBars/time/i3statusBarTime.go
+#+end_src
+** INFO
+*** icons
+#+begin_example go
+// material-crop-square
+// fa-sd-card
+// mdi-checkbox-blank-circle-outline
+#+end_example
+**** material-icons
+https://github.com/google/material-design-icons
+https://barista.run/pango/icons/material
+***** search
+https://fonts.google.com/icons?selected=Material+Icons
+**** material-design-icons
+https://github.com/Templarian/MaterialDesign-Webfont
+https://barista.run/pango/icons/mdi
+***** search
+https://materialdesignicons.com/
+**** fontAwesome
+https://github.com/FortAwesome/Font-Awesome
+https://barista.run/pango/icons/fontawesome
+***** search
+https://fontawesome.com/icons?d=gallery&m=free
+** TODO TODOS
+*** brightness-module like i3status-rust
+https://github.com/greshake/i3status-rust/blob/master/src/blocks/xrandr.rs
+*** media

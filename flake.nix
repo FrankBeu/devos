@@ -100,7 +100,14 @@
             ./pkgs/default.nix
           ];
         };
-        latest = { };
+        latest = {
+          overlays = [
+            nur.overlay
+            agenix.overlay
+            nvfetcher.overlay
+            ./pkgs/default.nix
+          ];
+        };
       };
 
       lib = import ./lib { lib = digga.lib // nixos.lib; };

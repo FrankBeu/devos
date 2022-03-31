@@ -13,6 +13,7 @@ tests.nixos.modules.variables
 tests.nixos.profiles.autologin.mainUser
 tests.nixos.profiles.autologin.root
 tests.nixos.profiles.console
+tests.nixos.profiles.display.statusBar.i3statusBar
 tests.nixos.profiles.domain.local
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
