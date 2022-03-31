@@ -8,6 +8,7 @@
 
     aliases = {
       a   = "add -p";
+      ad  = "add .";                    ### Add Dot
       bD  = "branch -D";
       ba  = "branch -a";
       bd  = "branch -d";
@@ -21,7 +22,7 @@
       i   = "init";
       p   = "push";
       r   = "restore";
-      ro  = "remote get-url origin";
+      ro  = "remote get-url origin";   ### Remote Origin
       rs  = "restore --staged";
       st  = "status -sb";
 
