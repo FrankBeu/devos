@@ -1,1 +1,1 @@
-/home/frank/ROUTINES/infra/devOs/devos/shell/bud/tests.bash
+../shell/bud/tests.bash

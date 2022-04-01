@@ -2,11 +2,11 @@
 *** after =./hardwareSetup/hardwareSetup.org= ~devos~ can be deployed
 **** copy/update =/etc/devos= on remote host
 #+BEGIN_SRC shell
-  rsync -raP --delete /home/frank/ROUTINES/infra/devOs/devos root@192.168.0.31:/etc
+  rsync -raP --delete /home/frank//DEVOS root@192.168.0.31:/etc
 #+END_SRC
 ***** re-sync
 #+BEGIN_SRC shell
-rsync -raP root@192.168.0.31:/etc/devos /home/frank/ROUTINES/infra/devOs/
+rsync -raP root@192.168.0.31:/home/frank/DEVOS /home/frank
 #+END_SRC
 **** deploy
 [[*switch configuration][switch configuration]]
