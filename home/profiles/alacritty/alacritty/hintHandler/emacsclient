@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+SPLITTED_INPUT=(${(@s/:/)1})
+
+FILENAME=${SPLITTED_INPUT[1]}
+LINE=${SPLITTED_INPUT[2]}
+COLUMN=${SPLITTED_INPUT[3]}
+
+emacsclient -nc -a ""  ${LINE:+"+$LINE"}${COLUMN:+":$COLUMN"} ${FILENAME}

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+nix log ${1}
+
+# Local Variables:
+# mode: bash
+# End:
