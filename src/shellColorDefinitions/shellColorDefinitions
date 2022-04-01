@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+B="\u001b[30m"     ### Black
+C="\u001b[36m"     ### Cyan
+G="\u001b[32m"     ### Green
+M="\u001b[35m"     ### Magenta
+R="\u001b[31m"     ### Red
+U="\u001b[34m"     ### blUe
+W="\u001b[37m"     ### White
+Y="\u001b[33m"     ### Yellow
+
+BB="\u001b[30;1m"  ### Black   Bold
+CB="\u001b[36;1m"  ### Cyan    Bold
+GB="\u001b[32;1m"  ### Green   Bold
+MB="\u001b[35;1m"  ### Magenta Bold
+RB="\u001b[31;1m"  ### Red     Bold
+UB="\u001b[34;1m"  ### blUe    Bold
+WB="\u001b[37;1m"  ### White   Bold
+YB="\u001b[33;1m"  ### Yellow  Bold
+
+N="\u001b[0m"      ### No

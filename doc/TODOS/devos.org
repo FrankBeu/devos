@@ -25,3 +25,22 @@ error: Module imports can't be nested lists. Perhaps you meant to remove one lev
 changes to bud require a direnv-reload (=dr=)
 *** scripts-src
 https://github.com/divnix/bud/tree/main/scripts
+*** auxiliary script
+**** can be made available via
+***** relative dir
+#+BEGIN_EXAMPLE shell
+FLAKE_DIR=`pwd`
+source ${FLAKE_DIR}/shell/bud/aux/SCRIPT
+#+END_EXAMPLE
+***** package - =bud/default.nix:SCRIPT.writer
+- only available via bud
+- cannot be use if script is called directly
+- usefull if helpers are also used in e.g. ~dotLocal~
+#+BEGIN_EXAMPLE nix
+writer   = budUtils.writeBashWithPaths [ coreutils     gnused nixUnstable shellColorDefinitions ];
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+source shellColorDefinitions
+#+END_EXAMPLE
+*** only ~bash~ scripts can be used - script will be sourced (bang will be ignored)
+

@@ -3,5 +3,6 @@ final: prev: {
   sources = prev.callPackage (import ./_sources/generated.nix) { };
 
   ### then, call packages with `final.callPackage`
-  i3statusBar = final.callPackage ./i3statusBar { };
+  i3statusBar           = final.callPackage ./i3statusBar           { };
+  shellColorDefinitions = final.callPackage ./shellColorDefinitions { };
 }

@@ -14,9 +14,13 @@ in
         ifSudo = lib.mkIf config.security.sudo.enable;
       in
       {
-        b =  "bud";
-        bb = "b   rebuild `hostname` build";
-        bs = "b   rebuild `hostname` switch";
+        b   = "bud";                         ### Bud
+        bb  = "b rebuild `hostname` build";  ### BudBuild
+        bs  = "b rebuild `hostname` switch"; ### BudSwitch
+        bt  = "b tests";                     ### BudTests
+        btb = "b testCreate b ";             ### BudTestcreateBasic  NAME
+        btg = "b testCreate g ";             ### BudTestcreateGolden NAME
+        bv  = "b vm";                        ### BudVirtualmachine   HOST
       };
   };
 }
