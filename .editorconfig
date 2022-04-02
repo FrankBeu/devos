@@ -52,6 +52,10 @@ indent_style = tab
 [*.sh]
 indent_style = unset
 
+### lisp
+[*.el]
+indent_style = unset
+
 ### misc
 [LICENSE]
 indent_size = unset
