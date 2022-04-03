@@ -18,8 +18,10 @@ in
         bb  = "b rebuild `hostname` build";  ### BudBuild
         bs  = "b rebuild `hostname` switch"; ### BudSwitch
         bt  = "b tests";                     ### BudTests
-        btb = "b testCreate b ";             ### BudTestcreateBasic  NAME
-        btg = "b testCreate g ";             ### BudTestcreateGolden NAME
+        btb = "b testCreate b";              ### BudTestcreateBasic  NAME
+        btg = "b testCreate g";              ### BudTestcreateGolden NAME
+        btp = "b testPrebuild";              ### BudTestPrebuild     NAME
+        bti = "b testInteractive";           ### BudTestInteractive
         bv  = "b vm";                        ### BudVirtualmachine   HOST
       };
   };

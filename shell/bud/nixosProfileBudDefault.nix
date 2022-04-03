@@ -1,0 +1,1 @@
+../../nixos/profiles/bud/default.nix

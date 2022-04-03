@@ -36,6 +36,27 @@
         writer   = budUtils.writeBashWithPaths [ coreutils     gnused nixUnstable shellColorDefinitions ];
 
       };
+      testInteractive = {
+        help     = "run a prebuild test interactively;  [k,keep] keep-vm-state";
+        script   = ./testInteractive.bash;
+        synopsis = "testInteractive [k|keep]";
+        writer   = budUtils.writeBashWithPaths [ coreutils            nixUnstable                       ];
+
+      };
+      testPrebuild = {
+        help     = "prebuild a test for interactive usage (nixos.profiles.TEST)";
+        script   = ./testPrebuild.bash;
+        synopsis = "testPrebuild TESTNAME";
+        writer   = budUtils.writeBashWithPaths [ coreutils git        nixUnstable                       ];
+
+      };
+      testRun = {
+        help     = "run a test (nixos.profiles.TEST)";
+        script   = ./testRun.bash;
+        synopsis = "testRun TESTNAME";
+        writer   = budUtils.writeBashWithPaths [ coreutils git        nixUnstable                       ];
+
+      };
       tests = {
         help     = "run all tests";
         script   = ./tests.bash;

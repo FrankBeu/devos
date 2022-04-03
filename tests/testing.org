@@ -10,7 +10,7 @@
 ** run
 *** single test
 #+BEGIN_EXAMPLE shell
-nix build .#tests.screenshot
+nix build .#tests.nixos.profiles.timezone.amsterdam
 #+END_EXAMPLE
 *** all tests
 #+BEGIN_EXAMPLE shell
@@ -20,6 +20,14 @@ bud tests
 1. enter the ~nix repl~
 2. load flake ~:lf ./.~
 3. check for possible completions (tab) for the ~tests.~ attribute
+*** interactively
+https://nixos.org/manual/nixos/stable/index.html#sec-running-nixos-tests-interactively
+#+BEGIN_EXAMPLE shell
+nix build .#tests.nixos.profiles.timezone.amsterdam.driverInteractive
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+./result/bin/nixos-test-driver --interactive
+#+END_EXAMPLE
 ** INFO
 *** naming
 in order to be collectable and callable with the shortest name possible, *the testname must be created automatically* (based on dirname).
