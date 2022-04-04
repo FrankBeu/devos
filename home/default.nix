@@ -3,10 +3,13 @@ let
   inherit (inputs) digga nixos nixos-hardware;
 in
 {
-  imports = [ (digga.lib.importExportableModules ./modules) ];
+  imports = [
+    (digga.lib.importExportableModules ./modules)
+  ];
 
   modules = with inputs; [
     nix-colors.homeManagerModule
+    ../nixos/modules/variables
   ];
 
   importables = rec {
