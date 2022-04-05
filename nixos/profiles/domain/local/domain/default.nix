@@ -1,8 +1,7 @@
 {
   services.coredns = {
     enable = true;
-    config =
-    ''
+    config = ''
       local {
         template IN A  {
             answer "{{ .Name }} 0 IN A 127.0.0.1"

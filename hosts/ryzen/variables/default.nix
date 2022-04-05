@@ -5,8 +5,6 @@ in
   variables = rec {
     autoLogin        = true;
 
-    hostname         = "ryzen";
-
     mainUser = {
       abbreviation   = "fb";
       name           = "frank";

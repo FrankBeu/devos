@@ -1,3 +1,5 @@
+{ username }:
+''
 machine.wait_for_unit("multi-user.target")
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if variables are available for system"):
@@ -5,5 +7,6 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     machine.log(output)
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if variables are available for homemanager"):
-    output = machine.succeed('diff /home/nixos/tmp/variablesTestActual /tmp/variablesTestTarget')
+    output = machine.succeed('diff /home/${username}/tmp/variablesTestActual /tmp/variablesTestTarget')
     machine.log(output)
+''

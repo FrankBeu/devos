@@ -1,4 +1,5 @@
 import os.path
+import re
 from typing import List
 
 def assert_contains(haystack: str, needle: str) -> None:
@@ -9,6 +10,7 @@ def assert_contains(haystack: str, needle: str) -> None:
         print("---")
         raise Exception(f"Expected string '{needle}' was not found")
 
+
 def assert_lacks(haystack: str, needle: str) -> None:
     if needle in haystack:
         print("The haystack that will cause the following exception is:")
@@ -16,6 +18,20 @@ def assert_lacks(haystack: str, needle: str) -> None:
         print(haystack, end="")
         print("---")
         raise Exception(f"Unexpected string '{needle}' was found")
+
+
+def assert_contains_regex(haystack: str, needle_regex_string: str) -> None:
+    '''
+    checks if the given regexString (e.g. r"google.com.\t[0-9]+\tIN\tA\t[0-9.]+")
+    can be located in the haystack
+    '''
+    regex = re.compile(needle_regex_string) ###
+    if not regex.search(haystack):
+        print("The haystack that will cause the following exception is:")
+        print("---")
+        print(haystack)
+        print("---")
+        raise Exception(f"Expected regex '{needle_regex_string}' was not found")
 
 
 def prepare_console_for_scrot() -> None:

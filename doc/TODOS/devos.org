@@ -3,6 +3,7 @@
 *** profiles
 **** languages
 ***** serialisationLanguages
+*** =hosts=
 ** errors
 *** imported suites + profile
 #+BEGIN_EXAMPLE
@@ -43,4 +44,11 @@ writer   = budUtils.writeBashWithPaths [ coreutils     gnused nixUnstable shellC
 source shellColorDefinitions
 #+END_EXAMPLE
 *** only ~bash~ scripts can be used - script will be sourced (bang will be ignored)
+** INFO
+*** =hosts=
+**** hostname
+ The hostname is set automagically by digga to the *DIRNAME* following =hosts/=.
+#+BEGIN_EXAMPLE nix
+networking.hostName = "HOSTNAME";  ### unnecessary
+#+END_EXAMPLE
 

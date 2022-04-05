@@ -7,13 +7,8 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-            autologin.mainUser
-            domain.local.domain
-            domain.local.doc
-            networking.nameserver.regular
-            services.documentation
-            tools.network          ### DEV
-          ];
+            tools.network ### DEV
+          ] ++ suites.dnsRegular;
         };
     };
 
@@ -23,6 +18,7 @@ let
       ''
         ${testHelpers}
         start_all()
+        machine.wait_for_unit("multi-user.target")
         ${testScriptExternal}
       '';
 
@@ -31,7 +27,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  testScriptExternal = (import ./testScript.nix).testScript;
 
 in
 {

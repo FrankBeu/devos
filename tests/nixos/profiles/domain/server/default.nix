@@ -8,11 +8,9 @@ let
         { suites, profiles, ... }: {
           imports = with profiles; [
             autologin.mainUser
-            domain.local.domain
-            domain.local.doc
+            domain.server
             networking.nameserver.regular
-            services.documentation
-            tools.network          ### DEV
+            tools.network                  ### DEV
           ];
         };
     };

@@ -1,10 +1,13 @@
 { self, mkTest, testHelpers, ...}:
 
 let
-  host = self.nixosConfigurations.ryzen;
+  host          = self.nixosConfigurations.ryzen;
+  hostVariables = with self; (import "${self}/hosts/ryzen/variables" { inherit config; }).variables;
+  username      = hostVariables.mainUser.name;
 
   colorscheme  = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
-  variables    = builtins.readFile ../../nixos/modules/variables/testScript.py;
+  variables    = (import ../../nixos/modules/variables/testScript.py.nix { inherit username; });
+
   consPreamble = builtins.readFile ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScript.py;
   vim          = builtins.readFile ../../nixos/profiles/editor/vim/testScript.py;
@@ -32,14 +35,25 @@ let
 
           systemd.tmpfiles.rules = [
             ### colorscheme: colorTest{Target,Actual}
-            ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; } ).tmpfiles
+            ( import ../../nixos/modules/colorscheme/testPreparation.nix   { inherit colorscheme; } ).tmpfiles
             ### variables: variablesTest{Target,Actual}
-            ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   } ).tmpfiles
+            ( import ../../nixos/modules/variables/testPreparation.nix     { inherit variables;   } ).tmpfiles
             ### console: golden/consoleFontTarget.png
             ( import ../../nixos/profiles/console/testPreparation.nix                             ).tmpfiles
             ### console: golden/gitVersionTarget.png
             ( import ../../home/profiles/git/testPreparation.nix                                  ).tmpfiles
           ];
+
+
+          home-manager.users.${variables.mainUser.name} = { profiles, suites, variables, ... }: {
+            imports = [];
+
+            home.file = {
+              ### variables: variablesTestActual
+              "tmp/variablesTestActual".text = ( import ../../nixos/modules/variables/testPreparationHome.nix { inherit variables; } );
+            };
+          };
+
         };
     };
 
@@ -57,7 +71,7 @@ let
         ${variables}
 
 
-        ${console}
+        # $${console} ###TODO reactivate after graphical
         ${vim}
         ${ranger}
         ${timezone}
@@ -65,9 +79,9 @@ let
 
         ${docLocal}
 
-        ${git}
+        # $${git}     ###TODO reactivate after graphical
       '';
-        # ${console}
+      # ${console}
 
       name = self.inputs.latest.lib.toUpper name;
   };

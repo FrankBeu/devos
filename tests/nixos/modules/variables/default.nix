@@ -13,10 +13,7 @@ let
             imports = [];
 
             ### variablesTestActual
-            home.file."tmp/variablesTestActual".text = ''
-              ${variables.test}
-              ${variables.currentColorSchemeName}
-            '';
+            home.file."tmp/variablesTestActual".text = ( import ./testPreparationHome.nix { inherit variables; } );
           };
         };
     };
@@ -35,7 +32,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  username = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.mainUser.name;
+  testScriptExternal = (import ./testScript.py.nix {inherit username;});
 
 in
 {

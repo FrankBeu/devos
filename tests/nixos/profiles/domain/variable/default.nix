@@ -5,14 +5,13 @@ let
   test = {
     nodes = {
       machine =
-        { suites, profiles, ... }: {
+        { suites, profiles, variables, ... }: {
           imports = with profiles; [
             autologin.mainUser
-            domain.local.domain
-            domain.local.doc
+            domain.variable
+            domain.server
             networking.nameserver.regular
-            services.documentation
-            tools.network          ### DEV
+            tools.network                  ### DEV
           ];
         };
     };
@@ -31,7 +30,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  domainName = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.domain;
+  testScriptExternal = (import ./testScript.py.nix {inherit domainName;});
 
 in
 {

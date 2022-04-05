@@ -12,9 +12,6 @@
       # enable = false;
     };
 
-    hostName = "ryzen"; ### TODO: variable
-    # hostName = variables.hostname;
-
     ### DEVEL: DISABLE the following lines for faster vm-startup
     interfaces = {
       # enp37s0.useDHCP = true;

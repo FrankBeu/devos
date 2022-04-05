@@ -15,11 +15,14 @@ tests.nixos.profiles.autologin.root
 tests.nixos.profiles.console
 tests.nixos.profiles.display.statusBar.i3statusBar
 tests.nixos.profiles.domain.local
+tests.nixos.profiles.domain.server
+tests.nixos.profiles.domain.variable
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
 tests.nixos.profiles.services.documentation
 tests.nixos.profiles.timezone.amsterdam
 
+tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 
 ### HOSTS

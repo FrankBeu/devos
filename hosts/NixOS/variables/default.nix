@@ -6,6 +6,8 @@ in
     test  = "TEST";
     test2 = "TEST2";
 
+    domain   = "example.com";
+
     mainUser = {
       abbreviation   = "nixos";
       name           = "nixos";

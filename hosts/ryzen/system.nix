@@ -29,8 +29,8 @@ in
     profiles.filemanager.ranger
     profiles.i18n
     profiles.networking.dhcp
-    profiles.networking.nameserver
-    # profiles.networking.wireless
+    profiles.networking.nameserver.regular
+    # profiles.networking.nameserver.secure
     # profiles.services.printing
     profiles.services.ssh
     profiles.services.xserver
