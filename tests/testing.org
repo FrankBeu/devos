@@ -29,6 +29,7 @@ nix build .#tests.nixos.profiles.timezone.amsterdam.driverInteractive
 ./result/bin/nixos-test-driver --interactive
 #+END_EXAMPLE
 ** INFO
+
 *** naming
 in order to be collectable and callable with the shortest name possible, *the testname must be created automatically* (based on dirname).
 *** snippets
@@ -128,7 +129,8 @@ https://github.com/rafifos/devos/tree/bb9dc54af8a83d498ce3ef529a8efc575758952b/t
 https://github.com/divnix/digga/blob/main/src/tests.nix
 ****** 3
 https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
-
+*** profiles using nixos and home
+are tested in the home section of tests by pulling in tests from nixos
 ** *TODOS*
 *** TODO create this file dynamically from module
 *** TODO test lib like digga

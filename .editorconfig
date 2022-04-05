@@ -59,3 +59,6 @@ indent_style = unset
 ### misc
 [LICENSE]
 indent_size = unset
+
+[**/themes/*]
+indent_size = unset

@@ -3,32 +3,22 @@ let
   host = self.nixosConfigurations.NixOS;
 
   test = {
-
     nodes = {
       machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            alacritty
-          ];
-
-          ### golden/gitVersionTarget.png
-          # systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, variables, ... }: {
+        # { suites, profiles, ... }: {
+          { suites, profiles, pkgs, ... }: {
             imports = with profiles; [
               alacritty
             ];
           };
-        };
     };
 
-    enableOCR = true;
+    enableOCR  = true;
 
     testScript =
       ''
         ${testHelpers}
         start_all()
-        ${testScriptNixos}
         ${testScriptExternal}
       '';
 
@@ -38,7 +28,6 @@ let
   name = with builtins; baseNameOf (toString ./.);
 
   testScriptExternal = builtins.readFile ./testScript.py;
-  testScriptNixos    = builtins.readFile ../../../nixos/profiles/alacritty/testScript.py;
 
 in
 {

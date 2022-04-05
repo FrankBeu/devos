@@ -1,10 +1,12 @@
 { variables }:
 {
+        # - "~/.config/alacritty/themes/symSite.yaml"
+        # - "~/.config/alacritty/themes/${variables.currentThemeName}.yaml"
   ### keep username and theme dynamic
+  ### TODO: use theme after graphical
   content =
     ''
       import:
-        - "~/.config/alacritty/themes/${variables.currentThemeName}.yaml"
       anchors:
             nixlogArgs: &nixLogArgs
               ["-e", "/home/${variables.mainUser.name}/.local/share/alacritty/hintHandler/nixLog"]
