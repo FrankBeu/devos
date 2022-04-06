@@ -20,12 +20,17 @@ def assert_lacks(haystack: str, needle: str) -> None:
         raise Exception(f"Unexpected string '{needle}' was found")
 
 
-def assert_contains_regex(haystack: str, needle_regex_string: str) -> None:
+def assert_contains_regex(haystack: str, needle_regex_string: str, multiline: bool=True) -> None:
     '''
     checks if the given regexString (e.g. r"google.com.\t[0-9]+\tIN\tA\t[0-9.]+")
-    can be located in the haystack
+    can be located in the haystack.
+    Default: search in multiline string; can be deactivated with multi_line=False
     '''
-    regex = re.compile(needle_regex_string) ###
+    if multiline:
+        regex = re.compile(needle_regex_string, re.MULTILINE)
+    else:
+        regex = re.compile(needle_regex_string)
+
     if not regex.search(haystack):
         print("The haystack that will cause the following exception is:")
         print("---")

@@ -1,13 +1,18 @@
 machine.wait_for_unit("multi-user.target")
 
-with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ home.profiles.alacritty"):
 
-
-    machine.wait_for_file("/home/nixos/.config/alacritty/alacritty.yml")
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.alacritty"):
+    machine.wait_for_file("/home/nixos/.config/alacritty")
     output = machine.succeed('ls /home/nixos/.config/alacritty')
-    # machine.log(output)
     assert_contains(output, 'alacritty.yml')
     # assert_contains(output, 'themes')
+
+
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ check {preamble,config}-alignment"):
+    machine.wait_for_file("/home/nixos/.config/alacritty/alacritty.yml")
+    output = machine.succeed('cat /home/nixos/.config/alacritty/alacritty.yml')
+    assert_contains_regex(output, r'^### nixVariableAnchorsEnd')
+    assert_contains_regex(output, r'^### yamlAnchorsContinuation')
 
 
 ### TODO: config-tests; check if alacritty can be executed with loaded config
