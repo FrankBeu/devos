@@ -17,6 +17,7 @@ tests.nixos.profiles.alacritty
 tests.nixos.profiles.autologin.mainUser
 tests.nixos.profiles.autologin.root
 tests.nixos.profiles.console
+# tests.nixos.profiles.display.gnome    ### TODO: needs hw-acceleration
 tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar
 tests.nixos.profiles.domain.local
@@ -29,7 +30,8 @@ tests.nixos.profiles.timezone.amsterdam
 
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
-tests.nixos.suites.i3
+tests.nixos.suites.gnome
+# tests.nixos.suites.i3                 ### TODO: needs hw-acceleration
 
 ### HOSTS
 tests.hosts.NixOS

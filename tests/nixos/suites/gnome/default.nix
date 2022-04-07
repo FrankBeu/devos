@@ -8,7 +8,7 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-          ] ++ suites.i3;
+          ] ++ suites.gnome;
 
           variables = {
             autoLogin = true;

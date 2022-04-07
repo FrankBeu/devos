@@ -8,7 +8,9 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-          ] ++ suites.i3;
+            display.manager.gdm
+            display.gnome
+          ];
 
           variables = {
             autoLogin = true;
@@ -19,6 +21,7 @@ let
 
           # home-manager.users.nixos = { profiles, suites, ... }: {
           #   imports = [
+          #     ### TODO
           #   ];
           # };
         };
@@ -39,7 +42,7 @@ let
   name = with builtins; baseNameOf (toString ./.);
 
   userID = host.config.users.users.${host.config.variables.mainUser.name}.uid;
-  testScriptExternal = (import ./testScript.nix { inherit userID;}).testScript;
+  testScriptExternal = (import ./testScript.py.nix {inherit userID;});
 
 in
 {
