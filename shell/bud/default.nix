@@ -44,7 +44,7 @@
 
       };
       testPrebuild = {
-        help     = "prebuild a test for interactive usage (nixos.profiles.TEST)";
+        help     = "prebuild a test for interactive usage (tests.nixos.profiles.TEST)";
         script   = ./testPrebuild.bash;
         synopsis = "testPrebuild TESTNAME";
         writer   = budUtils.writeBashWithPaths [ coreutils git        nixUnstable                       ];

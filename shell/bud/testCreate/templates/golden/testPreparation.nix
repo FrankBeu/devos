@@ -1,3 +1,3 @@
 {
-  tmpfiles = "L /tmp/TODOTarget.png - - - - ${./golden/TODOTarget.png}";   ###TODO
+  tmpfiles = "L /tmp/TODO-Target.png - - - - ${./golden/TODO-Target.png}";   ###TODO
 }

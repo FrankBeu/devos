@@ -1,1 +1,1 @@
-nix build .#tests.${1}
+nix build .#${1}

@@ -21,13 +21,13 @@ fi
 
 
 ### LOCATION
-if [[ ${2} =~ ^(home|host|nixos)(\.[[:alnum:]]+)+$ ]]  ### starting with ..., followed by a dot with alnums at least 1 time
+if [[ ${2} =~ ^tests\.(home|host|nixos)(\.[[:alnum:]]+)+$ ]]  ### starting with ..., followed by a dot with alnums at least 1 time
 then
     LOCATION=${2//.//} ### substitut . with / globally
 else
     echo -e ""
     echo -e "\tThe second argument has to be a ${UB}location${N} for the test."
-    echo -e "\t\t e.g.: (${Y}home${N}|${Y}host${N}|${Y}nixos${N})${Y}.SEGMENT${N}[${Y}.SEGMENT${N}]${Y}.TESTNAME${N}"
+    echo -e "\t\t e.g.: ${Y}tests.${N}(${Y}home${N}|${Y}host${N}|${Y}nixos${N})${Y}.SEGMENT${N}[${Y}.SEGMENT${N}]${Y}.TESTNAME${N}"
     echo -e ""
     exit
 fi
@@ -35,15 +35,15 @@ echo -e ""
 
 
 ### INSTANTIATION
-if [[ -d ${FLAKE_DIR}/tests/${LOCATION} ]]
+if [[ -d ${FLAKE_DIR}/${LOCATION} ]]
 then
     echo -e "\tA directory ${RB}already exists${N} at ${Y}${FLAKE_DIR}/tests/${LOCATION}${N}."
     echo -e ""
     exit
 else
-    mkdir -p ${FLAKE_DIR}/tests/${LOCATION}
-    cp    -r ${FLAKE_DIR}/shell/bud/testCreate/templates/${TYPE_SELECTED}/* ${FLAKE_DIR}/tests/${LOCATION}
-    sed   -i "s/<TESTNAME>/${2}/" ${FLAKE_DIR}/tests/${LOCATION}/testScript.py
+    mkdir -p ${FLAKE_DIR}/${LOCATION} &&
+    cp    -r ${FLAKE_DIR}/shell/bud/testCreate/templates/${TYPE_SELECTED}/* ${FLAKE_DIR}/${LOCATION} &&
+    sed   -i "s/<TESTNAME>/${2}/" ${FLAKE_DIR}/${LOCATION}/testScript.py &&
 
     echo -e "\t A ${UB}${TYPE_SELECTED}${N}-Test was ${GB}created${N} in ${Y}${FLAKE_DIR}/tests/${LOCATION}${N}."
     echo -e ""

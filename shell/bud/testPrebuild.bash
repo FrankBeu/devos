@@ -1,1 +1,1 @@
-nix build .#tests.${1}.driverInteractive
+nix build .#${1}.driverInteractive
