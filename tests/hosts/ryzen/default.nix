@@ -2,8 +2,10 @@
 
 let
   host          = self.nixosConfigurations.ryzen;
-  hostVariables = with self; (import "${self}/hosts/ryzen/variables" { inherit config; }).variables;
+  hostVariables = host.config.variables;
   username      = hostVariables.mainUser.name;
+  userID        = host.config.users.users.${username}.uid;
+
 
   colorscheme  = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
   variables    = (import ../../nixos/modules/variables/testScript.py.nix { inherit username; });
@@ -17,7 +19,9 @@ let
   gitPreamble  = builtins.readFile ../../home/profiles/git/testScriptIntegrationPreamble.py;
   git          = gitPreamble + builtins.readFile ../../home/profiles/git/testScript.py;
 
-  docLocal     = (import ../../nixos/suites/docLocal/testScript.nix).testScript;
+  docLocal     = (import ../../nixos/suites/docLocal/testScript.nix            ).testScript;
+  i3           = (import ../../nixos/suites/i3/testScript.nix {inherit userID;}).testScript;
+
 
   test = {
     nodes = {
@@ -78,10 +82,10 @@ let
 
 
         ${docLocal}
+        ${i3}
 
         # $${git}     ###TODO reactivate after graphical
       '';
-      # ${console}
 
       name = self.inputs.latest.lib.toUpper name;
   };

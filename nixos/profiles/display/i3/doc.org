@@ -1,0 +1,55 @@
+---
+title: xserver
+linktitle: xserver
+description: documentation for the xserver
+categories:
+keywords: [x, xServer, window]
+menu:
+  sidebar:
+    parent: "system"
+    name: "xserver"
+    identifier: "xserver"
+draft: false
+toc: true
+---
+* xserver
+** keyboard
+*** INFO
+https://nixos.wiki/wiki/Keyboard_Layout_Customization
+https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+*** view layout
+#+begin_src shell :results drawer
+nix-shell -p gnome.libgnomekbd
+#+end_src
+#+begin_src shell :results drawer
+gkbd-keyboard-display -l $'in\thin-kagapa'
+gkbd-keyboard-display -l $'in\tbolnagri'
+#+end_src
+*** set manually
+#+begin_src shell :results drawer
+setxkbmap -layout "us,ru,cn,et,in" -variant "intl-unicode,,,,san-kagapa" -option grp:caps_toggle
+#+end_src
+**** delete options && setxkbmap && display layout
+#+begin_src shell :results drawer
+setxkbmap -layout "us" -option ""  &&  setxkbmap -layout "us,ru,in,ara" -variant "intl-unicode,,san-kagapa,qwerty" -option "grp:caps_toggle,ctrl:swap_lalt_lctl,numpad:mac,altwin:left_meta_win"\n
+#+end_src
+#+begin_src shell :results drawer
+setxkbmap -layout "us" -option ""  &&  setxkbmap -model "logicda" -layout "us,ru,in,ara" -variant "intl-unicode,,san-kagapa,qwerty" -option "ctrl:swap_lalt_lctl,altwin:swap_lalt_win,lv3:switch,grp:caps_toggle,numpad:mac"\n
+#+end_src
+*** x has to be restarted to use the declared config again
+#+begin_src shell :results drawer
+systemctl restart display-manager
+#+end_src
+*** query current layout
+#+begin_src shell :results drawer
+setxkbmap -query
+#+end_src
+*** all rules
+#+begin_src shell :results drawer
+cat /run/current-system/sw/share/X11/xkb/rules/base.lst
+#+end_src
+*** FUNDUS
+**** NOT working: window to caps super L not working
+#+begin_src shell :results drawer
+setxkbmap -layout "us" -option ""&& setxkbmap -model "logicda" -layout "us,ru,in,ara" -variant "intl-unicode,,san-kagapa,qwerty" -option "ctrl:swap_lalt_lctl,altwin:swap_lalt_lwin,altwin:ctrl_alt_win,lv3:switch,lv3:lwin_switch,altwin:swap_alt_win,caps:super,grp:shifts_toggle" && gkbd-keyboard-display -l $'us\tintl-unicode'
+#+end_src

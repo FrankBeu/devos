@@ -15,6 +15,7 @@ in
 
         profiles.alacritty
         profiles.direnv
+        profiles.display.i3
         # profiles.filemanager.ranger
         profiles.git
 

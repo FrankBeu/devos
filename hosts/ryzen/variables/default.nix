@@ -5,6 +5,7 @@ in
   variables = rec {
     autoLogin        = true;
 
+    ### TODO dryOut / transfer as much as possible to users/frank
     mainUser = {
       abbreviation   = "fb";
       name           = "frank";

@@ -8,16 +8,12 @@ let
       machine =
         { suites, profiles, ... }: {
           imports = with profiles; [
-            alacritty
+            display.i3
+            display.manager.lightdm
           ];
 
-          ### golden/gitVersionTarget.png
-          # systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, variables, ... }: {
-            imports = with profiles; [
-              alacritty
-            ];
+          variables = {
+            autoLogin = true;
           };
         };
     };
@@ -28,7 +24,6 @@ let
       ''
         ${testHelpers}
         start_all()
-        ${testScriptNixos}
         ${testScriptExternal}
       '';
 
@@ -37,8 +32,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptNixos    = builtins.readFile ../../../nixos/profiles/alacritty/testScript.py;
-  testScriptExternal = builtins.readFile ./testScript.py;
+  userID = host.config.users.users.${host.config.variables.mainUser.name}.uid;
+  testScriptExternal = (import ./testScript.py.nix {inherit userID;});
 
 in
 {

@@ -23,7 +23,8 @@ in
 
 
     ### PROFILES
-    # profiles.bud  ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
+    profiles.alacritty
+    profiles.bud  ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
     profiles.console
     profiles.editor.vim
     profiles.filemanager.ranger
@@ -33,7 +34,6 @@ in
     # profiles.networking.nameserver.secure
     # profiles.services.printing
     profiles.services.ssh
-    profiles.services.xserver
     profiles.sound
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
@@ -45,12 +45,13 @@ in
     profiles.users.${variables.mainUser.name}  ### TODO: handle like autologin.mainUser
 
     ### AUTOLOGIN ON CONSOLE
-    # autologin.mainUser
-    # autologin.root
+    # profiles.autologin.mainUser
+    # profiles.autologin.root
 
 
   ] ++ suites.base
     ++ suites.docLocal
+    ++ suites.i3
   ;
 
   colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;

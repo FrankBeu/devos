@@ -1,0 +1,970 @@
+### I3 CONFIG FILE (V4)
+###────────────────────────────────────────────────────────────────────────────────────────────────── MODIFIER
+set $mod3 Mod3
+set $mod Mod4
+set $alt Mod1
+# xmodmap -e 'keycode 66 = Hyper_L'
+# xmodmap -e 'clear mod4'
+# xmodmap -e 'add mod3 = Hyper_L'
+
+# xmodmap -e 'keycode 134 = Hyper_R'
+# xmodmap -e 'clear mod4'
+# xmodmap -e 'add mod3 = Hyper_R'
+set $cap Mod3
+### FOR ARCHONMAC WITH MICROSOFT_KEYBOARD
+#        set $mod Mod1
+#        set $alt Mod4
+#
+### PLEASE SEE http://i3wm.org/docs/userguide.html FOR A COMPLETE REFERENCE!
+###
+### SHOULD YOU CHANGE YOUR KEYBOARD LAYOUT SOME TIME, DELETE
+### THIS FILE AND RE-RUN I3-CONFIG-WIZARD(1).
+### g/##─/p
+
+### GET KEYCODES
+###
+### xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+###
+##
+# * TESTCOMMANDS
+#   reload with SUPER-Y  SUPER-SHIFT-C
+#
+bindsym $mod+8       focus parent; fullscreen; focus child
+bindsym $mod+Shift+8 focus parent; fullscreen; focus child
+bindsym $mod+9       --release exec --no-startup-id "pkill dunst; dunst; notify-send ' this is a test'"
+bindsym $mod+Shift+9 --release exec --no-startup-id "pkill dunst; dunst; notify-send ' $font'"
+
+
+###────────────────────────────────────────────────────────────────────────────────────────────────── VARIABLES
+set $term alacritty
+###────────────────────────────────────────────────────────────────────────────────────────────────── UNSORTIERTES
+
+
+###
+##
+# * FONT
+#
+set $font pango:RobotoMono 16
+
+################################################################################
+### FLAMESHOT
+#
+
+
+### selection CTRL+S: to file; CTRL+C: to clipboard
+
+# bindsym $mod+4 exec --no-startup-id "rofi -show drun -font \\"DejaVu 18\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+5 exec --no-startup-id  flameshot gui -p ~/pictures/flameshot
+### all 3 screens
+bindsym $mod+6 exec --no-startup-id  flameshot full -p ~/pictures/flameshot
+### to clipboard (and folder, too)
+bindsym $mod+Shift+6 exec --no-startup-id  flameshot full -c
+### 2 s delayed
+bindsym $mod+7 exec --no-startup-id  flameshot gui -c -p ~/pictures/flameshot -d 2000
+### PowerManagement
+### TODO not tested yet: systemctl *
+set $Locker i3lock -uec 2e2a31 -p default && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+p mode "$mode_system"
+
+### LOCK
+# bindsym $mod+p exec --no-startup-id i3lock -uec 2e2a31 -p default && sleep 1
+# bindsym $mod+Shift+p exec --no-startup-id xset s 1 && i3lock -uec 2e2a31 -p default && sleep 1
+
+### DUNST
+exec_always --no-startup-id dunst
+
+
+###
+##
+# *** MARKS
+#
+bindsym $mod+Shift+M unmark
+bindsym $mod+m exec i3-input -f "$font" -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+apostrophe exec i3-input -f "$font" -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+###
+##
+# *** FOCUS
+#
+bindsym $alt+Shift+x [urgent=latest] focus
+
+### CREATE ONE BIG SCREEN
+### $ xrandr     get info
+#       fake-outputs 1366x1668+0+0
+
+### iMac:
+#fake-outputs 2560 1440
+#1920 1080
+
+#fake-outputs 4480x1080+0+0
+
+# VGA-1 connected 1600x900+1366+0 (normal left inverted right x axis y axis) 434mm x 236mm
+# eDP-1 connected 1366x768+1600+0 (normal left inverted right x axis y axis) 344mm x 194mm
+#       exec compton -f
+
+### take screenshot
+### TODO: not working
+# bindsym $mod+1 exec . /home/frank/computer/scripts/scrot.sh
+
+
+###──────────────────────────────────────────────────────────────────────────────────────────────────
+# set $color      #f28811  */
+set $color      #CB4B16
+set $color      #AF3A03
+###                     TITLE   TITLE   TITLE   NEXT      BODY
+###                     BAR     BAR     BAR     SPLIT
+### ORIGINAL
+### CLASS               BORDER  BACKGR. TEXT    INDICATOR CHILD_BORDER
+client.focused          $color  #222222 #ffffff #aa1111   $color
+client.focused_inactive #434343 #323232 #ffffff #484e50   #323232
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+### ORANGE
+### CLASS                BORDER  BACKGR. TEXT    INDICATOR CHILD_BORDER
+#client.focused          #f28811 #070707 #ffffff #5d0d0d   #f28811
+#client.focused_inactive #222222 #070707 #777777 #080808   #222222
+#client.unfocused        #111111 #070707 #8f8f8f #030303   #030303
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0000ff
+#client.background       #000000
+
+### COLORVARIABLES
+#       set $bg-color            #2f343f
+#       set $inactive-bg-color   #2f343f
+#       set $text-color          #f3f4f5
+#       set $inactive-text-color #676E7D
+#       set $urgent-bg-color     #E53935
+###     ###                      BORDER              BACKGROUND         TEXT                 INDICATOR
+#       client.focused           $bg-color           $bg-color          $text-color          #00ff00
+#       client.unfocused         $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+#       client.focused_inactive  $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+#       client.urgent            $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+### CLASS                BORDER  BACKGR. TEXT    INDICATOR CHILD_BORDER
+#client.focused          #f28811 #f25511 #000000 #3d0d0d   #f28811
+#client.focused_inactive #222222 #070707 #777777 #080808   #222222
+#client.unfocused        #111111 #070707 #8f8f8f #030303   #030303
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0000ff
+#client.background       #000000
+### BAR
+#               background          #050505
+#               statusline          #ffffff
+#               separator           #444444
+###             ###                 BORDER             FILLING            TEXT
+#             focused_workspace   $bg-color          $bg-color          $text-color
+#               active_workspace
+#             inactive_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
+#             urgent_workspace    $urgent-bg-color   $urgent-bg-color   $text-color
+#               binding_mode
+###──────────────────────────────────────────────────────────────────────────────────────────────────── I3RICING
+#       set $bg-color            #2f343f
+#       set $inactive-bg-color   #2f343f
+#       set $text-color          #f3f4f5
+#       set $inactive-text-color #676E7D
+#       set $urgent-bg-color     #E53935
+###     ###                      BORDER              BACKGROUND         TEXT                 INDICATOR
+#       client.focused           $bg-color           $bg-color          $text-color          #00ff00
+#       client.unfocused         $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+#       client.focused_inactive  $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+#       client.urgent            $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+#       client.background        #000000
+
+bindsym $mod+Return exec $term
+bindsym $mod+space  exec $term
+bindsym $mod+Escape exec $term
+# bindsym $mod+Tab    exec $term
+
+# bindsym $alt+Shift+Return exec termite
+# bindsym $mod+Shift+Return exec termite
+#       bindsym $alt+Shift+Return exec i3-sensible-terminal
+#       bindsym $alt+Return exec termite -e "nvim -c terminal"
+#       bindsym $mod+Return exec termite -e "nvim -c terminal"
+#       bindsym $mod+Shift+t exec i3lock --color 475263
+
+workspace_auto_back_and_forth yes
+#       bindsym $mod+Shift+x [urgent=latest] focus
+#       bindsym $mod+Shift+z move container to workspace back_and_forth
+#       bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_fort
+#       bindsym $mod+Shift+b [class="Firefox"] focus
+#       bindsym $mod+Shift+i [class="Terminal" title="weechat"] focus
+### TO GET THE CLASS
+### KILL UNCLUTTER AND USE
+### $ xprop | grep WM_CLASS
+# assign [class="VirtualBox"]     → $WS4
+assign [class="Eclipse"]        → $WS9
+# assign [class="Firefox"]        → $WS10
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Diverses/cyberBird.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Diverses/BigTree.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Kailash/08 Mount Kailash Close Up from The Kangnyi Chorten Tarboche Area On Mount Kailash Outer Kora.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Kailash/India_mount_kailash.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Kailash/Kailash-Wesak.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Kailash/Kailash.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/Kailash/latest-kailash-Parvat-images-2016.jpg
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperBlumeBlauRund.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperBlumeGrün.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperBlumeGrünRund.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperBlumeLila.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperBlumeLilaRund.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperGrau.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperKreise.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperKreise2.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperMond.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperPrisma.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperPyramiden.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperPyramidenFlach.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperPyramidenGrau.png
+#       exec_always --no-startup-id     feh --bg-fill ~/pictures/wallpapers/GoogleMaterial/MaterialWallpaperPyramidenSchwarz.png
+for_window [instance="termite" title="Alsamixer"] move scratchpad;
+# bindsym $mod+grave [instance="termite" title="Alsamixer"] scratchpad show
+
+exec --no-startup-id termite -t ScratchPad
+for_window [instance="termite" title="ScratchPad"] move scratchpad;
+bindsym $mod+minus [instance="termite" title="ScratchPad"] scratchpad show
+### BARS
+###────────────────────────────────────────────────────────────────────────────────────────────────── EINSORTIERTES IN ZIEL
+bindsym $mod+Tab       workspace back_and_forth
+bindsym $mod+BackSpace workspace back_and_forth
+# bindsym $mod+space workspace back_and_forth
+
+#bindsym $mod+1 workspace $WS1
+#set $WS1 "1 "
+#set $WS2 "2 "
+#set $WS3 "3 "
+#set $WS4 "4 "
+#set $WS5 "5 "
+#set $WS6 "6 "
+#set $WS7 "7 "
+#set $WS8 "8 "
+#set $WS9 "9 "
+#set $WS10 "O "
+
+set $WS1 "1 ■"
+set $WS2 "2 2"
+set $WS3 "3 ●"
+set $WS4 "4 4"
+set $WS5 "5 ≡"
+set $WS6 "6 N"
+set $WS7 "7 7"
+set $WS8 "8 8"
+set $WS9 "9 9"
+set $WS10 "O W"
+bindsym $MOD+Shift+o exec --no-startup-id xset s 1
+#   bindsym $MOD+Shift+o exec --no-startup-id xset s activate;
+bindsym $MOD+o exec --no-startup-id xset s off
+
+bindsym $MOD+Shift+plus move scratchpad
+bindsym $MOD+plus scratchpad show
+###────────────────────────────────────────────────────────────────────────────────────────────────── APPEARANCE
+###───────────────────────────────────────────────────────────────────────── FONT
+### FONT FOR WINDOW TITLES. WILL ALSO BE USED BY THE BAR UNLESS A DIFFERENT
+### FONT IS USED IN THE BAR {} BLOCK BELOW.
+#font pango:monospace 12
+font pango:RobotoMono 16
+# font pango:hack 12
+### THIS FONT IS WIDELY INSTALLED, PROVIDES LOTS OF UNICODE GLYPHS,
+### RIGHT-TO-LEFT TEXT RENDERING AND SCALABILITY ON
+### RETINA/HIDPI DISPLAYS (THANKS TO PANGO).
+#font pango:DejaVu Sans Mono 12
+### BEFORE I3 V4.8, WE USED TO RECOMMEND THIS ONE AS THE DEFAULT:
+### FONT -MISC-FIXED-MEDIUM-R-NORMAL--13-120-75-75-C-70-ISO10646-1
+### THE FONT ABOVE IS VERY SPACE-EFFICIENT, THAT IS, IT LOOKS GOOD,
+### SHARP AND CLEAR IN SMALL SIZES. HOWEVER, ITS UNICODE GLYPH COVERAGE
+### IS LIMITED, THE OLD X CORE FONTS RENDERING DOES NOT SUPPORT
+### RIGHT-TO-LEFT AND THIS BEING A BITMAP FONT,
+### IT DOESN’T SCALE ON RETINA/HIDPI DISPLAYS.
+###───────────────────────────────────────────────────────────────────────── COLORSETS
+###                      TITLE   TITLE   TITLE   NEXT      BODY
+###                      BAR     BAR     BAR     SPLIT
+### Original
+### CLASS                BORDER  BACKGR. TEXT    INDICATOR CHILD_BORDER
+#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #ffffff
+###───────────────────────────────────────────────────────────────────────── LAYOUT MODE
+### default|stacking|tabbed
+workspace_layout tabbed
+###───────────────────────────────────────────────────────────────────────── BORDERS
+### normal|none|pixel
+#new_window pixel 1
+new_window pixel 2
+#new_window normal 1 px
+#border pixel 2
+###───────────────────────────────────────────────────────────────────────── BORDERS, SCREENEDGES
+### none|vertical|horizontal|both
+hide_edge_borders none
+###────────────────────────────────────────────────────────────────────────────────────────────────── KEYBINDINGS
+
+###───────────────────────────────────────────────────────────────────────── COMMON
+### numberPad emulation -- buggy !!!!!
+# exec_always --no-startup-id numlockx off
+# bindsym $alt+1 exec --no-startup-id numlockx toggle
+
+###───────────────────────────────────────────────────────────────────────── MOVEMENT
+
+###───────────────────────────────────────────────────────────────────────── APPEARANCE
+
+###───────────────────────────────────────────────────────────────────────── MODKEY
+
+###───────────────────────────────────────────────────────────────────────── FLOATING WINDOWS
+### Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+###───────────────────────────────────────────────────────────────────────── TERMINAL
+# bindsym $mod+Shift+Return exec i3-sensible-terminal
+###───────────────────────────────────────────────────────────────────────── START DMENU
+### (A PROGRAM LAUNCHER)
+#bindsym $mod+d exec dmenu_run
+### THERE ALSO IS THE (NEW) I3-DMENU-DESKTOP WHICH ONLY DISPLAYS APPLICATIONS
+### SHIPPING A .DESKTOP FILE. IT IS A WRAPPER AROUND DMENU, SO YOU NEED THAT
+### INSTALLED.
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec dmenu_run -i -l '28' -fn 'pango:Source Code Pro:pixelsize=20' -nb '#111111' -nf '#555555' -sb '#111111' -sf '#f25511'
+### MAN DMENU
+#-b         display at bottom
+#-i         ignore case
+#-fn        font
+#-nb        background, normal
+#-nf        foreground, normal
+#-sb        background, selected
+#-sf        foreground, selected
+#USE THE FOLLOWING CMDS TO NAVIGATE
+#CTRL-a     to first entry
+#CTRL-p     previous entry
+#CTRL-n     next entry
+#CTRL-e     to last entry
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -l '31' -fn 'DejaVu Sans Mono-14' -nb '#000000' -nf '#555555' -sb '#000000' -sf '#f25511'"
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -l '31' -fn 'DejaVu Sans Mono-14' -nb '#000000' -nf '#555555' -sb '#000000' -sf '#f25511'" --entry-type=command --entry-type=name
+###unikitty
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -p '        ' -i -l '41' -fn 'DejaVu Sans Mono-14' -nb '#2e2a31' -nf '#878589' -sb '#7864fa' -sf '#2e2a31'"
+
+###───────────────────────────────────────────────────────────────────────── CHANGE FOCUS
+bindsym $mod+j focus left
+bindsym $mod+k focus up
+bindsym $mod+l focus down
+bindsym $mod+semicolon focus right
+###─────────────────────────────────────────────── CURSOR KEYS
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+###───────────────────────────────────────────────────────────────────────── MOVE FOCUSED WINDOW
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move down
+bindsym $mod+Shift+semicolon move right
+###──────────────────────────────────────────────── CURSOR KEYS
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+###───────────────────────────────────────────────────────────────────────── TOGGLE TILING / FLOATING
+# bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+n floating toggle
+###───────────────────────────────────────────────────────────────────────── CHANGE FOCUS: TILING / FLOATING WINDOWS
+bindsym $mod+n focus mode_toggle
+###───────────────────────────────────────────────────────────────────────── SWITCH TO WORKSPACE
+#bindsym $mod+1 workspace $WS1
+#bindsym $mod+2 workspace $WS2
+#bindsym $mod+3 workspace $WS3
+#bindsym $mod+4 workspace $WS4
+#bindsym $mod+5 workspace $WS5
+#bindsym $mod+6 workspace $WS6
+#bindsym $mod+7 workspace $WS7
+#bindsym $mod+8 workspace $WS8
+#bindsym $mod+9 workspace $WS9
+#bindsym $mod+0 workspace $WS10
+
+# bindsym $mod+less   workspace $WS1
+bindcode $mod+94    workspace $WS1
+bindsym $mod+z      workspace $WS2
+bindsym $mod+x      workspace $WS3
+bindsym $mod+a      workspace $WS4
+bindsym $mod+s      workspace $WS5
+bindsym $mod+d      workspace $WS6
+bindsym $mod+q      workspace $WS7
+bindsym $mod+w      workspace $WS8
+bindsym $mod+e      workspace $WS9
+###───────────────────────────────────────────────────────────────────────── MOVE FOCUSED CONTAINER TO WORKSPACE
+#bindsym $mod+Shift+1 move container to workspace $WS1
+#bindsym $mod+Shift+2 move container to workspace $WS2
+#bindsym $mod+Shift+3 move container to workspace $WS3
+#bindsym $mod+Shift+4 move container to workspace $WS4
+#bindsym $mod+Shift+5 move container to workspace $WS5
+#bindsym $mod+Shift+6 move container to workspace $WS6
+#bindsym $mod+Shift+7 move container to workspace $WS7
+#bindsym $mod+Shift+8 move container to workspace $WS8
+#bindsym $mod+Shift+9 move container to workspace $WS9
+#bindsym $mod+Shift+0 move container to workspace $WS10
+
+# bindsym $mod+Shift+less   move container to workspace $WS1
+bindcode $mod+Shift+94    move container to workspace $WS1
+bindsym $mod+Shift+z      move container to workspace $WS2
+bindsym $mod+Shift+x      move container to workspace $WS3
+bindsym $mod+Shift+a      move container to workspace $WS4
+bindsym $mod+Shift+s      move container to workspace $WS5
+bindsym $mod+Shift+d      move container to workspace $WS6
+bindsym $mod+Shift+q      move container to workspace $WS7
+bindsym $mod+Shift+w      move container to workspace $WS8
+bindsym $mod+Shift+e      move container to workspace $WS9
+###───────────────────────────────────────────────────────────────────────── MOVE WORKSPACE TO OUTPUT
+# bindsym $mod+c move workspace to output right
+# bindsym $mod+Shift+c move workspace to output left
+# bindsym $mod+Shift+c move workspace to output up
+bindsym $mod+c move workspace to output DP-2
+bindsym $mod+Shift+c move workspace to output DP-1
+bindsym $mod+Shift+v move workspace to output DP-3
+#bindsym $mod+Shift+greater move container to output right
+#bindsym $mod+Shift+less move container to output left
+###───────────────────────────────────────────────────────────────────────── MOVE CONTAINER TO OUTPUT
+# bindsym $mod+Shift+greater move container to output right
+# bindsym $mod+Shift+less move container to output left
+###───────────────────────────────────────────────────────────────────────── AUDIO
+### ALSA CONTROLS
+bindsym       XF86AudioRaiseVolume exec "amixer      set Master 5%+"
+bindsym       XF86AudioLowerVolume exec "amixer      set Master 5%-"
+
+bindsym Shift+XF86AudioRaiseVolume exec "amixer -c 0 set Master 5%+"
+bindsym Shift+XF86AudioLowerVolume exec "amixer -c 0 set Master 5%-"
+### MUTE SOUND
+bindsym       XF86AudioMute        exec "amixer      -q sset Master,0 toggle"
+bindsym Shift+XF86AudioMute        exec "amixer -c 0 -q sset Master,0 toggle"
+###────────────────────────────────────────────────────────────────────────────────────────────────── DISPLAY
+###───────────────────────────────────────────────────────────────────────── RESIZE WINDOW
+### (YOU CAN ALSO USE THE MOUSE FOR THAT)
+mode "resize" {
+    ### These bindings trigger as soon as you enter the resize mode
+
+    ### Pressing left will shrink the window’s width.
+    ### Pressing right will grow the window’s width.
+    ### Pressing up will shrink the window’s height.
+    ### Pressing down will grow the window’s height.
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym Shift+j resize shrink width 1 px or 1 ppt
+    bindsym Shift+k resize grow height 1 px or 1 ppt
+    bindsym Shift+l resize shrink height 1 px or 1 ppt
+    bindsym Shift+semicolon resize grow width 10 px or 1 ppt
+
+    ### same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    ### back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+###
+##
+# ** StatusBars
+#
+
+
+###
+##
+# *** Bar-1 with i3status-rust
+#
+bar {
+    id 1
+    modifier                $alt
+    # modifier                $mod
+
+    # status_command /usr/bin/env i3status-rs ~/.config/i3/i3status-rust/config-Bar-1.toml
+    status_command exec i3statusBar
+    ### DEVEL
+    # status_command exec ~/SRC/GITEA/i3statusBar/i3statusBar
+
+    font pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+    # binding_mode_indicator  yes
+    binding_mode_indicator  no
+    mode                    hide
+    position top
+    # position bottom
+    ################################################################ TODO OBS TODO OBS ALGOEXPERT
+    # output                  DP-3   ### ORIG commented out
+    ################################################################ TODO OBS TODO OBS ALGOEXPERT
+    workspace_buttons       no
+    # workspace_buttons       yes
+    # strip_workspace_numbers yes
+    # output             primary
+
+    colors {
+        # background          #050505
+        # background          #1E2029
+        # statusline          #ffffff
+        # background          #1E2029
+        # statusline          #b6b6b2
+        # separator           #444444
+        background          #2e2a31
+        statusline          #b6b6b2
+        separator           #2e2a31
+        # separator           #AF3A03
+        ###             ###                 BORDER  FILLING TEXT
+        focused_workspace   #000000 $color  #000000
+        active_workspace    #444444 #5f676a #ffffff
+        inactive_workspace  #333333 #222222 #888888
+        urgent_workspace    #2f343a #900000 #ffffff
+        binding_mode        #2f343a #900000 #ffffff
+    }
+}
+
+
+###
+##
+# *** Bar-2 with i3status-rust
+#
+#bar {
+#    id 2
+#    modifier                $alt
+#    # modifier                $mod3
+#    # modifier                $mod
+#    status_command /usr/bin/env i3status-rs ~/.config/i3/i3status-rust/config-Bar-2.toml
+#    # font pango:DejaVu Sans Mono, FontAwesome 16
+#    # font pango:RobotoMono, FontAwesome 6
+#    # font pango:RobotoMono, FontAwesome 16
+#    # font pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+#    font pango:RobotoMono, FontAwesome5Free 16
+#
+#    mode                    hide
+#    binding_mode_indicator  yes
+#    # binding_mode_indicator  no
+#    # position top
+#    position bottom
+#    workspace_buttons       no
+#    # workspace_buttons       yes
+#    # strip_workspace_numbers yes
+#    # output             primary
+#    # output                  DP-1
+#    # output                  DP-2
+#    # output                  DP-3
+#    # tray_output             primary
+#    # tray_output             DP-1
+#    # tray_output             DP-2
+#    # tray_output             DP-3
+#    # tray_padding              5
+#    # colors {
+#    #     separator #666666
+#    #     background #222222
+#    #     statusline #dddddd
+#    #     focused_workspace #0088CC #0088CC #ffffff
+#    #     active_workspace #333333 #333333 #ffffff
+#    #     inactive_workspace #333333 #333333 #888888
+#    #     urgent_workspace #2f343a #900000 #ffffff
+#    # }
+#    colors {
+#        background          #050505
+#        statusline          #ffffff
+#        separator           #444444
+#        ###             ###                 BORDER  FILLING TEXT
+#        focused_workspace   #000000 $color  #000000
+#        active_workspace    #444444 #5f676a #ffffff
+#        inactive_workspace  #333333 #222222 #888888
+#        urgent_workspace    #2f343a #900000 #ffffff
+#        binding_mode        #2f343a #900000 #ffffff
+#    }
+#}
+
+
+###
+##
+# *** Bar-3 with i3status-rust
+#
+bar {
+    id 3
+    # modifier                $alt
+    # status_command /usr/bin/env i3status-rs ~/.config/i3/i3status-rust/config-Bar-3.toml
+    status_command exec i3statusBarTime
+
+    font pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+
+    binding_mode_indicator  yes
+    # binding_mode_indicator  no
+    mode                    hide
+    position bottom
+    ################################################################ TODO OBS TODO OBS ALGOEXPERT
+    # output                  DP-2   ### ORIGINAL commented out
+    ################################################################ TODO OBS TODO OBS ALGOEXPERT
+    # tray_output             DP-1
+    # tray_output             DP-2
+    # tray_output             DP-3
+    tray_output             primary
+    tray_padding            5
+    colors {
+        # background          #050505
+        # statusline          #ffffff
+        # separator           #444444
+        background          #2e2a31
+        statusline          #b6b6b2
+        separator           #2e2a31
+        ###             ###                 BORDER  FILLING TEXT
+        focused_workspace   #000000 $color  #000000
+        active_workspace    #444444 #5f676a #ffffff
+        inactive_workspace  #333333 #222222 #888888
+        urgent_workspace    #2f343a #900000 #ffffff
+        binding_mode        #2f343a #900000 #ffffff
+    }
+}
+
+
+###
+##
+# *** Bar-4
+#
+# bar {
+#     id 4
+#     font pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+
+#     binding_mode_indicator  no
+#     mode                    hide
+#     position bottom
+#     output                  DP-3
+#     colors {
+#         background          #050505
+#         statusline          #ffffff
+#         separator           #444444
+#         ###             ###                 BORDER  FILLING TEXT
+#         focused_workspace   #000000 $color  #000000
+#         active_workspace    #444444 #5f676a #ffffff
+#         inactive_workspace  #333333 #222222 #888888
+#         urgent_workspace    #2f343a #900000 #ffffff
+#         binding_mode        #2f343a #900000 #ffffff
+#     }
+# }
+
+
+###
+##
+# *** FUNDUS
+#
+
+
+###────────────────────────────────────────────────────────────────────────────────────────────────── I3BAR
+###───────────────────────────────────────────────────────────────────────── START I3BAR
+### TO DISPLAY A WORKSPACE BAR (PLUS THE SYSTEM INFORMATION I3STATUS
+### FINDS OUT, IF AVAILABLE)
+### STATUS BAR
+### STATUS BAR
+# bar {
+#     id bar-1
+#     position                bottom
+#     # position                top
+#     binding_mode_indicator  yes
+#     font pango:             RobotoMono, Icons 16
+#     # font pango:             hack, Icons 12
+#     mode                    hide
+#     #           output                  HDMI-2
+#     #           output                  eDP-1
+#     separator_symbol        "|"
+#     status_command          i3status
+#     #           status_command          i3blocks -c ~/.config/i3/i3blocks.conf
+#     #           strip_workspace_numbers yes
+#     #           tray_output             eDP-1
+#     # workspace_buttons       no
+#     workspace_buttons       yes
+#     ### i3RICING
+#     #           colors {
+#     #             background $bg-color
+#     #             separator #757575
+#     ###           ###                BORDER             BACKGROUND         TEXT
+#     #             focused_workspace  $bg-color          $bg-color          $text-color
+#     #             inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#     #             urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#     #           }
+#     colors {
+#         background          #050505
+#         statusline          #ffffff
+#         separator           #444444
+#         ###             ###                 BORDER  FILLING TEXT
+#         focused_workspace   #000000 $color  #000000
+#         active_workspace    #444444 #5f676a #ffffff
+#         inactive_workspace  #333333 #222222 #888888
+#         urgent_workspace    #2f343a #900000 #ffffff
+#         binding_mode        #2f343a #900000 #ffffff
+#     }
+
+# }
+
+
+####            bar {
+####                id bar-1
+####                # position                bottom
+####                position                top
+####                binding_mode_indicator  yes
+####                font pango:             RobotoMono, Icons 16
+####                # font pango:             hack, Icons 12
+####                mode                    hide
+####    #           output                  HDMI-2
+####    #           output                  eDP-1
+####                separator_symbol        "|"
+####                status_command          i3status
+####    #           status_command          i3blocks -c ~/.config/i3/i3blocks.conf
+####    #           strip_workspace_numbers yes
+####    #           tray_output             eDP-1
+####                workspace_buttons       no
+####    ### i3RICING
+####    #           colors {
+####    #             background $bg-color
+####    #             separator #757575
+####    ###           ###                BORDER             BACKGROUND         TEXT
+####    #             focused_workspace  $bg-color          $bg-color          $text-color
+####    #             inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+####    #             urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+####    #           }
+####                colors {
+####                    background          #050505
+####                    statusline          #ffffff
+####                    separator           #444444
+####    ###             ###                 BORDER  FILLING TEXT
+####                    focused_workspace   #000000 $color  #000000
+####                    active_workspace    #444444 #5f676a #ffffff
+####                    inactive_workspace  #333333 #222222 #888888
+####                    urgent_workspace    #2f343a #900000 #ffffff
+####                    binding_mode        #2f343a #900000 #ffffff
+####                }
+####
+####            }
+####    ### WORKSPACE BAR
+####            bar {
+####                id bar-2
+####                position                bottom
+####                # position                top
+####                binding_mode_indicator  no
+####                font pango:             RobotoMono, Icons 16
+####                # font pango:             hack, Icons 12
+####                mode                    hide
+####                # modifier                $alt
+####                modifier                $mod
+####    #           output                  eDP-1
+####    #           status_command          i3status
+####    #           strip_workspace_numbers yes
+####    #           strip_workspace_numbers yes|no
+####                tray_output             eDP-1
+####                workspace_buttons       yes
+####    ### i3RICING
+####    #           colors {
+####    #             background $bg-color
+####    #             separator #757575
+####    ###             ###                BORDER             BACKGROUND         TEXT
+####    #             focused_workspace  $bg-color          $bg-color          $text-color
+####    #             inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+####    #             urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+####    #           }
+####                colors {
+####                    background          #050505aa
+####                    statusline          #ffffff
+####                    separator           #444444
+####    ###             ###                 BORDER    FILLING   TEXT
+####                    focused_workspace   #000000   $color    #000000
+####                    active_workspace    #444444   #5f676a   #ffffff
+####                    inactive_workspace  #333333   #222222   #888888
+####                    urgent_workspace    #2f343a   #900000   #ffffff
+####                    binding_mode        #2f343a   #900000   #ffffff
+####                }
+####            }
+
+###
+##
+# ** RULES
+#    get class with `xprop`
+#
+###
+##
+# *** Qalculate
+#
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="Qalculate-gtk"] resize set 802 548
+
+###
+##
+# *** QjackCtl
+#
+for_window [class="QjackCtl"] floating enable
+for_window [class="QjackCtl"] resize set 465 100
+
+
+###
+##
+# *** Android
+#
+# for_window [title="Android Emulator - Pixel_C_API_28:5554"] floating enable
+# for_window [title="Android Emulator - Pixel_3a_API_30_x86:5554"] floating enable
+for_window [title="Android Emulator.*"] floating enable
+
+
+###
+##
+# ** TODO UNCATEGORIEZED
+#
+
+###────────────────────────────────────────────────────────────────────────────────────────────────── ENVIRONMENTS, SPECIFIED
+###───────────────────────────────────────────────────────────────────────── BIND WORKSPACES TO SCREENS
+###ComCAVE
+#HDMI-1     HDMI-2
+###links      rechts
+
+#set '$OUTPUTsecondary' /home/frank/Output
+#set $OUTPUTsecondary=$(xrandr --current | awk 'NR==13{print $1}') /usr/sbin/termite
+### WORKSPACE <WORKSPACE> OUTPUT <OUTPUT>
+#workspace $WS1  output HDMI-1
+#workspace $WS2  output HDMI-2
+#workspace $WS3  output HDMI-2
+#workspace $WS4  output HDMI-2
+#workspace $WS5  output HDMI-2
+#workspace $WS6  output HDMI-2
+#workspace $WS7  output HDMI-2
+#workspace $WS8  output HDMI-2
+#workspace $WS9  output HDMI-2
+#workspace $WS10  output HDMI-2
+#workspace 3 output $OUTPUTsecondary
+### WORKSPACE <WORKSPACE> OUTPUT <OUTPUT>
+workspace $WS1  output right
+workspace $WS2  output right
+workspace $WS3  output right
+workspace $WS4  output right
+workspace $WS5  output right
+workspace $WS6  output right
+workspace $WS7  output right
+workspace $WS8  output right
+workspace $WS9  output right
+workspace $WS10  output right
+
+exec --no-startup-id i3-msg 'workspace $WS3'
+
+### to be put into layer for freeing of alt
+
+
+###
+##
+# ** rofi
+#
+## ROFI // rofiCommands // <Super> v ## some extra notes that are ignored by Remontoire but maybe of interest to those reading the config file.
+bindsym $mod+v exec ~/.config/rofi/cmds/rofiCommands.sh
+bindsym $mod+1 exec --no-startup-id "rofi -show drun"
+bindsym $mod+Shift+1 exec --no-startup-id "CM_LAUNCHER=rofi clipmenu"
+## ROFI // window // <Super> 2 ##
+bindsym $mod+2 exec --no-startup-id "rofi -show window"
+bindsym $mod+Shift+2 exec . /home/frank/.config/rofi/cmds/rofiGopass.zsh Password
+bindsym $mod+3 exec --no-startup-id "rofi -show run"
+bindsym $mod+Shift+3 exec . /home/frank/.config/rofi/cmds/rofiGopass.zsh Username
+bindsym $mod+4 exec --no-startup-id "rofi-surfraw"
+bindsym $mod+Shift+4 exec . /home/frank/.config/rofi/cmds/rofiGopass.zsh Comment
+bindsym $mod+Shift+5 exec --no-startup-id "rofi -show ssh"
+
+
+###############################################################################
+###  other doubled
+#
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f focus parent; fullscreen; focus child
+###───────────────────────────────────────────────────────────────────────── SPLIT IN HORIZONTAL ORIENTATION
+bindsym $mod+g split h
+###───────────────────────────────────────────────────────────────────────── SPLIT IN VERTICAL ORIENTATION
+bindsym $mod+b split v
+
+###############################################################################
+###  mode OLD-MOD-LEFT-HAND
+#
+mode "$oldModLeftHand" {
+    ###───────────────────────────────────────────────────────────────────────── KILL FOCUSED WINDOW
+    bindsym $mod+Shift+q kill
+    ###───────────────────────────────────────────────────────────────────────── SPLIT IN HORIZONTAL ORIENTATION
+    bindsym $mod+c split h
+    ###───────────────────────────────────────────────────────────────────────── SPLIT IN VERTICAL ORIENTATION
+    bindsym $mod+v split v
+    ###───────────────────────────────────────────────────────────────────────── ENTER FULLSCREEN MODE
+    bindsym $mod+f fullscreen toggle
+    ###───────────────────────────────────────────────────────────────────────── CHANGE CONTAINER LAYOUT
+    ### (stacked, tabbed, toggle split)
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+    ###───────────────────────────────────────────────────────────────────────── FOCUS THE PARENT CONTAINER
+    bindsym $mod+a focus parent
+    ###───────────────────────────────────────────────────────────────────────── FOCUS THE CHILD CONTAINER
+    bindsym $mod+Shift+a focus child
+    ###───────────────────────────────────────────────────────────────────────── BORDER TOGGLE
+    bindsym $mod+b border toggle
+    ###───────────────────────────────────────────────────────────────────────── RELOAD THE CONFIGURATION FILE
+    bindsym $mod+Shift+c reload
+    # bindsym $alt+Shift+c reload
+    ### restart i3 inplace (preserves your layout/session, can be used to upgrade I3)
+    bindsym $mod+Shift+r restart
+    ### exit i3 (logs you out of your X session)
+    #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shOrtcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    bindsym $mod+Shift+e exec i3-msg exit
+    ###############################################################################
+    ###  highlight cursor
+    #
+    # bindsym $mod+x exec /home/frank/builds/find-cursor/find-cursor -g -w 400 -l 4 -f -s 200 -c orange
+    # bindsym $mod+x exec /home/frank/builds/find-cursor/find-cursor -g -w 400 -l 4 -f -s 200 -c '#AF3A03'
+    bindsym $mod+Shift+x exec /home/frank/builds/find-cursor/find-cursor -w 20 -l 4 -d 200 -s 1000 -c '#AF3A03'
+    bindsym $mod+x exec /home/frank/builds/find-cursor/find-cursor -g -f -w 20 -l 1 -s 125 -d 1 -c '#AF3A03'
+    ###############################################################################
+    ###  rofi  doubled
+    #
+    bindsym $mod+d exec --no-startup-id "rofi -show run"
+    bindsym $mod+Shift+d  exec --no-startup-id "rofi -show window"
+    ###############################################################################
+    ###  back to normal: Enter or Escape
+    #
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+}
+
+bindsym $mod+y mode "$oldModLeftHand"
+
+### toggle keyboardlayout
+##
+#
+# bindsym $mod+space exec . /home/frank/.config/i3/changeKeyboardLayout.sh
+
+
+### kill window
+##
+#
+# bindsym $mod+grave kill
+bindcode $mod+49 kill
+
+###
+##
+# * INFO
+#
+# reload in place
+#
+# reload with SUPER-Y  SUPER-SHIFT-C
+# search for restart i3 inplace (preserves your layout/session, can be used to upgrade I3)
+#
+###############################################################################
+# vim:filetype=i3:cms=#\ %s
+# Local Variables:
+# mode: sh
+# End:

@@ -19,4 +19,7 @@ with profiles; rec
     services.documentation
   ];
 
+  gnome = [ display.manager.gdm     display.gnome                               sound ];
+  i3    = [ display.manager.lightdm display.i3    display.statusBar.i3statusBar sound ];
+  # sway  = [                                         ];
 }
