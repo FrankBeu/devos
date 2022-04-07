@@ -15,7 +15,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     assert_contains_regex(output, r'^### yamlAnchorsContinuation')
 
 
-### TODO: config-tests; check if alacritty can be executed with loaded config
+### TODO: config-tests; check if alacritty can be executed with loaded config: golden: no error message
 ###       check if ` alacritty --ref-test` is usefull
 # with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  config-tests"):
     ###
