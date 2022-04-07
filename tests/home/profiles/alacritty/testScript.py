@@ -25,10 +25,12 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 
 
-# REGEXFUNDUS
-# nix-repl:
-# «lambda @ /nix/store/nvkkhnbjmghwl4d2sbr4s8qpv5fg5i9k-source/src/importers.nix:129:29»
-# editorconfig:
-# home/profiles/alacritty/OLD/alacritty/themes/dracula.nix:
+### REGEXFUNDUS
+### nix-repl:
+### «lambda @ /nix/store/nvkkhnbjmghwl4d2sbr4s8qpv5fg5i9k-source/src/importers.nix:129:29»
+### editorconfig:
+### home/profiles/alacritty/OLD/alacritty/themes/dracula.nix:
+### nix Error:
+### at /nix/store/kcp28ljgay9cvkawdigyw4b7rlb31w6m-source/tests/nixos/profiles/display/i3/testScript.py.nix:2:1:
 
 # nixLogTest: write exampleFile showing path to a predefined nix-log; insert into store; get path; check if can be opened

@@ -1,9 +1,49 @@
 * devos
+** ROADMAP
+*** make ryzen useable
+**** i3 (x)
+**** emacs
+**** browser
+*** after acceleration or on ryzen
+**** secrets
+**** borg
+**** colorschemes
+**** cleanup
+***** documentation
+***** TODOS
+***** {missing,improve} tests
+Do not test for existence, test behavior
+*** ISO (FULL)
+*** RESCUE-STICK
+*** DEV-STICK
+*** LATER
+**** langs
+***** nixlang
+****** [#A] lsp
+***** python
+****** [#A] lsp in tests
+******* machine
+******* driver
+******* lib.testing
+***** golang
+***** flutter
+**** k8s
+**** nuc
+**** wayland
+**** music
+**** Lutris
+**** mac
+***** transfer all configs (=etc/nixos=, =~/.config=)
+***** data via borg
+***** cleanup
+***** new SSD
+***** devos
 ** COMMANDS
 *** if nix <2.4 is use run:
 #+BEGIN_SRC shell :results drawer
   alias nix='nix --extra-experimental-features nix-command --extra-experimental-features flakes'
 #+END_SRC
+or set them =~/.config/nix/nix.conf=
 *** print available commands
 #+BEGIN_SRC shell :results drawer
   menu
