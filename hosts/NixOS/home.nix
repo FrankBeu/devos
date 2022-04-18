@@ -10,11 +10,19 @@ let
 in
 {
   home-manager.users.${variables.mainUser.name} = { inputs, profiles, suites, variables, ... }: {
-      imports = [
-        ./variables
-        inputs.nix-colors.homeManagerModule
-        ];
+    imports = with profiles; [
+      ./variables
 
-      ### TODO colorscheme = cf. system
-    };
+      inputs.nix-colors.homeManagerModule
+
+    ]
+    ################################################################################################
+    ### DEBUG
+    ++ [
+    ]
+    ################################################################################################
+    ;
+
+    ### TODO colorscheme = cf. system
+  };
 }

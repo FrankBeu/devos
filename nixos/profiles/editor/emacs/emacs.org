@@ -1,0 +1,74 @@
+---
+title: emacs
+linktitle: emacs
+description: documentation for emacs
+categories:
+keywords: [editor, emacs]
+menu:
+  sidebar:
+    parent: "system"
+    name: "emacs"
+    identifier: "emacs"
+draft: false
+toc: true
+---
+* emacs
+** SOURCES
+   https://github.com/nix-community/emacs-overlay
+   https://nixos.org/manual/nixpkgs/stable/#sec-emacs
+   https://nixos.wiki/wiki/Emacs
+   https://nixos.org/manual/nixos/stable/index.html#module-services-emacs
+   https://www.emacswiki.org/emacs/GccEmacs
+** architecture
+*** overlay
+=emacsOverlay.nix=
+    version using emacsOverlay
+    configuration included in =/etc/nixos=
+** build
+*** some packages can take a realy long time to compile
+just let it run
+cf. dap-mode
+process emacs will show up in monitor
+lsp-dap 3h+
+** configuration
+*** ~emacsWithPackagesFromUsePackage~
+**** cannot handle unicode-chars in emacs-config (strings are fine)
+#+begin_example shell
+error: Unrecognized token on line 1727: ?•
+#+end_example
+***** NoNo
+#+begin_src elisp
+       (?- . ?•)
+#+end_src
+***** use ~?\uCODEPOINT~ instead
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Character-Type.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/General-Escape-Syntax.html
+The only issue is when you use unicode characters together with the char specifier ?.
+E.g. ?λ.
+When I either put the numeric representation of the char instead it worked,
+or wrapped the char in a string.
+#+begin_src elisp
+  (org-superstar-item-bullet-alist
+   '(
+     ;; (?- . ?•)
+     (?\u002D . ?\u2022)
+     ;; (?+ . ?➤)
+     (?\u002B . ?\u27A4)
+     ;; (?* . ?•)
+     (?\u002A . ?\u2022)
+     )
+   )
+#+end_src
+***** get unicode value of char
+=M-x= ~describe-char~
+** use packages not available from overlay
+1. clone into =/etc/nixos/src/emacs/=
+2. add required sources to =/etc/nixos/config/users/config/homemanager/emacs/default.nix=
+3. import in =~/.emacs.d/global/packages-local.org=
+** TODO TODOS
+*** TODO color
+*** TODO configuration
+**** use org-babel directly
+*** TODO ~emacsWithPackagesFromUsePackage~
+currently only elpa-Packages are available to emacsGcc ??
+*** TODO create configuration with homemanager

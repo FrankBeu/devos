@@ -7,6 +7,10 @@ https://nixos.wiki/wiki/Flakes
 #+BEGIN_SRC shell :results drawer
 nix flake lock --update-input home-manager
 #+END_SRC
+*** update to specific version
+#+BEGIN_SRC shell :results drawer
+nix flake update --override-input latest github:NixOS/nixpkgs/3ac955acf44e2155d1fef77c49b5c6f068e6e27b
+#+END_SRC
 *** create a flake
 #+BEGIN_SRC shell :results drawer
   nix flake init

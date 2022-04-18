@@ -1,8 +1,8 @@
 * TODO deployment
 *** after =./hardwareSetup/hardwareSetup.org= ~devos~ can be deployed
-**** copy/update =/etc/devos= on remote host
+**** copy/update =/etc/devos= to/on remote host
 #+BEGIN_SRC shell
-  rsync -raP --delete /home/frank//DEVOS root@192.168.0.31:/etc
+  rsync -raP --delete /home/frank/DEVOS root@192.168.0.31:/home/frank
 #+END_SRC
 ***** re-sync
 #+BEGIN_SRC shell

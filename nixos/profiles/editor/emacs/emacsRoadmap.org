@@ -1,0 +1,43 @@
+* emacs
+** REQ
+*** provide packages
+*** provide configuration
+*** as flake
+*** tangle config
+*** easy development
+*** provide required writeable folders inside =.emacs.d=
+** ROADMAP
+*** DONE create flake
+*** DONE connect to relative flake from DEVOS
+*** DONE deploy single file
+*** DONE cleanup =.emacs-d=
+*** DONE use ~emacs-overlay~
+*** DONE tangle file
+*** DONE deploy tangled file
+*** DONE build =init.el=
+*** DONE create =.emacs-d=
+*** DONE deploy =.emacs-d=
+*** DONE deploy ~emacs-overlay~
+*** TODO [#B] use dynamic colors
+*** DONE push to github
+*** DONE use external flake
+*** TODO test
+**** TODO at least orgmode (graphical)
+***** TODO checks if config is loaded properly
+**** TODO emacsclient
+**** TODO [#B] colors
+*** TODO create development workflow
+**** TODO =xN= for directories
+**** point to emacsFlake-repo
+**** DEVEL
+**** push
+**** update DEVOS
+#+BEGIN_SRC shell :results drawer
+nix flake lock --update-input emacsFlake
+#+END_SRC
+**** =xn=
+**** upgrade
+*** TODO documentation
+**** update
+**** merge roadmap + documentation
+
