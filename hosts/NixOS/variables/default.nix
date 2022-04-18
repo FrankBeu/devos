@@ -16,6 +16,9 @@ in
       group          = "users";
     };
 
+    # autoLogin = false;
+    # autoLogin = true;
+
     inherit currentColorSchemeName;
   };
 }
