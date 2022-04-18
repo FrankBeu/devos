@@ -14,8 +14,9 @@
 
     ### DEVEL: DISABLE the following lines for faster vm-startup
     interfaces = {
-      # enp37s0.useDHCP = true;
-      # wlp36s0.useDHCP = true;
+      # eth0.useDHCP = true;
+      enp37s0.useDHCP = true;
+      wlp36s0.useDHCP = true;
     };
   };
 }

@@ -25,15 +25,19 @@ in
     ### PROFILES
     profiles.alacritty
     profiles.bud  ### TODO: not working on tests "error: attribute 'system' missing" cf. https://github.com/divnix/bud/blob/main/module.nix#L73
+    profiles.browser.chromium
     profiles.console
     profiles.editor.vim
+    profiles.editor.emacs
     profiles.filemanager.ranger
     profiles.i18n
     profiles.networking.dhcp
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure
     # profiles.services.printing
+    # profiles.services.pipewire
     profiles.services.ssh
+
     profiles.sound
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
@@ -48,9 +52,10 @@ in
     # profiles.autologin.mainUser
     # profiles.autologin.root
 
-
   ] ++ suites.base
     ++ suites.docLocal
+
+    # ++ suites.gnome
     ++ suites.i3
   ;
 
