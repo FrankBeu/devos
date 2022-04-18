@@ -20,3 +20,4 @@ convenient
 shortcuts
 ** *TODOS*
 *** TODO create this file dynamically from module
+*** TODO ~/DEVOS/src/shellColorDefinitions/colors

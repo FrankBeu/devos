@@ -44,6 +44,8 @@ writer   = budUtils.writeBashWithPaths [ coreutils     gnused nixUnstable shellC
 source shellColorDefinitions
 #+END_EXAMPLE
 *** only ~bash~ scripts can be used - script will be sourced (bang will be ignored)
+** TASKS
+*** updating
 ** INFO
 *** =hosts=
 **** hostname

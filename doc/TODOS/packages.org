@@ -1,0 +1,5 @@
+* packages
+** i3statusBar
+*** TODO extract/reactivate (externalModule?|subModule)
+** *TODOS*
+*** TODO create this file dynamically from module

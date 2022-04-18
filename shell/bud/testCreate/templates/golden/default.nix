@@ -15,7 +15,7 @@ let
           systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
 
           home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = [
+            imports = with profiles; [
               ### TODO
             ];
           };
