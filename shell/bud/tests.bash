@@ -11,8 +11,8 @@ tests.nixos.modules.variables
 tests.nixos.profiles.alacritty
 tests.nixos.profiles.autologin.mainUser
 tests.nixos.profiles.autologin.root
+tests.nixos.profiles.browser.chromium
 tests.nixos.profiles.console
-# tests.nixos.profiles.display.gnome    ### TODO: needs hw-acceleration
 tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar
 tests.nixos.profiles.domain.local
@@ -27,7 +27,6 @@ tests.nixos.profiles.timezone.amsterdam
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 tests.nixos.suites.gnome
-# tests.nixos.suites.i3                 ### TODO: needs hw-acceleration
 
 ### HOME
 tests.home.profiles.alacritty
@@ -44,3 +43,6 @@ for i in "${allTests[@]}"; do
   echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ nix build .#${i}"
   nix build .#${i}
 done
+
+# tests.nixos.profiles.display.gnome    ### TODO: needs hw-acceleration
+# tests.nixos.suites.i3                 ### TODO: needs hw-acceleration
