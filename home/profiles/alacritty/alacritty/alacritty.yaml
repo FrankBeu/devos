@@ -1,35 +1,35 @@
 ### yamlAnchorsContinuation
-      regexes:
-        urlRegex: &urlRegex
-          "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-          [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-        fileRegex: &fileRegex
-        ### absolute path
-        ### editorconfig
-        ### TODO: rg
-          "((/bin|/boot|/dev|/etc|/home|/nix|/opt|/pkg|/proc|/root|/run|/srv|/sys|/tmp|/usr|/var)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+)|\
-          ([^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]{4,}?:)"
-        fileUrlRegex: &fileUrlRegex
-        ### absolute path + ^protocol
-        ### editorconfig
-        ### TODO: rg
-        ### combine??
-          "((/bin|/boot|/dev|/etc|/home|/nix|/opt|/pkg|/proc|/root|/run|/srv|/sys|/tmp|/usr|/var\
-          mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-          [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+)|\
-          ([^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]{4,}?:)"
-        nixDerivationRegex: &nixDerivationRegex
-          "(/nix/store)\
-          [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+\
-          .drv"
-        nixSha256Regex: &nixSha256Regex
-          "sha256:([[:alnum:]]){52}"
-          ### TODO: write tests
-        rgRegex: &rgRegex
-            # "[[:alnum:]][^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`:]+\\s"
-            # "[[:alpha:]][0-9a-zA-Z.+_/-]+[^:\\s]"
-            "/[0-9a-zA-Z.+_/-]+[^:\\s]"
-          ### TODO: write tests
+    regexes:
+      urlRegex: &urlRegex
+        "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      fileRegex: &fileRegex
+      ### absolute path
+      ### editorconfig
+      ### TODO: rg
+        "((/bin|/boot|/dev|/etc|/home|/nix|/opt|/pkg|/proc|/root|/run|/srv|/sys|/tmp|/usr|/var)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+)|\
+        ([^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]{4,}?:)"
+      fileUrlRegex: &fileUrlRegex
+      ### absolute path + ^protocol
+      ### editorconfig
+      ### TODO: rg
+      ### combine??
+        "((/bin|/boot|/dev|/etc|/home|/nix|/opt|/pkg|/proc|/root|/run|/srv|/sys|/tmp|/usr|/var\
+        mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+)|\
+        ([^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]{4,}?:)"
+      nixDerivationRegex: &nixDerivationRegex
+        "(/nix/store)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+\
+        .drv"
+      nixSha256Regex: &nixSha256Regex
+        "sha256:([[:alnum:]]){52}"
+        ### TODO: write tests
+      rgRegex: &rgRegex
+          # "[[:alnum:]][^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`:]+\\s"
+          # "[[:alpha:]][0-9a-zA-Z.+_/-]+[^:\\s]"
+          "/[0-9a-zA-Z.+_/-]+[^:\\s]"
+        ### TODO: write tests
 
 
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
