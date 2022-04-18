@@ -10,17 +10,22 @@ let
   colorscheme  = builtins.readFile ../../nixos/modules/colorscheme/testScript.py;
   variables    = (import ../../nixos/modules/variables/testScript.py.nix { inherit username; });
 
+  chromium     = builtins.readFile ../../nixos/profiles/browser/chromium/testScript.py;
   consPreamble = builtins.readFile ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScript.py;
   vim          = builtins.readFile ../../nixos/profiles/editor/vim/testScript.py;
   ranger       = builtins.readFile ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile ../../nixos/profiles/timezone/amsterdam/testScript.py;
 
-  gitPreamble  = builtins.readFile ../../home/profiles/git/testScriptIntegrationPreamble.py;
-  git          = gitPreamble + builtins.readFile ../../home/profiles/git/testScript.py;
 
   docLocal     = (import ../../nixos/suites/docLocal/testScript.nix            ).testScript;
   i3           = (import ../../nixos/suites/i3/testScript.nix {inherit userID;}).testScript;
+
+
+  # emacs        = builtins.readFile ../../home/profiles/editor/emacs/testScript.py;   ### TODO: needs hw-acceleration
+  gitPreamble  = builtins.readFile ../../home/profiles/git/testScriptIntegrationPreamble.py;
+  git          = gitPreamble + builtins.readFile ../../home/profiles/git/testScript.py;
+
 
 
   test = {
@@ -74,7 +79,7 @@ let
         ${colorscheme}
         ${variables}
 
-
+        ${chromium}
         # $${console} ###TODO reactivate after graphical
         ${vim}
         ${ranger}
@@ -84,8 +89,10 @@ let
         ${docLocal}
         ${i3}
 
+
         # $${git}     ###TODO reactivate after graphical
       '';
+        # ${emacs}
 
       name = self.inputs.latest.lib.toUpper name;
   };
