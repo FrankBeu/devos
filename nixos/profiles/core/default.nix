@@ -99,18 +99,18 @@ in
         top = "btm";
 
         ### systemd
-        ctl   =          "systemctl";
-        stl   = ifSudo "s systemctl";
-        utl   =          "systemctl --user";
-        ut    =          "systemctl --user start";
-        un    =          "systemctl --user stop";
-        up    = ifSudo "s systemctl        start";
-        dn    = ifSudo "s systemctl        stop";
+        ctl   =          "systemctl";               ### systemConTroL
+        stl   = ifSudo "s systemctl";               ### Sudo systemconTroL
+        utl   =          "systemctl --user";        ### User cTroL
+        ut    =          "systemctl --user start";  ### User starT
+        un    =          "systemctl --user stop";   ### User  dowN
+        up    = ifSudo "s systemctl        start";  ### UP
+        dn    = ifSudo "s systemctl        stop";   ### DowN
 
-        jtl   =          "journalctl";
-        jtlu  =          "journalctl    -u";
-        jtlb  =          "journalctl -b";
-        jtlbu =          "journalctl -b -u";
+        jtl   =          "journalctl";              ### JournalconTroL
+        jtlu  =          "journalctl    -u";        ### -u
+        jtlb  =          "journalctl -b";           ### -b
+        jtlbu =          "journalctl -b -u";        ### -b -u
 
       };
   };
