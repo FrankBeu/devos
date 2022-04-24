@@ -1,0 +1,65 @@
+* multiPartFile
+create a =configuration-file=, which contains configuration only if =otherModule= is activated.
+** =./default.nix=
+#+BEGIN_EXAMPLE nix
+{config, lib, pkgs, ...}:
+{
+  ### optional
+  imports = [
+    ./footer.nix
+  ];
+
+  ### enable modulare configuration file; cf. fcitx
+  xdg.configFile."CONFIG/config".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 1
+  ''
+    ${(builtins.readFile ./configFile)}
+  '');
+}
+#+END_EXAMPLE
+** =./configFile=
+#+BEGIN_EXAMPLE
+################################################################################
+CONFIGURATION
+################################################################################
+#+END_EXAMPLE
+
+** =./otherModule=
+#+BEGIN_EXAMPLE nix
+{ pkgs, ... }:
+{
+  # xdg.configFile."CONFIG/config".text = pkgs.lib.mkDefault( pkgs.lib.mkAfter
+  xdg.configFile."CONFIG/config".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 100
+  ''
+    ################################################################################
+    ### conditional CONFIGURATION only available, if otherModule is used
+    CONFIGURATION-CONDITIONAL
+    ################################################################################
+  '' );
+}
+#+END_EXAMPLE
+** =./footer.nix=
+  optional
+#+BEGIN_EXAMPLE nix
+
+{config, lib, pkgs, ...}:
+{
+  ### in order to set the right mode in the source and the resulting file append the modeBlock
+  xdg.configFile."CONFIG/config".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 1000
+  ''
+    ################################################################################
+    FOOTER
+  '');
+}
+#+END_EXAMPLE
+** result
+#+BEGIN_EXAMPLE sh
+################################################################################
+CONFIGURATION
+################################################################################
+################################################################################
+### conditional CONFIGURATION only available, if otherModule is used
+CONFIGURATION-CONDITIONAL
+###############################################################################
+###############################################################################
+FOOTER
+#+END_EXAMPLE

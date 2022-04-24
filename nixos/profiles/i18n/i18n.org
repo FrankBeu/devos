@@ -1,0 +1,149 @@
+---
+title: i18n
+linktitle: i18n
+description: documentation for i18n, input, ...
+categories:
+keywords: [i18n, input, keyboard, languages]
+menu:
+  sidebar:
+    parent: "system"
+    name: "i18n"
+    identifier: "i18n"
+draft: false
+toc: true
+---
+* i18n
+** inputMethods
+*** INFO
+**** comparison
+https://blogs.gnome.org/happyaron/2011/01/15/linux-input-method-brief-summary/
+**** inputMethods
+https://wiki.archlinux.org/title/Input_method
+***** japanese
+https://functor.tokyo/blog/2018-10-01-japanese-on-nixos
+****** Mozc
+https://wiki.archlinux.org/title/mozc
+https://www.google.co.jp/ime/
+https://github.com/google/mozc
+***** chinese
+Wubi
+****** Boshiamy
+https://en.wikipedia.org/wiki/Boshiamy_method
+**** tutorials
+***** japanese
+https://www.coscom.co.jp/learnjapanese801/index.html
+**** troubleshooting
+https://www.reddit.com/r/i3wm/comments/fr6vrw/solved_fcitx_conflict_with_x11_keyboard_layout/
+*** fcitx [ˈfaɪtɪks]
+**** INFO
+https://fcitx-im.org/wiki/Fcitx_5
+https://fcitx-im.org/wiki/Input_method_engines
+https://wiki.archlinux.org/title/Fcitx5
+https://github.com/fcitx/fcitx5
+***** available addons
+https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=fcitx5
+***** behavior
+the first layout of the activated group will be used if a new window is opened
+***** ATTENTION
+usage of fcitx will override XKB settings
+can be disabled via ~fcitx5-configtool~ -> Addons -> XKB
+if CJK support is not required, use XKB instead
+**** USAGE
+****** GROUPS
+can have multiple input methods
+******* change GROUP
+******** HOTKEY
+'Enumerate Input Method Group Forward'
+'Enumerate Input Method Group Backward'
+******** TODO add keybinding dynamicly
+****** METHODS
+******* change METHOD
+******** HOTKEY
+'Enumerate Input Method Forward'
+'Enumerate Input Method Backward'
+******** TODO add keybinding dynamicly
+****** Clipboard
+~fcitx5-configtool~ -> Addons -> Clipboard
+=A-S C=
+
+******** TODO add keybinding dynamicly
+****** Unicode
+=A-S U=
+******** TODO add keybinding dynamicly
+******** TODO configure keybinding dynamicly
+****** quickPhrase
+=A-S RETURN=
+******* expand shortcuts defined in
+- =/run/current-system/sw/share/fcitx5/data/quickphrase.d=
+- =~/.local/share/fcitx5/data/QuickPhrase.mb=
+******* configuration
+~fcitx5-configtool~ -> Addons -> Quickphrase
+******* usage
+1. activate =A-Enter=
+2. choose by writing
+3. insert with =SPC=
+****** completion
+=A-S H=
+******** TODO add keybinding dynamicly
+******** TODO configure keybinding dynamicly
+****** preedit
+
+**** tools
+- fcitx-diagnose
+- fcitx-configtool
+**** changes to the installation need an daemon-restart
+#+BEGIN_SRC shell :results drawer
+systemctl --user  restart fcitx5-daemon.service
+#+END_SRC
+**** configuration
+needs an entry in =i3-config=
+#+BEGIN_EXAMPLE
+exec --no-startup-id fcitx -d
+#+END_EXAMPLE
+*** ALTERNATIVES
+**** Korean
+***** YAGNI
+****** kime
+https://github.com/Riey/kime
+rust
+**** ibus
+https://nixos.wiki/wiki/IBus
+***** configuration
+needs ~gconf~
+~ibus-setup~
+use fcitx5 instead
+** TODO TODOS
+*** TODO create this file dynamically from module
+*** TODO declarative configuration
+=~/.config/fcitx=
+=~/.config/fcitx5=
+*** TODO emacs
+https://github.com/cute-jumper/fcitx.el
+*** TODO theming
+=~/.local/share/fcitx5/themes/THEME=
+folderName is irrelevant
+https://github.com/weearc/fcitx5-skin-simple-blue
+https://github.com/iovxw/fcitx5-simple-theme
+https://github.com/skykeyjoker/Fcitx5-Bing-Input-Color
+https://github.com/BrandonCardoso/fcitx-dracula
+https://github.com/hosxy/Fcitx5-Material-Color
+https://github.com/mingyech/fcitx5-solarized
+https://github.com/tonyfettes/fcitx5-nord
+**** create package
+cf. other addons
+**** dynamic simple blue
+https://forum.suse.org.cn/t/fcitx-artwork-fcitx/731/14
+https://github.com/weearc/fcitx5-skin-simple-blue
+**** create a dynamic theme for usage with nix-colors
+*** TODO configuration
+https://jeffreytse.net/computer/2020/11/19/how-to-use-fcitx5-elegantly-on-arch-linux.html
+*** TODO sway
+https://www.reddit.com/r/swaywm/comments/sdz8u9/fcitx5_has_now_a_wayland_launcher/
+*** TODO extract fcitx
+*** TODO create ipa engine
+or as layout??
+existing??
+*** TODO check moonlander interference
+**** decouple
+*** add fontsize to variables
+use it here in i3 and alacritty

@@ -1,4 +1,5 @@
-{ inputs
+{ self
+, inputs
 , variables
 , profiles
 , ...
@@ -10,19 +11,20 @@ let
 in
 {
   home-manager.users.${variables.mainUser.name} = { inputs, profiles, suites, ... }: {
-      imports = [
-        ./variables
+    imports = [
+      ./variables
 
-        profiles.alacritty
-        profiles.direnv
-        profiles.display.i3
-        profiles.editor.emacs
-        # profiles.filemanager.ranger
-        profiles.git
+      profiles.alacritty
+      profiles.direnv
+      profiles.display.i3
+      profiles.editor.emacs
+      profiles.filemanager.ranger
+      profiles.git
+      profiles.i18n.fcitx
 
-        inputs.nix-colors.homeManagerModule
-        ];
+      # inputs.nix-colors.homeManagerModule
+    ];
 
-      ### TODO colorscheme = cf. system
-    };
+    colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.currentColorSchemeName;
+  };
 }

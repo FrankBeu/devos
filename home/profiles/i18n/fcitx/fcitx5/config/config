@@ -1,0 +1,69 @@
+[Hotkey]
+# Trigger Input Method
+TriggerKeys=
+# Enumerate when press trigger key repeatedly
+EnumerateWithTriggerKeys=True
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
+# Activate Input Method
+ActivateKeys=
+
+[Hotkey/AltTriggerKeys]
+0=Control+Return
+
+[Hotkey/EnumerateForwardKeys]
+0=Control+space
+
+[Hotkey/EnumerateBackwardKeys]
+0=Control+Shift+space
+
+[Hotkey/EnumerateGroupForwardKeys]
+0=Control+Tab
+
+[Hotkey/EnumerateGroupBackwardKeys]
+0=Control+Shift+Tab
+
+[Hotkey/DeactivateKeys]
+0=Control+Escape
+
+[Hotkey/PrevPage]
+0=Up
+
+[Hotkey/NextPage]
+0=Down
+
+[Hotkey/PrevCandidate]
+0=Shift+Tab
+1=Left
+
+[Hotkey/NextCandidate]
+0=Tab
+1=Right
+
+[Hotkey/TogglePreedit]
+0=Alt+Shift+P
+
+[Behavior]
+# Active By Default
+ActiveByDefault=False
+# Share Input State
+ShareInputState=No
+# Show preedit in application
+PreeditEnabledByDefault=True
+# Show Input Method Information when switch input method
+ShowInputMethodInformation=True
+# Show Input Method Information when changing focus
+showInputMethodInformationWhenFocusIn=False
+# Show compact input method information
+CompactInputMethodInformation=True
+# Show first input method information
+ShowFirstInputMethodInformation=True
+# Default page size
+DefaultPageSize=5
+# Force Enabled Addons
+EnabledAddons=
+# Force Disabled Addons
+DisabledAddons=
+# Preload input method to be used by default
+PreloadInputMethod=True
+

@@ -1,0 +1,164 @@
+[Groups/0]
+# Group Name
+Name=DEFAULT
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=keyboard-ru
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=keyboard-ara
+# Layout
+Layout=
+
+[Groups/0/Items/2]
+# Name
+Name=keyboard-ru
+# Layout
+Layout=
+
+[Groups/0/Items/3]
+# Name
+Name=keyboard-in-san-kagapa
+# Layout
+Layout=
+
+[Groups/0/Items/4]
+# Name
+Name=mozc
+# Layout
+Layout=
+
+[Groups/0/Items/5]
+# Name
+Name=pinyin
+# Layout
+Layout=
+
+[Groups/1]
+# Group Name
+Name=CHINESE
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=wbx
+
+[Groups/1/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/1/Items/1]
+# Name
+Name=wbx
+# Layout
+Layout=
+
+[Groups/1/Items/2]
+# Name
+Name=pinyin
+# Layout
+Layout=
+
+[Groups/1/Items/3]
+# Name
+Name=boshiamy
+# Layout
+Layout=
+
+[Groups/2]
+# Group Name
+Name=RUSSIAN
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=keyboard-ru
+
+[Groups/2/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/2/Items/1]
+# Name
+Name=keyboard-ru
+# Layout
+Layout=
+
+[Groups/3]
+# Group Name
+Name=JAPANESE
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=mozc
+
+[Groups/3/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/3/Items/1]
+# Name
+Name=mozc
+# Layout
+Layout=
+
+[Groups/4]
+# Group Name
+Name=ARABIC
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=keyboard-ara
+
+[Groups/4/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/4/Items/1]
+# Name
+Name=keyboard-ara
+# Layout
+Layout=
+
+[Groups/5]
+# Group Name
+Name=DEVANAGARI
+# Layout
+Default Layout=us-intl-unicode
+# Default Input Method
+DefaultIM=keyboard-in-san-kagapa
+
+[Groups/5/Items/0]
+# Name
+Name=keyboard-us-intl-unicode
+# Layout
+Layout=
+
+[Groups/5/Items/1]
+# Name
+Name=keyboard-in-san-kagapa
+# Layout
+Layout=
+
+[GroupOrder]
+0=DEFAULT
+1=RUSSIAN
+2=ARABIC
+3=CHINESE
+4=JAPANESE
+5=DEVANAGARI
+

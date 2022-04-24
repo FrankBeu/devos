@@ -30,7 +30,8 @@ in
     profiles.editor.vim
     profiles.editor.emacs
     profiles.filemanager.ranger
-    profiles.i18n
+    profiles.i18n.common
+    profiles.i18n.fcitx
     profiles.networking.dhcp
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure

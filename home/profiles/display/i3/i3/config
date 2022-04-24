@@ -954,6 +954,7 @@ bindsym $mod+y mode "$oldModLeftHand"
 # bindsym $mod+grave kill
 bindcode $mod+49 kill
 
+################################################################################
 ###
 ##
 # * INFO
@@ -963,8 +964,9 @@ bindcode $mod+49 kill
 # reload with SUPER-Y  SUPER-SHIFT-C
 # search for restart i3 inplace (preserves your layout/session, can be used to upgrade I3)
 #
-###############################################################################
-# vim:filetype=i3:cms=#\ %s
-# Local Variables:
-# mode: sh
-# End:
+# TODO: extract to documentation
+
+################################################################################
+###
+##
+# * CONDITIONAL CONFIGURATION

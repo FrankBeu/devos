@@ -25,6 +25,7 @@ let
   # emacs        = builtins.readFile ../../home/profiles/editor/emacs/testScript.py;   ### TODO: needs hw-acceleration
   gitPreamble  = builtins.readFile ../../home/profiles/git/testScriptIntegrationPreamble.py;
   git          = gitPreamble + builtins.readFile ../../home/profiles/git/testScript.py;
+  fcitx        = (import ../../home/profiles/i18n/fcitx/shared/testScript.py.nix { inherit username; });
 
 
 
@@ -91,6 +92,7 @@ let
 
 
         # $${git}     ###TODO reactivate after graphical
+        ${fcitx}
       '';
         # ${emacs}
 

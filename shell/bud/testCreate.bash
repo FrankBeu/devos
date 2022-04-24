@@ -37,7 +37,7 @@ echo -e ""
 ### INSTANTIATION
 if [[ -d ${FLAKE_DIR}/${LOCATION} ]]
 then
-    echo -e "\tA directory ${RB}already exists${N} at ${Y}${FLAKE_DIR}/tests/${LOCATION}${N}."
+    echo -e "\tA directory ${RB}already exists${N} at ${Y}${FLAKE_DIR}/${LOCATION}${N}."
     echo -e ""
     exit
 else
@@ -45,6 +45,6 @@ else
     cp    -r ${FLAKE_DIR}/shell/bud/testCreate/templates/${TYPE_SELECTED}/* ${FLAKE_DIR}/${LOCATION} &&
     sed   -i "s/<TESTNAME>/${2}/" ${FLAKE_DIR}/${LOCATION}/testScript.py &&
 
-    echo -e "\t A ${UB}${TYPE_SELECTED}${N}-Test was ${GB}created${N} in ${Y}${FLAKE_DIR}/tests/${LOCATION}${N}."
+    echo -e "\t A ${UB}${TYPE_SELECTED}${N}-Test was ${GB}created${N} in ${Y}${FLAKE_DIR}/${LOCATION}${N}."
     echo -e ""
 fi
