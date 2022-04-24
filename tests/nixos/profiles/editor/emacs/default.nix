@@ -10,7 +10,7 @@ let
             editor.emacs
           ];
 
-          variables.autoLogin = true;
+          variables.autoLogin = true; ### TODO check: controls X-login only
 
         };
     };
