@@ -1,8 +1,3 @@
-###
-##
-# * ranger
-#
-{...}:
 {
   home = {
     file.".config/ranger/commands.py"     .source = ./ranger/commands.py;
