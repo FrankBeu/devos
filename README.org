@@ -1,23 +1,45 @@
 * devos
-test-driven host-development
+test-driven dynamically-themed well-documented host-development
+** FEATURES
+*** WIP TTD
+  - lib (TODO)
+  - profiles
+  - modules
+  - suites
+  - hosts
+*** WIP dynamicTheme
+- ~bud theme {dracula,gruvbox,...}~
+- automagically all (WIP)  programs change their appearance
+*** WIP doc.local
+- a documentation-server displaying on each host only the available features
+*** WIP cookbook
+- nix isn't that convenient
+- keep solved {issues,solutions,ideas} in one handy location
+- ingredients
+- recipies
+*** WIP manualActions
+- keep track of actions (todos)(tasks should be automated) which have to be done manually
+***  hjkl ⟶ jkl;
+****  TODO TODOS
+- ~nix log~
+- ~gotop~
 ** ROADMAP
 *** make ryzen useable
-**** i3 (x)
-**** emacs
-**** browser
+**** DONE i3 (x)
+**** DONE emacs
+**** DONE browser
+chromium
+*** hardwareAcceleration
 *** after acceleration or on ryzen
 **** secrets
 **** borg
+**** manualActions
 **** colorschemes
 **** cleanup
 ***** documentation
 ***** TODOS
-***** {missing,improve} tests
+***** {fixMissing,improve} tests
 Do not test for existence, test behavior
-*** ISO (FULL)
-*** RESCUE-STICK
-*** DEV-STICK
-*** LATER
 **** langs
 ***** nixlang
 ****** [#A] lsp
@@ -26,12 +48,20 @@ Do not test for existence, test behavior
 ******* machine
 ******* driver
 ******* lib.testing
+*** ISO (FULL)
+*** RESCUE-STICK
+*** DEV-STICK
+*** LATER
+**** langs
 ***** golang
 ***** flutter
 **** k8s
+**** firefox
+***** addons
 **** nuc
 **** wayland
 **** music
+**** pulsewire
 **** Lutris
 **** mac
 ***** transfer all configs (=etc/nixos=, =~/.config=)
@@ -87,7 +117,6 @@ nix build .#tests.integrationTests.test.x86_64-linux.pythonTest
 #+BEGIN_EXAMPLE shell
 > :lf ./.
 #+END_EXAMPLE
-
 ** INFO
 *** testing
 **** view used sources for python-tests

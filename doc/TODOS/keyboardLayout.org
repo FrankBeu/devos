@@ -1,0 +1,60 @@
+* keyboardlayouts
+** displayLayout
+differences are not shown
+#+BEGIN_EXAMPLE shell
+nix-shell -p gnome.libgnomekbd
+setxkbmap -query | grep layout | tr -s ' ' | cut -d ' ' -f2
+setxkbmap -query | grep variant | tr -s ' ' | cut -d ' ' -f2
+gkbd-keyboard-display -l us alt-intl-unicode
+gkbd-keyboard-display -l us alt-intl
+gkbd-keyboard-display -l us intl-unicode
+#+END_EXAMPLE
+*** use this as reference for own viewer
+*** workflow
+**** get scancodes
+#+BEGIN_SRC shell :results drawer
+nix-shell -p xorg.xev
+xev -event keyboard
+#+END_SRC
+**** us-layouts are defined in
+=/run/current-system/sw/share/X11/xkb/symbols/us=
+**** mappings - scancodes (xev) to keycodes (xkb)
+=/run/current-system/sw/share/X11/xkb/keycodes/evdev=
+*** INFO
+**** TODO xkb
+https://medium.com/@damko/a-simple-humble-but-comprehensive-guide-to-xkb-for-linux-6f1ad5e13450
+*** comparison
+=/run/current-system/sw/share/X11/xkb/symbols/us=
+**** combining
+***** ~xkb_symbols "intl-unicode" {~
+#+BEGIN_EXAMPLE
+-_¥̣
+.>̇̌
+#+END_EXAMPLE
+ #+BEGIN_EXAMPLE
+ key <AE11> { [ minus, underscore, yen, U0323 ] }; // belowdot
+
+ key <AB09> { [ period, greater, U0307, U030C ] }; // abovedot, caron
+ #+END_EXAMPLE
+****** fcitx-name
+~Keyboard - English (US) - English (US , intl., AltGr Unicode combining)~
+***** ~xkb_symbols "alt-intl-unicode" {~
+same as above but with different =minus= and =period=
+#+BEGIN_EXAMPLE
+-_̄—
+.>̣̇
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+// easier macron; em-dash.
+// em-dash is available via compose, but I added here since it's such
+// an important typographic character.
+key <AE11> { [ minus, underscore, U0304, U2014 ] };
+
+// belowdot, abovedot (caron at coma/less key, per above)
+key <AB09> { [ period, greater, U0323, U0307 ] };
+#+END_EXAMPLE
+****** fcitx-name
+~Keyboard - English (US) - English (US , intl., AltGr Unicode combining, alt.)~
+**** DEPRECATED deadkeys
+***** ~xkb_symbols "alt-intl" {~
+***** ~xkb_symbols "altgr-intl" {~
