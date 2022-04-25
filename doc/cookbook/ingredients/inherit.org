@@ -1,0 +1,19 @@
+* inherit
+** ex1
+#+BEGIN_EXAMPLE nix
+let
+  # allColorsDebugInfo = self.lib.colorscheme.allColorsDebugInfo;
+  inherit (self.lib.colorscheme) allColorsDebugInfo;
+in
+### …
+#+END_EXAMPLE
+** ex2
+#+BEGIN_EXAMPLE nix
+{
+  # custom-base24-dracula = ( import ./themes/custom-base24-dracula.nix ).custom-base24-dracula;
+  inherit ( import ./themes/custom-base24-dracula.nix ) custom-base24-dracula;
+  ### …
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify
