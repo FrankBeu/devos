@@ -43,37 +43,37 @@
       };
     };
 
-      emacsFlake = {
-        # url = "/home/frank/DEVOSEMACS"; ### DEVEL
-        url = "github:FrankBeu/emacs-flake";
-        inputs.nixpkgs.follows = "nixos";
-      };
+    emacsFlake = {
+      # url = "/home/frank/DEVOSEMACS"; ### DEVEL
+      url = "github:FrankBeu/emacs-flake";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-      home = {
-        url = "github:nix-community/home-manager/release-21.11";
-        inputs.nixpkgs.follows = "nixos";
-      };
+    home = {
+      url = "github:nix-community/home-manager/release-21.11";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-      naersk = {
-        url = "github:nmattia/naersk";
-        inputs.nixpkgs.follows = "nixos";
-      };
+    naersk = {
+      url = "github:nmattia/naersk";
+      inputs.nixpkgs.follows = "nixos";
+    };
 
-      nix-colors = {
-        url = "github:misterio77/nix-colors";
-        inputs = {
-          nixpkgs.follows = "latest";
-        };
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs = {
+        nixpkgs.follows = "latest";
       };
+    };
 
-      nixos-hardware = {
-        url = "github:nixos/nixos-hardware";
-      };
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+    };
 
-      nvfetcher = {
-        url                    = "github:berberman/nvfetcher";
-        inputs.nixpkgs.follows = "nixos";
-      };
+    nvfetcher = {
+      url                    = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixos";
+    };
   };
 
   outputs =
