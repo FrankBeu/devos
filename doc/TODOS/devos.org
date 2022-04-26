@@ -4,6 +4,13 @@
 **** languages
 ***** serialisationLanguages
 *** =hosts=
+** overlays
+*** each channel has it's own overlays
+*** shared overlays are also available
+because symlinks cannot be used
+*** overlays will only be imported if the filename ends with =*.nix=
+(~rakeLeaves~)
+overlays can be switched off
 ** errors
 *** imported suites + profile
 #+BEGIN_EXAMPLE

@@ -99,7 +99,10 @@
 
       channels = {
         nixos = {
-          imports  = [ (digga.lib.importOverlays ./overlays) ];
+          imports  = [
+            (digga.lib.importOverlays ./overlays/shared)
+            (digga.lib.importOverlays ./overlays/nixos)
+          ];
           overlays = [
             nur.overlay
             agenix.overlay
@@ -108,6 +111,10 @@
           ];
         };
         latest = {
+          imports  = [
+            (digga.lib.importOverlays ./overlays/shared)
+            (digga.lib.importOverlays ./overlays/latest)
+          ];
           overlays = [
             nur.overlay
             agenix.overlay
