@@ -1,0 +1,4 @@
+### ignore for ripgrep (in addition to the patterns found in .gitignore)
+doc/docLocal/themes/theme/static/styles/main.css.map
+doc/devos/theme/highlight.js
+
