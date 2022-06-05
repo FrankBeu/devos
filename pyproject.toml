@@ -1,0 +1,33 @@
+[tool.poetry]
+	# name		= "devos"
+	name		= "tests"
+	version		= "0.0.0"
+	# description	= "a highly structured configuration database"
+	description	= "testing a highly structured configuration database"
+	authors		= ["Frank Beutelschiess <fbeutelschiess@gmail.com>"]
+	license		= "MIT"
+
+
+[tool.poetry.dependencies]
+	python = "^3.9"
+
+
+[tool.poetry.dev-dependencies]
+
+
+### changes need a restart (SPC l w r)
+[tool.pyright]
+# include = []
+executionEnvironments = [
+		      { root = "./tests"   },
+		      ]
+extraPaths = [
+	   "../lib/testing/auxiliary.py"
+	   "/home/frank/SRC/GITHUB/NIX/nixpkgs/nixos/lib/test-driver/test_driver"
+	   ]
+# "/home/frank/SRC/GITHUB/NIX/nixpkgs/nixos/lib/test-driver/"
+
+
+[build-system]
+	requires	= ["poetry-core>=1.0.0"]
+	build-backend	= "poetry.core.masonry.api"
