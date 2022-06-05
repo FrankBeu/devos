@@ -1,17 +1,22 @@
 {
   description = "A highly structured configuration database.";
 
-  nixConfig.extra-experimental-features = "nix-command flakes";
-  nixConfig.extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
-  nixConfig.extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+  nixConfig = {
+    # extra-experimental-features = "nix-command flakes";
+    ### make configuration dependent on network
+    # extra-substituters          = "https://nrdxp.cachix.org https://nix-community.cachix.org";
+    # extra-trusted-public-keys   = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+  };
 
   inputs = {
     nixos.url  = "github:nixos/nixpkgs/release-21.11";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
 
     agenix = {
-      url                    = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixos";
+      url    = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
     };
 
     bud = {
@@ -23,14 +28,18 @@
     };
 
     darwin = {
-      url                    = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixos";
+      url    = "github:LnL7/nix-darwin";
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
     };
 
     deploy = {
-      # url                    = "github:input-output-hk/deploy-rs";
-      url                    = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixos";
+      # url             = "github:input-output-hk/deploy-rs";
+      url               = "github:serokell/deploy-rs";
+      inputs            = {
+        nixpkgs.follows = "nixos";
+      };
     };
 
     digga = {
@@ -44,23 +53,33 @@
     };
 
     emacsFlake = {
-      # url = "/home/frank/DEVOSEMACS"; ### DEVEL
-      url = "github:FrankBeu/emacs-flake";
-      inputs.nixpkgs.follows = "nixos";
+      # url    = "/home/frank/DEVOSEMACS"; ### DEVEL
+      url  = "github:FrankBeu/emacs-flake";
+      ### DO NOT FOLLOW:
+      ###    if buildScripts (in nixpkgs/pkgs/build-support/emacs) will be updated, builds will fail.
+      ###    also cachix will be missed more likely and emacs-git-native-comp is really expensive
+      # inputs = {
+      #   nixpkgs.follows = "nixos";
+      # };
     };
 
     home = {
-      url = "github:nix-community/home-manager/release-21.11";
-      inputs.nixpkgs.follows = "nixos";
+      url    = "github:nix-community/home-manager/release-21.11";
+      ### on update check ./home/profiles/stateVersion/default.nix
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
     };
 
     naersk = {
-      url = "github:nmattia/naersk";
-      inputs.nixpkgs.follows = "nixos";
+      url    = "github:nmattia/naersk";
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
     };
 
     nix-colors = {
-      url = "github:misterio77/nix-colors";
+      url    = "github:misterio77/nix-colors";
       inputs = {
         nixpkgs.follows = "latest";
       };
@@ -71,8 +90,11 @@
     };
 
     nvfetcher = {
-      url                    = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixos";
+      url    = "github:berberman/nvfetcher";
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
+    };
     };
   };
 
