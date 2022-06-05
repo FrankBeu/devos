@@ -61,6 +61,11 @@ in
         "...."  = "cd ../../..";
         "....." = "cd ../../../..";
 
+
+        ### editorconfig
+        ecc = ''editorconfig-checker'';  ### EditorConfig-Checker
+
+
         ### git
         g = "git";
 

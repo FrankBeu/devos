@@ -26,9 +26,11 @@ indent_size = unset
 
 [*.py]
 indent_size = 4
+trim_trailing_whitespace = true
 
 [*.toml]
 indent_size = unset
+trim_trailing_whitespace = true
 
 [*.md]
 max_line_length = off
@@ -36,6 +38,7 @@ trim_trailing_whitespace = false
 
 [*.org]
 indent_size = unset
+trim_trailing_whitespace = true
 
 ### IGNORE RANGER-CONFIG (in order to be able to diff against upstream)
 [**/ranger/ranger/**]
@@ -47,21 +50,27 @@ indent_size = unset
 ### golang
 [*.go]
 indent_style = tab
+trim_trailing_whitespace = true
 
 [go.mod]
 indent_style = tab
+trim_trailing_whitespace = true
 
 ### shell
 [*.sh]
 indent_style = unset
+trim_trailing_whitespace = true
 
 ### lisp
 [*.el]
 indent_style = unset
+trim_trailing_whitespace = true
 
 ### misc
 [LICENSE]
 indent_size = unset
+trim_trailing_whitespace = true
 
 [**/themes/*]
 indent_size = unset
+trim_trailing_whitespace = true
