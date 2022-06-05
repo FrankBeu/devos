@@ -1,11 +1,7 @@
-# Gitea: Theme
+# Devos: Theme
 
-[![Build Status](https://drone.gitea.com/api/badges/gitea/theme/status.svg)](https://drone.gitea.com/gitea/theme)
-[![Join the chat at https://img.shields.io/discord/322538954119184384.svg](https://img.shields.io/discord/322538954119184384.svg)](https://discord.gg/NsatcWJ)
+based on [go-gitea/theme](https://github.com/go-gitea/theme)
 
-This is a Hugo theme that gets used within all of our websites like our blog,
-documentation and also the redirects. If you commit any changes to the `master`
-branch it will trigger rebuilds of all the related websites.
 
 ## Install
 
@@ -43,25 +39,7 @@ a file:
 npm run watch
 ```
 
-When you are done with your changes just create a pull request, after merging
-the pull request the theme will be published to our [download page](https://dl.gitea.io/theme) automatically.
-
-## Contributing
-
-Fork -> Patch -> Push -> Pull Request
-
-## Authors
-
-* [Maintainers](https://github.com/orgs/go-gitea/people)
-* [Contributors](https://github.com/go-gitea/theme/graphs/contributors)
-
 ## License
 
 This project is under the Apache-2.0 License. See the [LICENSE](LICENSE) file
 for the full license text.
-
-## Copyright
-
-```
-Copyright (c) 2019 The Gitea Authors <https://gitea.io>
-```

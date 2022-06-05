@@ -1,0 +1,30 @@
+---
+title: workflows
+linktitle: workflows
+description: documentation for workflows for new users, hosts
+categories:
+keywords: [ workflows, user, host ]
+menu:
+  sidebar:
+    parent: "global"
+    weight: 40
+draft: false
+toc: true
+---
+* workflows
+** NEW
+*** USER
+**** create age-keys per machine
+cf.:
+- http://doc.local/homemanager/security/
+   age:permanent identity
+- org: [[file:~/DEVOS/home/profiles/security/age/age.org::*permanent identity][permanent identity]]
+**** add new user
+cf.:
+- doc: http://doc.local/global/users/
+- org: [[file:~/DEVOS/users/documentation.org.nix::*add new user][add new user]]
+*** HOST
+**** add new host
+cf.:
+- doc: http://doc.local/global/hosts/
+- org: [[file:~/DEVOS/hosts/documentation.org.nix::*add new host][add new host]]

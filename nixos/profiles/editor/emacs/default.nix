@@ -1,3 +1,4 @@
+### SERVICE, ... - cf. ../../../../home/profiles/editor/emacs/default.nix:1:30
 { inputs, pkgs, ... }:
 let
   emacsAliases        = inputs.emacsFlake.outputs.aliases;
@@ -19,7 +20,4 @@ in
     defaultEditor = true;
     package       = emacsPackage;
   };
-
-  ### doc.local/system/emacs/
-  environment.etc."/docLocal/content/system/emacs.org".source = ./emacs.org;
 }

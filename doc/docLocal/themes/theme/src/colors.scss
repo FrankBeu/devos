@@ -5,16 +5,20 @@ $green:        #0aae41; // Green Pantone
 $turquoise:    #178C81; // Celadon Green
 $blue:         #00a1e0; // Carolina Blue
 $purple:       #56507C; // Purple Navy
-$red:          #9f1928; // Ruby Red
+$red:          #af1045; //
 $pink:         #d930ac; // Frostbite
 $white:        #ffffff;
+
 $black:        #2e2a31; // Raisin Black
 
 $primary:      $orange;
 
 $grey-light:    lighten($grey, 10%);
 $grey-lighter:  lighten($grey, 20%);
+
+// $white:        #ececec;
 // $white:        #eaf2ef;              // Mint Cream
+// $red:       #9f1928; // Ruby Red
 
 
 //// make colors available in htlm element

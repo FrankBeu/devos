@@ -1,33 +1,42 @@
 ---
-title: "home"
-slug: "home"
+title: "homepage"
+slug: "homepage"
 url: "/"
 menu:
   sidebar:
     parent: "global"
-    name: "home"
-    identifier: "home"
+    name: "homepage"
+    identifier: "homepage"
     weight: 10
 toc: true
 draft: false
 ---
 * Nixos-Documentation
-This is the documentation for the current machine's configuration.
-** Purpose
+This is the documentation for the current machine's configuration and it's capabilities.
+** purpose
 Nixos makes it possible to have the same configuration deployed to different machines. \\
 Each workflow will be the same - everywhere. \\
 Each Keypress will have the same effect.
-** Global
+** sections
+*** Global
 Only used for documentation, \\
 contains:
 - the homepage
   - file is in home/ (to prevent sidebar-glitch)
 - the project's readme
-- documentation's documentation
 - manualActions
-- secrets
-** System
-All system-installation, hardware, services... \\
-Nixos-commands have to be executed with ~sudo~
-** Homemanager
+*** Homemanager
 Userspace (programs and config-files) is implemented using home-manager.
+*** Structural
+documentation for each section of DEVOS \\
+- doc (documentation's documentation)
+- home
+- hosts
+- lib
+- nixos
+- secrets
+- shell
+- users
+*** System
+All system-installation, hardware, services... \\
+Nixos-commands have to be executed with ~sudo~.

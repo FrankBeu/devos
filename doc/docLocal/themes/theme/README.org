@@ -1,0 +1,18 @@
+* theme
+** build
+*** make npm available
+#+BEGIN_EXAMPLE shell
+nix-shell -p npm
+#+END_EXAMPLE
+*** install dependencies
+#+BEGIN_EXAMPLE shell
+npm install
+#+END_EXAMPLE
+*** rebuild css
+#+BEGIN_EXAMPLE shell
+npm run build
+#+END_EXAMPLE
+** TODO TODOS
+*** flakify
+**** shell with dependecies
+

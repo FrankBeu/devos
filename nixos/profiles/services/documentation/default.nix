@@ -1,6 +1,6 @@
-{ pkgs, variables, ... }:
+{ self, config, pkgs, variables, ... }:
 {
-  ### Enable documentation.service
+  ### ENABLE DOCUMENTATION.SERVICE
   systemd.services.documentation = {
     description   = "docService";
     enable        = true;
@@ -11,41 +11,70 @@
       ExecReload = "${pkgs.procps}/bin/pkill -HUP     $MAINPID";
       ExecStop   = "${pkgs.procps}/bin/pkill -SIGTERM $MAINPID";
 
-      Restart    = "on-failure";
+      # Restart    = "on-failure";
+      Restart    = "always";
       RestartSec = 1;
     };
     wantedBy      = [ "default.target" ];
   };
 
-  ### create repository
+  ### BASE-STRUCTURE
   systemd.tmpfiles.rules = let
-    name  = variables.mainUser.name;
-    group = variables.mainUser.group;
+    username = variables.documentation.user.name;
+    group    = config.users.users.${username}.group;
   in
   [
-    "d  /home/${name}/.docLocal                      0755    ${name}  ${group}  -   -"
-    "d  /home/${name}/.docLocal/content              0755    ${name}  ${group}  -   -"
-    "d  /home/${name}/.docLocal/content/homemanager  0755    ${name}  ${group}  -   -"
-    "L+ /etc/docLocal/content/homemanager            -       -        -         -   /home/${name}/.docLocal/content/homemanager"
+    "d  /home/${username}/.docLocal                      0755    ${username}  ${group}  -   -"
+    "d  /home/${username}/.docLocal/content              0755    ${username}  ${group}  -   -"
+    "d  /home/${username}/.docLocal/content/homemanager  0755    ${username}  ${group}  -   -"
+    "L+ /etc/docLocal/content/homemanager                -       -            -         -   /home/${username}/.docLocal/content/homemanager"
 
-    "L+ /etc/docLocal/archetypes                     -       -        -         -   ${../../../../doc/docLocal/archetypes}"
-    "L+ /etc/docLocal/themes                         -       -        -         -   ${../../../../doc/docLocal/themes}"
+    "L+ /etc/docLocal/archetypes                         -       -            -         -   ${../../../../doc/docLocal/archetypes}"
+    "L+ /etc/docLocal/themes                             -       -            -         -   ${../../../../doc/docLocal/themes}"
 
-    "L+ /etc/docLocal/config.toml                    -       -        -         -   ${../../../../doc/docLocal/config.toml}"
+    "L+ /etc/docLocal/config.toml                        -       -            -         -   ${../../../../doc/docLocal/config.toml}"
   ];
 
-  ### global/documentation
-  environment.etc."/docLocal/content/global/documentation.org".source = ./documentation.org;
-
-  ### categories
+  ### CATEGORIES
   environment.etc."/docLocal/content/global.org"              .source = ./content/global.org;
   environment.etc."/docLocal/content/home-manager.org"        .source = ./content/home-manager.org;
+  environment.etc."/docLocal/content/structural.org"          .source = ./content/structural.org;
   environment.etc."/docLocal/content/system.org"              .source = ./content/system.org;
 
-  ### homepage
+  ### CONTENT
+
+  ### HOMEPAGE
   environment.etc."/docLocal/content/home/index.org"          .source = ./content/home/index.org;
+  ### GLOBAL
+  environment.etc."/docLocal/content/global/README.org"       .text   = ''
+    ${(builtins.readFile ./header/readme.nix)}
+    ${(builtins.readFile (self + "/README.org"))}
+  '';
+  environment.etc."/docLocal/content/global/manualActions.org".source = ./content/global/manualActions.org;                                    ###  30
+  environment.etc."/docLocal/content/global/workflows.org"    .source = ./content/global/workflows.org;                                        ###  40
+  ### STRUCTURAL
+  environment.etc."/docLocal/content/structural/doc.org"      .text   = (import "${self}/doc/documentation.org.nix"      { inherit config; }); ###  50
+  environment.etc."/docLocal/content/structural/home.org"     .text   = (import "${self}/home/documentation.org.nix"     { inherit config; }); ###  60 != doc.local/home
+  environment.etc."/docLocal/content/structural/hosts.org"    .text   = (import "${self}/hosts/documentation.org.nix"    { inherit config; }); ###  70
+  environment.etc."/docLocal/content/structural/lib.org"      .text   = (import "${self}/lib/documentation.org.nix"      { inherit config; }); ###  80
+  environment.etc."/docLocal/content/structural/nixos.org"    .text   = (import "${self}/nixos/documentation.org.nix"    { inherit config; }); ###  90
+  environment.etc."/docLocal/content/structural/overlays.org" .text   = (import "${self}/overlays/documentation.org.nix" { inherit config; }); ### 100
+  environment.etc."/docLocal/content/structural/pkgs.org"     .text   = (import "${self}/pkgs/documentation.org.nix"     { inherit config; }); ### 110
+  environment.etc."/docLocal/content/structural/secrets.org"  .text   = (import "${self}/secrets/documentation.org.nix"  { inherit config; }); ### 120
+  environment.etc."/docLocal/content/structural/shell.org"    .text   = (import "${self}/shell/documentation.org.nix"    { inherit config; }); ### 130
+  environment.etc."/docLocal/content/structural/testing.org"  .text   = (import "${self}/tests/documentation.org.nix"    { inherit config; }); ### 140
+  environment.etc."/docLocal/content/structural/users.org"    .text   = (import "${self}/users/documentation.org.nix"    { inherit config; }); ### 150
+
+  ### SYSTEM
+  environment.etc."/docLocal/content/system/mounts.org"       .source = ./content/system/mounts.org;
+  ### BASE-FILES FOR DOCUMENTATION-ATTACHMENTS
+  environment.etc."/docLocal/content/system/tools.org"        .text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 1 ''
+    ${(builtins.readFile ../../tools/tools.org)}
+  '');
+
 
   ### colors
+  ### TODO use ./colors - currently colors are used from theme
   ### TODO: if not variables fixedColors = true;
   ### TODO: make icon svg with dynamic color support
   ### only theme/{layouts,static} are needed (cannot be symlinks!?!)

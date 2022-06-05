@@ -1,0 +1,6 @@
+* conditional import if path exists
+#+BEGIN_EXAMPLE nix
+    imports = [
+      ./unConditionalImport
+    ] ++ lib.optional (builtins.pathExists ./pathToCheck) ./conditionalImport;
+#+END_EXAMPLE

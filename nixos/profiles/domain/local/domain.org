@@ -13,5 +13,7 @@ toc: true
 ---
 * domain
 ** =doc.local=
-** cf. documentation
-*** TODO use link
+http://doc.local
+** cf. doc
+doc: http://doc.local/structural/doc/
+org: [[file:~/DEVOS/doc/documentation.org.nix::*USAGE][USAGE]]

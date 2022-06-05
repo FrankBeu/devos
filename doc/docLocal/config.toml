@@ -10,16 +10,16 @@ theme = "theme"
     url		= "https://nixos.wiki/"
     weight	= "10"
     pre		= "question"
-  [[menu.page]]
-    name	= "Gitea"
-    url		= "https://gitea.thesym.site/infra/nixos"
-    weight	= "20"
-    pre		= "coffee"
-  [[menu.page]]
-    name	= "Website"
-    url		= "https://thesym.site"
-    weight	= "30"
-    pre		= "home"
+  # [[menu.page]]
+  #   name	= "Gitea"
+  #   url		= "https://gitea.thesym.site/infra/nixos"
+  #   weight	= "20"
+  #   pre		= "coffee"
+  # [[menu.page]]
+  #   name	= "Website"
+  #   url		= "https://thesym.site"
+  #   weight	= "30"
+  #   pre		= "home"
 
 [markup.highlight]
   anchorLineNos = false

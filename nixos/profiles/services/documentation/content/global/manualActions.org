@@ -1,0 +1,48 @@
+---
+title: manualActions
+linktitle: manualActions
+description: documentation for all required manual actions
+categories:
+keywords: [nixos, documentation, installation, manual, action]
+menu:
+  sidebar:
+    parent: "global"
+    weight: 30
+draft: false
+toc: true
+---
+* manualActions
+manual actions for each system are documented in    =/etc/manualActions/= \\
+manual actions for each user     are documented in =$HOME/.manualActions/=
+** required manualActions
+All required manual actions for installed profiles are automatically inserted into the respective file.\\
+They are only kept for reference. \\
+Do not edit those files.
+*** nixos
+=/etc/manualActions/manualActions.org=
+*** home
+ =$HOME/.manualActions/manualActions.org=
+** tracking
+the state for all manual actions is tracked in
+*** nixos
+=/etc/manualActions/manualActionsState.org=
+*** home
+ =$HOME/.manualActions/manualActionsState.org=
+** architecture
+*** registration
+if a profile needs manualAction (security...) \\
+the action can be registered by inserting it into the respective file:
+*** nixos
+#+BEGIN_SRC nix
+environment.etc."manualAction/manualAction.org".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder <NN> ''
+  ** TODO <PROFILE-NAME>
+'';
+#+END_SRC
+*** home
+#+BEGIN_SRC nix
+home.file.     ".manualAction/manualAction.org".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder <NN> ''
+  ** TODO <PROFILE-NAME>
+'';
+#+END_SRC
+**** order
+The higher ~<NN>~ the later the entry will apear in the file.

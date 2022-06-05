@@ -192,11 +192,16 @@ nav.navbar {
 body {
     position: relative;
     padding-bottom: 8rem;
+    // footer
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 section.section {
     margin-top: 3rem;
-    min-height: 1000px;
+    // footer
+    flex: 1;
 }
 
 footer {
@@ -219,11 +224,48 @@ aside.sticky {
     margin-bottom: 1rem;
 }
 
-// h1,
+
+// // h1,
 // h2,
-h3,
-h4 {
-    margin-top: 1.0em;
+// h3,
+// h4,
+// h5,
+// h6 {
+//     margin-top: 1.0em;
+// }
+
+
+// margin-{top,bottom} for all headings
+$base-margin-size: 1.0em;
+$heading-margin-scale:   0.1; // amount to add to base margin-size each step up the headings
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin-top:    $base-margin-size + $heading-margin-scale * (6 - $i) !important;
+    margin-bottom: 1.0em;
+  }
+}
+
+// no margin needed after the header
+#headline-1 {
+    margin-top: 0 !important;
+}
+
+
+// fontsize for all headings
+// TODO use harmonic instead of linear growth
+$base-font-size: 1.0em;
+$heading-font-scale:  0.3;   // amount to add to base font-size each step up the headings
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: $base-font-size + $heading-font-scale * (6 - $i) !important;
+  }
+}
+
+// indentations for all headings
+@for $i from 3 through 6 {
+  h#{$i} {
+    margin-left: $i - 2.0em;
+  }
 }
 
 strong {

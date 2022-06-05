@@ -1,3 +1,21 @@
+# -*- mode:org; -*-
+{ config }:
+''
+---
+title: testing
+linktitle: testing
+description: documentation for testing
+categories:
+keywords: [ testing, DEVOS, structure ]
+menu:
+  sidebar:
+    parent: "structural"
+    name: "testing"
+    identifier: "testing"
+    weight: 140
+draft: false
+toc: true
+---
 * TODO testing
 ** creation
 *** manually
@@ -345,3 +363,4 @@ machine.log(print(gitVersion))
 because of reduced brittleness in host-tests
 *** TODO check user nixos and root on hosts *NixOS*
 *** TODO move ~machine.wait_for_unit("multi-user.target")~ to =default.nix=, everywhere
+'' ### KEEP: closes nix string

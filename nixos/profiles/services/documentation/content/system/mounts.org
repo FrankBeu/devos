@@ -1,0 +1,114 @@
+---
+title: mounts
+linktitle: mounts
+slug: mounts
+description: information about mounts
+categories:
+keywords: ["mounts", "external", "disk", "HD", "SSD"]
+menu:
+  sidebar:
+    parent: "system"
+    name: "mounts"
+    identifier: "mounts"
+draft: false
+toc: true
+---
+* mounts
+** mounts are defined on machine-setup
+=hosts/<HOST>/system/hardware/hardware-configuration.nix=
+** additional mounts (removeable) can be defined in
+=hosts/<HOST>/system/misc/mountsAdditional/default.nix=
+*** USAGE
+**** list all systemctl-mounts
+#+begin_src shell :results none
+systemctl list-units -t mount
+#+end_src
+****  mount a device added with option ~noauto~
+***** EXAMPLE
+#+begin_src shell :results none
+systemctl start NAME.mount
+#+end_src
+****  mount a device added with option ~noauto~
+***** EXAMPLE
+#+begin_src shell :results none
+systemctl stop NAME.mount
+#+end_src
+** COMMANDS
+*** list all btrfs-filesystems
+#+begin_src shell :results none
+sudo btrfs filesystem show
+#+end_src
+*** list all block-devices
+#+begin_src shell :results none
+lsblk -f
+#+end_src
+*** (re-)set label on device
+works on RAIDs, too
+**** mounted
+#+begin_src shell :results none
+sudo btrfs filesystem label <MOUNTPOINT> <NEWLABEL>
+#+end_src
+**** unmounted
+#+begin_src shell :results none
+sudo btrfs filesystem label <DEVICE> <NEWLABEL>
+#+end_src
+*** prepare device
+**** partitioning
+https://wiki.archlinux.org/title/Parted
+***** erase old tables
+#+begin_src shell :results none
+  sudo wipefs --all --force /dev/<DEVICE>
+#+end_src
+***** create tables
+https://www.gnu.org/software/parted/manual/html_node/mklabel.html
+#+begin_src shell :results none
+  sudo parted /dev/sdc mklabel gpt
+# sudo parted /dev/sdc -- mkpart primary btrfs 0 100%
+#+end_src
+***** create partition
+Start at 0
+if warning: try next power of 2
+#+begin_src shell :results none
+sudo parted /dev/<DEVICE> -- mkpart primary btrfs 0 100%
+#+end_src
+#+begin_src shell :results none
+sudo parted /dev/<DEVICE> -- mkpart primary btrfs 2048s 100%
+#+end_src
+****** warning
+Warning: The resulting partition is not properly aligned for best performance.
+https://wiki.archlinux.org/title/Partitioning#Partition_alignment
+****** check
+#+begin_src shell :results none
+sudo parted /dev/<DEVICE> -- align-check opt
+#+end_src
+***** set partition-name
+label always lowercase
+#+BEGIN_SRC shell :results none
+  sudo parted /dev/<DEVICE> -- name 1 safe
+#+END_SRC
+***** create filesystem
+label always uppercase
+#+BEGIN_SRC shell :results none
+mkfs.btrfs -f -L SAFE -n 16k /dev/<DEVICE>1
+#+END_SRC
+ ### label in lowercase for partition
+
+*** check usage
+**** filesystem show
+#+BEGIN_EXAMPLE shell
+bffs
+#+END_EXAMPLE
+**** filesystem usage
+#+BEGIN_EXAMPLE shell
+bffu
+#+END_EXAMPLE
+** TODO RAID
+https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices
+*** mount RAID manually
+#+BEGIN_EXAMPLE shell
+sudo mount /dev/sdc ~/MEDIA/BAK -t btrfs -o device=/dev/sdc,device=/dev/sdd,device=/dev/sde,device=/dev/sdf
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+sudo mount -L HD-RAID ~/MEDIA/BAK
+#+END_EXAMPLE
+*** TODO creation

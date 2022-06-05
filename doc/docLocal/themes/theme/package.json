@@ -1,21 +1,8 @@
 {
-  "name": "gitea-theme",
+  "name": "devos-theme",
   "version": "0.0.0",
-  "description": "A Hugo theme that gets used within all of our websites.",
-  "homepage": "https://github.com/go-gitea/theme#readme",
+  "description": "A Hugo theme that gets used within all of the documentation.",
   "license": "Apache-2.0",
-  "author": {
-    "name": "The Gitea Authors",
-    "email": "team@gitea.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/go-gitea/theme.git"
-  },
-  "bugs": {
-    "url": "https://github.com/go-gitea/theme/issues",
-    "email": "team@gitea.io"
-  },
   "scripts": {
     "clean": "gulp clean",
     "build": "gulp build",
