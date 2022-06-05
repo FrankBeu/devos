@@ -1,4 +1,6 @@
 * TODO Tools
+contains all toos  which are not dependencies for a profile,
+but provide information, ...
 ** bat
 *** syntax -> cf. old documentation
 ** *TODOS*

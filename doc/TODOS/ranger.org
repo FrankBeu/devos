@@ -1,0 +1,6 @@
+* ranger
+** configured via =nixos.profiles.filemanager.ranger=
+** same config for user and root
+** scope.sh will not be used from =/etc/ranger=
+** *TODOS*
+*** TODO create this file dynamically from profile

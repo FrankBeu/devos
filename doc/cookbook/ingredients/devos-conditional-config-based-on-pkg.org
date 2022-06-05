@@ -1,0 +1,13 @@
+* devos: conditional configuration based on existence of a package
+**  nixos
+#+BEGIN_EXAMPLE nix
+{ lib, nixosConfig, pkgs, ... }:
+in
+{
+  home.shellAliases = {
+    D  = "cd $HOME/DEVOS";
+  } // lib.mkIf (lib.elem pkgs.ranger nixosConfig.environment.systemPackages) {
+    rd = "ranger ~/DEVOS";
+  };
+}
+#+END_EXAMPLE

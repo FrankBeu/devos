@@ -20,6 +20,53 @@ pgrep -a qemu
 **** keybindings
 https://www.qemu.org/docs/master/system/keys.html#keys-in-the-graphical-frontends
 *** vbox
+** Hardware
+*** ryzen
+**** bios
+Enable SVMmode
+*** IOMMU
+**** check
+***** ryzen
+#+BEGIN_EXAMPLE shell
+dmesg |rg IOMMU
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+[    0.291773] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
+[    0.294142] pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
+[    0.389532] perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
+[    4.671117] AMD-Vi: AMD IOMMUv2 loaded and initialized
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+jl -k  | rg IOMMU
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+May 04 05:34:34 ryzen kernel: pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
+May 04 05:34:34 ryzen kernel: pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
+May 04 05:34:34 ryzen kernel: perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
+May 04 05:34:34 ryzen kernel: AMD-Vi: AMD IOMMUv2 loaded and initialized
+#+END_EXAMPLE
+**** DMAR
+DataMemoryAddressRegister
+** machines
+inOrder to be able to override some vm-specific-settings a ~<HOST>~ gets its vm called ~<HOST>vm~
+*** non existing interfaces increase the vm's start time
+#+BEGIN_EXAMPLE nix
+    interfaces = pkgs.lib.mkDefault {
+      # eth0.useDHCP = true; ### for vm
+      enp37s0.useDHCP = true;
+      wlp36s0.useDHCP = true;
+    };
+#+END_EXAMPLE
+*** nix.extraOptions fallback makes goldenTests fail
+#+BEGIN_EXAMPLE nix
+nix.extraOptions = pkgs.lib.mkDefault ''
+      min-free = 536870912
+      keep-outputs = true
+      keep-derivations = true
+      fallback = true
+    '';
+ # fallback = true   ### TODO: makes the goldenTests fail???
+#+END_EXAMPLE
 ** TODO TODOS
 *** TODO create this file dynamically from module
 *** TODO add vm to path

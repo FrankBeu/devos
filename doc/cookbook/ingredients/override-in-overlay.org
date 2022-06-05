@@ -1,0 +1,9 @@
+* make multiline string commentable
+#+BEGIN_EXAMPLE nix
+final: prev: {
+  gopass = prev.gopass.override { passAlias = true; };
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify
+

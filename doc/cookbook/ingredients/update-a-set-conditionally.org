@@ -1,0 +1,23 @@
+* update a set conditionally
+#+BEGIN_EXAMPLE nix
+  home.shellAliases =
+    lib.mkMerge [
+      ({
+        A = "cd $HOME/MEDIA/ANDROID";
+      })  (lib.mkIf (lib.elem pkgs.ranger nixosConfig.environment.systemPackages) {
+        rra = "ranger $HOME/MEDIA/ANDROID";
+      })
+    ];
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE nix
+  home.shellAliases =
+    {
+        A = "cd $HOME/MEDIA/ANDROID";
+    } // (if (lib.elem pkgs.ranger nixosConfig.environment.systemPackages) then {
+    }
+        rra = "ranger $HOME/MEDIA/ANDROID";
+    else {});
+    ### TODO dry-it-out
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

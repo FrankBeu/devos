@@ -7,22 +7,40 @@ test-driven dynamically-themed well-documented host-development
   - modules
   - suites
   - hosts
+**** TODO GPU-passthrough required
 *** WIP dynamicTheme
 - ~bud theme {dracula,gruvbox,...}~
 - automagically all (WIP)  programs change their appearance
 *** WIP doc.local
-- a documentation-server displaying on each host only the available features
+- a documentation-server
+- displays only the host-specific available features
+- available by pressing =SUPER-F1=
+- hugo
 *** WIP cookbook
 - nix isn't that convenient
-- keep solved {issues,solutions,ideas} in one handy location
+- keep {issues,solutions,ideas} in one location
 - ingredients
 - recipies
 *** WIP manualActions
-- keep track of actions (todos)(tasks should be automated) which have to be done manually
+- keep track of actions (only todos - tasks should be automated) which have to be done manually
 ***  hjkl ⟶ jkl;
 ****  TODO TODOS
 - ~nix log~
 - ~gotop~
+- ~alsamixer~
+*** Config-Devel-Workflow
+- use ~ranger~
+- navigate to the symlinked configFile
+- create a local copy with =xni= (eXecuteNixdevelIn)
+- make your changes
+- create patch with =xnpc= (eXecuteNixdevelPatchCreate)
+- navigate to the source configFile
+- apply patch with =xnpa= (eXecuteNixdevelPatchApply)
+  - be carefull the source file may be a nix file or concatenated (a backup will be created automatically)
+- navigate to the symlinked configFile
+- remove the local copy with =xno= (eXecuteNixdevelOut)
+- switch with =bs= (BudSwitchlocalmachine)
+**** TODO dynamic docKeybindings
 ** ROADMAP
 *** make ryzen useable
 **** DONE i3 (x)
@@ -127,6 +145,16 @@ and
 navigate to
 - =nixos/tests/make-test-python.nix=
 - =nixos/lib/testing-python.nix=
+** DEBUG
+*** option not available
+**** message
+#+BEGIN_SRC shell :results none
+  error: The option `<OPTION>' does not exist. Definition values:
+  ### ...
+#+END_SRC
+**** solution
+- check =flake.nix= nixpkgs might have changed
+- check =nixos/default.nix= for channel changes
 ** TODOS
 *** TODO documentation
 **** color

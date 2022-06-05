@@ -28,6 +28,9 @@ error: Module imports can't be nested lists. Perhaps you meant to remove one lev
     profiles.users.root
   ] ++ suites.base;
 #+END_EXAMPLE
+** cli
+*** 🔨 Welcome to latest
+shows default channel
 ** bud
 *** changes
 changes to bud require a direnv-reload (=dr=)

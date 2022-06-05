@@ -1,0 +1,38 @@
+* Android
+** mounting
+*** user in *adbusers* group
+**** mobil
+- Transfer photos PTP
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/DCIM=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/Pictures=
+- FileTransfer
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/Android=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/DCIM=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/Download=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/MIUI=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/Movies=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/Pictures=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/WhatsApp=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/dctp=
+  =/home/frank/MEDIA/ANDROID/Internal shared storage/did=
+*** user not in *adbusers* group
+only PTP possible or (execute with sudo and access as root)
+*** mount
+**** with android-filetranfser
+#+begin_src shell
+aft-mtp-mount ~/MEDIA/ANDROID/
+#+end_src
+**** with jmtpfs
+#+begin_src shell
+sudo jmtpfs $HOME/MEDIA/ANDROID'
+#+end_src
+*** umount
+#+begin_src sh
+sudo   umount ~/MEDIA/ANDROID/
+#+end_src
+**** w/ adbusers
+#+BEGIN_SRC shell :results drawer
+fusermount -u ~/MEDIA/ANDROID
+#+END_SRC
+** *TODOS*
+*** TODO create this file dynamically from module

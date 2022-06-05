@@ -1,0 +1,10 @@
+###
+##
+# * local source
+#
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    (callPackage ./package {})
+  ];
+}

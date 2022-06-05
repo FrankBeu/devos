@@ -1,4 +1,17 @@
 * development
+** properties
+*** hostName
+**** NIXOS
+#+BEGIN_EXAMPLE nix
+config.networking.hostName
+#+END_EXAMPLE
+**** HOME
+#+BEGIN_EXAMPLE nix
+nixosConfig.networking.hostName
+#+END_EXAMPLE
+**** repl
+# nixosConfigurations.ryzen.config.networking.hostName
+# homeConfigurations.frank@ryzen.nixosConfig.networking.hostName
 ** virtualisation
 *** faster vm-start
 if ~bud vm HOST~ is used to devel,

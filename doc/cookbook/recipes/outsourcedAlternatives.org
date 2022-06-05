@@ -1,0 +1,61 @@
+* outsourced alternatives
+- make alternatives available by commenting a single statement
+- preventing mixUps of "subAlternatives"
+- ~cursorName~ can be set in ~variables.cursorName~
+** SOLUTION
+*** =./default.nix=
+#+BEGIN_EXAMPLE nix
+{ pkgs, ... }:
+let
+  # cursorName = "nordzy";
+  cursorName = "bibata";
+in
+{
+  xsession.pointerCursor =
+    {
+      inherit (pkgs.callPackage (import (./. + "/${cursorName}")) {}) package name defaultCursor;
+      # inherit (import (./. + "/${cursorName}") { inherit pkgs; }) package name defaultCursor;
+    };
+}
+#+END_EXAMPLE
+**** =./bibata/default.nix=
+#+BEGIN_EXAMPLE nix
+{ pkgs, ... }:
+{
+  package       = pkgs.bibata-cursors;
+  name          = "Bibata-Modern-Classic";
+  defaultCursor = "left_ptr";
+}
+#+END_EXAMPLE
+**** =./bibata/default.nix=
+#+BEGIN_EXAMPLE nix
+{ pkgs, ... }:
+{
+  package       = pkgs.nordzy-cursor-theme;
+  name          = "Nordzy-cursors";
+  # name          = "Nordzy-cursors-white";
+  defaultCursor = "x-cursor";
+}
+#+END_EXAMPLE
+** BEFORE
+*** =./default.nix=
+#+BEGIN_EXAMPLE nix
+{ pkgs, ...}:
+{
+  xsession.pointerCursor = {
+
+    package = pkgs.nordzy-cursor-theme;
+    name = "Nordzy-cursors";
+    # name = "Nordzy-cursors-white";
+    defaultCursor = "x-cursor";
+
+    # package = pkgs.bibata-cursors;
+    # name = "Bibata-Modern-Classic";
+    # defaultCursor = "left_ptr";
+  };
+}
+#+END_EXAMPLE
+** really????
+NO!
+** TODO TODOS
+*** hugoify

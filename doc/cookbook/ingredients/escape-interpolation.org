@@ -1,0 +1,10 @@
+
+* escape interpolation
+#+BEGIN_SRC shell
+''
+  USER=${username}
+  HOST=${hostName}
+  DIR=~/TMP/''${USER}/''${HOST}/
+  mkdir -p ''${DIR}
+''
+#+END_SRC

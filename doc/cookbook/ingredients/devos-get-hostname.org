@@ -1,0 +1,21 @@
+* devos: get hostname
+**  nixos
+#+BEGIN_EXAMPLE nix
+{config, lib, pkgs, nixosConfig,...}:
+{
+  etc."/test".text = ''
+    ${config.networking.hostName}.${config.networking.domain}";
+  '';
+}
+#+END_EXAMPLE
+** home
+#+BEGIN_EXAMPLE nix
+{ nixosConfig, ... }:
+{
+  home = {
+    file."test".text = ''
+      ${nixosConfig.networking.hostName}
+    '';
+  };
+}
+#+END_EXAMPLE

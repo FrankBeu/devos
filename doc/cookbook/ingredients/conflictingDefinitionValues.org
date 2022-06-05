@@ -1,0 +1,19 @@
+* conflictingDefinitionValues
+** ERROR on rebuild
+#+BEGIN_EXAMPLE sh
+error: The option `programs.less.enable' has conflicting definition values:
+       - In `/nix/store/cf2lravzhfabr1ggxzd6nak54a8j2j3v-source/nixos/profiles/tools/less': false
+       - In `/nix/store/6sc10dgvf3xa7xd99nif5yc6v40cckmw-source/nixos/modules/programs/environment.nix': true
+#+END_EXAMPLE
+** SOLUTION
+#+BEGIN_EXAMPLE nix
+{ lib, ... }:
+{
+  programs.less = {
+    # enable = false;  ### ERROR
+    enable = lib.mkForce false;
+  };
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify
