@@ -39,8 +39,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  hmProfileDirectory   = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
-  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDirectory; });
+  hmProfileDir       = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
+  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDir; });
 
 in
 {
