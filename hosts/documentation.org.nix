@@ -17,6 +17,16 @@ draft: false
 toc: true
 ---
 * hosts
+** naming
+*** prefixes
+If a hostConfiguration without prefix exists, a prefixed configuration wraps the correspondent one. \\
+Otherwise it is a standalone configuration.
+**** *iso*
+- only used to generate an ISO
+**** *vm*
+- make a host-configuration useable as a vm
+  - used to make a host-configuration testable
+        e.g.: network, nixOptions, qemuGuest
 ** TODO add new host
 **** as replacement
 additionally use backups as dataProvider

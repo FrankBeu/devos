@@ -34,6 +34,7 @@ in
     };
     nuc       = { channelName = "latest"; };
     ryzen     = { channelName = "latest"; };
+    vmRyzen   = {};
   };
 
   importables = rec {

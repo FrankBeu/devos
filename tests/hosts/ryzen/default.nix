@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  host          = self.nixosConfigurations.ryzen;
+  host          = self.nixosConfigurations.vmRyzen;
   hostVariables = host.config.variables;
   username      = hostVariables.testing.user.name;
   userID        = host.config.users.users.${username}.uid;
@@ -82,7 +82,7 @@ let
         ${variables}
 
         ${chromium}
-        # $${console} ###TODO reactivate after graphical
+        # $${console} ### TODO reactivate after graphical
         ${vim}
         ${ranger}
         ${timezone}
@@ -92,10 +92,10 @@ let
         ${i3}
 
 
-        # $${git}     ###TODO reactivate after graphical
-        ${fcitx}
+        # $${git}     ### TODO reactivate after graphical
+        # $${emacs}   ### TODO reactivate after graphical
+        # $${fcitx}   ### TODO reactivate after graphical
       '';
-      # ${emacs}
 
       name = self.inputs.latest.lib.toUpper name;
   };
