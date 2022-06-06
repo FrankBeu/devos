@@ -7,9 +7,7 @@ in
 {
   hostDefaults = {
     system      = "x86_64-linux";
-    channelName = "nixos";
-    ### TODO undefined variable 'agenix'
-    # channelName = "latest";
+    channelName = "latest";
     imports     = [ (digga.lib.importExportableModules ./modules) ];
     modules     = with inputs; [
       { lib.our = self.lib; }
@@ -25,15 +23,15 @@ in
 
   hosts   = {
     ### set host specific properties here
-    bootstrap = {};
-    isoBase   = {};
-    mac       = { channelName = "latest"; };
+    bootstrap = { channelName = "nixos"; };
+    isoBase   = { channelName = "nixos"; };
+    mac       = {};
     NixOS     = {
-      channelName = "latest";
+      # channelName = "latest";
       tests       = [ digga.lib.allProfilesTest ];
     };
-    nuc       = { channelName = "latest"; };
-    ryzen     = { channelName = "latest"; };
+    nuc       = {};
+    ryzen     = {};
     vmRyzen   = {};
   };
 
