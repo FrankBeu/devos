@@ -12,10 +12,10 @@ let
 in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
-  ### NixOS is only used as test-host
+  ### test is only used as test-host
   imports = [
     profiles.users.root
-    profiles.users.nixos
+    profiles.users.test
 
   ]
   ################################################################################################

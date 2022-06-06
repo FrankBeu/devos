@@ -4,7 +4,7 @@
 }:
 let
   ### TODO set globaly to test with specific host
-  host     = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.test;
   username = host.config.variables.testing.user.name;
 
   test = {

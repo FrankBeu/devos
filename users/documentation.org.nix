@@ -28,4 +28,30 @@ toc: true
 - =${config.bud.localFlakeClone}/hosts/<HOSTNAME>/variables/<USERNAME>/=
     variables;
 ** add new user
+**** =users=
+- create user
+  #+BEGIN_SRC shell :results none
+  cp -r TEMPLATE <USERNAME>
+  #+END_SRC
+**** =home=
+- add to =home/default.nix=: ~users~
+  #+BEGIN_SRC nix
+  <USERNAME> = { suites, ... }: {};
+  #+END_SRC
+**** =hosts/<HOSTNAME>=
+- add dir =<USERNAME>= to =hosts/<HOSTNAME>/home/=
+- add to =hosts/<HOSTNAME>/variables/default.nix=
+  #+BEGIN_SRC nix
+  <USERNAME> = import ../home/<USERNAME>/variables;
+  #+END_SRC
+- add to =hosts/test/home.nix=: ~home-manager.users~
+  #+BEGIN_SRC nix
+  "<USERNAME>" = import ./home/<USERNAME>;
+  #+END_SRC
+- add to =hosts/test/system.nix=: ~imports~
+#+BEGIN_SRC nix
+profiles.users.<USERNAME>
+#+END_SRC
+
+*** TODO create ~bud new (user|host)~
 '' ### KEEP: closes nix string

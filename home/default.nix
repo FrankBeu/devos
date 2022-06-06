@@ -28,6 +28,6 @@ in
   users = {
     # nixos = { suites, ... }: { imports = suites.base; };
     frank = { suites, ... }: {};
-    nixos = { suites, ... }: {};
+    test  = { suites, ... }: {};
   };
 }

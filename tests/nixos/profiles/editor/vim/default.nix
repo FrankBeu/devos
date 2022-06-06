@@ -3,7 +3,7 @@
 , ...
 }:
 let
-  host     = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.test;
   username = host.config.variables.testing.user.name;
 
   test = {

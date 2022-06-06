@@ -4,15 +4,19 @@
 , ...
 }:
 {
-  home-manager.users = { inherit (hmUsers) nixos; };
+  home-manager.users = { inherit (hmUsers) USERNAME; };
 
-  users.users.nixos = {
-    ### TODO use sops
-    password     = "nixos";
+  # imports = [
+  #   ./secrets
+  # ];
+
+  users.users.USERNAME = {
     description  = "default";
     isNormalUser = true;
     extraGroups  = [ "wheel" ];
     uid          = 1000;
+    password = "USERNAME"; ### only on NixOS
+    # passwordFile = config.sops.secrets."USERNAME/password/hashed".path;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE7OMzkeVDgvFNoLnCt11uWDhgudJpFfC+j5QI40sNpE frank@ryzen"
     ];

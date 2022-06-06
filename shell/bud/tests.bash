@@ -56,7 +56,7 @@ tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
 
 ### HOSTS
-tests.hosts.NixOS
+tests.hosts.test
 tests.hosts.ryzen
 )
 

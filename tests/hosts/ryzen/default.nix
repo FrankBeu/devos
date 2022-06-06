@@ -43,7 +43,7 @@ let
         ];
 
         variables = {
-          currentColorSchemeName = "custom-base24-dracula"; ### always use the same colorscheme for tests (has to be aligned with NixOS)
+          currentColorSchemeName = "custom-base24-dracula"; ### always use the same colorscheme for tests (has to be aligned with hosts/test)
         };
 
         systemd.tmpfiles.rules = [

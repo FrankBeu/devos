@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  mainUser               = "nixos";
+  mainUser               = "test";
   currentColorSchemeName = (import ./currentColorScheme.nix ).colorScheme;
 in
 {
@@ -11,7 +11,7 @@ in
     inherit currentColorSchemeName;
 
     users = {
-      nixos = import ./nixos/default.nix;
+      test = import ../home/test/variables;
     };
 
     tty = {
