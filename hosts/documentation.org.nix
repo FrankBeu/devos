@@ -1,5 +1,5 @@
 # -*- mode:org; -*-
-{ config }:
+{ config, ...}:
 ''
 ---
 title: hosts
@@ -27,6 +27,14 @@ Otherwise it is a standalone configuration.
 - make a host-configuration useable as a vm
   - used to make a host-configuration testable
         e.g.: network, nixOptions, qemuGuest
+** iso
+*** build
+#+BEGIN_SRC shell :results none
+bud build isoBase bootstrapIso
+#+END_SRC
+*** connect
+reachable on the local link via ssh root@fe80::47%eno1 \\
+where 'eno1' is replaced by your own machine's network interface that has the local link to the target machine
 ** TODO add new host
 **** as replacement
 additionally use backups as dataProvider
