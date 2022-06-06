@@ -1,21 +1,21 @@
-{ self, mkTest, ...}:
+{ mkTest
+, self
+, ...
+}:
 let
-  ################################################### TEST-CONFIG
-  host = self.nixosConfigurations.NixOS;
-
-  # meta.timeout = 1800;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = [ profiles.editor.vim ];
-          # environment.variables.EDITOR = "vim";
-        };
+      machine = { suites, profiles, ... }:
+      {
+        imports = [ profiles.editor.vim ];
+        # environment.variables.EDITOR = "vim";
+      };
     };
 
     enableOCR  = false;
-    ############################################### TEST-CONFIG-END
 
     testScript =
       ''

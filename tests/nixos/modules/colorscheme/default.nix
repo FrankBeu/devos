@@ -1,15 +1,19 @@
-{ self, mkTest, ...}:
+{ mkTest
+, self
+, ...
+}:
 let
   ### TODO set globaly to test with specific host
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, variables, colorscheme, ... }: {
-          ### colorTest{Target,Actual}
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit colorscheme; } ).tmpfiles ];
-        };
+      machine = { suites, profiles, variables, colorscheme, ... }:
+      {
+        ### colorTest{Target,Actual}
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit colorscheme; } ).tmpfiles ];
+      };
     };
 
     enableOCR  = false;

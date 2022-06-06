@@ -5,16 +5,14 @@
 ###       here: shows missing/disabled tests
 
 
-
 allTests=(
 ### NIXOS
 tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
 
 tests.nixos.profiles.alacritty
-tests.nixos.profiles.autologin.mainUser
 tests.nixos.profiles.autologin.root
-tests.nixos.profiles.browser.chromium
+tests.nixos.profiles.autologin.variable
 # tests.nixos.profiles.bud                          ### TODO: implement
 tests.nixos.profiles.console
 # tests.nixos.profiles.core                         ### TODO: implement
@@ -27,7 +25,7 @@ tests.nixos.profiles.domain.variable
 tests.nixos.profiles.editor.emacs
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
-# tests.nixos.profiles.filemanager.ranger           ### TODO: implement
+# tests.nixos.profiles.fonts                        ### TODO: implement
 # tests.nixos.profiles.i18n.common                  ### TODO: implement
 tests.nixos.profiles.i18n.fcitx
 tests.nixos.profiles.services.documentation
@@ -37,6 +35,9 @@ tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.sound                        ### TODO: implement
 # tests.nixos.profiles.systemd.sleepDisable         ### TODO: implement
 tests.nixos.profiles.timezone.amsterdam
+# tests.nixos.profiles.tools.less                   ### TODO: implement
+# tests.nixos.profiles.tools.network                ### TODO: implement
+# tests.nixos.profiles.tools.nixTools               ### TODO: implement
 
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
@@ -45,9 +46,11 @@ tests.nixos.suites.docLocal
 
 ### HOME
 tests.home.profiles.alacritty
+tests.home.profiles.browser.chromium
+# tests.home.profiles.display.cursor                ### TODO: implement
 tests.home.profiles.display.i3
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
-# tests.home.profiles.filemanager.ranger            ### TODO: implement
+# tests.home.profiles.filemanager.ranger            ### TODO: implement ?? nec check if configuration is already defined via nixos - remove profile
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB

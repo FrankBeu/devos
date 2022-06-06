@@ -1,30 +1,40 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
-
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            display.manager.lightdm
-            display.i3
-          ];
+      machine = { suites, profiles, variables, ... }:
+      {
+        imports = with profiles; [
+          display.manager.lightdm
+          display.i3
+        ];
 
-          variables = {
-            autoLogin = true;
-          };
-
-          ### golden/gitVersionTarget.png
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = [
-              profiles.display.i3
-            ];
+        variables = {
+          displaymanager = {
+            autologin = {
+              enabled  = true;
+              inherit username;
+            };
           };
         };
+
+        ### golden/gitVersionTarget.png
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
+
+        home-manager.users.${username} = { profiles, suites, ... }:
+        {
+          imports = [
+            profiles.display.i3
+          ];
+        };
+      };
     };
 
     enableOCR = true;
@@ -42,8 +52,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  username = host.config.variables.mainUser.name;
-  userID   = host.config.users.users.${host.config.variables.mainUser.name}.uid;
+  userID   = host.config.users.users.${username}.uid;
   testScriptNixos    = (import  ../../../../nixos/profiles/display/i3/testScript.py.nix { inherit userID; });
   testScriptExternal = (import ./testScript.py.nix {inherit username;});
 

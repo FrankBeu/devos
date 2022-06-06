@@ -1,4 +1,5 @@
 FLAKE_DIR=`pwd`
+### TODO check if FLAKE_DIR is always bud.location cf. ./template.bash
 
 source shellColorDefinitions
 

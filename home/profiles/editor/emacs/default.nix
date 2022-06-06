@@ -1,5 +1,7 @@
-{ inputs, variables, ... }:
-let username = variables.mainUser.name;
+### only CONFIGURATION - cf. ../../../../nixos/profiles/editor/emacs/default.nix:1:24
+{ config, inputs, variables, ... }:
+let
+  inherit (config.home) username;
 in
 {
   home.file = {
@@ -11,13 +13,16 @@ in
     ".emacs.d/languages/golang/config.el".source = "${inputs.emacsFlake.outputs.emacsConfig}/languages/golang/config.el";
     ".emacs.d/languages/golang/funcs.el" .source = "${inputs.emacsFlake.outputs.emacsConfig}/languages/golang/funcs.el";
 
-    ".emacs.d/global/packages-local/core-funcs.el"          .source = "${inputs.emacsFlake.outputs.packagesLocal}/core-funcs.el";
-    ".emacs.d/global/packages-local/core-toggle.el"         .source = "${inputs.emacsFlake.outputs.packagesLocal}/core-toggle.el";
-    ".emacs.d/global/packages-local/core-transient-state.el".source = "${inputs.emacsFlake.outputs.packagesLocal}/core-transient-state.el";
-    ".emacs.d/global/packages-local/dart-snippets.el"       .source = "${inputs.emacsFlake.outputs.packagesLocal}/dart-snippets/dart-snippets.el";   ### https://github.com/Davoodeh/dart-snippets
-    ".emacs.d/global/packages-local/ox-ipynb.el"            .source = "${inputs.emacsFlake.outputs.packagesLocal}/ox-ipynb/ox-ipynb.el";
-    ".emacs.d/global/packages-local/snippets/dart-mode"     .source = "${inputs.emacsFlake.outputs.packagesLocal}/dart-snippets/snippets/dart-mode";
-    ".emacs.d/global/packages-local/tridactyl-mode.el"      .source = "${inputs.emacsFlake.outputs.packagesLocal}/tridactyl-mode.el";
+    ".emacs.d/global/packages-local/core-funcs.el"          .source = "${inputs.emacsFlake.outputs.localPackages}/core-funcs.el";
+    ".emacs.d/global/packages-local/core-toggle.el"         .source = "${inputs.emacsFlake.outputs.localPackages}/core-toggle.el";
+    ".emacs.d/global/packages-local/core-transient-state.el".source = "${inputs.emacsFlake.outputs.localPackages}/core-transient-state.el";
+    ".emacs.d/global/packages-local/dart-snippets.el"       .source = "${inputs.emacsFlake.outputs.localPackages}/dart-snippets/dart-snippets.el";   ### https://github.com/Davoodeh/dart-snippets
+    ".emacs.d/global/packages-local/ox-ipynb.el"            .source = "${inputs.emacsFlake.outputs.localPackages}/ox-ipynb/ox-ipynb.el";
+    ".emacs.d/global/packages-local/snippets/dart-mode"     .source = "${inputs.emacsFlake.outputs.localPackages}/dart-snippets/snippets/dart-mode";
+    ".emacs.d/global/packages-local/tridactyl-mode.el"      .source = "${inputs.emacsFlake.outputs.localPackages}/tridactyl-mode.el";
+
+    ### DOC
+    ".docLocal/content/homemanager/emacs.org".source = inputs.emacsFlake.outputs.emacsDocumentation;
   };
 
   systemd.user.tmpfiles.rules = [

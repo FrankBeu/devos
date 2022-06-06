@@ -1,24 +1,25 @@
 { config, ... }:
-let currentColorSchemeName = (import ./currentColorScheme.nix ).colorScheme;
+let
+  mainUser               = "nixos";
+  currentColorSchemeName = (import ./currentColorScheme.nix ).colorScheme;
 in
 {
-  variables = {
-    test  = "TEST";
-    test2 = "TEST2";
-
-    domain   = "example.com";
-
-    mainUser = {
-      abbreviation   = "nixos";
-      name           = "nixos";
-      email          = "nixos@thesym.site";
-      description    = "Nixos Testuser";
-      group          = "users";
-    };
-
-    # autoLogin = false;
-    # autoLogin = true;
+  variables = rec {
+    testing.user.name = mainUser;
+    testing.test      = "TEST";   ### used in tests.nixos.modules.variables
 
     inherit currentColorSchemeName;
+
+    users = {
+      nixos = import ./nixos/default.nix;
+    };
+
+    tty = {
+      autologin = {
+        username = mainUser;
+      };
+    };
+
+    ###  DO NOT SET ANY OTHER VARIABLES - HAVE TO BE SET IN TEST
   };
 }

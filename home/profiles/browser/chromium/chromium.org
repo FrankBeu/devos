@@ -1,0 +1,22 @@
+---
+title: chromium
+linktitle: chromium
+description: documentation for the chromium and related tools
+categories:
+keywords: [ browser, chromium ]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "chromium"
+    identifier: "chromium"
+draft: false
+toc: true
+---
+* chromium
+** partial fullscreen
+1. split container: =SUPER-B=
+2. create terminal: =SUPER-RET=
+3. clear terminal: =ct=
+4. fullscreen chromium-container: =SUPER-F=
+5. fullscreen chromium: =f-<IDENTIFIER>=
+6. leave fullscreen chromium-container: =SUPER-F=

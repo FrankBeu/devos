@@ -95,7 +95,6 @@
         nixpkgs.follows = "nixos";
       };
     };
-    };
   };
 
   outputs =

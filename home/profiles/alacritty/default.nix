@@ -1,6 +1,7 @@
-{variables, ...}:
+{ config, ... }:
 let
-  preamble = (import ./alacritty/alacritty.nix { inherit variables; }).content;
+  inherit (config.home) username;
+  preamble = (import ./alacritty/alacritty.nix { inherit username; }).content;
 in
 {
   ### unused because root needs alacritty also

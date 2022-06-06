@@ -13,19 +13,21 @@ in
 {
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### NixOS is only used as test-host
-  imports = with profiles; [
-    users.root
-    users.${variables.mainUser.name}
+  imports = [
+    profiles.users.root
+    profiles.users.nixos
+
   ]
   ################################################################################################
   ### DEBUG
   ++ [
   ]
-  # ++ suites.debug
+  ++ suites.debug
   # ++ suites.i3
   ################################################################################################
   ;
 
+  # variables.autoLogin = true;
 
   boot.loader = {
     systemd-boot.enable      = true;
@@ -38,4 +40,9 @@ in
 
   networking.networkmanager.enable = true;
 
+  ### use publicly available ssh-key
+  environment.etc = {
+    "ssh/ssh_host_ed25519_key"    .source = "${self}/secrets/secretKeys/NixOS/id_ed25519";
+    "ssh/ssh_host_ed25519_key.pub".source = "${self}/secrets/secretKeys/NixOS/id_ed25519.pub";
+  };
 }

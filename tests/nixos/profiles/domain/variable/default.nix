@@ -1,19 +1,27 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host       = self.nixosConfigurations.NixOS;
+  username   = host.config.variables.testing.user.name;
+  domainName = "example.com";
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, variables, ... }: {
-          imports = with profiles; [
-            autologin.mainUser
-            domain.variable
-            domain.server
-            networking.nameserver.regular
-            tools.network                  ### DEV
-          ];
-        };
+      machine = { suites, profiles, variables, ... }:
+      {
+        imports = with profiles; [
+          autologin.variable
+          domain.variable
+          domain.server
+          networking.nameserver.regular
+          tools.network                  ### DEV
+        ];
+
+        variables.domain = domainName;
+      };
     };
 
     enableOCR  = false;
@@ -30,7 +38,6 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  domainName = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.domain;
   testScriptExternal = (import ./testScript.py.nix {inherit domainName;});
 
 in

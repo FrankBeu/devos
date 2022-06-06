@@ -1,21 +1,31 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
 
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            display.i3
-            display.manager.lightdm
-          ];
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          display.i3
+          display.manager.lightdm
+        ];
 
-          variables = {
-            autoLogin = true;
+        variables = {
+          displaymanager = {
+            autologin = {
+              enabled  = true;
+              inherit username;
+            };
           };
         };
+      };
     };
 
     enableOCR = true;
@@ -32,7 +42,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  userID = host.config.users.users.${host.config.variables.mainUser.name}.uid;
+  userID = host.config.users.users.${username}.uid;
   testScriptExternal = (import ./testScript.py.nix {inherit userID;});
 
 in

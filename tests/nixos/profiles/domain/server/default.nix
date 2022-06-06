@@ -1,18 +1,23 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            autologin.mainUser
-            domain.server
-            networking.nameserver.regular
-            tools.network                  ### DEV
-          ];
-        };
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          autologin.variable
+          domain.server
+          networking.nameserver.regular
+          tools.network                  ### DEV
+        ];
+      };
     };
 
     enableOCR  = false;

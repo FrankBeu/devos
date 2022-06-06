@@ -1,5 +1,0 @@
-{
-  environment.variables = {
-    EDITOR = "vim";
-  };
-}

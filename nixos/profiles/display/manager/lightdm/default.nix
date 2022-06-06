@@ -3,8 +3,8 @@
   services.xserver = {
     displayManager = {
       autoLogin = {
-        enable = variables.autoLogin;
-        user   = variables.mainUser.name;
+        enable = variables.displaymanager.autologin.enabled;
+        user   = variables.displaymanager.autologin.username;
       };
       hiddenUsers = [ "borg" ];
       lightdm.greeters.gtk.iconTheme = {

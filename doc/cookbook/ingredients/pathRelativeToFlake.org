@@ -1,10 +1,10 @@
 * path relative to flake
 #+BEGIN_EXAMPLE nix
-  username = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.mainUser.name;
+  users = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.users;
 #+END_EXAMPLE
 ** easier to read than
 #+BEGIN_EXAMPLE nix
-  username = with self; (import ../../../hosts/NixOS/variables { inherit config; }).variables.mainUser.name;
+  users = with self; (import ../../../hosts/NixOS/variables { inherit config; }).variables.users;
 #+END_EXAMPLE
 ** TODO TODOS
 *** hugoify

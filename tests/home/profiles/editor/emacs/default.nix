@@ -1,31 +1,44 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
 
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            editor.emacs
-            # alacritty
+      machine = { suites, profiles, variables, ... }:
+      {
+        imports = with profiles; [
+          editor.emacs
+          # alacritty
           # ] ++ suites.i3;
-          ];
+        ];
 
-          ### golden/gitVersionTarget.png
-          # systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
+        ### golden/gitVersionTarget.png
+        # systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
 
-          variables.autoLogin = true;
-
-          home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = with profiles; [
-              editor.emacs
-              # display.i3
-              # alacritty
-            ];
+        variables = {
+          displaymanager = {
+            autologin = {
+              enabled  = true;
+              inherit username;
+            };
           };
         };
+
+        home-manager.users.${username} = { profiles, suites, ... }:
+        {
+          imports = with profiles; [
+            editor.emacs
+            # display.i3
+            # alacritty
+          ];
+        };
+      };
     };
 
     enableOCR = true;
@@ -42,8 +55,6 @@ let
   };
 
   name = with builtins; baseNameOf (toString ./.);
-
-  username = host.config.variables.mainUser.name;
 
   testScriptNixos    = builtins.readFile "${self}/tests/nixos/profiles/editor/emacs/testScript.py";
   testScriptExternal = (import ./testScript.py.nix {inherit username;});

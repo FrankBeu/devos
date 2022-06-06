@@ -1,4 +1,14 @@
-{ hmUsers, inputs, ... }:
+{ config
+, hmUsers
+, inputs
+, lib
+, pkgs
+, self
+, ...
+}:
+let
+  inherit (config.networking) hostName;
+in
 {
   home-manager.users = { inherit (hmUsers) frank; };
 
@@ -8,12 +18,19 @@
     hashedPassword = "$6$zFsull/7$I9f/Vorw7AU8uPnJcuIZdhVDh3ogCd6h/D7wsYcA46G1IF8w3Yn79hHU6YiHUKNH3RFTHxfnJwmYTU3TLsIMW/";
     isNormalUser   = true;
     uid            = 1428;
-    extraGroups    = [
-      "wheel" ### Enable ‘sudo’ for the user.
+    group          = "users";
+    shell          = pkgs.zsh;
+
+    extraGroups = [
+      "wheel"
       "docker"
+      "adbusers"
+      "libvirtd"
+
     ];
-    ### TODO if enabled docker : docker
   };
 }
 
-### `mkpasswd -m sha-512 PASSWORD`
+### TODO doc
+### groups can be set precautionary - they will only be applied, if the actual group exists
+### applying userGroups can be tested by logging into a virtualConsole

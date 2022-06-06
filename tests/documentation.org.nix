@@ -41,6 +41,10 @@ toc: true
 #+BEGIN_EXAMPLE shell
 nix build .#tests.nixos.profiles.timezone.amsterdam
 #+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+bt tests.nixos.profiles.timezone.amsterdam
+#+END_EXAMPLE
+**** TODO use dynamic alias
 *** all tests
 #+BEGIN_EXAMPLE shell
 bud tests

@@ -2,7 +2,7 @@
 {
   tmpfiles =
     let
-      variablesTestActual = ''${variables.test}\n${variables.currentColorSchemeName}\n'';
+      variablesTestActual = ''${variables.testing.test}\n${variables.currentColorSchemeName}\n'';
     in
     ''
       f /tmp/variablesTestActual - - - - ${variablesTestActual}

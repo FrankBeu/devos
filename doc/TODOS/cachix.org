@@ -9,7 +9,7 @@ sudo nix-shell -p cachix --run "cachix use nrdxp"
 warning: ignoring the user-specified setting 'trusted-public-keys', because it is a restricted setting and you are not a trusted user
 #+END_EXAMPLE
 #+BEGIN_EXAMPLE nix
-  nix.trustedUsers = [ demo variables.mainUser.name ];
+  nix.trustedUsers = [ demo ];
 #+END_EXAMPLE
 ** files
 https://docs.cachix.org/faq#what-happens-when-i-run-cachix-use-both-immediately-and-any-stateful-effects-for-the-future

@@ -1,6 +1,11 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
 
@@ -13,13 +18,18 @@ let
           ];
 
           variables = {
-            autoLogin = true;
+            displaymanager = {
+              autologin = {
+                enabled  = true;
+                inherit username;
+              };
+            };
           };
 
           ### golden/gitVersionTarget.png
           # systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
 
-          # home-manager.users.nixos = { profiles, suites, ... }: {
+          # home-manager.users.${username} = { profiles, suites, ... }: {
           #   imports = [
           #     ### TODO
           #   ];
@@ -41,7 +51,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  userID = host.config.users.users.${host.config.variables.mainUser.name}.uid;
+  userID = host.config.users.users.${username}.uid;
   testScriptExternal = (import ./testScript.py.nix {inherit userID;});
 
 in

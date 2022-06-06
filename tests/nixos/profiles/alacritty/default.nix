@@ -1,16 +1,20 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        # { suites, profiles, ... }: {
-          { suites, profiles, pkgs, ... }: {
-            imports = with profiles; [
-              alacritty
-            ];
-          };
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          alacritty
+        ];
+      };
     };
 
     enableOCR  = true;

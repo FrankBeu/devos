@@ -1,25 +1,30 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
-
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          ### TODO
+        ];
+
+        ### golden/gitVersionTarget.png
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
+
+        home-manager.users.${username} = { profiles, suites, ... }:
+        {
           imports = with profiles; [
             ### TODO
           ];
-
-          ### golden/gitVersionTarget.png
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
-
-          home-manager.users.nixos = { profiles, suites, ... }: {
-            imports = with profiles; [
-              ### TODO
-            ];
-          };
         };
+      };
     };
 
     enableOCR = true;

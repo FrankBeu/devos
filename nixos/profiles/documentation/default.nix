@@ -1,4 +1,4 @@
-{ pkgs , ... }:
+{ lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     man-pages
@@ -14,6 +14,6 @@
     # man.mandoc.enable = true;
     man.mandoc.enable = false;
     man.man-db.enable = false;
-    nixos.enable      = true;
+    nixos.enable      = lib.mkForce true;  ### WORKAROUND ryzen-test: The option `documentation.nixos.enable' has conflicting definition values: <unknown-file>
   };
 }

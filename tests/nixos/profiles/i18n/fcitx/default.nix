@@ -1,15 +1,20 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            i18n.fcitx
-          ];
-        };
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          i18n.fcitx
+        ];
+      };
     };
 
     enableOCR  = false;
@@ -26,7 +31,6 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  username = host.config.variables.mainUser.name;
   testScriptExternal = (import ./testScript.py.nix {inherit username;});
 
 in

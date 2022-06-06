@@ -1,20 +1,28 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            autologin.mainUser
-            domain.local.domain
-            domain.local.doc
-            networking.nameserver.regular
-            services.documentation
-            tools.network          ### DEV
-          ];
-        };
+      machine = { suites, profiles, variables, ... }:
+      {
+        imports = with profiles; [
+          autologin.variable
+          domain.local.domain
+          domain.local.doc
+          networking.nameserver.regular
+          services.documentation
+          tools.network          ### DEV
+        ];
+
+        bud.localFlakeClone               = "/home/${username}/DEVOS"; ### documentation relies on the location
+        variables.documentation.user.name = variables.testing.user.name;
+      };
     };
 
     enableOCR  = false;

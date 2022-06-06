@@ -1,21 +1,27 @@
-{ self, mkTest, ...}:
+{ mkTest
+, self
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, variables, ... }: {
-          ### variablesTest{Target,Actual}
-          systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit variables; } ).tmpfiles ];
+      machine = { suites, profiles, variables, ... }:
+      {
 
-          home-manager.users.nixos = { profiles, suites, variables, ... }: {
-            imports = [];
+        ### variablesTest{Target,Actual}
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit variables; } ).tmpfiles ];
 
-            ### variablesTestActual
-            home.file."tmp/variablesTestActual".text = ( import ./testPreparationHome.nix { inherit variables; } );
-          };
+        home-manager.users.${username} = { profiles, suites, variables, ... }:
+        {
+          imports = [];
+
+          ### variablesTestActual
+          home.file."tmp/variablesTestActual".text = ( import ./testPreparationHome.nix { inherit variables; } );
         };
+      };
     };
 
     enableOCR  = false;
@@ -32,7 +38,6 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  username = with self; (import "${self}/hosts/NixOS/variables" { inherit config; }).variables.mainUser.name;
   testScriptExternal = (import ./testScript.py.nix {inherit username;});
 
 in

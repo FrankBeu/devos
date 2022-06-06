@@ -8,10 +8,10 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     # machine.log(doc)
 
     output = machine.succeed('curl localhost:41503')
-    assert_contains(output, "<title>home - Docs</title>")
+    assert_contains(output, "<title>homepage - Docs</title>")
 
-    output = machine.succeed('curl localhost:41503/global/documentation/')
-    assert_contains(output, "<title>documentation - Docs</title>")
+    output = machine.succeed('curl localhost:41503/structural/doc/')
+    assert_contains(output, "<title>doc - Docs</title>")
 
 
 # with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if COLORS are set according to theme"):

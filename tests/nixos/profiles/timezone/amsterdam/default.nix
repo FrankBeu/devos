@@ -1,13 +1,18 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = [ profiles.timezone.amsterdam ];
-        };
+      machine = { suites, profiles, ... }:
+      {
+        imports = [ profiles.timezone.amsterdam ];
+      };
     };
 
     enableOCR  = false;

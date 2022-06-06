@@ -36,14 +36,14 @@ domainWide
         };
       in
       settings = {
-        if variables.autologin
-            ##################
+        if variables.displaymanager.autologin.enabled
+            #########################################
         then
         default_session = defaultSession;
         initial_session = {
           command = greeterCommand
-          user    =  variables.mainUser.name;
-                      #######################
+          user    =  variables.displaymanager.autologin.username;
+                      ###########################################
         };
         terminal = {
           vt = 1;

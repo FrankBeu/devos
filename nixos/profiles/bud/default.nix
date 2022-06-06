@@ -1,11 +1,11 @@
 { config, lib, variables, ... }:
 let
-  userName = variables.mainUser.name;
-in
+  budLocalFlakeCloneLocation = variables.budLocalFlakeCloneLocation;
+in rec
 {
   bud = {
     enable          = true;
-    localFlakeClone = "/home/${userName}/DEVOS";
+    localFlakeClone = budLocalFlakeCloneLocation;
   };
 
   environment = {
@@ -14,15 +14,25 @@ in
         ifSudo = lib.mkIf config.security.sudo.enable;
       in
       {
-        b   = "bud";                         ### Bud
-        bb  = "b rebuild `hostname` build";  ### BudBuild
-        bs  = "b rebuild `hostname` switch"; ### BudSwitch
-        bt  = "b tests";                     ### BudTests
-        btb = "b testCreate b";              ### BudTestcreateBasic  NAME
-        btg = "b testCreate g";              ### BudTestcreateGolden NAME
-        btp = "b testPrebuild";              ### BudTestPrebuild     NAME
-        bti = "b testInteractive";           ### BudTestInteractive
-        bv  = "b vm";                        ### BudVirtualmachine   HOST
+        b     = ''bud''                                                                   ;  ### Bud
+        ba    = ''cd ${bud.localFlakeClone} && git add .''                                ;  ### Bud Add
+        beu   = ''cd ${bud.localFlakeClone} && nix flake lock --update-input emacsFlake'' ;  ### Bud EmacsUpdate
+        bb    = ''bud rebuild `hostname` build''                                          ;  ### BudBuild
+        bs    = ''bud rebuild `hostname` switch''                                         ;  ### BudSwitch
+        bso   = ''bud rebuild `hostname` switch  --option binary-caches ""''              ;  ### BudSwitchOffline         ### TODO difference to bsf
+        bsf   = ''bud rebuild `hostname` switch  --option substitute false''              ;  ### BudSwitchsubstituteFalse
+        btmpl = ''bud template ${bud.localFlakeClone}''                                   ;  ### BudTeMPlate
+        bn    = ''bud nuke''                                                              ;  ### BudNuke
+        bta   = ''bud tests''                                                             ;  ### BudTestsAll
+        btb   = ''bud testCreate b''                                                      ;  ### BudTestcreateBasic  NAME
+        btg   = ''bud testCreate g''                                                      ;  ### BudTestcreateGolden NAME
+        btp   = ''bud testPrebuild''                                                      ;  ### BudTestPrebuild     NAME
+        bt    = ''bud testRun''                                                           ;  ### BudTestRun <tests.CATEGORY.SUBCATEGORY.TESTNAME>
+        bti   = ''bud testInteractive''                                                   ;  ### BudTestInteractive
+        bv    = ''cd ${bud.localFlakeClone} && bud vm''                                   ;  ### BudVirtualmachine   HOST
+
+        ### ALiasBUd    | find bud               | align=                                           | surround=   | rm'
+        albu = '' alias | rg --color=always 'bud'| sd '^(\w)(=)' '$1  $2'| sd '^(\w{2})(=)' '$1 $2' | sd '=' ' = '| sd "'" "" '';
       };
   };
 }

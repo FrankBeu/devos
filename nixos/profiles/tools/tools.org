@@ -1,0 +1,13 @@
+---
+title: tools
+linktitle: tools
+description: documentation for installed tools
+categories:
+keywords: [ tools ]
+menu:
+  sidebar:
+    parent: "system"
+draft: false
+toc: true
+---
+* tools

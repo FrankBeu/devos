@@ -1,7 +1,8 @@
-{ self
-, colorscheme
+{ colorscheme
 , config
+, nixosConfig
 , pkgs
+, self
 , variables
 , ...
 }:
@@ -9,7 +10,11 @@ let
   inherit (self.lib.colorscheme) allColorsInfo;
   inherit (config.colorscheme) colors;
   # colorscheme        = config.colorscheme.colors;
-  user = variables.mainUser;
+  inherit (config.home) username;
+  user = {
+    inherit (nixosConfig.users.users.${username}) description;
+    inherit (nixosConfig.variables.users.${username}) email;
+  };
 in
 {
   ### quickPhrase
@@ -28,10 +33,9 @@ in
     xdg.configFile."fcitx5".source = ./fcitx5/config;
 
     ### start fcitx via i3-config
-    xdg.configFile."i3/config".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 100 ''
-      ################################################################################
-      ### fcitx5
+    xdg.configFile."i3/config".text = pkgs.lib.mkDefault( pkgs.lib.mkAfter ''
+      #################################################################################################### fcitx5
       exec --no-startup-id fcitx -d
-      ################################################################################
+      ##########################################################################################
     '' );
 }

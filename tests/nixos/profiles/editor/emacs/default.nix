@@ -1,18 +1,20 @@
-{ self, mkTest, testHelpers, ... }:
+{ mkTest
+, self
+, testHelpers
+, ...
+}:
 let
-  host = self.nixosConfigurations.NixOS;
+  host     = self.nixosConfigurations.NixOS;
+  username = host.config.variables.testing.user.name;
 
   test = {
     nodes = {
-      machine =
-        { suites, profiles, ... }: {
-          imports = with profiles; [
-            editor.emacs
-          ];
-
-          variables.autoLogin = true; ### TODO check: controls X-login only
-
-        };
+      machine = { suites, profiles, ... }:
+      {
+        imports = with profiles; [
+          editor.emacs
+        ];
+      };
     };
 
     enableOCR  = false;

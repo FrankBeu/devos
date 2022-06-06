@@ -1,5 +1,5 @@
 { variables }:
 ''
-${variables.test}
+${variables.testing.test}
 ${variables.currentColorSchemeName}
 ''

@@ -1,23 +1,39 @@
 { config, ... }:
-let currentColorSchemeName = (import ./currentColorScheme.nix ).colorScheme;
+### TODO really needed??
+let
+  mainUser               = "frank";
+  currentColorSchemeName = (import ./currentColorScheme.nix ).colorScheme;
 in
 {
   variables = rec {
-    autoLogin        = true;
 
-    ### TODO dryOut / transfer as much as possible to users/frank
-    mainUser = {
-      abbreviation   = "fb";
-      name           = "frank";
-      email          = "frank@thesym.site";
-      description    = "Frank Beutelschiess";
-      # defaultBrowser = "chromium-browser";
-      defaultBrowser = "firefox";
-      group          = "users";
+    shell     = "zsh";
+
+    tty = {
+      autologin = {
+        username = mainUser;
+      };
     };
+
+    displaymanager = {
+      autologin = {
+        enabled  = true;
+        username = mainUser;
+      };
+    };
+
+    ### TODO create specific documentation for each user
+    testing.user.name       = mainUser;  ### used to specify the user used in tests
+    documentation.user.name = mainUser;
+
+    budLocalFlakeCloneLocation = "/home/${mainUser}/DEVOS";
 
     inherit currentColorSchemeName;
 
-    test  = "TEST";
+    users = {
+      frank = import ./frank/default.nix;
+    };
+
+    testing.test = "TEST";   ### used in tests.nixos.modules.variables
   };
 }

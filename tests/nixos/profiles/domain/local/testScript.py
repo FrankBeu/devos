@@ -19,7 +19,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     # machine.log(doc)
 
     output = machine.succeed('curl doc.local')
-    assert_contains(output, "<title>home - Docs</title>")
+    assert_contains(output, "<title>homepage - Docs</title>")
     # machine.log(output)
 
 
