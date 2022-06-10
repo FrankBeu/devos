@@ -329,6 +329,16 @@ https://github.com/divnix/digga/blob/main/src/tests.nix
 https://github.com/d4hines/devos/blob/235d9befc2495850d4679b73541c894b266e5d8a/lib/pkgs-lib/tests/default.nix
 *** profiles using nixos and home
 are tested in the home section of tests by pulling in tests from nixos
+*** optimization
+**** time-benchmarking
+***** hyperfine
+#+BEGIN_SRC shell :results drawer
+hyperfine -r 2 'nix build .#tests.hosts.ryzen'
+#+END_SRC
+***** time
+#+BEGIN_SRC shell :results drawer
+time nix build .#tests.hosts.ryzen
+#+END_SRC
 ** *TODOS*
 *** TODO create this file dynamically from module
 *** TODO test lib like digga
