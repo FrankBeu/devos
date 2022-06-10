@@ -4,20 +4,20 @@ let
   hooks = import ./hooks;
 
   pkgWithCategory = category: package: { inherit package category; };
-  linter = pkgWithCategory "linter";
-  docs = pkgWithCategory "docs";
-  devos = pkgWithCategory "devos";
+  linter          = pkgWithCategory "linter";
+  docs            = pkgWithCategory "docs";
+  devos           = pkgWithCategory "devos";
 
 in
 {
   _file = toString ./.;
 
   imports = [ "${extraModulesPath}/git/hooks.nix" ];
-  git = { inherit hooks; };
+  git     = { inherit hooks; };
 
   # tempfix: remove when merged https://github.com/numtide/devshell/pull/123
   devshell.startup.load_profiles = pkgs.lib.mkForce (pkgs.lib.noDepEntry ''
-    # PATH is devshell's exorbitant privilige:
+    # PATH is devshell's exorbitant privilege:
     # fence against its pollution
     _PATH=''${PATH}
     # Load installed profiles
@@ -25,7 +25,7 @@ in
       # If that folder doesn't exist, bash loves to return the whole glob
       [[ -f "$file" ]] && source "$file"
     done
-    # Exert exorbitant privilige and leave no trace
+    # Exert exorbitant privilege and leave no trace
     export PATH=''${_PATH}
     unset _PATH
   '');
@@ -35,9 +35,9 @@ in
     (devos agenix)
     {
       category = "devos";
-      name = pkgs.nvfetcher-bin.pname;
-      help = pkgs.nvfetcher-bin.meta.description;
-      command = "cd $PRJ_ROOT/pkgs; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
+      name     = pkgs.nvfetcher-bin.pname;
+      help     = pkgs.nvfetcher-bin.meta.description;
+      command  = "cd $PRJ_ROOT/pkgs; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
     }
     (linter nixpkgs-fmt)
     (linter editorconfig-checker)
