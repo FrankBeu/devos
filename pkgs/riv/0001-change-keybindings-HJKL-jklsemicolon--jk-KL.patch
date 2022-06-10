@@ -1,0 +1,93 @@
+From 93530c818cc1c7217fcaa645b5e937d1f41b1a99 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Frank=20Beutelschie=C3=9F?= <frank@thesym.site>
+Date: Sat, 10 Apr 2021 18:24:56 +0200
+Subject: [PATCH] change keybindings HJKL -> jkl;  jk -> KL
+
+---
+ README.md |  6 ++++--
+ src/ui.rs | 36 ++++++++++++++++++++++++------------
+ 2 files changed, 28 insertions(+), 14 deletions(-)
+
+diff --git a/README.md b/README.md
+index af8ce27..b5427ea 100644
+--- a/README.md
++++ b/README.md
+@@ -33,15 +33,17 @@ Set a sorting order with the `s` or `--sort` flag, case insensitive.
+ 
+ ### Normal Mode Controls
+ 
++<!-- | k/j        | Left/Right                 | Previous/Next Image                                 | -->
++<!-- | H, J, K, L | Shift + Up/Down/Left/Right | Pan left/down/up/right                              | -->
+ 
+ | Key 1      | Key 2                      | Action                                              |
+ |------------|----------------------------|-----------------------------------------------------|
+ | 0-9 (many) | Key1 of action to perform  | Perform the specified action many times             |
+ | q          | Esc                        | Quit                                                |
+-| k/j        | Left/Right                 | Previous/Next Image                                 |
++| K/L        | Left/Right                 | Previous/Next Image                                 |
+ | i/o        | Up/Down                    | Zoom in/out                                         |
+ | r/R        |                            | Rotate image clockwise/counterclockwise             |
+-| H, J, K, L | Shift + Up/Down/Left/Right | Pan left/down/up/right                              |
++| j, k, l, ; | Shift + Up/Down/Left/Right | Pan left/down/up/right                              |
+ | h          |                            | Flip image horizontally                             |
+ | v          |                            | Flip image vertically                               |
+ | b/w        | PageDown/PageUp            | Backward/Forward 10% of images                      |
+diff --git a/src/ui.rs b/src/ui.rs
+index 3485bff..676a24c 100644
+--- a/src/ui.rs
++++ b/src/ui.rs
+@@ -380,13 +380,19 @@ pub fn process_multi_normal_mode<'a>(
+                 }
+                 (Action::ReRender, times).into()
+             }
+-            "H" => (Action::Pan(PanAction::Left), times).into(),
++            // "H" => (Action::Pan(PanAction::Left), times).into(),
++            "j" => (Action::Pan(PanAction::Left), times).into(),
+             "i" => (Action::Zoom(ZoomAction::In), times).into(),
+-            "j" => (Action::Next, times).into(),
+-            "J" => (Action::Pan(PanAction::Down), times).into(),
+-            "k" => (Action::Prev, times).into(),
+-            "K" => (Action::Pan(PanAction::Up), times).into(),
+-            "L" => (Action::Pan(PanAction::Right), times).into(),
++            // "j" => (Action::Next, times).into(),
++            "L" => (Action::Next, times).into(),
++            // "J" => (Action::Pan(PanAction::Down), times).into(),
++            "l" => (Action::Pan(PanAction::Down), times).into(),
++            // "k" => (Action::Prev, times).into(),
++            "K" => (Action::Prev, times).into(),
++            // "K" => (Action::Pan(PanAction::Up), times).into(),
++            "k" => (Action::Pan(PanAction::Up), times).into(),
++            // "L" => (Action::Pan(PanAction::Right), times).into(),
++            ";" => (Action::Pan(PanAction::Right), times).into(),
+             "m" => (Action::Move, times).into(),
+             "o" => (Action::Zoom(ZoomAction::Out), times).into(),
+             "q" => MultiNormalAction::Quit,
+@@ -479,13 +485,19 @@ pub fn process_normal_mode<'a>(state: &mut State<'a>, event: &Event) -> ProcessA
+                 }
+                 Action::ReRender.into()
+             }
+-            "H" => Action::Pan(PanAction::Left).into(),
++            // "H" => Action::Pan(PanAction::Left).into(),
++            "j" => Action::Pan(PanAction::Left).into(),
+             "i" => Action::Zoom(ZoomAction::In).into(),
+-            "j" => Action::Next.into(),
+-            "J" => Action::Pan(PanAction::Down).into(),
+-            "k" => Action::Prev.into(),
+-            "K" => Action::Pan(PanAction::Up).into(),
+-            "L" => Action::Pan(PanAction::Right).into(),
++            // "j" => Action::Next.into(),
++            "L" => Action::Next.into(),
++            // "J" => Action::Pan(PanAction::Down).into(),
++            "l" => Action::Pan(PanAction::Down).into(),
++            // "k" => Action::Prev.into(),
++            "K" => Action::Prev.into(),
++            // "K" => Action::Pan(PanAction::Up).into(),
++            "k" => Action::Pan(PanAction::Up).into(),
++            // "L" => Action::Pan(PanAction::Right).into(),
++            ";" => Action::Pan(PanAction::Right).into(),
+             "m" => Action::Move.into(),
+             "o" => Action::Zoom(ZoomAction::Out).into(),
+             "q" => Action::Quit.into(),
+-- 
+2.34.1
+

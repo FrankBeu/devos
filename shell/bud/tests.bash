@@ -28,6 +28,7 @@ tests.nixos.profiles.filemanager.ranger
 # tests.nixos.profiles.fonts                        ### TODO: implement
 # tests.nixos.profiles.i18n.common                  ### TODO: implement
 tests.nixos.profiles.i18n.fcitx
+tests.nixos.profiles.image.common
 tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 # tests.nixos.profiles.services.ssh                 ### TODO: implement

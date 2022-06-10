@@ -11,6 +11,7 @@ final: prev:
   ### LOCALLY DEFINED PACKAGES
   i3statusBar           = final.callPackage         ./i3statusBar             {};
   shellColorDefinitions = final.callPackage         ./shellColorDefinitions   {};
+  riv                   = final.callPackage         ./riv                     {};
 
 
   ### PACKAGES PROVIDED BY FLAKES
