@@ -14,7 +14,6 @@ in
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### test is only used as test-host
   imports = [
-    profiles.security.sops-nix
   ] ++ [
     profiles.users.root
     profiles.users.test

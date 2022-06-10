@@ -26,6 +26,7 @@ let
   ### NIXOS-SUITES
   docLocal     = (import                          ../../nixos/suites/docLocal/testScript.nix                                       ).testScript;
   i3           = (import                          ../../nixos/suites/i3/testScript.nix                    { inherit userID;       }).testScript;
+  rustTools    = (import                          ../../nixos/suites/rustTools/testScript.nix                                      ).testScript;
 
   ### HOME
   ### HOME-PROFILES
@@ -100,6 +101,7 @@ let
         ### NIXOS-SUITES
         ${docLocal}
         ${i3}
+        ${rustTools}
 
 
         ### HOME-PROFILES

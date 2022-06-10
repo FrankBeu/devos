@@ -57,6 +57,6 @@ in
   suites.docLocal  ++
   suites.i3        ++
   # suites.gnome   ++
-  # suites.rustTools ++
+  suites.rustTools ++
   [];
 }

@@ -10,6 +10,7 @@ allTests=(
 tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
 
+
 tests.nixos.profiles.alacritty
 tests.nixos.profiles.autologin.root
 tests.nixos.profiles.autologin.variable
@@ -39,11 +40,21 @@ tests.nixos.profiles.timezone.amsterdam
 # tests.nixos.profiles.tools.less                   ### TODO: implement
 # tests.nixos.profiles.tools.network                ### TODO: implement
 # tests.nixos.profiles.tools.nixTools               ### TODO: implement
+tests.nixos.profiles.tools.bandwhich
+tests.nixos.profiles.tools.exa
+tests.nixos.profiles.tools.grex
+tests.nixos.profiles.tools.hyperfine
+tests.nixos.profiles.tools.procs
+tests.nixos.profiles.tools.tokei
+tests.nixos.profiles.tools.zoxide
+
 
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 # tests.nixos.suites.gnome                          ### TODO: needs hw-acceleration
 # tests.nixos.suites.i3                             ### TODO: needs hw-acceleration
+tests.nixos.suites.rustTools
+
 
 ### HOME
 tests.home.profiles.alacritty
@@ -55,6 +66,7 @@ tests.home.profiles.editor.emacs                    ### TODO: needs hw-accelerat
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
+
 
 ### HOSTS
 tests.hosts.test
