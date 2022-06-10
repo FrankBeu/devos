@@ -43,19 +43,15 @@ in
     profiles.timezone.amsterdam
     profiles.tools.network
 
-
-    ### USERS
-    profiles.users.root
-
-    profiles.users.frank
-
     ### AUTOLOGIN ON CONSOLE
     # profiles.autologin.mainUser
     # profiles.autologin.root
 
     ### DEBUG
     # profiles.systemd.coredump
-
+  ] ++ [
+    profiles.users.root
+    profiles.users.frank
   ] ++
   suites.base      ++
   suites.docLocal  ++
