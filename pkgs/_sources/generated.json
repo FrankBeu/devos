@@ -1,0 +1,22 @@
+{
+    "manix": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "manix",
+        "src": {
+            "deepClone": false,
+            "owner": "mlvzk",
+            "name": null,
+            "repo": "manix",
+            "type": "github",
+            "sha256": "sha256-GqPuYscLhkR5E2HnSFV4R48hCWvtM3C++3zlJhiK/aw=",
+            "rev": "d08e7ca185445b929f097f8bfb1243a8ef3e10e4",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "d08e7ca185445b929f097f8bfb1243a8ef3e10e4",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    }
+}

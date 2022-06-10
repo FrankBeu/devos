@@ -53,8 +53,8 @@
     };
 
     emacsFlake = {
-      # url    = "/home/frank/DEVOSEMACS"; ### DEVEL
-      url  = "github:FrankBeu/emacs-flake";
+      url    = "/home/frank/DEVOSEMACS"; ### DEVEL
+      # url  = "github:FrankBeu/emacs-flake";
       ### DO NOT FOLLOW:
       ###    if buildScripts (in nixpkgs/pkgs/build-support/emacs) will be updated, builds will fail.
       ###    also cachix will be missed more likely and emacs-git-native-comp is really expensive
@@ -95,6 +95,18 @@
         nixpkgs.follows = "nixos";
       };
     };
+
+    rnix-lsp = {
+      # url    = "github:Sciencentistguy/rnix-lsp";
+      # url    = "github:danielphan2003/rnix-lsp";
+      # url    = "github:elkowar/rnix-lsp";
+      # url    = "github:kreisys/rnix-lsp";
+      url    = "github:nix-community/rnix-lsp";
+      inputs = {
+        nixpkgs.follows = "latest";
+      };
+    };
+
   };
 
   outputs =
@@ -128,8 +140,7 @@
             nur.overlay
             agenix.overlay
             nvfetcher.overlay
-            ./pkgs/default.nix
-          ];
+          ] ++ [ (import ./pkgs/default.nix { inherit inputs; }) ];
         };
         latest = {
           imports  = [
@@ -140,8 +151,7 @@
             nur.overlay
             agenix.overlay
             nvfetcher.overlay
-            ./pkgs/default.nix
-          ];
+          ] ++ [ (import ./pkgs/default.nix { inherit inputs; }) ];
         };
       };
 

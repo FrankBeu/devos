@@ -1,8 +1,18 @@
-final: prev: {
-  ### keep sources first,
-  sources = prev.callPackage (import ./_sources/generated.nix) { };
+{ inputs }:
 
-  ### then, call packages with `final.callPackage`
-  i3statusBar           = final.callPackage ./i3statusBar           { };
-  shellColorDefinitions = final.callPackage ./shellColorDefinitions { };
+final: prev:
+{
+  ### KEEP SOURCES FIRST,
+  ### SOURCES-OVERLAY FROM NVFETCHER
+  sources               =  prev.callPackage (import ./_sources/generated.nix) {};
+
+
+  ### THEN, CALL PACKAGES WITH `FINAL.CALLPACKAGE`
+  ### LOCALLY DEFINED PACKAGES
+  i3statusBar           = final.callPackage         ./i3statusBar             {};
+  shellColorDefinitions = final.callPackage         ./shellColorDefinitions   {};
+
+
+  ### PACKAGES PROVIDED BY FLAKES
+  inherit (inputs.rnix-lsp.packages."${prev.system}") rnix-lsp;
 }
