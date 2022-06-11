@@ -1,4 +1,6 @@
-{ profiles, ... }:
+{ profiles
+, ...
+}:
 {
   # build with: `bud build bootstrap bootstrapIso`
   # reachable on the local link via ssh root@fe80::47%eno1

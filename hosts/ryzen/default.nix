@@ -1,4 +1,7 @@
-{ suites, profiles, ... }:
+{ profiles
+, suites
+, ...
+}:
 {
   imports = [
     ./variables

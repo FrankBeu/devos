@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    bind        ### dig
+    bind                       ###  dig
     ethtool
     gobuster
-    ldns        ### drill, ...
+    ldns                       ###  drill, ...
   ];
 }

@@ -55,22 +55,22 @@ can have multiple input methods
 ******** HOTKEY
 'Enumerate Input Method Group Forward'
 'Enumerate Input Method Group Backward'
-******** TODO add keybinding dynamicly
+******** TODO add keybinding dynamically
 ****** METHODS
 ******* change METHOD
 ******** HOTKEY
 'Enumerate Input Method Forward'
 'Enumerate Input Method Backward'
-******** TODO add keybinding dynamicly
+******** TODO add keybinding dynamically
 ****** Clipboard
 ~fcitx5-configtool~ -> Addons -> Clipboard
 =A-S C=
 
-******** TODO add keybinding dynamicly
+******** TODO add keybinding dynamically
 ****** Unicode
 =A-S U=
-******** TODO add keybinding dynamicly
-******** TODO configure keybinding dynamicly
+******** TODO add keybinding dynamically
+******** TODO configure keybinding dynamically
 ****** quickPhrase
 =A-S RETURN=
 ******* expand shortcuts defined in
@@ -84,8 +84,8 @@ can have multiple input methods
 3. insert with =SPC=
 ****** completion
 =A-S H=
-******** TODO add keybinding dynamicly
-******** TODO configure keybinding dynamicly
+******** TODO add keybinding dynamically
+******** TODO configure keybinding dynamically
 ****** preedit
 
 **** tools
