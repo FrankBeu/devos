@@ -45,6 +45,7 @@ FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lowe
 ###
 HIGHLIGHT_STYLE='unikitty'
 PYGMENTIZE_STYLE='unikittyLight'
+BAT_COMMAND='bat --color always --style="changes,grid,rule,numbers,snip"'
 
 ## Settings
 HIGHLIGHT_SIZE_MAX=262143  # 256KiB
@@ -54,6 +55,7 @@ HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYL
 PYGMENTIZE_STYLE=${PYGMENTIZE_STYLE:-autumn}
 OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
 OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
+
 
 handle_extension() {
     case "${FILE_EXTENSION_LOWER}" in
@@ -345,11 +347,16 @@ handle_mime() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
+
+        ## JSON
+        application/json)
+	    eval ${BAT_COMMAND} --language json "${FILE_PATH}" && exit 5
+            exit 1;;
     esac
 }
 
 handle_fallback() {
-    echo '----- File Type Classification -----' && file --dereference --brief -- "${FILE_PATH}" && exit 5
+    echo 'FileTypeClassification:' && file --dereference --brief -- "${FILE_PATH}" && exit 5
     exit 1
 }
 

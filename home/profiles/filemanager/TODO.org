@@ -1,0 +1,23 @@
+* filemanager
+** preview
+*** switch to pistol instead of scope.sh
+  https://github.com/gokcehan/lf/wiki/Previews
+*** pistol
+  uses chroma which can render org-files
+*** ueberzug
+not available on nix
+  https://github.com/seebye/ueberzug
+** opening
+  https://wiki.archlinux.org/title/Default_applications#Resource_openers
+  https://github.com/gokcehan/lf/wiki/Mailcap
+*** rifle
+*** mimeo ??
+https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=mimeo
+*** run-mailcap-rs
+https://github.com/cglindkamp/run-mailcap-rs
+** ALTS
+*** nnn
+https://github.com/jarun/nnn
+*** lf
+https://github.com/gokcehan/lf
+needs overlay with üeberzug
