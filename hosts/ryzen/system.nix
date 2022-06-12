@@ -42,6 +42,7 @@ in
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
 
+    profiles.tools.lsof
     profiles.tools.network
     profiles.tools.nixTools
     profiles.tools.parted
