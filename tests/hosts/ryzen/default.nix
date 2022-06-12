@@ -9,36 +9,37 @@ let
   username      = hostVariables.testing.user.name;
   userID        = host.config.users.users.${username}.uid;
   hmProfileDir  = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
+  readFile      = builtins.readFile;
 
   ### NIXOS
   ### NIXOS-MODULES
-  colorscheme     = builtins.readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables       = (import                          ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
+  colorscheme     = readFile                ../../nixos/modules/colorscheme/testScript.py;
+  variables       = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
 
   ### NIXOS-PROFILES
-  consPreamble    = builtins.readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
-  console         = consPreamble + builtins.readFile ../../nixos/profiles/console/testScript.py;
-  editor-vim      = builtins.readFile                ../../nixos/profiles/editor/vim/testScript.py;
-  imageCommon     = builtins.readFile                ../../nixos/profiles/image/common/testScript.py;
-  ranger          = builtins.readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
-  timezone        = builtins.readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
-  tools-parted    = builtins.readFile                ../../nixos/profiles/tools/parted/testScript.py;
-  tools-qalculate = builtins.readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
-  tools-zathura   = builtins.readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  consPreamble    = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
+  console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
+  editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
+  ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
+  timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
+  tools-parted    = readFile                ../../nixos/profiles/tools/parted/testScript.py;
+  tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
+  tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
 
   ### NIXOS-SUITES
-  docLocal        = (import                          ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
-  i3              = (import                          ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
-  rustTools       = (import                          ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
-  virtmanager     = (import                          ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
+  docLocal        = (import                 ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
+  i3              = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
+  rustTools       = (import                 ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
+  virtmanager     = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
 
   ### HOME
   ### HOME-PROFILES
-  chromium        = (import                          ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
-  # emacs         = builtins.readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  fcitx           = (import                          ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
-  gitPreamble     = builtins.readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
-  git             = gitPreamble + builtins.readFile  ../../home/profiles/git/testScript.py;
+  chromium        = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
+  # emacs         = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  fcitx           = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
+  gitPreamble     = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
+  git             = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
 
 
 
