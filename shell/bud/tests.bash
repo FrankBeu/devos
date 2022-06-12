@@ -42,6 +42,7 @@ tests.nixos.profiles.timezone.amsterdam
 # tests.nixos.profiles.tools.network                ### TODO: implement
 # tests.nixos.profiles.tools.nixTools               ### TODO: implement
 tests.nixos.profiles.tools.bandwhich
+tests.nixos.profiles.tools.drawio
 tests.nixos.profiles.tools.exa
 tests.nixos.profiles.tools.gotask
 tests.nixos.profiles.tools.grex
