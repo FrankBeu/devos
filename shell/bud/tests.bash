@@ -41,6 +41,7 @@ tests.nixos.profiles.timezone.amsterdam
 # tests.nixos.profiles.tools.less                   ### TODO: implement
 # tests.nixos.profiles.tools.network                ### TODO: implement
 # tests.nixos.profiles.tools.nixTools               ### TODO: implement
+tests.nixos.profiles.tools.android
 tests.nixos.profiles.tools.bandwhich
 tests.nixos.profiles.tools.drawio
 tests.nixos.profiles.tools.exa

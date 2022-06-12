@@ -42,6 +42,7 @@ in
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
 
+    profiles.tools.android
     profiles.tools.drawio
     profiles.tools.gotask
     profiles.tools.gucharmap
