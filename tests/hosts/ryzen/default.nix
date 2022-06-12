@@ -38,6 +38,7 @@ let
   tools-vulkan         = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
   tools-xorg           = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
   tools-zathura        = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  video-ytdl           = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
   virt-docker          = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
 
   ### NIXOS-SUITES
@@ -129,6 +130,7 @@ let
         ${tools-vulkan}
         ${tools-xorg}
         ${tools-zathura}
+        ${video-ytdl}
         ${virt-docker}
 
 
