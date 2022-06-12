@@ -41,10 +41,13 @@ in
     profiles.sound
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
+
     profiles.tools.network
     profiles.tools.parted
     profiles.tools.qalculate
+    profiles.tools.xorg
     profiles.tools.zathura
+
     profiles.virtualisation.docker
 
     ### AUTOLOGIN ON CONSOLE
