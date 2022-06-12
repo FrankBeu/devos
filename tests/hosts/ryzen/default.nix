@@ -27,6 +27,7 @@ let
   tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
+  tools-gotask         = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
   tools-gucharmap      = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
   tools-less           = readFile                ../../nixos/profiles/tools/less/testScript.py;
   tools-lsof           = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
@@ -111,6 +112,7 @@ let
         ${imageCommon}
         ${ranger}
         ${timezone}
+        ${tools-gotask}
         ${tools-gucharmap}
         ${tools-less}
         ${tools-lsof}

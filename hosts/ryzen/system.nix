@@ -42,6 +42,7 @@ in
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
 
+    profiles.tools.gotask
     profiles.tools.gucharmap
     profiles.tools.less
     profiles.tools.lsof
