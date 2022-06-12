@@ -57,6 +57,7 @@ in
     profiles.tools.vulkan
     profiles.tools.xorg
     profiles.tools.zathura
+    profiles.video.vlc
     profiles.video.youtubedownloader
     profiles.virtualisation.docker
 
