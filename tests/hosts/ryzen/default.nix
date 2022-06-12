@@ -22,6 +22,7 @@ let
   ranger       = builtins.readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   vim          = builtins.readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  zathura      = builtins.readFile                ../../nixos/profiles/tools/zathura/testScript.py;
 
   ### NIXOS-SUITES
   docLocal     = (import                          ../../nixos/suites/docLocal/testScript.nix                                       ).testScript;
@@ -96,6 +97,7 @@ let
         ${ranger}
         ${timezone}
         ${vim}
+        ${zathura}
 
 
         ### NIXOS-SUITES

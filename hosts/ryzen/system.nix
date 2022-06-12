@@ -42,6 +42,7 @@ in
     profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
     profiles.tools.network
+    profiles.tools.zathura
 
     ### AUTOLOGIN ON CONSOLE
     # profiles.autologin.mainUser

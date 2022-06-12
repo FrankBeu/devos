@@ -1,0 +1,181 @@
+### ─────────────────────────────────────────────────────────────────────── INFORMATION
+### see $
+###     man zathurarc
+
+### ─────────────────────────────────────────────────────────────────────── LaTeX
+### all 3 not necessary
+# set synctex true
+# set synctex-editor-command "nvim --remote-silent +%{line} %{input}"
+# set synctex-editor-command "gvim +%{line} %{input}"
+
+
+### ─────────────────────────────────────────────────────────────────────── APPEARANCE
+### 's', the statusbar is displayed
+### 'c', the command line is displayed
+### 'v', the vertical scrollbar is displayed
+### 'h', the horizontal scrollbar is displayed
+
+# set guioptions "scvh"
+set guioptions ""
+
+set font "roboto mono 16"
+
+set window-title-basename true
+set window-title-home-tilde true
+set window-title-page true
+
+### ─────────────────────────────────────────────────────────────────────── COLORS
+# set statusbar-bg "#00FF00"
+# set statusbar-bg "#FF0000"
+# set statusbar-fg red
+# set default-bg "#00FF00"
+
+set tabbar-focus-fg "#0000FF"
+
+# set first-page-column 1
+# set first-page-column 1:1
+set first-page-column 2:1:1:1
+
+# set index-fg
+# set index-bg
+# set index-active-fg
+# set index-active-bg #9FBC00
+set index-active-bg "#BCBABE"
+
+
+set highlight-color "#BCBABE"
+set highlight-active-color "#AF3A03"
+# set highlight-transparency
+
+### ─────────────────────────────────────────────────────────────────────── SETTINGS
+
+### use sqlite as bookmarks database backend
+set database plain
+# set database sqlite
+
+#set zoom-max 2000
+
+set selection-clipboard clipboard
+# set selection-clipboard primary
+
+set pages-per-row 2
+# set pages-per-row 3
+
+### ─────────────────────────────────────────────────────────────────────── KEY BINDINGS
+# map <PageUp> navigate previous
+# map <PageDown> navigate next
+
+# map + zoom in
+# map - zoom out
+
+# map <C-q> quit
+
+map <F1> set "pages-per-row 1"
+map <F2> set "pages-per-row 2"
+map <F3> set "pages-per-row 3"
+map <F4> set "pages-per-row 4"
+
+
+###
+##
+# *** hjkl -> jkl;
+#
+map j scroll left
+map k scroll up
+map l scroll down
+map ; scroll right
+
+
+### ─────────────────────────────────────────────────────────────────────── OPTIONS
+
+# n-completion-items
+# completion-bg
+# completion-fg
+# completion-group-bg
+# completion-group-fg
+# completion-highlight-bg
+# completion-highlight-fg
+# default-fg
+# default-bg
+# exec-command
+# font
+# guioptions
+# inputbar-bg
+# inputbar-fg
+# notification-bg
+# notification-fg
+# notification-error-bg
+# notification-error-fg
+# notification-warning-bg
+# notification-warning-fg
+# tabbar-fg
+# tabbar-bg
+# tabbar-focus-fg
+# tabbar-focus-bg
+# statusbar-bg
+# statusbar-fg
+# statusbar-h-padding
+# statusbar-v-padding
+# window-icon
+# window-height
+# window-width
+# abort-clear-search
+# adjust-open
+# advance-pages-per-row
+# database
+# dbus-service
+# filemonitor
+# incremental-search
+# highlight-color
+# highlight-active-color
+# highlight-transparency
+# page-padding
+# page-cache-size
+# page-thumbnail-size
+# pages-per-row
+# first-page-column
+# recolor
+# recolor-keephue
+# recolor-darkcolor
+# recolor-lightcolor
+# recolor-reverse-video
+# render-loading
+# render-loading-bg
+# render-loading-fg
+# scroll-hstep
+# scroll-step
+# scroll-full-overlap
+# scroll-wrap
+# show-directories
+# show-hidden
+# show-recent
+# scroll-page-aware
+# smooth-scroll
+# link-zoom
+# link-hadjust
+# search-hadjust
+# window-title-basename
+# window-title-home-tilde
+# window-title-page
+# statusbar-basename
+# statusbar-home-tilde
+# zoom-center
+# zoom-max
+# zoom-min
+# zoom-step
+# selection-clipboard
+# selection-clipboard
+# selection-notification
+# synctex
+# synctex-editor-command
+# index-fg
+# index-bg
+# index-active-fg
+# index-active-bg
+
+
+
+#vim: set cms=#
+# Local Variables:
+# mode: conf
+# End:

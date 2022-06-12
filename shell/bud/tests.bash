@@ -3,6 +3,7 @@
 ###       here: order can be easily specified
 ###       here: name can easily be copied
 ###       here: shows missing/disabled tests
+### ATTENTION: switch after update
 
 
 allTests=(
@@ -46,6 +47,7 @@ tests.nixos.profiles.tools.grex
 tests.nixos.profiles.tools.hyperfine
 tests.nixos.profiles.tools.procs
 tests.nixos.profiles.tools.tokei
+tests.nixos.profiles.tools.zathura
 tests.nixos.profiles.tools.zoxide
 
 
