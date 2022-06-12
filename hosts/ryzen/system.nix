@@ -43,6 +43,7 @@ in
     profiles.timezone.amsterdam
 
     profiles.tools.network
+    profiles.tools.nixTools
     profiles.tools.parted
     profiles.tools.qalculate
     profiles.tools.system

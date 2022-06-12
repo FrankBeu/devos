@@ -45,6 +45,7 @@ tests.nixos.profiles.tools.bandwhich
 tests.nixos.profiles.tools.exa
 tests.nixos.profiles.tools.grex
 tests.nixos.profiles.tools.hyperfine
+tests.nixos.profiles.tools.nixTools
 tests.nixos.profiles.tools.parted
 tests.nixos.profiles.tools.procs
 tests.nixos.profiles.tools.qalculate
