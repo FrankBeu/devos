@@ -63,11 +63,11 @@ tests.nixos.profiles.tools.vulkan
 tests.nixos.profiles.tools.xorg
 tests.nixos.profiles.tools.zathura
 tests.nixos.profiles.tools.zoxide
-tests.nixos.virtualisation.docker
-tests.nixos.virtualisation.libvirtd
-tests.nixos.virtualisation.virtmanager
 tests.nixos.profiles.video.vlc
 tests.nixos.profiles.video.youtubedownloader
+tests.nixos.profiles.virtualisation.docker
+tests.nixos.profiles.virtualisation.libvirtd
+tests.nixos.profiles.virtualisation.virtmanager
 
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
