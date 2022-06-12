@@ -17,4 +17,5 @@ with profiles; rec
   # sway      = [                                         ];                 ### TODO
 
   rustTools   = with tools; [ bandwhich exa grex hyperfine procs tokei zoxide                ];
+  virtmanager = [ virtualisation.libvirtd  virtualisation.virtmanager                        ];
 }

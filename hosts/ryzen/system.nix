@@ -45,7 +45,6 @@ in
     profiles.tools.parted
     profiles.tools.qalculate
     profiles.tools.zathura
-    profiles.virtualisation.libvirtd
 
     ### AUTOLOGIN ON CONSOLE
     # profiles.autologin.mainUser
@@ -57,10 +56,11 @@ in
     profiles.users.root
     profiles.users.frank
   ] ++
-  suites.base      ++
-  suites.docLocal  ++
-  suites.i3        ++
-  # suites.gnome   ++
-  suites.rustTools ++
+  suites.base        ++
+  suites.docLocal    ++
+  suites.i3          ++
+  # suites.gnome     ++
+  suites.rustTools   ++
+  suites.virtmanager ++
   [];
 }

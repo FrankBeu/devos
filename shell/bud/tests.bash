@@ -52,12 +52,14 @@ tests.nixos.profiles.tools.tokei
 tests.nixos.profiles.tools.zathura
 tests.nixos.profiles.tools.zoxide
 tests.nixos.virtualisation.libvirtd
+tests.nixos.virtualisation.virtmanager
 
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 # tests.nixos.suites.gnome                          ### TODO: needs hw-acceleration
 # tests.nixos.suites.i3                             ### TODO: needs hw-acceleration
 tests.nixos.suites.rustTools
+tests.nixos.suites.virtmanager
 
 
 ### HOME

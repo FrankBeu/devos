@@ -13,7 +13,7 @@ let
   ### NIXOS
   ### NIXOS-MODULES
   colorscheme     = builtins.readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables       = (import                          ../../nixos/modules/variables/testScript.py.nix                 { inherit username;     });
+  variables       = (import                          ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
 
   ### NIXOS-PROFILES
   consPreamble    = builtins.readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
@@ -25,18 +25,18 @@ let
   tools-parted    = builtins.readFile                ../../nixos/profiles/tools/parted/testScript.py;
   tools-qalculate = builtins.readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   tools-zathura   = builtins.readFile                ../../nixos/profiles/tools/zathura/testScript.py;
-  virt-libvirtd   = (import                          ../../nixos/profiles/virtualisation/libvirtd/testScript.py.nix; { inherit username;     });
 
   ### NIXOS-SUITES
-  docLocal        = (import                          ../../nixos/suites/docLocal/testScript.nix                                           ).testScript;
-  i3              = (import                          ../../nixos/suites/i3/testScript.nix                            { inherit userID;       }).testScript;
-  rustTools       = (import                          ../../nixos/suites/rustTools/testScript.nix                                              ).testScript;
+  docLocal        = (import                          ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
+  i3              = (import                          ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
+  rustTools       = (import                          ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
+  virtmanager     = (import                          ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
 
   ### HOME
   ### HOME-PROFILES
-  chromium        = (import                          ../../home/profiles/browser/chromium/testScript.py.nix          { inherit hmProfileDir; });
-  # emacs         = builtins.readFile                ../../home/profiles/editor/emacs/testScript.py;                   ### TODO: needs hw-acceleration
-  fcitx           = (import                          ../../home/profiles/i18n/fcitx/shared/testScript.py.nix         { inherit username;     });
+  chromium        = (import                          ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
+  # emacs         = builtins.readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  fcitx           = (import                          ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
   gitPreamble     = builtins.readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
   git             = gitPreamble + builtins.readFile  ../../home/profiles/git/testScript.py;
 
@@ -103,13 +103,13 @@ let
         ${tools-parted}
         ${tools-qalculate}
         ${tools-zathura}
-        ${virt-libvirtd}
 
 
         ### NIXOS-SUITES
         ${docLocal}
         ${i3}
         ${rustTools}
+        ${virtmanager}
 
 
         ### HOME-PROFILES
