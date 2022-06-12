@@ -45,6 +45,7 @@ in
     profiles.tools.network
     profiles.tools.parted
     profiles.tools.qalculate
+    profiles.tools.system
     profiles.tools.xorg
     profiles.tools.zathura
 

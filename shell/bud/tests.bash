@@ -48,6 +48,7 @@ tests.nixos.profiles.tools.hyperfine
 tests.nixos.profiles.tools.parted
 tests.nixos.profiles.tools.procs
 tests.nixos.profiles.tools.qalculate
+tests.nixos.profiles.tools.system
 tests.nixos.profiles.tools.tokei
 tests.nixos.profiles.tools.xorg
 tests.nixos.profiles.tools.zathura

@@ -27,6 +27,7 @@ let
   tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
+  tools-system         = readFile                ../../nixos/profiles/tools/system/testScript.py;
   tools-xorg           = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
 
   ### NIXOS-SUITES
@@ -105,6 +106,7 @@ let
         ${timezone}
         ${tools-parted}
         ${tools-qalculate}
+        ${tools-system}
         ${tools-xorg}
         ${tools-zathura}
         ${virt-docker}
