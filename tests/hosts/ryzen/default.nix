@@ -19,6 +19,7 @@ let
   consPreamble = builtins.readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   console      = consPreamble + builtins.readFile ../../nixos/profiles/console/testScript.py;
   imageCommon  = builtins.readFile                ../../nixos/profiles/image/common/testScript.py;
+  parted       = builtins.readFile                ../../nixos/profiles/tools/parted/testScript.py;
   ranger       = builtins.readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone     = builtins.readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   vim          = builtins.readFile                ../../nixos/profiles/editor/vim/testScript.py;
@@ -94,6 +95,7 @@ let
         ${chromium}
         # $${console} ### TODO reactivate after graphical
         ${imageCommon}
+        ${parted}
         ${ranger}
         ${timezone}
         ${vim}
