@@ -45,6 +45,7 @@ in
     profiles.tools.parted
     profiles.tools.qalculate
     profiles.tools.zathura
+    profiles.virtualisation.docker
 
     ### AUTOLOGIN ON CONSOLE
     # profiles.autologin.mainUser

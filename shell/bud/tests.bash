@@ -51,6 +51,7 @@ tests.nixos.profiles.tools.qalculate
 tests.nixos.profiles.tools.tokei
 tests.nixos.profiles.tools.zathura
 tests.nixos.profiles.tools.zoxide
+tests.nixos.virtualisation.docker
 tests.nixos.virtualisation.libvirtd
 tests.nixos.virtualisation.virtmanager
 

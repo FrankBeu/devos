@@ -26,6 +26,7 @@ let
   tools-parted    = readFile                ../../nixos/profiles/tools/parted/testScript.py;
   tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
 
   ### NIXOS-SUITES
   docLocal        = (import                 ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
@@ -104,6 +105,7 @@ let
         ${tools-parted}
         ${tools-qalculate}
         ${tools-zathura}
+        ${virt-docker}
 
 
         ### NIXOS-SUITES
