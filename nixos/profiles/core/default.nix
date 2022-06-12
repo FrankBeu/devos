@@ -37,7 +37,7 @@ in
       ripgrep
       skim
       tealdeer
-      usbutils
+      # usbutils ### TODO add profile.tools.usbutils to core suite
       util-linux
       whois
     ];

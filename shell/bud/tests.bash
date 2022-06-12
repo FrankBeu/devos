@@ -50,6 +50,7 @@ tests.nixos.profiles.tools.procs
 tests.nixos.profiles.tools.qalculate
 tests.nixos.profiles.tools.system
 tests.nixos.profiles.tools.tokei
+tests.nixos.profiles.tools.usbutils
 tests.nixos.profiles.tools.xorg
 tests.nixos.profiles.tools.zathura
 tests.nixos.profiles.tools.zoxide

@@ -46,6 +46,7 @@ in
     profiles.tools.parted
     profiles.tools.qalculate
     profiles.tools.system
+    profiles.tools.usbutils
     profiles.tools.xorg
     profiles.tools.zathura
 
