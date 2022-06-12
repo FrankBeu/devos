@@ -29,6 +29,7 @@ let
   virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
   tools-system         = readFile                ../../nixos/profiles/tools/system/testScript.py;
   tools-usbutils       = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
+  tools-vulkan         = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
   tools-xorg           = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
 
   ### NIXOS-SUITES
@@ -109,6 +110,7 @@ let
         ${tools-qalculate}
         ${tools-system}
         ${tools-usbutils}
+        ${tools-vulkan}
         ${tools-xorg}
         ${tools-zathura}
         ${virt-docker}
