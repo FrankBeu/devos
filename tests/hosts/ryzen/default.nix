@@ -13,20 +13,16 @@ let
 
   ### NIXOS
   ### NIXOS-MODULES
-  colorscheme     = readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables       = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
+  colorscheme          = readFile                ../../nixos/modules/colorscheme/testScript.py;
+  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
 
   ### NIXOS-PROFILES
-  consPreamble    = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
-  console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
-  editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
-  imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
-  ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
-  timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
-  tools-parted    = readFile                ../../nixos/profiles/tools/parted/testScript.py;
-  tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
-  tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
-  virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
+  consPreamble         = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
+  console              = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
+  editor-vim           = readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  imageCommon          = readFile                ../../nixos/profiles/image/common/testScript.py;
+  ranger               = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
+  timezone             = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   tools-android        = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;       });
   tools-drawio         = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
   tools-gotask         = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
@@ -35,24 +31,28 @@ let
   tools-lsof           = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
   tools-network        = readFile                ../../nixos/profiles/tools/network/testScript.py;
   tools-nixTools       = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
+  tools-parted         = readFile                ../../nixos/profiles/tools/parted/testScript.py;
+  tools-qalculate      = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   tools-system         = readFile                ../../nixos/profiles/tools/system/testScript.py;
   tools-usbutils       = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
   tools-vulkan         = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
   tools-xorg           = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
+  tools-zathura        = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  virt-docker          = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
 
   ### NIXOS-SUITES
-  docLocal        = (import                 ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
-  i3              = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
-  rustTools       = (import                 ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
-  virtmanager     = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
+  docLocal             = (import                 ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
+  i3                   = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
+  rustTools            = (import                 ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
+  virtmanager          = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
 
   ### HOME
   ### HOME-PROFILES
-  chromium        = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
-  # emacs         = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  fcitx           = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
-  gitPreamble     = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
-  git             = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
+  chromium             = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
+  # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
+  gitPreamble          = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
+  git                  = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
 
 
 
