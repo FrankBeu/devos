@@ -39,6 +39,25 @@ def assert_contains_regex(haystack: str, needle_regex_string: str, multiline: bo
         raise Exception(f"Expected regex '{needle_regex_string}' was not found")
 
 
+def assert_lacks_regex(haystack: str, needle_regex_string: str, multiline: bool=True) -> None:
+    '''
+    checks if the given regexString (e.g. r"google.com.\t[0-9]+\tIN\tA\t[0-9.]+")
+    can NOT be located in the haystack.
+    Default: search in multiline-string; can be deactivated with "multi_line=False"
+    '''
+    if multiline:
+        regex = re.compile(needle_regex_string, re.MULTILINE)
+    else:
+        regex = re.compile(needle_regex_string)
+
+    if regex.search(haystack):
+        print("The haystack that will cause the following exception is:")
+        print("---")
+        print(haystack, end="")
+        print("---")
+        raise Exception(f"Unexpected string '{needle_regex_string}' was found")
+
+
 def prepare_console_for_scrot() -> None:
     '''
     1. sets PS{1,2} -> ''
