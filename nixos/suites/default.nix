@@ -3,12 +3,12 @@ with profiles; rec
 {
   base        = [ core                                                                       ];
 
-  debug       = [ autologin.variable filemanager.ranger editor.vim                           ];
+  debug       = [ autologin.variable filemanager.ranger editor.vim                           ];        ### add nix-options
   debugR      = [ autologin.root     filemanager.ranger editor.vim                           ];
   # debugG    = [                    filemanager.ranger editor.vim                           ] ++ i3 ; ### TODO add graphical
 
   dnsRegular  = [ domain.server networking.nameserver.regular                                ];
-  # dnsSecure = [                                                                            ];           ### TODO
+  # dnsSecure = [                                                                            ];        ### TODO
 
   docLocal    = [ dnsRegular domain.local.domain domain.local.doc services.documentation bud ];  ### budLocalFlakeCloneLocation is used extensively throughout the documentation
 

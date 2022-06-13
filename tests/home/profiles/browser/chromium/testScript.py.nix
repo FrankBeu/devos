@@ -4,9 +4,8 @@ machine.wait_for_unit("multi-user.target")
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.browser.chromium"):
-    # runCurrentSystem = machine.succeed('ls /run/current-system/sw/bin')
-    runCurrentSystem = machine.succeed("ls ${hmProfileDir}")
-    assert_contains(runCurrentSystem, 'chromium')
+    hmProfileDir = machine.succeed("ls ${hmProfileDir}")
+    assert_contains(hmProfileDir, 'chromium')
 
     ### TODO check behaviour
     ### TODO check plugins
