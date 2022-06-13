@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   f3f
+### abstract:
+###   "Filefrom1Force: create FILENAME from clipboard overwriting existing file"
+### usage: |
+###   f3f FILENAME
+###
+### info: |
+###    `man xsel`
+###
+###
+### ---
+###
+function f3f () {
+    xsel -b >! ${1}
+}
+f3f ${@};

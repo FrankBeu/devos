@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   f2f
+### abstract:
+###   "Filefrom1Force: create FILENAME from selection 2 overwriting existing file"
+### usage: |
+###   f2f FILENAME
+###
+### info: |
+###    `man xsel`
+###
+###
+### ---
+###
+function f2f () {
+    xsel -s >! ${1}
+}
+f2f ${@};

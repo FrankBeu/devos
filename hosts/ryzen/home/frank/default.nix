@@ -20,6 +20,7 @@ in
     profiles.browser.chromium
     profiles.direnv
     profiles.display.i3
+    profiles.dotLocal
     profiles.editor.emacs
     profiles.filemanager.ranger
     profiles.git

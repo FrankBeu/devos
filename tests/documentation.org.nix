@@ -17,6 +17,11 @@ draft: false
 toc: true
 ---
 * TODO testing
+** ATTENTION
+*** languages
+**** python is on driver-level
+**** dataAquisition in bash
+***** TODO or python in python ??
 ** creation
 *** manually
 - create a directory with a =default.nix=

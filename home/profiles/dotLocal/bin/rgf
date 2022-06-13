@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   rgf
+### abstract:
+###   "RipGrepFullpath: pipe RG into pager with colors and Fullpath (cwd)"
+### usage: |
+###   rgf <RIPGREP-QUERY>
+###
+### info: |
+###   `man rg`
+###
+###
+### ---
+###
+function rgf () {
+    "/run/current-system/sw/bin/rg" -p $@ $(pwd) | $PAGER
+}
+rgf ${@};

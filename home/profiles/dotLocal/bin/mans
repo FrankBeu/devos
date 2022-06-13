@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   mans
+### abstract:
+###   "MANpagesSearch: open a manpage and jump to the first occurence of a searchterm"
+### usage: |
+###   mans <STRING> <PAGE>
+###
+### info: |
+###    `man bat`
+###
+###
+### ---
+###
+function mans () {
+    local pages string
+    if [[ -n $2 ]]
+    then
+        pages=(${@:2})
+        string="$1"
+    else
+        pages=$1
+    fi
+
+    batman ${2:+--pager="less -p \"$string\" -G"} ${pages[@]}  ### GNU man
+    # man ${2:+-P "less -p \"$string\" -G"} ${pages[@]}     ### BSD man
+}
+mans $@;

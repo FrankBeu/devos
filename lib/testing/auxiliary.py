@@ -146,5 +146,58 @@ def _out_dir() -> str:
         out_dir = os.environ.get("out", os.getcwd())
         return out_dir
 
+def ensure_dotLocal_header(filename: str, dotLocal_location: str) -> None:
+        machine.log(print("FILENAME:",filename))
+        file_content = machine.succeed("cat " + os.path.join(dotLocal_location, filename))
+        lines = file_content.split("\n", 18)
+
+        for line_number in range(1, 19):
+            line = lines[line_number - 1]
+            if   line_number == 1:
+                assert_contains_regex(line, r"^#!/usr/bin/env",                             multiline=False)
+                # machine.log(print(line))
+            elif line_number == 2:
+                assert_contains_regex(line, r"^###$",                                       multiline=False)
+            elif line_number == 3:
+                assert_contains_regex(line, r"^### ---$",                                   multiline=False)
+            elif line_number == 4:
+                assert_contains_regex(line, r"^### name:$",                                 multiline=False)
+            elif line_number == 5:
+                assert_lacks_regex(   line, r"^###   \(file-\).*$",                         multiline=False)
+            elif line_number == 6:
+                assert_contains_regex(line, r"^### abstract:$",                             multiline=False)
+            elif line_number == 7:
+                assert_lacks_regex(   line, r"^###   \"FullNameWithUppercaseLettersFoundInTheAbbreviation: description\"$", multiline=False)
+            elif line_number == 8:
+                assert_contains_regex(line, r"^### usage: \|$",                             multiline=False)
+            elif line_number == 9:
+                assert_contains_regex(line, r"^###",                                        multiline=False)
+            elif line_number == 10:
+                assert_contains_regex(line, r"^###",                                        multiline=False)
+            elif line_number == 11:
+                assert_contains_regex(line, r"^### info: |$",                               multiline=False)
+            elif line_number == 12:
+                assert_lacks_regex(   line, r"^###    misc - URLs, references, man-pages$", multiline=False)
+            elif line_number == 13:
+                assert_contains_regex(line, r"^###",                                        multiline=False)
+                assert_lacks_regex(   line, r"^### ---$",                                   multiline=False)
+            elif line_number == 14:
+                assert_contains_regex(line, r"^###",                                        multiline=False)
+                assert_lacks_regex(   line, r"^### ---$",                                   multiline=False)
+            elif line_number == 15:
+                assert_contains_regex(line, r"^### ---$",                                   multiline=False)
+            elif line_number == 16:
+                assert_contains_regex(line, r"^###$",                                       multiline=False)
+            elif line_number == 17:
+                assert_lacks_regex(   line, r"^###",                                        multiline=False)
+            else:
+                break
+
+            ### TODO requires python 3.10
+            # match line_number:
+            #     case 1:
+            #         return ""
+            #     case _:
+                #         break
 
 ### TODO: make machine available via shell.nix: extra sources nixos-tests for lsp

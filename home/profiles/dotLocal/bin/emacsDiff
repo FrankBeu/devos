@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   emacsDiff
+### abstract:
+###   "emacsDiff: diff two files"
+### usage: |
+###   emacsDiff FILE_A FILE_B
+###
+### info: |
+###    reason: quoting-issues rangers-%c-members cannot be surrounded by ""
+###    ranger/ext/shell_escape.py
+###
+### ---
+###
+function emacsDiff() {
+if [[ "$#" -ne 2 ]]; then
+    echo "emacsDiff can only handle exactly 2 arguments"
+    return
+fi
+FILE_A="${1:a}"
+FILE_B="${2:a}"
+
+emacsclient -nc -a "" --eval "(ediff-files \"${FILE_A}\" \"${FILE_B}\" )"
+}
+emacsDiff ${@};
+
+### TODO doc
+### TODO multiple modes zsh + yaml
+### TODO yaml will be parsed by `dotLocalInfo`
+### TODO update all scripts to yamlDoc

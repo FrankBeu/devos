@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   whereix
+### abstract:
+###   "WHEREIsniX: follow symlinks like `whereis executable`"
+### usage: |
+###   whereix <COMMAND>
+###
+### info: |
+###    `man whereis`
+###
+###
+### ---
+###
+function whereix() {
+    readlink $(whereis "$1" | awk '{print $2}') | tee >(xsel -p)
+}
+whereix ${@}

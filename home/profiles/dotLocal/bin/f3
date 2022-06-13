@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   f3
+### abstract:
+###   "Filefrom3: create FILENAME from clipboard"
+### usage: |
+###   f3 FILENAME
+###
+### info: |
+###    `man xsel`
+###
+###
+### ---
+###
+function f3 () {
+    xsel -b > ${1}
+}
+f3 ${@};

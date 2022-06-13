@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   bak
+### abstract:
+###   "BAcKup: append _BAK$(date +%s) to <FILENAME>"
+### usage: |
+###   bak <FILENAME>
+###
+### info: |
+###    `man date`
+###
+###
+### ---
+###
+function bak() {
+    file=${1%/}
+    cp "$file" "$file""_BAK$(date +%s)"
+}
+bak ${@};

@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   hclb
+### abstract:
+###   "HistCLipBoard: put last N records of the History into the clipbord"
+### usage: |
+###   hclb [NUMBER-OF-COMMANDS]
+###
+### info: |
+###   for fc:      `mans fc zshbuiltins`
+###   for history: `mans HISTORY zshoptions`
+###
+### ---
+###
+function hclb() {
+    ### set the default limit for entries to display when called without args
+    (( LIMIT = ${1:=1} ));
+
+    ### read HISTFILE
+    export HISTSIZE=999999999
+    export HISTFILE=$HOME/.local/share/zsh/zsh_history ### TODO nixify
+    fc -R
+
+    ### calculate number of entries to show
+    ((  LAST_EVENT_NUMBER_TO_DISPLAY = `fc -l |tail -1 | awk '{print $1}'` - 1 ))  ### do not show the last 'hclb'
+    (( FIRST_EVENT_NUMBER_TO_DISPLAY = ${LAST_EVENT_NUMBER_TO_DISPLAY} - ${LIMIT} + 1))
+
+    ### put requested history entries into clipboard
+    fc -nrl ${LAST_EVENT_NUMBER_TO_DISPLAY} ${FIRST_EVENT_NUMBER_TO_DISPLAY} | xsel -b
+}
+hclb ${@};

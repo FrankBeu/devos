@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   dlc
+### abstract:
+###   "DockerLogsColorized: show Docker Logs Colorized"
+### usage: |
+###   dlc <CONTAINER> <LINES>
+###
+### info: |
+###    docker logs --help
+###
+###
+### ---
+###
+function dlc() {
+    docker logs --tail ${2} --follow ${1} >&1 | ccze --mode ansi
+}
+dlc ${@};
+
+### TODO use bat instead of ccze

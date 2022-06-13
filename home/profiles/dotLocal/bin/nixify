@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   nixify
+### abstract:
+###   "NIXIFY: nixify a project for different langs"
+### usage: |
+###   nixify
+###
+### info: |
+###   `ls ~/.local/share/nixify`
+###
+###
+### ---
+###
+function nixify () {
+    autoload -Uz colors && colors
+
+    print -Pn '%B%F{blue}Which language should the setup be for?%f%b\n'
+    print -Pn '%B%F{yellow}'
+    read -s "selection?
+1 - python
+2 - flask
+
+"
+    print -Pn '%f%b\n'
+
+    case $selection in
+        1)
+            lang=python
+            ;;
+        2)
+            lang=flask
+            ;;
+        *)
+            lang='not available'
+            print -Pn "%B%F{red}The chosen language is ${lang}.%f%b\n\n"
+            return
+            ;;
+    esac
+
+    print -Pn "%B%F{blue}The templates for %B%F{green}${lang}%B%F{blue} will be created.%f%b\n\n"
+
+
+    cat > README.org  <(cat ${XDG_DATA_HOME}/nixify/{README,${lang}/README-APPENDIX}.org)
+    cat > .envrc      < ${XDG_DATA_HOME}/nixify/${lang}/envrc
+    cat > .gitignore  < ${XDG_DATA_HOME}/nixify/${lang}/gitignore
+    cat > default.nix < ${XDG_DATA_HOME}/nixify/${lang}/default.nix
+    cat > shell.nix   < ${XDG_DATA_HOME}/nixify/${lang}/shell.nix
+
+
+    case $selection in
+        1)
+        ;;
+        2)
+            cat > app.py         < ${XDG_DATA_HOME}/nixify/${lang}/app.py
+            cat > pyproject.toml < ${XDG_DATA_HOME}/nixify/${lang}/pyproject.toml
+            cat > poetry.lock    < ${XDG_DATA_HOME}/nixify/${lang}/poetry.lock
+            ;;
+        *)
+            return
+            ;;
+    esac
+
+    direnv allow
+}
+nixify

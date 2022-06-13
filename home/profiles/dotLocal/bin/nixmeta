@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   nixmeta
+### abstract:
+###   "NIXMETA: get a nix-pkg's meta in yaml"
+### usage: |
+###   nixmeta PACKAGE
+###
+### info: |
+###    `man nix-env`
+###
+###
+### ---
+###
+function nixmeta () {
+    nix-env -qa --meta --json ${1} | yq e -P -
+}
+nixmeta ${1};

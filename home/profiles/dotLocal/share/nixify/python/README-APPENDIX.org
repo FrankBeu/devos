@@ -1,0 +1,62 @@
+** DEVEL
+*** INITIALISATION
+1. create poetry.lock
+   #+begin_src shell :results drawer
+     poetry init
+     poetry lock
+     poetry cache clear --all .
+   #+end_src
+2. activate pythonEnv in =shell.nix=
+3. reload direnv
+   #+begin_src shell :results drawer
+     nfd
+   #+end_src
+*** direnv
+**** reload direnv
+***** XOR
+#+begin_example shell
+  nfs
+  nfd
+  nff
+#+end_example
+*** poetry
+https://python-poetry.org/docs/
+**** commands
+***** add dependency
+#+begin_src shell :results drawer
+poetry add requests
+#+end_src
+***** remove dependency
+#+begin_src shell :results drawer
+poetry remove requests
+#+end_src
+***** create lockFile
+#+begin_src shell :results drawer
+poetry lock --no-update
+#+end_src
+***** clear cache
+#+begin_src shell :results drawer
+poetry cache clear --all .
+#+end_src
+**** poetry2nix
+uses =default.nix=
+#+begin_src shell :results drawer
+  nix-build
+#+end_src
+*** python-pytest
+searches the project-root to find the executable and tests
+**** create
+***** OR
+- git repo
+- =.projectile=
+- =.dir-locals.el=
+   #+begin_src elisp
+   ((nil . ((eval . (setq projectile-project-root file-name-directory)))))
+   #+end_src
+**** commands
+***** reload dir-local
+~fb/reload-dir-locals-current-buffer~
+=SPC r d b=
+***** invalidate projectRoot (projectileCache)
+~projectile-invalidate-cache~
+=SPC p i=

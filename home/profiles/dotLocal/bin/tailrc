@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   tailc
+### abstract:
+###   "TAIL Colorized: tail with colors"
+### usage: |
+###   tailc <FILE>
+###
+### info: |
+###    `man tail`
+###
+###
+### ---
+###
+function tailc () {
+    tail $@ | ccze
+}
+tailc ${@};

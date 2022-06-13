@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   wherecd
+### abstract:
+###   "WHEREIsCD: cd into executable dir"
+### usage: |
+###   wherecd <COMMAND>
+###
+### info: |
+###    `man whereis`
+###
+###
+### ---
+###
+function wherecd() {
+    cd $(readlink $(whereis "$1" | awk '{print $2}'))(:h)
+}
+wherecd ${@}

@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   checkoutNthCommit
+### abstract:
+###   "checkoutNthCommit: get nth commit (to read from first to newest)"
+### usage: |
+###   via alias
+###   rscc <N>
+### info: |
+###    `man git`
+###    used for ReadTheSource
+###
+### ---
+###
+function getNthCommitHash() {
+    echo $(getNthCommit $1 | awk '/commit/ {print $2}')
+}
+
+function getNthCommit() {
+    git rev-list --all --remotes --pretty --reverse --topo-order| awk -v n=${1} '/^commit/{l++} l==n'
+}
+
+function checkoutNthCommit() {
+    git checkout $(getNthCommitHash $1)
+}
+checkoutNthCommit ${@};

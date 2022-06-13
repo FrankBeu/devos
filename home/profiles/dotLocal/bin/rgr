@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   rgr
+### abstract:
+###   "RipGreppageR: pipe rg into pager with colors"
+### usage: |
+###   rgr <RIPGREP-QUERY>
+###
+### info: |
+###   `man rg`
+###
+###
+### ---
+###
+function rgr () {
+    "/run/current-system/sw/bin/rg" -p $@ | $PAGER
+}
+rgr ${@};

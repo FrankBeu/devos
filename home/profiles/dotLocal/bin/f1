@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   f1
+### abstract:
+###   "Filefrom1: create FILENAME from selection 1"
+### usage: |
+###   f1 FILENAME
+###
+### info: |
+###    `man xsel`
+###
+###
+### ---
+###
+function f1 () {
+    xsel -p > ${1}
+}
+f1 ${@};

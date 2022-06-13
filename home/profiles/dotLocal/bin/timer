@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   timer
+### abstract:
+###   "TIMER: countdown with beep at end (default duration: 5s)"
+### usage: |
+###   timer [<DURATION>]
+###
+### info: |
+###    `man speaker-test`
+###
+###
+### ---
+###
+function timer() {
+    for (( i = ${1:-5}; i >= 0; i-- )); do
+        echo -n "$i "
+        sleep 1
+    done
+    while true
+    do
+        speaker-test -t sine -p 1 -c1 -l1 -r 10 -f 200 &&
+            sleep 3
+    done
+}
+timer ${@};

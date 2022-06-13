@@ -40,22 +40,22 @@ let
   tools-zathura        = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   video-vlc            = readFile                ../../nixos/profiles/video/vlc/testScript.py;
   video-ytdl           = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
-  virt-docker          = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;       });
+  virt-docker          = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;               });
 
   ### NIXOS-SUITES
-  docLocal             = (import                 ../../nixos/suites/docLocal/testScript.nix                                              ).testScript;
-  i3                   = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;       }).testScript;
-  rustTools            = (import                 ../../nixos/suites/rustTools/testScript.nix                                             ).testScript;
-  virtmanager          = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;       }).testScript;
+  docLocal             = (import                 ../../nixos/suites/docLocal/testScript.nix                                                      ).testScript;
+  i3                   = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;               }).testScript;
+  rustTools            = (import                 ../../nixos/suites/rustTools/testScript.nix                                                     ).testScript;
+  virtmanager          = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
 
   ### HOME
   ### HOME-PROFILES
-  chromium             = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir; });
+  chromium             = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
   # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;     });
+  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;             });
+  dotLocal             = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
   gitPreamble          = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
   git                  = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
-
 
 
   test = {
@@ -147,6 +147,7 @@ let
         # $${git}     ### TODO reactivate after graphical
         # $${emacs}   ### TODO reactivate after graphical
         # $${fcitx}   ### TODO reactivate after graphical
+        ${dotLocal}
       '';
 
       name = self.inputs.latest.lib.toUpper name;

@@ -82,6 +82,7 @@ tests.home.profiles.alacritty
 tests.home.profiles.browser.chromium
 # tests.home.profiles.display.cursor                ### TODO: implement
 tests.home.profiles.display.i3
+tests.home.profiles.dotLocal
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
 # tests.home.profiles.filemanager.ranger            ### TODO: implement ?? nec check if configuration is already defined via nixos - remove profile
 tests.home.profiles.git

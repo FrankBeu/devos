@@ -1,0 +1,22 @@
+---
+title: dotLocal
+linktitle: dotLocal
+description: documentation for ~/.local/
+categories:
+keywords: [userScripts .local]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "dotLocal"
+    identifier: "dotLocal"
+draft: false
+toc: true
+---
+* dotLocal
+** bin
+*** summonGopassProvider
+use gopass as provider for summon
+** share
+*** =~/.local/share/styles/styles.css=
+provide styles for
+- pipefox

@@ -1,0 +1,66 @@
+** DEVEL
+*** INITIALISATION
+in =pyproj.toml=
+1. rename project ~name~
+2. add to   project ~authors~
+   #+begin_example shell
+   "NAME SURNAME <EMAIL>"
+   #+end_example
+*** direnv
+**** reload direnv
+***** XOR
+#+begin_example shell
+  nfs
+  nfd
+  nff
+#+end_example
+*** flask
+https://flask.palletsprojects.com/en/2.0.x/
+https://flask.palletsprojects.com/en/2.0.x/quickstart/#a-minimal-application
+**** run
+#+begin_src shell :results drawer
+  flask run
+#+end_src
+**** debug
+~FLASK_ENV=development~ sets ~FLASK_DEBUG=1~
+*** poetry
+https://python-poetry.org/docs/
+**** commands
+***** add dependency
+#+begin_src shell :results drawer
+poetry add requests
+#+end_src
+***** remove dependency
+#+begin_src shell :results drawer
+poetry remove requests
+#+end_src
+***** create lockFile
+#+begin_src shell :results drawer
+poetry lock --no-update
+#+end_src
+***** clear cache
+#+begin_src shell :results drawer
+poetry cache clear --all .
+#+end_src
+**** poetry2nix
+uses =default.nix=
+#+begin_src shell :results drawer
+  nix-build
+#+end_src
+*** python-pytest
+searches the project-root to find the executable and tests
+**** create
+***** OR
+- git repo
+- =.projectile=
+- =.dir-locals.el=
+   #+begin_src elisp
+   ((nil . ((eval . (setq projectile-project-root file-name-directory)))))
+   #+end_src
+**** commands
+***** reload dir-local
+~fb/reload-dir-locals-current-buffer~
+=SPC r d b=
+***** invalidate projectRoot (projectileCache)
+~projectile-invalidate-cache~
+=SPC p i=

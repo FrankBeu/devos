@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   mcd
+### abstract:
+###   "MkdirCD: mkdir & cd to it"
+### usage: |
+###   mcd <DIR>
+###
+### info: |
+###    `man mkdir`
+###
+###
+### ---
+###
+function mcd () {
+    mkdir  -p -- "${1}" &&
+        cd -P -- "${1}"
+}
+mcd ${@};

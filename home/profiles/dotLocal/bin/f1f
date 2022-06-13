@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   f1f
+### abstract:
+###   "Filefrom1Force: create FILENAME from selection 1 overwriting existing file"
+### usage: |
+###   f1f FILENAME
+###
+### info: |
+###    `man xsel`
+###
+###
+### ---
+###
+function f1f () {
+    xsel -p >! ${1}
+}
+f1f ${@};

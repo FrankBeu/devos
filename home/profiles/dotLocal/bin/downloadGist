@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+###
+### ---
+### name:
+###   downloadGist
+### abstract:
+###   "downloadGist: download all files from a gist at given location and extract them"
+### usage: |
+###   downloadGist GIST-URL
+###
+### info: |
+###    used for CIMDATA
+###
+###
+### ---
+###
+"""Import all files from given gist."""
+import os
+import sys
+
+gist = sys.argv[1]
+os.system(f"curl -LO {gist}/download && unzip download")

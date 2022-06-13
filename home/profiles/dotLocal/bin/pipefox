@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   pipefox
+### abstract:
+###   "PIPEFOX: show file (md, org, ...) rendered in browser"
+### usage: |
+###   pipefox  FILE.{md,org,...}
+###   in ranger: xi
+### info: |
+###   styles are applied from ~/.local/share/styles/styles.css
+###   pandoc is used to render files
+###   chromium can also be used
+### ---
+###
+function pipefox() {
+    SOURCE_FILE=${1}
+
+    TMPFILE=$(mktemp ~/TMP/pipefox.XXXXXX.html)
+
+    pandoc  --standalone \
+            --css ~/.local/share/styles/styles.css \
+            --metadata title=${SOURCE_FILE:r} \
+            --output ${TMPFILE} \
+            ${SOURCE_FILE}
+
+    # $BROWSER ${TMPFILE}
+    firefox ${TMPFILE}
+    # xdg-open ${TMPFILE}
+}
+pipefox ${@};
+
+### TODO make ranger reference dynamic
+### TODO use xdg-open - after respecting defaultBrowser
