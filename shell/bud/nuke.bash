@@ -1,2 +1,2 @@
-rm -r result
-rm    *.qcow2
+rm -r ${FLAKEROOT}/result
+rm    ${FLAKEROOT}/*.qcow2

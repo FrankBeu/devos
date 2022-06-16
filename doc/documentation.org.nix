@@ -130,4 +130,20 @@ nixos-help
 ***** or in =nixos/profiles/services/documentation/content/=
 ***** hugo-files resides in =doc/docLocal/=
 ****** TODO colors are defined in  =nixos/profiles/services/documentation/colors/colors.scss.nix=
+** orgmodeInNix
+*** Escape
+**** dollarSign
+a *$* can be escaped with *''\'''\'$*
+***** text
+result: ~''${USER}~ \\
+writen as: ~''\'''\'''${USER}~
+***** src
+result:
+#+BEGIN_SRC python :results none
+''${USER}
+#+END_SRC
+writen as:
+#+BEGIN_SRC python :results none
+''\'''\'''${USER}
+#+END_SRC
 '' ### KEEP: closes nix string

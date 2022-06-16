@@ -1,11 +1,11 @@
-FLAKE_DIR=`pwd`
-### TODO check if FLAKE_DIR is always bud.location cf. ./template.bash
-
 source shellColorDefinitions
 
 declare -A TYPES
 TYPES[b]=basic
+TYPES[d]=bud
 TYPES[g]=golden
+TYPES[s]=suite
+TYPES[v]=variants
 
 
 ### TYPE
@@ -14,38 +14,50 @@ then
     TYPE_SELECTED=${TYPES[${1}]}
 else
     echo -e ""
-    echo -e "\tThe first argument has to be one of the following ${UB}types${N}:"
-    for TYPE in "${TYPES[@]}"; do echo -e "\t\t•${MB}${TYPE:0:1}${UB}${TYPE:1}${N}"; done
+    echo -e "\tThe first argument has to be one of the following ${UB}types${NE}:"
+    for TYPE in "${TYPES[@]}"; do
+        ### highlight shortcut-char
+        if [[ ${TYPE} == "bud" ]]
+        then echo -e "\t\t•${UB}${TYPE:0:2}${MB}${TYPE:2}${NE}"
+        else echo -e "\t\t•${MB}${TYPE:0:1}${UB}${TYPE:1}${NE}"
+        fi
+    done
     echo -e ""
-    exit
+    exit 1
 fi
 
 
 ### LOCATION
-if [[ ${2} =~ ^tests\.(home|host|nixos)(\.[[:alnum:]]+)+$ ]]  ### starting with ..., followed by a dot with alnums at least 1 time
+if [[ ${2} =~ ^tests\.(bud|home|host|nixos)(\.[[:alnum:]]+)+$ ]]  ### starting with ..., followed by a dot with alnums at least 1 time
 then
     LOCATION=${2//.//} ### substitut . with / globally
 else
     echo -e ""
-    echo -e "\tThe second argument has to be a ${UB}location${N} for the test."
-    echo -e "\t\t e.g.: ${Y}tests.${N}(${Y}home${N}|${Y}host${N}|${Y}nixos${N})${Y}.SEGMENT${N}[${Y}.SEGMENT${N}]${Y}.TESTNAME${N}"
+    echo -e "\tThe second argument has to be a ${UB}location${NE} for the test."
+    echo -e "\t\t e.g.: ${YR}tests.${NE}(${YR}bud${NE}|${YR}home${NE}|${YR}host${NE}|${YR}nixos${NE})[${YR}.SEGMENT${NE}[${YR}.SEGMENT${NE}]]${YR}.TESTNAME${NE}"
     echo -e ""
-    exit
+    exit 1
 fi
-echo -e ""
 
 
 ### INSTANTIATION
-if [[ -d ${FLAKE_DIR}/${LOCATION} ]]
+if [[ -d ${FLAKEROOT}/${LOCATION} ]]
 then
-    echo -e "\tA directory ${RB}already exists${N} at ${Y}${FLAKE_DIR}/${LOCATION}${N}."
     echo -e ""
-    exit
+    echo -e "\tA directory ${RB}already exists${NE} at ${YR}${FLAKEROOT}/${LOCATION}${NE}."
+    echo -e ""
+    exit 1
 else
-    mkdir -p ${FLAKE_DIR}/${LOCATION} &&
-    cp    -r ${FLAKE_DIR}/shell/bud/testCreate/templates/${TYPE_SELECTED}/* ${FLAKE_DIR}/${LOCATION} &&
-    sed   -i "s/<TESTNAME>/${2}/" ${FLAKE_DIR}/${LOCATION}/testScript.py &&
+    ### create location and testfiles
+    mkdir -p ${FLAKEROOT}/${LOCATION} &&
+    cp    -r ${FLAKEROOT}/shell/bud/testCreate/${TYPE_SELECTED}/* ${FLAKEROOT}/${LOCATION} &&
+    ### substitute TESTNAME with testname
+    if [[ -f ${FLAKEROOT}/${LOCATION}/testScript.py            ]]; then sed -i "s/<TESTNAME>/${2}/" ${FLAKEROOT}/${LOCATION}/testScript.py           ; fi &&
+    if [[ -f ${FLAKEROOT}/${LOCATION}/testScript.py.nix        ]]; then sed -i "s/<TESTNAME>/${2}/" ${FLAKEROOT}/${LOCATION}/testScript.py.nix       ; fi &&
+    if [[ -f ${FLAKEROOT}/${LOCATION}/testPreparation.nix      ]]; then sed -i "s/<TESTNAME>/${2}/" ${FLAKEROOT}/${LOCATION}/testPreparation.nix     ; fi && ### KEEP: host-test-composability - each golden would be overwritten
+    if [[ -f ${FLAKEROOT}/${LOCATION}/shared/testScript.py.nix ]]; then sed -i "s/<TESTNAME>/${2}/" ${FLAKEROOT}/${LOCATION}/shared/testScript.py.nix; fi &&
 
-    echo -e "\t A ${UB}${TYPE_SELECTED}${N}-Test was ${GB}created${N} in ${Y}${FLAKE_DIR}/${LOCATION}${N}."
+    echo -e ""
+    echo -e "\tA ${UB}${TYPE_SELECTED}${NE}-Test was ${GB}created${NE} in ${YR}${FLAKEROOT}/${LOCATION}${NE}."
     echo -e ""
 fi

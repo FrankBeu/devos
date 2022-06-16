@@ -1,1 +1,1 @@
-nix build .#${1}.driverInteractive
+nix build ${FLAKEROOT}#${1}.driverInteractive

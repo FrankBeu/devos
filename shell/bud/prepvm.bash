@@ -1,5 +1,9 @@
-PREPARE_VM_SCRIPT_PATH="./shell/bud/prepvm/${1:l}"
-if [[ -f ./$PREPARE_VM_SCRIPT_PATH ]]
+source shellColorDefinitions
+
+PREPARE_VM_SCRIPT_PATH="${FLAKEROOT}/shell/bud/prepvm/${1:l}"
+
+### PRINT COMMAND TO EVAL OR PRINT ERROR MESSAGE
+if [[ -f ${PREPARE_VM_SCRIPT_PATH} ]]
   then echo "source $PREPARE_VM_SCRIPT_PATH"
-  else echo "setupscript $PREPARE_VM_SCRIPT_PATH does not exist yet"
+  else echo -e "\n  setupscript ${MR}${PREPARE_VM_SCRIPT_PATH%/*}/${YR}${PREPARE_VM_SCRIPT_PATH##/*/}${NE} does ${RB}not${NE} exist yet\n" && exit 1
 fi

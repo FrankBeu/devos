@@ -41,6 +41,18 @@ toc: true
 - run ~check_golden_scrot(*debug=True*)~
 - cp result/GOLDEN.png to LOCATION/golden/<NAME>Target.png
 - run ~check_golden_scrot(*debug=False*)~
+**** tmpfiles.d
+#+BEGIN_SRC shell :results none
+  man tmpfiles.d
+#+END_SRC
+*** =testPreparation.nix=
+#+BEGIN_SRC nix
+  systemd.user.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit ....; } ).tmpfiles ];
+#+END_SRC
+- preparationScripts have to remain external
+- to be reusable in integration-tests
+- do not import rules as arrays - import rules as {multiline,}-string:
+   hosts must be able to import multiple rules
 ** run
 *** single test
 #+BEGIN_EXAMPLE shell
@@ -98,6 +110,30 @@ cf. ~tests.home.profiles.i18n.fcitx~
 *** testing
 **** do not use ~whereis COMMAND~
 will always exit with 0
+**** "regex" for ansi-color-codes
+***** orig
+#+BEGIN_SRC python :results none
+"•[35;1mv[34;1mariants[0m"
+#+END_SRC
+****** regex
+#+BEGIN_SRC python :results none
+r"""•.35;1mv.34;1mariants.0m"""
+#+END_SRC
+#+BEGIN_SRC python :results none
+"•\[35;1mv\[34;1mariants\[0m"
+#+END_SRC
+**** tests.bud
+***** ignore message
+#+BEGIN_SRC shell :results none
+test # logname: no login name
+#+END_SRC
+bud tries to set unused ~''${USER}~ \\
+check ~`bat /run/current-system/sw/bin/bud`~ \\
+only required in scripts where ~''${USER}~ is needed \\
+can be faked with ~''${TEST_USER}~
+#+BEGIN_SRC python :results none
+machine.execute('TEST_USER=''${username} bud COMMAND')
+#+END_SRC
 *** ~send_key~
 =nixos/lib/test-driver/test-driver.py=
 **** constructed from QEMU-doc

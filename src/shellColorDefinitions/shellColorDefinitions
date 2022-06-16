@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-B="\u001b[30m"     ### Black
-C="\u001b[36m"     ### Cyan
-G="\u001b[32m"     ### Green
-M="\u001b[35m"     ### Magenta
-R="\u001b[31m"     ### Red
-U="\u001b[34m"     ### blUe
-W="\u001b[37m"     ### White
-Y="\u001b[33m"     ### Yellow
+BR="\u001b[30m"    ### Black   Reg
+CR="\u001b[36m"    ### Cyan    Reg
+GR="\u001b[32m"    ### Green   Reg
+MR="\u001b[35m"    ### Magenta Reg
+RR="\u001b[31m"    ### Red     Reg
+UR="\u001b[34m"    ### blUe    Reg
+WR="\u001b[37m"    ### White   Reg
+YR="\u001b[33m"    ### Yellow  Reg
 
 BB="\u001b[30;1m"  ### Black   Bold
 CB="\u001b[36;1m"  ### Cyan    Bold
@@ -18,4 +18,4 @@ UB="\u001b[34;1m"  ### blUe    Bold
 WB="\u001b[37;1m"  ### White   Bold
 YB="\u001b[33;1m"  ### Yellow  Bold
 
-N="\u001b[0m"      ### No
+NE="\u001b[0m"      ### NoEffects

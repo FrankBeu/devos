@@ -20,9 +20,11 @@
     };
 
     bud = {
-      url    = "github:divnix/bud";
+      url    = "github:FrankBeu/bud";
+      # url    = "/home/frank/DEVOSBUD"; ### DEVEL
+      # url    = "github:divnix/bud";
       inputs = {
-        nixpkgs.follows  = "nixos";
+        nixpkgs.follows  = "latest";
         devshell.follows = "digga/devshell";
       };
     };

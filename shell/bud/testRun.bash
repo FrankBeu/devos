@@ -1,1 +1,1 @@
-nix build .#${1}
+nix build ${FLAKEROOT}#${1}

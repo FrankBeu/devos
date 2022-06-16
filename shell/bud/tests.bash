@@ -7,6 +7,20 @@
 
 
 allTests=(
+### BUD
+# tests.bud.colors                                  ### TODO: implement
+# tests.bud.get                                     ### TODO: implement
+tests.bud.nuke
+tests.bud.prepvm
+# tests.bud.sudoBurn                                ### TODO: implement
+tests.bud.template
+tests.bud.testCreate
+# tests.bud.testInteractive                         ### TODO: implement
+# tests.bud.testPrebuild                            ### TODO: implement
+# tests.bud.testRun                                 ### TODO: implement
+# tests.bud.testRunAll                              ### TODO: implement
+
+
 ### NIXOS
 tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
@@ -15,7 +29,7 @@ tests.nixos.modules.variables
 tests.nixos.profiles.alacritty
 tests.nixos.profiles.autologin.root
 tests.nixos.profiles.autologin.variable
-# tests.nixos.profiles.bud                          ### TODO: implement
+tests.nixos.profiles.bud
 tests.nixos.profiles.console
 # tests.nixos.profiles.core                         ### TODO: implement
 # tests.nixos.profiles.display.gnome                ### TODO: needs hw-acceleration
@@ -97,5 +111,5 @@ tests.hosts.ryzen
 
 for i in "${allTests[@]}"; do
   echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ nix build .#${i}"
-  nix build .#${i}
+  nix build ${FLAKEROOT}#${i}
 done

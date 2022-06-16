@@ -8,22 +8,31 @@ let
   hostVariables = host.config.variables;
   username      = hostVariables.testing.user.name;
   userID        = host.config.users.users.${username}.uid;
+  group         = host.config.users.users.${username}.group;
   hmProfileDir  = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
   readFile      = builtins.readFile;
+  budDir        = hostVariables.budLocalFlakeCloneLocation;
+
+  ### BUD
+  bud-nuke             = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
+  bud-prepvm           = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
+  bud-template         = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
+  bud-testCreate       = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir         ;       });
 
   ### NIXOS
   ### NIXOS-MODULES
   colorscheme          = readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;     });
+  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;             });
 
   ### NIXOS-PROFILES
+  bud                  = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit username;             });
   consPreamble         = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   console              = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
   editor-vim           = readFile                ../../nixos/profiles/editor/vim/testScript.py;
   imageCommon          = readFile                ../../nixos/profiles/image/common/testScript.py;
   ranger               = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   timezone             = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
-  tools-android        = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;       });
+  tools-android        = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
   tools-drawio         = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
   tools-gotask         = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
   tools-gucharmap      = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
@@ -73,14 +82,21 @@ let
         };
 
         systemd.tmpfiles.rules = [
+          ### bud: home/${username}/DEVOS
+          ( import ../../nixos/profiles/bud/testPreparation.nix        { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/nuke/testPreparation.nix                  { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/prepvm/testPreparation.nix                { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/template/testPreparation.nix              { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/testCreate/testPreparation.nix            { inherit budDir group self username; }).tmpfiles
+
           ### colorscheme: colorTest{Target,Actual}
-          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme; }).tmpfiles
+          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme;                }).tmpfiles
           ### variables: variablesTest{Target,Actual}
-          ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;   }).tmpfiles
+          ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
-          ( import ../../nixos/profiles/console/testPreparation.nix                            ).tmpfiles
+          ( import ../../nixos/profiles/console/testPreparation.nix                                           ).tmpfiles
           ### console: golden/gitVersionTarget.png
-          ( import ../../home/profiles/git/testPreparation.nix                                 ).tmpfiles
+          ( import ../../home/profiles/git/testPreparation.nix                                                ).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
@@ -103,6 +119,12 @@ let
 
         start_all()
 
+        ### BUD
+        ${bud} ### NIXOS-PROFILE
+        ${bud-nuke}
+        ${bud-prepvm}
+        ${bud-template}
+        ${bud-testCreate}
 
         ### NIXOS-MODULES
         ${colorscheme}

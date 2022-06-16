@@ -1,5 +1,5 @@
-export QEMU_OPTS=""
-export QEMU_NET_OPTS=""
+unset QEMU_OPTS
+unset QEMU_NET_OPTS
 
 
 # Local Variables:

@@ -1,5 +1,6 @@
-export QEMU_OPTS=""
-export QEMU_NET_OPTS="hostfwd=tcp::2226-:22"
+# export QEMU_OPTS=""
+export QEMU_OPTS="-vga none -device virtio-gpu-pci"
+export QEMU_NET_OPTS="hostfwd=tcp::2223-:22"
 
 
 # Local Variables:

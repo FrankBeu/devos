@@ -1,4 +1,4 @@
-# Editor configuration, see http://editorconfig.org
+### Editor configuration, see http://editorconfig.org
 root = true
 
 [*]
@@ -74,3 +74,28 @@ trim_trailing_whitespace = true
 [**/themes/*]
 indent_size = unset
 trim_trailing_whitespace = true
+
+### do NOT touch golden-files
+[**/golden/**]
+charset                    = unset
+end_of_line                = unset
+indent_size                = unset
+indent_style               = unset
+insert_final_newline       = false
+tab_width                  = unset
+trim_trailing_whitespace   = false
+
+
+### TODO doc
+### TODO can be aligned
+### CHECKS:
+###
+### first check if section name applies:
+### http://docs.editorconfig.org/en/master/editorconfig-format.html#file-location
+###
+### check with the following commands in emacs:
+### editorconfig-apply
+### editorconfig-display-current-properties
+### CHANGE PROPERTIES
+### editorconfig-apply
+### editorconfig-display-current-properties
