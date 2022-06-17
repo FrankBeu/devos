@@ -13,62 +13,61 @@ let
   readFile      = builtins.readFile;
   budDir        = hostVariables.budLocalFlakeCloneLocation;
 
-  ### BUD
-  bud-nuke             = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
-  bud-prepvm           = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
-  bud-template         = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
-  bud-testCreate       = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir;                });
 
-  ### NIXOS
-  ### NIXOS-MODULES
-  colorscheme          = readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit       username;       });
 
-  ### NIXOS-PROFILES
-  bud                  = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
-  consPreamble         = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
-  console              = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
-  editor-vim           = readFile                ../../nixos/profiles/editor/vim/testScript.py;
-  imageCommon          = readFile                ../../nixos/profiles/image/common/testScript.py;
-  ranger               = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
-  timezone             = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
-  tools-android        = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
-  tools-drawio         = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
-  tools-gotask         = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
-  tools-gucharmap      = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
-  tools-less           = readFile                ../../nixos/profiles/tools/less/testScript.py;
-  tools-lsof           = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
-  tools-network        = readFile                ../../nixos/profiles/tools/network/testScript.py;
-  tools-nixTools       = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
-  tools-parted         = readFile                ../../nixos/profiles/tools/parted/testScript.py;
-  tools-qalculate      = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
-  tools-system         = readFile                ../../nixos/profiles/tools/system/testScript.py;
-  tools-usbutils       = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
-  tools-vulkan         = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
-  tools-xorg           = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
-  tools-zathura        = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
-  video-vlc            = readFile                ../../nixos/profiles/video/vlc/testScript.py;
-  video-ytdl           = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
-  virt-docker          = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;               });
+  bud-nuke                      = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
+  bud-prepvm                    = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
+  bud-template                  = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
+  bud-testCreate                = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir;                });
 
-  ### NIXOS-SUITES
-  docLocal             = (import                 ../../nixos/suites/docLocal/testScript.nix                                                      ).testScript;
-  i3                   = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;               }).testScript;
-  rustTools            = (import                 ../../nixos/suites/rustTools/testScript.nix                                                     ).testScript;
-  virtmanager          = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
 
-  ### HOME
-  ### HOME-PROFILES
-  chromium             = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
-  clipmenu             = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
-  # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
-  dotLocal             = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
-  exa                  = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
-  git                  = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
-  stateVersion         = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
-  ripgrep              = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
-  nixTools             = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
+  nixos-module-colorscheme      = readFile                ../../nixos/modules/colorscheme/testScript.py;
+  nixos-module-variables        = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit       username;       });
+
+
+  nixos-profile-bud             = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
+  consPreamble                  = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
+  nixos-profile-console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
+  nixos-profile-editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
+  nixos-profile-ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
+  nixos-profile-timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
+  nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
+  nixos-profile-tools-drawio    = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
+  nixos-profile-tools-gotask    = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
+  nixos-profile-tools-gucharmap = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
+  nixos-profile-tools-less      = readFile                ../../nixos/profiles/tools/less/testScript.py;
+  nixos-profile-tools-lsof      = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
+  nixos-profile-tools-network   = readFile                ../../nixos/profiles/tools/network/testScript.py;
+  nixos-profile-tools-nixTools  = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
+  nixos-profile-tools-parted    = readFile                ../../nixos/profiles/tools/parted/testScript.py;
+  nixos-profile-tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
+  nixos-profile-tools-system    = readFile                ../../nixos/profiles/tools/system/testScript.py;
+  nixos-profile-tools-usbutils  = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
+  nixos-profile-tools-vulkan    = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
+  nixos-profile-tools-xorg      = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
+  nixos-profile-tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  nixos-profile-video-vlc       = readFile                ../../nixos/profiles/video/vlc/testScript.py;
+  nixos-profile-video-ytdl      = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
+  nixos-profile-virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;               });
+
+
+  nixos-suite-docLocal          = (import                 ../../nixos/suites/docLocal/testScript.nix                                                      ).testScript;
+  nixos-suite-i3                = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;               }).testScript;
+  nixos-suite-rustTools         = (import                 ../../nixos/suites/rustTools/testScript.nix                                                     ).testScript;
+  nixos-suite-virtmanager       = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
+
+
+  home-profile-chromium         = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
+  home-profile-clipmenu         = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
+  # home-profile-emacs          = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  home-profile-fcitx            = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
+  home-profile-dotLocal         = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
+  home-profile-exa              = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
+  home-profile-git              = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
+  home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
+  home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
+  home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
 
 
   test = {
@@ -121,64 +120,59 @@ let
 
         start_all()
 
-        ### BUD
-        ${bud} ### NIXOS-PROFILE
+        ${nixos-profile-bud}
         ${bud-nuke}
         ${bud-prepvm}
         ${bud-template}
         ${bud-testCreate}
 
-        ### NIXOS-MODULES
-        ${colorscheme}
-        ${variables}
+
+        ${nixos-module-colorscheme}
+        ${nixos-module-variables}
 
 
-        ### NIXOS-PROFILES
-        ${chromium}
-        # $${console} ### TODO reactivate after graphical
-        ${editor-vim}
-        ${imageCommon}
-        ${ranger}
-        ${timezone}
-        ${tools-android}
-        ${tools-drawio}
-        ${tools-gotask}
-        ${tools-gucharmap}
-        ${tools-less}
-        ${tools-lsof}
-        ${tools-network}
-        ${tools-nixTools}
-        ${tools-parted}
-        ${tools-qalculate}
-        ${tools-system}
-        ${tools-usbutils}
-        ${tools-vulkan}
-        ${tools-xorg}
-        ${tools-zathura}
-        ${video-vlc}
-        ${video-ytdl}
-        ${virt-docker}
+        # $${nixos-profile-console}      ### TODO reactivate after graphical
+        ${nixos-profile-editor-vim}
+        ${nixos-profile-imageCommon}
+        ${nixos-profile-ranger}
+        ${nixos-profile-timezone}
+        ${nixos-profile-tools-android}
+        ${nixos-profile-tools-drawio}
+        ${nixos-profile-tools-gotask}
+        ${nixos-profile-tools-gucharmap}
+        ${nixos-profile-tools-less}
+        ${nixos-profile-tools-lsof}
+        ${nixos-profile-tools-network}
+        ${nixos-profile-tools-nixTools}
+        ${nixos-profile-tools-parted}
+        ${nixos-profile-tools-qalculate}
+        ${nixos-profile-tools-system}
+        ${nixos-profile-tools-usbutils}
+        ${nixos-profile-tools-vulkan}
+        ${nixos-profile-tools-xorg}
+        ${nixos-profile-tools-zathura}
+        ${nixos-profile-video-vlc}
+        ${nixos-profile-video-ytdl}
+        ${nixos-profile-virt-docker}
 
 
-        ### NIXOS-SUITES
-        ${docLocal}
-        ${i3}
-        ${rustTools}
-        ${virtmanager}
+        ${nixos-suite-docLocal}
+        ${nixos-suite-i3}
+        ${nixos-suite-rustTools}
+        ${nixos-suite-virtmanager}
 
 
-        ### HOME-PROFILES
-        ${chromium}
-        ${clipmenu}
-        ${exa}
-        ${git}
-        ${dotLocal}
-        ${ripgrep}
+        ${home-profile-chromium}
+        ${home-profile-clipmenu}
+        ${home-profile-exa}
+        ${home-profile-git}
+        ${home-profile-dotLocal}
+        ${home-profile-ripgrep}
       '';
-        # ${emacs}        ### TODO reactivate after graphical
-        # ${fcitx}        ### TODO reactivate after graphical
-        # ${stateVersion} ### TODO reactivate after nixos-option is fixed
-        # ${nixTools}     ### TODO reactivate after zsh
+        # ${home-profile-emacs}          ### TODO reactivate after graphical
+        # ${home-profile-fcitx}          ### TODO reactivate after graphical
+        # ${home-profile-stateVersion}   ### TODO reactivate after nixos-option is fixed
+        # ${home-profile-tools-nixTools} ### TODO reactivate after zsh
 
       name = self.inputs.latest.lib.toUpper name;
   };
