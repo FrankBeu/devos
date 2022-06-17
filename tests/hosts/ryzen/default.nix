@@ -64,6 +64,7 @@ let
   # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
   fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
   dotLocal             = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
+  exa                  = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
   git                  = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
 
 
@@ -166,6 +167,7 @@ let
         ### HOME-PROFILES
         ${chromium}
         ${clipmenu}
+        ${exa}
         ${git}
         # $${emacs}   ### TODO reactivate after graphical
         # $${fcitx}   ### TODO reactivate after graphical

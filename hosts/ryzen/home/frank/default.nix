@@ -23,6 +23,7 @@ in
     profiles.display.i3
     profiles.dotLocal
     profiles.editor.emacs
+    profiles.exa
     profiles.filemanager.ranger
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
