@@ -396,19 +396,22 @@ machine.wait_until_succeeds("pgrep -u nixos bash")
 machine.send_key("ctrl-alt-f2")
 #+END_EXAMPLE
 **** test systemdservice
+***** debug
 #+BEGIN_EXAMPLE python
 machine.wait_for_unit("documentation.service")
-with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Check if DOCUMENTATION-TEST-FILES are available"):
-    _, doc = machine.systemctl("status hugo.service --no-pager")
-    machine.log(doc)
+_, doc = machine.systemctl("status hugo.service --no-pager")
+machine.log(doc)
 
-    log = machine.succeed("journalctl -b -u hugo.service --no-pager")
-    machine.log(print(log))
-
-    etc = machine.succeed("ls -r /etc/docLocal")
-    machine.log(print(etc))
-    machine.log('=====================================================')
+log = machine.succeed("journalctl -b -u hugo.service --no-pager")
+machine.log(print(log))
 #+END_EXAMPLE
+***** check documentation
+#+BEGIN_SRC python :results none
+machine.wait_for_unit("documentation.service")
+output = machine.wait_until_succeeds('curl localhost:41503/homemanager/git/')
+assert_contains(output, "<title>git - Docs</title>")
+#+END_SRC
+****** TODO align all tests
 **** ocr
 #+BEGIN_EXAMPLE python
 gitVersion = machine.get_screen_text()

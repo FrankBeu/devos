@@ -64,8 +64,7 @@ let
   # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
   fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
   dotLocal             = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
-  gitPreamble          = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
-  git                  = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
+  git                  = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
 
 
   test = {
@@ -96,8 +95,6 @@ let
           ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
           ( import ../../nixos/profiles/console/testPreparation.nix                                           ).tmpfiles
-          ### console: golden/gitVersionTarget.png
-          ( import ../../home/profiles/git/testPreparation.nix                                                ).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
@@ -169,7 +166,7 @@ let
         ### HOME-PROFILES
         ${chromium}
         ${clipmenu}
-        # $${git}     ### TODO reactivate after graphical
+        ${git}
         # $${emacs}   ### TODO reactivate after graphical
         # $${fcitx}   ### TODO reactivate after graphical
         ${dotLocal}

@@ -8,31 +8,29 @@ let
   username = host.config.variables.testing.user.name;
 
   test = {
-
     nodes = {
       machine = { suites, profiles, variables, ... }:
       {
         imports = with profiles; [
           services.documentation
-          autologin.variable
-        ];
+        ] ++
+        # suites.debug ++
+        [];
 
         bud.localFlakeClone               = "/home/${username}/DEVOS"; ### documentation relies on the location
         variables.documentation.user.name = username;
 
-        ### golden/gitVersionTarget.png
-        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
 
         home-manager.users.${username} = { profiles, suites, ... }:
         {
-          imports = [
+          imports = with profiles; [
             profiles.git
           ];
         };
       };
     };
 
-    enableOCR = true;
+    enableOCR  = false;
 
     testScript =
       ''
@@ -46,7 +44,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  hmProfileDir       = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
+  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDir username; });
 
 in
 {
