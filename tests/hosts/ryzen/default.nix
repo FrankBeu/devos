@@ -68,6 +68,7 @@ let
   git                  = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
   stateVersion         = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   ripgrep              = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
+  nixTools             = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
 
 
   test = {
@@ -174,10 +175,10 @@ let
         ${dotLocal}
         ${ripgrep}
       '';
-        # ${nixTools}
-        # $${emacs}       ### TODO reactivate after graphical
-        # $${fcitx}       ### TODO reactivate after graphical
+        # ${emacs}        ### TODO reactivate after graphical
+        # ${fcitx}        ### TODO reactivate after graphical
         # ${stateVersion} ### TODO reactivate after nixos-option is fixed
+        # ${nixTools}     ### TODO reactivate after zsh
 
       name = self.inputs.latest.lib.toUpper name;
   };

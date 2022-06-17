@@ -106,6 +106,7 @@ tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.ripgrep
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
+tests.home.profiles.tools.nixTools
 
 
 ### HOSTS

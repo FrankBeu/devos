@@ -29,6 +29,7 @@ in
     # profiles.i18n.fcitx         ### kills emacs
     profiles.ripgrep
     profiles.stateVersion
+    profiles.tools.nixTools
 
     # inputs.nix-colors.homeManagerModule
   ];
