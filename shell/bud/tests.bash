@@ -104,6 +104,7 @@ tests.home.profiles.exa
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
+# tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 
 
 ### HOSTS

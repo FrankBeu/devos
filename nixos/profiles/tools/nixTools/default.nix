@@ -1,7 +1,9 @@
 { channel, pkgs, ... }:
+# { channel, pkgs, self, ... }:
 {
   environment = {
     systemPackages = with pkgs; [
+      # nixos-option
     ];
 
     shellAliases = {
@@ -17,3 +19,4 @@
 ### DEPRECATED: programs.command-not-found.enable = true;
 ### nix-locate is used instead is used directly via nix-index-0.1.2/etc/profile.d/command-not-found.sh::command_not_found_handle
 ### ../../../../home/profiles/tools/nixTools/default.nix
+### https://search.nixos.org/packages?channel=unstable&query=nixos-option

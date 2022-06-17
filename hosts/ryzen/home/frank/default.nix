@@ -27,6 +27,7 @@ in
     profiles.filemanager.ranger
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
+    profiles.stateVersion
 
     # inputs.nix-colors.homeManagerModule
   ];
