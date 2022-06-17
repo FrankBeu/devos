@@ -67,6 +67,7 @@ let
   exa                  = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
   git                  = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
   stateVersion         = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
+  ripgrep              = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
 
 
   test = {
@@ -170,11 +171,13 @@ let
         ${clipmenu}
         ${exa}
         ${git}
+        ${dotLocal}
+        ${ripgrep}
+      '';
+        # ${nixTools}
         # $${emacs}       ### TODO reactivate after graphical
         # $${fcitx}       ### TODO reactivate after graphical
-        ${dotLocal}
         # ${stateVersion} ### TODO reactivate after nixos-option is fixed
-      '';
 
       name = self.inputs.latest.lib.toUpper name;
   };
