@@ -45,6 +45,7 @@ in
     profiles.tools.android
     profiles.tools.drawio
     profiles.tools.gotask
+    profiles.tools.gpu
     profiles.tools.gucharmap
     profiles.tools.less
     profiles.tools.lsof
@@ -54,7 +55,6 @@ in
     profiles.tools.qalculate
     profiles.tools.system
     profiles.tools.usbutils
-    profiles.tools.vulkan
     profiles.tools.xorg
     profiles.tools.zathura
     profiles.video.vlc

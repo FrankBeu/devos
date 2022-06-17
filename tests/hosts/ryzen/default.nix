@@ -35,6 +35,7 @@ let
   nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
   nixos-profile-tools-drawio    = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
   nixos-profile-tools-gotask    = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
+  nixos-profile-tools-gpu       = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
   nixos-profile-tools-gucharmap = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
   nixos-profile-tools-less      = readFile                ../../nixos/profiles/tools/less/testScript.py;
   nixos-profile-tools-lsof      = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
@@ -44,7 +45,6 @@ let
   nixos-profile-tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   nixos-profile-tools-system    = readFile                ../../nixos/profiles/tools/system/testScript.py;
   nixos-profile-tools-usbutils  = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
-  nixos-profile-tools-vulkan    = readFile                ../../nixos/profiles/tools/vulkan/testScript.py;
   nixos-profile-tools-xorg      = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
   nixos-profile-tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   nixos-profile-video-vlc       = readFile                ../../nixos/profiles/video/vlc/testScript.py;
@@ -139,6 +139,7 @@ let
         ${nixos-profile-tools-android}
         ${nixos-profile-tools-drawio}
         ${nixos-profile-tools-gotask}
+        ${nixos-profile-tools-gpu}
         ${nixos-profile-tools-gucharmap}
         ${nixos-profile-tools-less}
         ${nixos-profile-tools-lsof}
@@ -148,7 +149,6 @@ let
         ${nixos-profile-tools-qalculate}
         ${nixos-profile-tools-system}
         ${nixos-profile-tools-usbutils}
-        ${nixos-profile-tools-vulkan}
         ${nixos-profile-tools-xorg}
         ${nixos-profile-tools-zathura}
         ${nixos-profile-video-vlc}

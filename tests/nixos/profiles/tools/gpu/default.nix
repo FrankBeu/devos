@@ -12,7 +12,7 @@ let
       machine = { suites, profiles, ... }:
       {
         imports = with profiles; [
-          tools.vulkan
+          tools.gpu
         ];
       };
     };
