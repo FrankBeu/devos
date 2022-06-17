@@ -17,15 +17,15 @@ let
   bud-nuke             = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
   bud-prepvm           = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
   bud-template         = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
-  bud-testCreate       = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir         ;       });
+  bud-testCreate       = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir;                });
 
   ### NIXOS
   ### NIXOS-MODULES
   colorscheme          = readFile                ../../nixos/modules/colorscheme/testScript.py;
-  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit username;             });
+  variables            = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit       username;       });
 
   ### NIXOS-PROFILES
-  bud                  = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit username;             });
+  bud                  = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
   consPreamble         = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   console              = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
   editor-vim           = readFile                ../../nixos/profiles/editor/vim/testScript.py;
@@ -60,8 +60,9 @@ let
   ### HOME
   ### HOME-PROFILES
   chromium             = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
+  clipmenu             = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
   # emacs              = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit username;             });
+  fcitx                = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
   dotLocal             = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
   gitPreamble          = readFile                ../../home/profiles/git/testScriptIntegrationPreamble.py;
   git                  = gitPreamble + readFile  ../../home/profiles/git/testScript.py;
@@ -166,6 +167,8 @@ let
 
 
         ### HOME-PROFILES
+        ${chromium}
+        ${clipmenu}
         # $${git}     ### TODO reactivate after graphical
         # $${emacs}   ### TODO reactivate after graphical
         # $${fcitx}   ### TODO reactivate after graphical

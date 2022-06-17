@@ -18,6 +18,7 @@ in
 
     profiles.alacritty
     profiles.browser.chromium
+    profiles.clipmenu
     profiles.direnv
     profiles.display.i3
     profiles.dotLocal
