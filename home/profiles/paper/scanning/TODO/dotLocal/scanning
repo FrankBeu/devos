@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   scan
+### abstract:
+###   "scan: scan from external scanner"
+### usage: |
+###   via aliases
+###   scan(g|c) <FILENAME>
+### info: |
+###    `man scanimage`
+###
+###
+### ---
+###
+function scan() {
+    MODE=${1}
+    scanimage  -x 210 -y 297 --format=png --mode ${MODE} --resolution 300 | convert png:- ${2}.pdf;
+}
+scan ${@};
