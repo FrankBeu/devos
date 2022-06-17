@@ -1,9 +1,8 @@
 {
-  ### https://github.com/Base24/base24-one-light-scheme
-  custom-base24-oneLight = {
+  custom-base24-macRofi = {
     slug   = "oneLight";
     name   = "One Light";
-    author = "Base24";
+    author = "fb";
     colors = {
       base00 = "e7e7e9"; ### "#e7e7e9" Default Background                                                 ##
       base01 = "dfdfe1"; ### "#dfdfe1" Lighter Background (Used for status bars)
@@ -29,6 +28,66 @@
       base15 = "01a7ef"; ### "#01a7ef" base0C lighter
       base16 = "709af5"; ### "#709af5" base0D lighter
       base17 = "d02fcd"; ### "#d02fcd" base0E lighter
+
+    # black0:		#1A171B;
+    # black1:		#252228;
+    # black2:		#29262C;
+    # black3:		#2E2A31;
+    # gray0:		#BCBABE;
+    # gray1:		#C4CBD4 ;
+    # color0:		#AF3A03;
+    # color1:		#D8137F;
+    # color2:		#01ACFF;
+
+    # colorBorder:        @color0;
+
+    # foreground:		#ffeedd;
+    # backlight:		#ccffeedd;
+    # background-color:  transparent;
+    # dark:		#1c1c1c;
+
+    # /* BLACK */
+    # black:		#3d352a;
+    # lightblack:		#554444;
+    # tlightblack:	#554444cc;
+
+    # /* RED */
+    # red:		#cd5c5c;
+    # lightred:		#cc5533;
+
+    # /* GREEN */
+    # green:		#86af80;
+    # lightgreen:	#88cc22;
+
+    # /* YELLOW */
+    # yellow:		#e8ae5b;
+    # lightyellow:	#ffa75d;
+
+    # /* BLUE */
+    # blue:		#6495ed;
+    # lightblue:		#87ceeb;
+
+    # /* MAGENTA */
+    # magenta:		#deb887;
+    # lightmagenta:	#996600;
+
+    # /* CYAN */
+    # cyan:		#b0c4de;
+    # tcyan:		#ccb0c4de;
+    # lightcyan:		#b0c4de;
+
+    # /* WHITE */
+    # white:		#bbaa99;
+    # lightwhite:		#ddccbb;
+
+    # /* BOLD, ITALIC, UNDERLINE */
+    # highlight:     underline bold #ffffff;
+
+    # transparent: rgba(0,0,0,0);
+    # /* font: "Source Code Pro 18"; */
+    # font: "Roboto 20";
+
     };
   };
 }
+### TODO
