@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   tailbat
+### abstract:
+###   "tailbat: pipe the tail -f data into bat"
+### usage: |
+###   tailbat <LOGLOCATION>
+###
+### info: |
+###   https://github.com/sharkdp/bat#tail--f
+###
+###
+### ---
+###
+function tailbat() {
+    tail --follow $1 | bat --paging=never --language log
+}
+tailbat ${@};

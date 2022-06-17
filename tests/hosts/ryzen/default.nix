@@ -58,6 +58,7 @@ let
   nixos-suite-virtmanager       = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
 
 
+  home-profile-bat              = (import                 ../../home/profiles/bat/testScript.py.nix                      { inherit hmProfileDir username;});
   home-profile-chromium         = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
   home-profile-clipmenu         = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
   # home-profile-emacs          = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
@@ -98,6 +99,8 @@ let
           ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
           ( import ../../nixos/profiles/console/testPreparation.nix                                           ).tmpfiles
+          ### home-profiles-bat
+          ( import ../../home/profiles/bat/testPreparation.nix         { inherit        group      username; }).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
@@ -162,17 +165,19 @@ let
         ${nixos-suite-virtmanager}
 
 
+        ${home-profile-bat}
         ${home-profile-chromium}
         ${home-profile-clipmenu}
         ${home-profile-exa}
-        ${home-profile-git}
         ${home-profile-dotLocal}
         ${home-profile-ripgrep}
       '';
+        # ${home-profile-git}
         # ${home-profile-emacs}          ### TODO reactivate after graphical
         # ${home-profile-fcitx}          ### TODO reactivate after graphical
         # ${home-profile-stateVersion}   ### TODO reactivate after nixos-option is fixed
         # ${home-profile-tools-nixTools} ### TODO reactivate after zsh
+        ### all documentation tests seem to be unreliable reactivate after passthrough or other improvements
 
       name = self.inputs.latest.lib.toUpper name;
   };

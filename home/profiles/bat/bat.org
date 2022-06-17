@@ -1,0 +1,115 @@
+---
+title: bat
+linktitle: bat
+description: documentation for bat
+categories:
+keywords: [ bat, syntax, color ]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "bat"
+    identifier: "bat"
+draft: false
+toc: true
+---
+* bat
+** syntax
+*** create custom syntax for tridactylrc
+ https://github.com/sharkdp/bat#adding-new-syntaxes--language-definitions
+*** files need extension: *.sublime-syntax*
+*** filename does not matter otherwise
+*** ~name~ in yamlFile has to match the provided ~--language~ flag on CLI caseINsensitive
+*** DEVELOPMENT
+**** syntax
+1. move =~/.cache/bat= out of the way
+2. create =~/.config/bat/syntaxes=
+   #+BEGIN_SRC shell :results none
+   mkdir -p ~/.config/bat/syntaxes
+   #+END_SRC
+3. create and work in  =~/.config/bat/syntaxes/SYNTAX=
+4. devDeploy
+      #+BEGIN_SRC shell :results drawer
+      bat cache --build
+      #+END_SRC
+      #+BEGIN_EXAMPLE shell
+      bat cache --build && <TEST-COMMAND>
+      #+END_EXAMPLE
+5. Deploy
+   a. move syntax to =/etc/nixos/config/users/config/homemanager/bat/bat/syntaxes/=
+   b. move =~/.cache/bat= to =/etc/nixos/config/users/config/homemanager/bat/cache/bat/=
+   c. remove =~/.cache/bat=
+   d. remove =~/.config/bat/syntaxes=
+   e. switch
+6. check
+  #+BEGIN_SRC shell :results drawer
+  zlib-flate -uncompress < syntaxes.bin > syntaxes
+  strings syntaxes
+  #+END_SRC
+
+*** INFO
+**** scope
+https://www.sublimetext.com/docs/scope_naming.html
+**** syntax definition
+http://www.sublimetext.com/docs/syntax.html
+*** FUNDUS
+#+BEGIN_SRC yaml
+### FUNDUS
+  # scopes:
+  #   additional:
+  #     scope: constant.numeric.tridactyl             ### lila
+  #     scope: entity.name.class.tridactyl            ### cyan(u)
+  #     scope: markup.tridactyl                       ### white
+  #     scope: meta.tridactyl                         ### white
+  #     scope: punctuation.tridactyl                  ### white
+  #     scope: source.tridactyl                       ### white
+  #     scope: text.tridactyl                         ### white
+  #   basic:
+  #     scope: comment.tridactyl                      ### gray
+  #     scope: constant.character.escape.tridactyl    ### lila
+  #     scope: constant.language.tridactyl            ### lila
+  #     scope: constant.numeric.tridactyl             ### lila
+  #     scope: constant.tridactyl                     ### white
+  #     scope: entity.name.section.tridactyl          ### green
+  #     scope: entity.name.tag.tridactyl              ### red
+  #     scope: entity.name.tridactyl                  ### green
+  #     scope: entity.other.attribute-name.tridactyl  ### green
+  #     scope: entity.other.inherited-class.tridactyl ### green(u)
+  #     scope: invalid.deprecated.tridactyl           ### white
+  #     scope: invalid.tridactyl                      ### white
+  #     scope: keyword.control.tridactyl              ### red
+  #     scope: keyword.declaration.tridactyl          ### red
+  #     scope: keyword.operator.tridactyl             ### red
+  #     scope: keyword.tridactyl                      ### red
+  #     scope: storage.modifier.tridactyl             ### red
+  #     scope: storage.type.tridactyl                 ### cyan
+  #     scope: string.tridactyl                       ### beige
+  #     scope: support.tridactyl                      ### white
+  #     scope: variable.function.tridactyl            ### white
+  #     scope: variable.language.tridactyl            ### white
+  #     scope: variable.parameter.tridactyl           ### orange
+  #     scope: variable.tridactyl                     ### white
+  # matches:
+  #   - match: ' \*\* .*\b'
+  #   - match: \b(if|else|for|while)\b
+  #   - match: '^".*'
+  #   - match: '^[^"]'
+  #   - match: '"'
+  #   - match: \\**.*
+  #   - match: \b(set)\b
+  #     scope: keyword.control.tridactyl
+  #   - match: \b(http)
+  #     scope: keyword.control.tridactyl
+#+END_SRC
+** TODO TODOS
+*** TODO automate syntax build
+ output dir cannot be chosen
+**** currently the syntax-cache has to be build by hand
+1. add syntaxes to =~/.config/bat/syntaxes=
+2. remove current cacheDir
+3. build cache
+#+BEGIN_SRC shell :results drawer
+  cd ~
+  bat cache --build
+#+END_SRC
+4. update =./cache= with results
+5. update nixos

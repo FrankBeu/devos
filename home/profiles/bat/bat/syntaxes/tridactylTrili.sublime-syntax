@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+### scopes are chosen based on visual impression not on the actual scope
+### http://www.sublimetext.com/docs/3/syntax.html
+name: tridactyltrili
+file_extensions:
+  # - tridactylrc
+  # - FILE.EXT
+scope: source.tridactyltrili
+contexts:
+  main:
+    - match: '\bhttp(s)+://'
+      push: url
+    - match: '\b(?<=searchurls\.).* '
+      scope: entity.other.attribute-name.tridactyl  ### green
+    # - match: \b(searchurls)
+    #   scope: string.tridactyl                       ### beige
+    - match: '\b(?<=quickmark ). '
+      scope: entity.other.attribute-name.tridactyl  ### green
+    # - match: \b(quickmark)\b
+    #   scope: string.tridactyl                       ### beige
+    - match: '^".*'
+      push: comment
+  comment:
+    - meta_scope: comment
+    - match: '\b(?<=\*\* ).*\b'
+      scope: keyword.control.tridactyl              ### red
+    - match: '\bUSAGE\b'
+      scope: variable.parameter.tridactyl           ### orange
+    - match: '^"$'
+      pop: true
+  url:
+    - match: '%s'
+      scope: constant.language.tridactyl            ### lila
+    - match: '\b(?<=://).*?/'
+      scope: entity.other.attribute-name.tridactyl  ### green
+    - match: $
+      pop: true
+
+# Local Variables:
+# mode: yaml
+# End:

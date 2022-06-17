@@ -93,6 +93,7 @@ tests.nixos.suites.virtmanager
 
 ### HOME
 tests.home.profiles.alacritty
+tests.home.profiles.bat
 tests.home.profiles.browser.chromium
 tests.home.profiles.clipmenu
 # tests.home.profiles.display.cursor                ### TODO: implement

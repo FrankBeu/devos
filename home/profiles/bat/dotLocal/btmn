@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   btmn
+### abstract:
+###   "btmn: pipe the last help command into BaT with language MaN"
+### usage: |
+###   btmn
+###
+### info: |
+###    batman (alias: man) which colorizes manpages exists also.
+###
+###
+### ---
+###
+function btmn() {
+    export HISTSIZE=2
+    export HISTFILE=$HOME/.local/share/zsh/zsh_history ### TODO nixify
+    fc -R
+
+    ### only last entry
+    ((  EVENT_NUMBER_TO_DISPLAY = `fc -l |tail -1 | awk '{print $1}'` - 1 ))
+    $(fc -lnr ${EVENT_NUMBER_TO_DISPLAY} ${EVENT_NUMBER_TO_DISPLAY})| bat -l man
+}
+btmn

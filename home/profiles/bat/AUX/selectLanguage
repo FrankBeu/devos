@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+declare -a LANGS
+source ~/.local/share/shellColorDefinitions
+
+### 1. set output to test
+OUTPUT='kopia snapshot ls'
+
+### 2. get all possible languages
+LANGS=($(bat -L| bat -pP | sd '.*:' "" | sd '$' "" | sd ",.*" "" | less))
+
+### 3. test selection
+# LANGS=(htpasswd applescript CMakeCache.txt fstab groovy)
+
+
+for i ("${LANGS[@]}") do
+    echo -e "\n\n\t ${GB}${i}${N}"
+    eval ${OUTPUT} | bat --paging=never -l ${i}
+    done

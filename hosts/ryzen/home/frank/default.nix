@@ -17,6 +17,7 @@ in
     ../../variables
 
     profiles.alacritty
+    profiles.bat
     profiles.browser.chromium
     profiles.clipmenu
     profiles.direnv

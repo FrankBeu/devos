@@ -1,0 +1,41 @@
+%YAML 1.2
+---
+### scopes are chosen based on visual impression not on the actual scope
+### http://www.sublimetext.com/docs/3/syntax.html
+name: tridactyltrihi
+file_extensions:
+  # - tridactylrc
+  # - FILE.EXT
+scope: source.tridactyltrihi
+contexts:
+  main:
+    - match: '(?<=\*\* )HINTS'
+      scope: entity.name.tag.tridactyl              ### red
+    - match: '\b(?<=bind).{1,4} '
+      scope: entity.other.attribute-name.tridactyl  ### green
+    - match: '"{4}'
+      push: doc
+    - match: '^" [^\*].*'
+      push: comment
+    - match: '^"{1,3}|\*\*|\* -.*'
+      scope: comment.tridactyl                      ### gray
+  doc:
+    - meta_scope: comment
+    - match: ' -.*? '
+      scope: constant.language.tridactyl            ### lila
+    - match: 'excmd...|\[.*?\]'
+      scope: constant.language.tridactyl            ### lila
+    - match: 'ESF'
+      scope: string.tridactyl                       ### beige
+    - match: '(?<= -.*? (excmd...|\[.*?\])*).*'
+      scope: variable.parameter.tridactyl           ### orange
+    - match: $
+      pop: true
+  comment:
+    - meta_scope: comment
+    - match: '$'
+      pop: true
+
+# Local Variables:
+# mode: yaml
+# End:

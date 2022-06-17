@@ -1,0 +1,3 @@
+TEST should be colored red.
+### this is a comment
+All other text shouldn't be colored.

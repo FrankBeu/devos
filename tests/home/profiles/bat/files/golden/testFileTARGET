@@ -1,0 +1,3 @@
+[38;5;203mTEST[0m[38;5;231m should be colored red.[0m
+[38;5;242m### this is a comment[0m
+[38;5;231mAll other text shouldn't be colored.[0m

@@ -1,0 +1,17 @@
+%YAML 1.2
+---
+### http://www.sublimetext.com/docs/3/syntax.html
+name: battestsyntax
+file_extensions:
+  - battestsyntax
+scope: source.battestsyntax
+contexts:
+  main:
+    - match: 'TEST'
+      scope: entity.name.tag.battestsyntax  ### red
+    - match: '^#* .*'
+      scope: comment.battestsyntax          ### gray
+
+# Local Variables:
+# mode: yaml
+# End:
