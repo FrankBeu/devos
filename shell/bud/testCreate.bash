@@ -1,3 +1,5 @@
+cd ${FLAKEROOT}
+
 source shellColorDefinitions
 
 declare -A TYPES

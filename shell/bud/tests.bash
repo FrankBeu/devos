@@ -4,6 +4,7 @@
 ###       here: name can easily be copied
 ###       here: shows missing/disabled tests
 ### ATTENTION: switch after update
+cd ${FLAKEROOT}
 
 
 allTests=(

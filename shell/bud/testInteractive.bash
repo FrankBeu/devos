@@ -1,3 +1,5 @@
+cd ${FLAKEROOT}
+
 RUN_TEST_INTERACTIVELY="`pwd`/result/bin/nixos-test-driver --interactive"
 
 if [[ ${1} =~ ^(keep|k)$ ]]
