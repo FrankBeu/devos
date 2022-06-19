@@ -22,14 +22,14 @@ let
         bud.localFlakeClone               = "/home/${username}/DEVOS"; ### documentation relies on the location
         variables.documentation.user.name = username;
 
-        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit group username; } ).tmpfiles ];### KEEP (multiline-)string-import
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit group username; } ).tmpfiles ]; /* KEEP (multiline-)string-import */
 
-          home-manager.users.${username} = { profiles, suites, ... }:
-          {
-            imports = with profiles; [
-              bat
-            ];
-          };
+        home-manager.users.${username} = { profiles, suites, ... }:
+        {
+          imports = with profiles; [
+            bat
+          ];
+        };
       };
     };
 

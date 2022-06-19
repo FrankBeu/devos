@@ -30,6 +30,7 @@ let
   nixos-profile-console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
   nixos-profile-editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
   nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
+  nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit       username; goldenPath = (builtins.toString "/tmp/tests.nixos.profiles.manualActions/golden");});
   nixos-profile-ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   nixos-profile-timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
@@ -66,6 +67,7 @@ let
   home-profile-dotLocal         = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
   home-profile-exa              = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
   home-profile-git              = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
+  home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit username; goldenPath = (builtins.toString "/tmp/tests.home.profiles.manualActions/golden");});
   home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
   home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
@@ -87,20 +89,22 @@ let
 
         systemd.tmpfiles.rules = [
           ### bud: home/${username}/DEVOS
-          ( import ../../nixos/profiles/bud/testPreparation.nix        { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/nuke/testPreparation.nix                  { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/prepvm/testPreparation.nix                { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/template/testPreparation.nix              { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/testCreate/testPreparation.nix            { inherit budDir group self username; }).tmpfiles
+          ( import ../../nixos/profiles/bud/testPreparation.nix            { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/nuke/testPreparation.nix                      { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/prepvm/testPreparation.nix                    { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/template/testPreparation.nix                  { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/testCreate/testPreparation.nix                { inherit budDir group self username; }).tmpfiles
 
           ### colorscheme: colorTest{Target,Actual}
-          ( import ../../nixos/modules/colorscheme/testPreparation.nix { inherit colorscheme;                }).tmpfiles
+          ( import ../../nixos/modules/colorscheme/testPreparation.nix     { inherit colorscheme;                }).tmpfiles
           ### variables: variablesTest{Target,Actual}
-          ( import ../../nixos/modules/variables/testPreparation.nix   { inherit variables;                  }).tmpfiles
+          ( import ../../nixos/modules/variables/testPreparation.nix       { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
-          ( import ../../nixos/profiles/console/testPreparation.nix                                           ).tmpfiles
+          ( import ../../nixos/profiles/console/testPreparation.nix                                               ).tmpfiles
+          ( import  ../../nixos/profiles/manualActions/testPreparation.nix { inherit username; goldenPath = (builtins.toString "/tmp/tests.nixos.profiles.manualActions/golden");}).tmpfiles
           ### home-profiles-bat
-          ( import ../../home/profiles/bat/testPreparation.nix         { inherit        group      username; }).tmpfiles
+          ( import ../../home/profiles/bat/testPreparation.nix             { inherit        group      username; }).tmpfiles
+          ( import  ../../home/profiles/manualActions/testPreparation.nix  { inherit username; goldenPath = (builtins.toString "/tmp/tests.home.profiles.manualActions/golden" );}).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
@@ -137,6 +141,7 @@ let
         # $${nixos-profile-console}      ### TODO reactivate after graphical
         ${nixos-profile-editor-vim}
         ${nixos-profile-imageCommon}
+        ${nixos-profile-manualActions}
         ${nixos-profile-ranger}
         ${nixos-profile-timezone}
         ${nixos-profile-tools-android}
@@ -170,6 +175,7 @@ let
         ${home-profile-clipmenu}
         ${home-profile-exa}
         ${home-profile-dotLocal}
+        ${home-profile-manualActions}
         ${home-profile-ripgrep}
       '';
         # ${home-profile-git}
