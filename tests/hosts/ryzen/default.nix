@@ -70,6 +70,7 @@ let
   home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit              username;});
   home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
+  home-profile-security-summon  = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
   home-profile-shell-nushell    = (import                 ../../home/profiles/shell/nushell/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
 
@@ -176,6 +177,7 @@ let
         ${home-profile-dotLocal}
         ${home-profile-manualActions}
         ${home-profile-ripgrep}
+        ${home-profile-security-summon}
         ${home-profile-shell-nushell}
       '';
         # ${home-profile-git}

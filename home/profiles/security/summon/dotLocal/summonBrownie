@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   summonBrownie
+### abstract:
+###   "summonBrownie: augment call to Brownie with secrets"
+### usage: |
+###   via aliases
+###
+### info: |
+###    `brownie --help`
+###    `summon  --help`
+###    BROWNIE_NETWORK has to be set via secret.yaml
+### ---
+###
+function summonBrownie() {
+    ENV=${1}
+    BROWNIE_ARGS=${@:2}
+    summon --up -e ${ENV} bash -c 'brownie '${BROWNIE_ARGS}' --network ${BROWNIE_NETWORK}'
+}

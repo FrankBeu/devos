@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   summonPulumi
+### abstract:
+###   "summonPulumi: augment call to Pulumi with secrets"
+### usage: |
+###   via aliases
+###
+### info: |
+###    `pulumi --help`
+###    `summon --help`
+###
+### ---
+###
+#
+function summonPulumi() {
+    ENV=${1}
+    PULUMI_ARGS=${@:2}
+    summon --up -e ${ENV} zsh -c "pulumi ${PULUMI_ARGS}"
+}

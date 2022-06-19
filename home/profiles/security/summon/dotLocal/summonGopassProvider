@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+###
+### ---
+### name:
+###   summonGopassProvider
+### abstract:
+###   "summonGopassProvider: make gopass available for summon"
+### usage: |
+###   via summon
+###
+### info: |
+###    `summon --help`
+###
+###
+### ---
+###
+gopass show $(echo "${@}"|tr : \ )
+
+### TODO check zsh

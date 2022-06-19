@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   summonFlask
+### abstract:
+###   "summonFlask: augment call to Flask with secrets"
+### usage: |
+###   via aliases
+###
+### info: |
+###    `flask --help`
+###    `summon --help`
+###
+### ---
+###
+function summonFlask() {
+    ENV=${1}
+    # FLASK_ARGS=${@:2}
+    summon --up -e ${ENV} bash -c 'flask run --host="::" --port=8080'
+}
