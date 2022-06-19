@@ -28,6 +28,7 @@ in
     profiles.filemanager.ranger
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
+    profiles.manualActions
     profiles.ripgrep
     profiles.stateVersion
     profiles.tools.nixTools

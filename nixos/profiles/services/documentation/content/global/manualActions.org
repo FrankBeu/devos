@@ -16,8 +16,8 @@ manual actions for each system are documented in    =/etc/manualActions/= \\
 manual actions for each user     are documented in =$HOME/.manualActions/=
 ** required manualActions
 All required manual actions for installed profiles are automatically inserted into the respective file.\\
-They are only kept for reference. \\
-Do not edit those files.
+Those files are only kept for reference. \\
+Do not edit them.
 *** nixos
 =/etc/manualActions/manualActions.org=
 *** home
@@ -31,7 +31,7 @@ the state for all manual actions is tracked in
 ** architecture
 *** registration
 if a profile needs manualAction (security...) \\
-the action can be registered by inserting it into the respective file:
+the action can be registered by adding it to the respective file:
 *** nixos
 #+BEGIN_SRC nix
 environment.etc."manualAction/manualAction.org".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder <NN> ''

@@ -25,6 +25,7 @@ in
     ### TODO create specific documentation for each user
     testing.user.name       = mainUser;  ### used to specify the user used in tests
     documentation.user.name = mainUser;
+    manualActions.user.name = mainUser;
 
     budLocalFlakeCloneLocation = "/home/${mainUser}/DEVOS";
 

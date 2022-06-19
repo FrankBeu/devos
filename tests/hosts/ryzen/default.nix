@@ -30,7 +30,7 @@ let
   nixos-profile-console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
   nixos-profile-editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
   nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
-  nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit       username; goldenPath = (builtins.toString "/tmp/tests.nixos.profiles.manualActions/golden");});
+  nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit group username;       });
   nixos-profile-ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   nixos-profile-timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
@@ -62,12 +62,12 @@ let
   home-profile-bat              = (import                 ../../home/profiles/bat/testScript.py.nix                      { inherit hmProfileDir username;});
   home-profile-chromium         = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
   home-profile-clipmenu         = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
-  # home-profile-emacs          = builtins.readFile       ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  # home-profile-emacs          = readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
   home-profile-fcitx            = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
   home-profile-dotLocal         = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
   home-profile-exa              = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
   home-profile-git              = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
-  home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit username; goldenPath = (builtins.toString "/tmp/tests.home.profiles.manualActions/golden");});
+  home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit              username;});
   home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
   home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
@@ -101,10 +101,8 @@ let
           ( import ../../nixos/modules/variables/testPreparation.nix       { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
           ( import ../../nixos/profiles/console/testPreparation.nix                                               ).tmpfiles
-          ( import  ../../nixos/profiles/manualActions/testPreparation.nix { inherit username; goldenPath = (builtins.toString "/tmp/tests.nixos.profiles.manualActions/golden");}).tmpfiles
           ### home-profiles-bat
           ( import ../../home/profiles/bat/testPreparation.nix             { inherit        group      username; }).tmpfiles
-          ( import  ../../home/profiles/manualActions/testPreparation.nix  { inherit username; goldenPath = (builtins.toString "/tmp/tests.home.profiles.manualActions/golden" );}).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
