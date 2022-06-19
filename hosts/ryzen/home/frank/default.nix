@@ -30,6 +30,7 @@ in
     # profiles.i18n.fcitx         ### kills emacs
     profiles.manualActions
     profiles.ripgrep
+    profiles.shell.nushell
     profiles.stateVersion
     profiles.tools.nixTools
 
