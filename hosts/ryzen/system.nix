@@ -26,6 +26,7 @@ in
     profiles.bat
     profiles.bud
     profiles.console
+    profiles.currentSystemPackages
     profiles.documentation
     profiles.editor.emacs
     profiles.editor.vim

@@ -33,6 +33,7 @@ tests.nixos.profiles.autologin.variable
 tests.nixos.profiles.bud
 tests.nixos.profiles.console
 # tests.nixos.profiles.core                         ### TODO: implement
+tests.nixos.profiles.currentSystemPackages
 # tests.nixos.profiles.display.gnome                ### TODO: needs hw-acceleration
 tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar

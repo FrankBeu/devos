@@ -28,6 +28,7 @@ let
   nixos-profile-bud             = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
   consPreamble                  = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
   nixos-profile-console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
+  nixos-profile-curSysPkgs      = readFile                ../../nixos/profiles/currentSystemPackages/testScript.py;
   nixos-profile-editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
   nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
   nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit group username;       });
@@ -139,6 +140,7 @@ let
 
 
         # $${nixos-profile-console}      ### TODO reactivate after graphical
+        ${nixos-profile-curSysPkgs}
         ${nixos-profile-editor-vim}
         ${nixos-profile-imageCommon}
         ${nixos-profile-manualActions}
