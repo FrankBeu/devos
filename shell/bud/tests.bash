@@ -48,6 +48,7 @@ tests.nixos.profiles.filemanager.ranger
 tests.nixos.profiles.i18n.fcitx
 tests.nixos.profiles.image.common
 tests.nixos.profiles.manualActions
+tests.nixos.profiles.security.agebox
 tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 # tests.nixos.profiles.services.ssh                 ### TODO: implement
@@ -110,6 +111,7 @@ tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.manualActions
 tests.home.profiles.ripgrep
+tests.home.profiles.security.age
 tests.home.profiles.security.summon
 tests.home.profiles.shell.nushell
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed

@@ -1,0 +1,13 @@
+---
+title: security
+linktitle: security
+description: documentation for installed security related tools
+categories:
+keywords: [ security, tools ]
+menu:
+  sidebar:
+    parent: "home-manager"
+draft: false
+toc: true
+---
+* security

@@ -23,7 +23,7 @@ let
         home-manager.users.${username} = { profiles, suites, ... }:
         {
           imports = with profiles; [
-            git
+            security.age
           ];
         };
       };

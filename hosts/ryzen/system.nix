@@ -38,6 +38,7 @@ in
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure
     # profiles.services.printing
+    profiles.security.agebox
     # profiles.services.pipewire
     profiles.services.ssh
 

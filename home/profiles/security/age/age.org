@@ -1,0 +1,107 @@
+{ config, nixosConfig, ... }:
+let
+  inherit (config.home) username;
+  inherit (nixosConfig.networking) hostName;
+in
+''
+** age
+https://github.com/FiloSottile/age
+*** USAGE
+**** EN~,DE~CRYPTION
+***** symmetric-password-ecryption
+****** encrypt
+#+BEGIN_SRC shell :results none
+age -p -o secrets.txt.enc secrets.txt
+#+END_SRC
+****** decrypt
+#+BEGIN_SRC shell :results none
+age -d -o secrets.txt secrets.txt.enc
+#+END_SRC
+***** assymetric encryption
+****** encrypt
+******* with key from cli
+#+BEGIN_SRC shell :results none
+age -o secretsForKeyholder.txt.enc -r age15lqtjd6phc5zyfyjsqx2sr6cp85lyusyym53ft03k6nuklsnjq4qc9dl57 secrets.txt
+#+END_SRC
+******* with key from file
+#+BEGIN_SRC shell :results none
+age -o secretsForKeyholder.txt.enc -R ./key.pub secrets.txt
+#+END_SRC
+****** decrypt
+#+BEGIN_SRC shell :results none
+age -o secretsForKeyholder.txt -i ./key.sec -d secretsForKeyholder.txt.enc
+#+END_SRC
+**** KEY-GENERATION
+***** generate keypair
+****** one file
+******* w/o password
+#+BEGIN_SRC shell :results none
+age-keygen > keys.txt
+#+END_SRC
+******* w/ password
+#+BEGIN_SRC shell :results none
+age-keygen | age -p > keys.txt
+#+END_SRC
+******* key.sec + key.pub
+******** w/o password
+#+BEGIN_SRC shell :results none
+  age-keygen            > key.sec && \
+  age-keygen -y key.sec > key.pub
+#+END_SRC
+******** w/ password
+#+BEGIN_SRC shell :results none
+  age-keygen     | age -p       > key.sec && \
+  age -d key.sec |age-keygen -y > key.pub
+#+END_SRC
+***** permanent identity
+****** w/o password
+#+BEGIN_SRC shell :results none
+  mkdir -p ~/.config/age
+  age-keygen                          > ~/.config/age/key.sec && \
+  age-keygen -y ~/.config/age/key.sec > ~/.config/age/key.pub
+  chmod 600  ~/.config/age/key.sec
+#+END_SRC
+****** w/ password
+#+BEGIN_SRC shell :results none
+  mkdir -p ~/.config/age
+  age-keygen                    | age -p        > ~/.config/age/key.sec && \
+  age -d  ~/.config/age/key.sec | age-keygen -y > ~/.config/age/key.pub
+  chmod 600  ~/.config/age/key.sec
+#+END_SRC
+****** w/ password + annotation (only informational)
+#+BEGIN_SRC shell :results none
+  USER=${username}
+  HOST=${hostName}
+  DIR=~/.config/age/
+  # DIR=~/TMP/''${USER}/age/''${HOST}/
+  mkdir -p ''${DIR} && \
+  age-keygen | sed "1 i ### ''${USER}@''${HOST}" | age -p > ''${DIR}/key.sec && \
+  age -d  ''${DIR}/key.sec | age-keygen -y | sed "1 i ### ''${USER}@''${HOST}" > ''${DIR}/key.pub && \
+  chmod 700 ''${DIR} && \
+  chmod 600 ''${DIR}/key.sec && \
+  agd -o ''${DIR}/test ''${DIR}/key.sec && \
+  bat ''${DIR}/test && \
+  rm  ''${DIR}/test
+#+END_SRC
+****** useable with
+#+BEGIN_SRC shell :results none
+ --identity ~/.config/age/key.sec
+#+END_SRC
+**** MISC
+***** get pub from sec
+#+BEGIN_SRC shell :results new
+     age-keygen -y <(echo AGE-SECRET-KEY-...........................................................)
+#+END_SRC
+*** INFO
+**** PKI per DNS, email
+https://www.go350.com/posts/age-file-encryption/
+**** gopass
+https://github.com/gopasspw/gopass/blob/master/docs/backends/age.md
+**** homeage ??
+https://github.com/jordanisaacs/homeage
+**** sops
+https://github.com/mozilla/sops#22encrypting-using-age
+*** TODO ROTATION
+**** change key
+cf. permanent identity
+'' ### KEEP: closes nix string

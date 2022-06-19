@@ -33,6 +33,7 @@ let
   nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
   nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit group username;       });
   nixos-profile-ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
+  nixos-profile-security-age    = readFile                ../../nixos/profiles/security/agebox/testScript.py;
   nixos-profile-timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
   nixos-profile-tools-drawio    = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
@@ -71,6 +72,7 @@ let
   home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit              username;});
   home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
+  home-profile-security-age     = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
   home-profile-security-summon  = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
   home-profile-shell-nushell    = (import                 ../../home/profiles/shell/nushell/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
@@ -145,6 +147,7 @@ let
         ${nixos-profile-imageCommon}
         ${nixos-profile-manualActions}
         ${nixos-profile-ranger}
+        ${nixos-profile-security-age}
         ${nixos-profile-timezone}
         ${nixos-profile-tools-android}
         ${nixos-profile-tools-drawio}
@@ -179,6 +182,7 @@ let
         ${home-profile-dotLocal}
         ${home-profile-manualActions}
         ${home-profile-ripgrep}
+        ${home-profile-security-age}
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}
       '';

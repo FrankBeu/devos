@@ -12,20 +12,10 @@ let
       machine = { suites, profiles, variables, ... }:
       {
         imports = with profiles; [
-          services.documentation
+          security.agebox
         ] ++
         # suites.debug ++
         [];
-
-        bud.localFlakeClone               = "/home/${username}/DEVOS"; ### documentation relies on the location
-        variables.documentation.user.name = username;
-
-        home-manager.users.${username} = { profiles, suites, ... }:
-        {
-          imports = with profiles; [
-            git
-          ];
-        };
       };
     };
 
@@ -43,8 +33,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  hmProfileDir       = host.config.home-manager.users.${username}.home.profileDirectory + "/bin";
-  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDir username; });
+  testScriptExternal = builtins.readFile ./testScript.py;
 
 in
 {
