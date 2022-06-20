@@ -1,0 +1,351 @@
+"""
+""
+" * TIDACTYLRC
+"
+"""
+""
+" ** COLOR_THEMES
+"
+" colors default
+colors dark
+" colors greenmat
+" colors mytheme
+"""
+""
+" **  COPY & PASTE
+"
+set yankto both
+set putfrom selection
+"""
+""
+" ** UI
+"
+set modeindicator false
+"""
+""
+" ** disable tridactyl on the following sites
+"
+" blacklistadd www.youtube.com
+"""
+""
+" ** HOMEPAGES
+"    usage: g{h,H}
+"
+set homepages ["https://www.wikipedia.org/", "https://en.wikipedia.org/wiki/Special:Random"]
+"""
+""
+" ** hjkl -> jkl;
+"
+bind h fillcmdline_notrail
+bind j scrollpx -50
+bind k scrollline -10
+bind l scrollline 10
+bind ; scrollpx 50
+""" H preceeds -> hints
+unbind H
+bind J tabprev
+bind K back
+bind L forward
+bind : tabnext
+" tabfirst
+" tablast
+bind --mode=visual j js document.getSelection().modify("extend","backward","character")
+bind --mode=visual k js document.getSelection().modify("extend","backward","line")
+bind --mode=visual l js document.getSelection().modify("extend","forward","line")
+bind --mode=visual ; js document.getSelection().modify("extend","forward","character")
+"""
+""
+" ** MOVE TAB AROUND
+"
+bind <A-j> tabmove -1
+bind <A-k> tabmove 1
+bind <A-l> tabmove $
+bind <A-;> tabmove +1
+"""
+""
+" ** ZOOMING
+"
+unbind zI
+unbind zM
+unbind zO
+unbind zi
+unbind zm
+unbind zo
+unbind zr
+unbind zz
+
+bind zx	zoom  3
+bind zc	zoom  1
+bind zz	zoom  1
+bind zv	zoom  0.3
+
+bind zj	zoom  0.5 true
+bind zk	zoom  0.1 true
+bind zl	zoom -0.1 true
+bind z;	zoom -0.5 true
+
+bind zu	zoom  1   true
+bind zi	zoom  0.2 true
+bind zo	zoom -0.2 true
+bind zp	zoom -1   true
+"""
+""
+" ** DUPLICATE CURRENT TAB
+"
+bind yd tabduplicate
+"""
+""
+" *** VIEW QUICKMARKS
+"     USAGE: filter for tabopen
+"
+bind q fillcmdline viewconfig --user nmaps
+"""
+""
+" ** BOOKMARKS
+"    USAGE: gb <SELECT>
+"
+bind gb fillcmdline bmarks
+"""
+""
+" ** HOMEPAGES
+"
+bind g: home
+bind g; home true
+
+bind gc changelistjump -1
+
+
+
+"""
+""
+" ** INFO
+" *** reload :source
+" *** show single keybinding  :bind <KEYBINDING>
+" *** show        keybindings :viewconfig
+" *** vimrc mode will colorize TODOs - compare and fix commentChar
+"    " Local Variables:
+"    " mode: vimrc
+"    " End:
+" *** show single keybinding  :bind jKEYj
+" *** BINDING-FUNDUS
+"    bind f COMMAND
+"    bind F COMMAND
+"    bind <C-f> COMMAND
+"    bind <A-f> COMMAND
+"    bind <S-F3> COMMAND
+"    bind <SA-F3> COMMAND
+"    bind --mode=insert emacs qall
+" *** IF A LOC changes, UPDATE /etc/nixos/config/users/config/homemanager/dotLocal/bin/{trili,trihi}
+"
+
+"""
+""
+" ** HINTS
+"    ElementSelectionFlags: ESF
+"
+"""" ┌──
+bind Hx hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool click 1")}
+"""" ┌──
+bind HX hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool keydown ctrl+shift; xdotool click 1; xdotool keyup ctrl+shift")}
+"""" ┌── -# yank an element's anchor URL to clipboard
+bind H#  hint -#
+"""" ┌── -; focus an element and set it as the element or the child of the element to scroll
+bind H;  hint -; *
+"""" ┌── -A save-as the linked image
+bind HA  hint -A
+"""" ┌── -a save-as the linked resource
+bind Ha  hint -a
+"""" ┌── -b open in background
+bind HB  hint -b
+""""  ┌── ESF: -c [selector] hint links that match the css selector e.g. bind ;c hint -c [class*="expand"],[class="togg"] works particularly well on reddit and HN. This works with most other hint modes, with the caveat that if other hint mode takes arguments your selector must contain no spaces, i.e. hint -c[yourOtherFlag] [selector] [your other flag\'s arguments, which may contain spaces]
+bind Hc  hint -c [class*="expand"],[class="togg"]
+"""" ┌── -F [callback] run a custom callback on the selected hint, e.g. hint -JF e => {tri.excmds.tabopen("-b",e.href); e.remove()}.
+" bind HF  hint -JF e => {tri.excmds.tabopen("-b",e.href); e.remove()}
+"""" ┌── ESF: -f [text] hint links and inputs that display the given text. E.g. bind <c-e> hint -f Edit. Backslashes can escape spaces: bind <c-s> hint -f Save\ as
+bind HF  hint -f Edit
+"""" ┌── ESF: -fr [text] use RegExp to hint the links and inputs
+" bind HFR hint -fr
+"""" ┌── -h select an element (as if you click-n-dragged over it)
+bind HH  hint -h
+"""" ┌── -I view an image in a new tab
+bind HI  hint -I
+"""" ┌── -i view an image
+bind Hi  hint -i
+"""" ┌── ESF: -J* disable javascript hints. Don\'t generate hints related to javascript events. This is particularly useful when used with the -c option when you want to generate only hints for the specified css selectors. Also useful on sites with plenty of useless javascript elements such as google.com
+" bind HJ  hint -Jc
+"""" ┌── -K hides an element on the page; hidden elements can be restored using elementunhide.
+bind HK  hint -K
+"""" ┌── -k irreversibly deletes an element from the page (until reload)
+bind Hk  hint -k
+"""" ┌──
+bind HM  composite hint -Jpipe img src | tabopen images.google.com/searchbyimage?image_url=
+"""" ┌──
+bind Hm  composite hint -Jpipe img src | open images.google.com/searchbyimage?image_url=
+"""" ┌──
+bind HO  hint -W fillcmdline_notrail open
+"""" ┌──
+bind Ho  hint
+"""" ┌── -P copy an element\'s title/alt text to the clipboard
+bind HP  hint -P
+"""" ┌── -p copy an element\'s text to the clipboard
+bind Hp  hint -p
+"""" ┌── -pipe selector key e.g, -pipe a href returns the URL of the chosen link on a page. Only makes sense with composite, e.g, composite hint -pipe .some-class>a textContent | yank. If you don\'t select a hint (i.e. press ), will return an empty string. Most useful when used like -c to do things other than opening links. NB: the query selector cannot contain any spaces.
+" bind Hp  hint -r
+"""" ┌── -r read an element\'s text with text-to-speech
+bind HR  hint -r
+"""" ┌── -S save the linked image
+bind HS  hint -S
+"""" ┌── -s save (download) the linked resource
+bind Hs  hint -s
+"""" ┌── -W excmd... append hint href to excmd and execute, e.g, hint -W mpvsafe to open YouTube videos. NB: appending to bare exclaim is dangerous - see get exaliases.mpvsafe for an example of how to to it safely. If you need to use a query selector, use -pipe instead.
+bind HT  hint -W tabopen
+"""" ┌──
+bind Ht  hint -W fillcmdline_notrail tabopen
+"""" ┌──
+bind Hv  hint -W mpvsafe
+"""" ┌── ESF: -V create hints for invisible elements. By default, elements outside the viewport when calling :hint are not hinted, this includes them anyways.
+bind HV  hint -V
+"""" ┌── -W excmd... append hint href to excmd and execute, e.g, hint -W mpvsafe to open YouTube videos. NB: appending to bare exclaim is dangerous - see get exaliases.mpvsafe for an example of how to to it safely. If you need to use a query selector, use -pipe instead.
+bind HW  hint -W fillcmdline_notrail winopen
+"""" ┌── -w open in new window
+bind Hw  hint -w
+"""" ┌── -wp open in new private window
+" bind Hwp  hint -w
+"""" ┌──
+bind HY  hint -cF img i => tri.excmds.yankimage(tri.urlutils.getAbsoluteURL(i.src))
+"""" ┌── -y copy (yank) link\'s target to clipboard
+bind Hy  hint -y
+"""" ┌── -z scroll an element to the top of the viewport
+bind HZ  hint -z
+"""
+""
+" *** -q* quick (or rapid) hints mode. Stay in hint mode until you press ESC
+"
+"""" ┌── -# yank an element's anchor URL to clipboard
+bind HQ# hint -q#
+"""" ┌── -; focus an element and set it as the element or the child of the element to scroll
+bind HQ; hint -q;
+"""" ┌── -A save-as the linked image
+bind HQA hint -qA
+"""" ┌── -a save-as the linked resource
+bind HQa hint -qa
+"""" ┌── -b open in background
+bind HQB hint -qb
+"""" ┌──
+bind HQF hint -q
+"""" ┌── -I view an image in a new tab
+bind HQI hint -qI
+"""" ┌── -i view an image
+bind HQi hint -qi
+"""" ┌── -K hides an element on the page; hidden elements can be restored using elementunhide.
+bind HQK hint -qK
+"""" ┌── -k irreversibly deletes an element from the page (until reload)
+bind HQk hint -qk
+"""" ┌── -P copy an element\'s title/alt text to the clipboard
+bind HQP hint -qP
+"""" ┌── -p copy an element\'s text to the clipboard
+bind HQp hint -qp
+"""" ┌── -r read an element\'s text with text-to-speech
+bind HQr hint -qr
+"""" ┌── -S save the linked image
+bind HQS hint -qS
+"""" ┌── -s save (download) the linked resource
+bind HQs hint -qs
+"""" ┌── -W excmd... append hint href to excmd and execute, e.g, hint -W mpvsafe to open YouTube videos. NB: appending to bare exclaim is dangerous - see get exaliases.mpvsafe for an example of how to to it safely. If you need to use a query selector, use -pipe instead.
+bind HQw hint -qW mpvsafe
+"""" ┌── -w open in new window
+bind HQW hint -qw
+"""" ┌── -y copy (yank) link\'s target to clipboard
+bind HQy hint -qy
+"""
+""
+" *** -!* execute all hints without waiting for a selection
+"
+bind H!C hint -!bf Comments """" -!bf opens in background tabs all visible links whose text matches <WORD>
+"""
+""
+" *** -h select element; defaultKeybinding: listed only for the sake of completeness
+"
+" bind v hint -h
+"""
+""
+" ** SEARCH
+"    USAGE: (w|t) <searchString>
+"
+set searchurls.a  https://wiki.archlinux.org/index.php?title=Special%3ASearch&profile=default&fulltext=1&search=%s
+set searchurls.ap https://archlinux.org/packages/?q=%s
+set searchurls.d  https://www.google.com/search?q=define+%s
+set searchurls.g  https://www.google.com/search?q=%s
+set searchurls.hd https://github.com/search?q=%s+extension%3Adart&type=Code&ref=advsearch&l=&l=
+set searchurls.hg https://github.com/search?q=%s+extension%3Ago&type=Code&ref=advsearch&l=&l=
+set searchurls.hn https://github.com/search?q=%s+extension%3Anix&type=Code&ref=advsearch&l=&l=
+set searchurls.m  https://www.google.com/maps/place/%s
+set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
+set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
+set searchurls.t  https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=%s
+set searchurls.w  https://en.wikipedia.org/w/index.php?search=%s
+set searchurls.wy https://en.wiktionary.org/wiki/?search=%s
+set searchurls.y  https://www.youtube.com/results?search_query=%s
+"""
+""
+" ** QUICKMARKS
+"    USAGE: g(o|n|w)<KEY>, to (open,tabopen,winopen); <KEY> can only be one char
+"
+quickmark a https://api.flutter.dev/flutter/material/Colors-class.html
+quickmark b https://nixos.org/blog/index.html
+quickmark c https://rosettacode.org/wiki/Rosetta_Code
+quickmark d https://dart.dev/
+quickmark f https://api.flutter.dev/
+quickmark g https://go.dev/blog/
+quickmark i https://api.flutter.dev/flutter/material/Icons-class.html
+quickmark k https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/
+quickmark l https://filiale.kaufland.de/prospekte.html
+quickmark m https://mail.google.com/mail/u/0/#inbox
+quickmark n https://nixos.org/manual/nix/unstable/
+quickmark o https://nixos.org/manual/nixos/unstable/
+quickmark p https://nixos.org/manual/nixpkgs/unstable/
+quickmark r https://totale.rosettastone.com/plan
+quickmark s https://spiegel.de/
+quickmark t https://api.dart.dev/stable/2.16.0/index.html
+quickmark v https://devos.divnix.com/
+quickmark w https://www.google.com/search?client=firefox-b-d&q=wetter+aldingen+remseck
+quickmark u https://docs.flutter.dev/
+quickmark y https://yogalap.com/app/user/courses
+quickmark z https://configure.zsa.io/moonlander/layouts/XW5OW/latest/0
+
+quickmark D https://github.com/yissachar/awesome-dart
+quickmark G https://github.com/avelino/awesome-go
+quickmark N https://github.com/NixOS/nix
+quickmark O https://github.com/nix-community/awesome-nix
+quickmark P https://github.com/NixOS/nixpkgs
+quickmark R https://github.com/Alikhll/golang-developer-roadmap
+quickmark V https://github.com/divnix/devos
+
+
+" quickmark e
+" quickmark h
+" quickmark j
+" quickmark q
+" quickmark u
+" quickmark x
+
+" quickmark A
+" quickmark B
+" quickmark C
+" quickmark E
+" quickmark F
+" quickmark H
+" quickmark I
+" quickmark J
+" quickmark K
+" quickmark L
+" quickmark M
+" quickmark Q
+" quickmark S
+" quickmark T
+" quickmark U
+" quickmark W
+" quickmark U
+" quickmark X
+" quickmark Y
+" quickmark Z

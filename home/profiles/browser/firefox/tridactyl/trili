@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   trili
+### abstract:
+###   "TRIdactylLinks: all links with targets defined in tridactylrc"
+### usage: |
+###   trili
+###
+### info: |
+###    in firefox: :help quickmark
+###                :help searchurls
+###
+### ---
+###
+((START=`rg  -F --json '" ** SEARCH' ~/.config/tridactyl/tridactylrc  | jq -s | jq '.[] | select(.type=="match").data.line_number'` - 2))
+
+function trili () {
+    bat  --language tridactyltrili --wrap never --line-range $START: ~/.config/tridactyl/tridactylrc
+}
+trili
+
+### TODO doc
+### TODO multiple modes zsh + yaml
+### TODO yaml will be parsed by `dotLocalInfo`
+### TODO update all scripts to yamlDoc

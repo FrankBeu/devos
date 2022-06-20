@@ -100,6 +100,9 @@ tests.nixos.suites.virtmanager
 tests.home.profiles.alacritty
 tests.home.profiles.bat
 tests.home.profiles.browser.chromium
+tests.home.profiles.browser.firefox.main
+tests.home.profiles.browser.firefox.orgCapture
+tests.home.profiles.browser.firefox.tridactyl
 tests.home.profiles.clipmenu
 tests.home.profiles.directoryStructure
 # tests.home.profiles.display.cursor                ### TODO: implement

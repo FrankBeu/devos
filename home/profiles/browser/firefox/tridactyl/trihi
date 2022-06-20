@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   trihi
+### abstract:
+###   "TRIdactylHInts: explanation for all hints defined in tridactylrc"
+### usage: |
+###   trihi
+###
+### info: |
+###    in firefox: :help
+###
+###
+### ---
+###
+((START=`rg -F --json '" ** HINTS'  ~/.config/tridactyl/tridactylrc  | jq -s | jq '.[] | select(.type=="match").data.line_number'` - 2))
+((STOP=`rg  -F --json '" ** SEARCH' ~/.config/tridactyl/tridactylrc  | jq -s | jq '.[] | select(.type=="match").data.line_number'` - 3))
+
+function trihi() {
+    bat  --language tridactyltrihi --wrap never --line-range $START:$STOP ~/.config/tridactyl/tridactylrc
+}
+trihi
+
+### TODO doc
+### TODO multiple modes zsh + yaml
+### TODO yaml will be parsed by `dotLocalInfo`
+### TODO update all scripts to yamlDoc

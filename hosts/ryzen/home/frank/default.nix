@@ -19,6 +19,9 @@ in
     profiles.alacritty
     profiles.bat
     profiles.browser.chromium
+    profiles.browser.firefox.main
+    profiles.browser.firefox.orgCapture
+    profiles.browser.firefox.tridactyl
     profiles.clipmenu
     profiles.direnv
     profiles.display.i3
