@@ -112,6 +112,7 @@ tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.manualActions
 tests.home.profiles.ripgrep
 tests.home.profiles.security.age
+tests.home.profiles.security.gocryptfs
 tests.home.profiles.security.ssh
 tests.home.profiles.security.summon
 tests.home.profiles.shell.nushell

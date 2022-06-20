@@ -15,69 +15,70 @@ let
 
 
 
-  bud-nuke                      = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
-  bud-prepvm                    = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
-  bud-template                  = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
-  bud-testCreate                = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir;                });
+  bud-nuke                        = (import                 ../../bud/nuke/testScript.py.nix                               {inherit        username;       });
+  bud-prepvm                      = (import                 ../../bud/prepvm/testScript.py.nix                             {inherit budDir username;       });
+  bud-template                    = (import                 ../../bud/template/testScript.py.nix                           {inherit budDir username;       });
+  bud-testCreate                  = (import                 ../../bud/testCreate/testScript.py.nix                         {inherit budDir;                });
 
 
-  nixos-module-colorscheme      = readFile                ../../nixos/modules/colorscheme/testScript.py;
-  nixos-module-variables        = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit       username;       });
+  nixos-module-colorscheme        = readFile                ../../nixos/modules/colorscheme/testScript.py;
+  nixos-module-variables          = (import                 ../../nixos/modules/variables/testScript.py.nix                { inherit       username;       });
 
 
-  nixos-profile-bud             = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
-  consPreamble                  = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
-  nixos-profile-console         = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
-  nixos-profile-curSysPkgs      = readFile                ../../nixos/profiles/currentSystemPackages/testScript.py;
-  nixos-profile-editor-vim      = readFile                ../../nixos/profiles/editor/vim/testScript.py;
-  nixos-profile-imageCommon     = readFile                ../../nixos/profiles/image/common/testScript.py;
-  nixos-profile-manualActions   = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit group username;       });
-  nixos-profile-ranger          = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
-  nixos-profile-security-age    = readFile                ../../nixos/profiles/security/agebox/testScript.py;
-  nixos-profile-timezone        = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
-  nixos-profile-tools-android   = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
-  nixos-profile-tools-drawio    = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
-  nixos-profile-tools-gotask    = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
-  nixos-profile-tools-gpu       = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
-  nixos-profile-tools-gucharmap = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
-  nixos-profile-tools-less      = readFile                ../../nixos/profiles/tools/less/testScript.py;
-  nixos-profile-tools-lsof      = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
-  nixos-profile-tools-network   = readFile                ../../nixos/profiles/tools/network/testScript.py;
-  nixos-profile-tools-nixTools  = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
-  nixos-profile-tools-parted    = readFile                ../../nixos/profiles/tools/parted/testScript.py;
-  nixos-profile-tools-qalculate = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
-  nixos-profile-tools-system    = readFile                ../../nixos/profiles/tools/system/testScript.py;
-  nixos-profile-tools-usbutils  = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
-  nixos-profile-tools-xorg      = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
-  nixos-profile-services-ssh    = readFile                ../../nixos/profiles/services/ssh/testScript.py;
-  nixos-profile-tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
-  nixos-profile-video-vlc       = readFile                ../../nixos/profiles/video/vlc/testScript.py;
-  nixos-profile-video-ytdl      = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
-  nixos-profile-virt-docker     = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;               });
+  nixos-profile-bud               = (import                 ../../nixos/profiles/bud/testScript.py.nix                     { inherit       username;       });
+  consPreamble                    = readFile                ../../nixos/profiles/console/testScriptIntegrationPreamble.py;
+  nixos-profile-console           = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
+  nixos-profile-curSysPkgs        = readFile                ../../nixos/profiles/currentSystemPackages/testScript.py;
+  nixos-profile-editor-vim        = readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  nixos-profile-imageCommon       = readFile                ../../nixos/profiles/image/common/testScript.py;
+  nixos-profile-manualActions     = (import                 ../../nixos/profiles/manualActions/testScript.py.nix           { inherit group username;       });
+  nixos-profile-ranger            = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
+  nixos-profile-security-age      = readFile                ../../nixos/profiles/security/agebox/testScript.py;
+  nixos-profile-timezone          = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
+  nixos-profile-tools-android     = (import                 ../../nixos/profiles/tools/android/testScript.py.nix           { inherit userID;               });
+  nixos-profile-tools-drawio      = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
+  nixos-profile-tools-gotask      = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
+  nixos-profile-tools-gpu         = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
+  nixos-profile-tools-gucharmap   = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
+  nixos-profile-tools-less        = readFile                ../../nixos/profiles/tools/less/testScript.py;
+  nixos-profile-tools-lsof        = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
+  nixos-profile-tools-network     = readFile                ../../nixos/profiles/tools/network/testScript.py;
+  nixos-profile-tools-nixTools    = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
+  nixos-profile-tools-parted      = readFile                ../../nixos/profiles/tools/parted/testScript.py;
+  nixos-profile-tools-qalculate   = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
+  nixos-profile-tools-system      = readFile                ../../nixos/profiles/tools/system/testScript.py;
+  nixos-profile-tools-usbutils    = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
+  nixos-profile-tools-xorg        = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
+  nixos-profile-services-ssh      = readFile                ../../nixos/profiles/services/ssh/testScript.py;
+  nixos-profile-tools-zathura     = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
+  nixos-profile-video-vlc         = readFile                ../../nixos/profiles/video/vlc/testScript.py;
+  nixos-profile-video-ytdl        = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
+  nixos-profile-virt-docker       = (import                 ../../nixos/profiles/virtualisation/docker/testScript.py.nix   { inherit userID;               });
 
 
-  nixos-suite-docLocal          = (import                 ../../nixos/suites/docLocal/testScript.nix                                                      ).testScript;
-  nixos-suite-i3                = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;               }).testScript;
-  nixos-suite-rustTools         = (import                 ../../nixos/suites/rustTools/testScript.nix                                                     ).testScript;
-  nixos-suite-virtmanager       = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
+  nixos-suite-docLocal            = (import                 ../../nixos/suites/docLocal/testScript.nix                                                      ).testScript;
+  nixos-suite-i3                  = (import                 ../../nixos/suites/i3/testScript.nix                           { inherit userID;               }).testScript;
+  nixos-suite-rustTools           = (import                 ../../nixos/suites/rustTools/testScript.nix                                                     ).testScript;
+  nixos-suite-virtmanager         = (import                 ../../nixos/suites/virtmanager/testScript.nix                  { inherit userID;               }).testScript;
 
 
-  home-profile-bat              = (import                 ../../home/profiles/bat/testScript.py.nix                      { inherit hmProfileDir username;});
-  home-profile-chromium         = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
-  home-profile-clipmenu         = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
-  # home-profile-emacs          = readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
-  home-profile-fcitx            = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
-  home-profile-dotLocal         = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
-  home-profile-exa              = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
-  home-profile-git              = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
-  home-profile-manualActions    = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit              username;});
-  home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
-  home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
-  home-profile-security-age     = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
-  home-profile-security-ssh     = (import                 ../../home/profiles/security/ssh/testScript.py.nix             { inherit              username;});
-  home-profile-security-summon  = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
-  home-profile-shell-nushell    = (import                 ../../home/profiles/shell/nushell/testScript.py.nix            { inherit hmProfileDir username;});
-  home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
+  home-profile-bat                = (import                 ../../home/profiles/bat/testScript.py.nix                      { inherit hmProfileDir username;});
+  home-profile-chromium           = (import                 ../../home/profiles/browser/chromium/testScript.py.nix         { inherit hmProfileDir;         });
+  home-profile-clipmenu           = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
+  # home-profile-emacs            = readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
+  home-profile-fcitx              = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
+  home-profile-dotLocal           = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
+  home-profile-exa                = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
+  home-profile-git                = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
+  home-profile-manualActions      = (import                 ../../home/profiles/manualActions/testScript.py.nix            { inherit              username;});
+  home-profile-stateVersion       = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
+  home-profile-ripgrep            = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
+  home-profile-security-age       = (import                 ../../home/profiles/security/age/testScript.py.nix             { inherit hmProfileDir username;});
+  home-profile-security-gocryptfs = (import                 ../../home/profiles/security/gocryptfs/testScript.py.nix       { inherit hmProfileDir username;});
+  home-profile-security-ssh       = (import                 ../../home/profiles/security/ssh/testScript.py.nix             { inherit              username;});
+  home-profile-security-summon    = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
+  home-profile-shell-nushell      = (import                 ../../home/profiles/shell/nushell/testScript.py.nix            { inherit hmProfileDir username;});
+  home-profile-tools-nixTools     = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
 
 
   test = {
@@ -186,6 +187,7 @@ let
         ${home-profile-manualActions}
         ${home-profile-ripgrep}
         ${home-profile-security-age}
+        ${home-profile-security-gocryptfs}
         ${home-profile-security-ssh}
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}

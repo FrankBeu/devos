@@ -31,6 +31,7 @@ in
     profiles.manualActions
     profiles.ripgrep
     profiles.security.age
+    profiles.security.gocryptfs
     profiles.security.ssh
     profiles.security.summon
     profiles.shell.nushell
