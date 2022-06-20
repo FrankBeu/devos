@@ -33,6 +33,7 @@ in
     profiles.ripgrep
     profiles.security.age
     profiles.security.gocryptfs
+    profiles.security.sops
     profiles.security.ssh
     profiles.security.summon
     profiles.shell.nushell

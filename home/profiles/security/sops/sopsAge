@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+EDITOR='emacsclient -nw --alternate-editor=""'
+
+### do not wrap, if help is called
+if [[ "$*" == "-h" ]]
+then
+    sops -h | bat -l man
+else
+    AGE_KEY_FILE=~/.config/age/key.sec
+    SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt ### DEFAULT
+    trap "rm -f ${SOPS_AGE_KEY_FILE}" 0 2 3 9 15
+
+    age -d ${AGE_KEY_FILE} > ${SOPS_AGE_KEY_FILE} &&
+
+    sops "$@"
+fi

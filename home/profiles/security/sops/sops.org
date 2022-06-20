@@ -1,0 +1,26 @@
+* sops
+** encrypt
+#+BEGIN_SRC shell :results none
+e "test: testy" >> test.yaml
+sops --encrypt --age age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u test.yaml > test.enc.yaml
+#+END_SRC
+#+BEGIN_SRC shell :results none
+export SOPS_AGE_RECIPIENTS=age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+export SOPS_AGE_KEY_FILE=~/.config/age/key.sec
+#+END_SRC
+=$XDG_CONFIG_HOME/sops/age/keys.txt=
+sops --decrypt test.enc.yaml
+
+echo $SOPS_AGE_RECIPIENTS
+echo $SOPS_AGE_KEY_FILE
+
+export SOPS_AGE_RECIPIENTS=age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+export SOPS_AGE_KEY_FILE=~/.config/age/key.plain
+** update keys
+add key and rule to =.sops.yaml=
+#+BEGIN_SRC shell :results none
+sops updatekeys secrets.yaml
+#+END_SRC
+** TODO TODOS
+*** TODO doc
+*** TODO sort
