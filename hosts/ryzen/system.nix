@@ -61,6 +61,7 @@ in
     profiles.tools.usbutils
     profiles.tools.xorg
     profiles.tools.zathura
+    profiles.tools.zip
     profiles.video.vlc
     profiles.video.youtubedownloader
     profiles.virtualisation.docker

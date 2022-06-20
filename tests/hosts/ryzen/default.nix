@@ -49,6 +49,7 @@ let
   nixos-profile-tools-system      = readFile                ../../nixos/profiles/tools/system/testScript.py;
   nixos-profile-tools-usbutils    = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
   nixos-profile-tools-xorg        = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
+  nixos-profile-tools-zip         = readFile                ../../nixos/profiles/tools/zip/testScript.py;
   nixos-profile-services-ssh      = readFile                ../../nixos/profiles/services/ssh/testScript.py;
   nixos-profile-tools-zathura     = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   nixos-profile-video-vlc         = readFile                ../../nixos/profiles/video/vlc/testScript.py;
@@ -170,6 +171,7 @@ let
         ${nixos-profile-tools-usbutils}
         ${nixos-profile-tools-xorg}
         ${nixos-profile-tools-zathura}
+        ${nixos-profile-tools-zip}
         ${nixos-profile-video-vlc}
         ${nixos-profile-video-ytdl}
         ${nixos-profile-virt-docker}

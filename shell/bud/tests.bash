@@ -80,6 +80,7 @@ tests.nixos.profiles.tools.tokei
 tests.nixos.profiles.tools.usbutils
 tests.nixos.profiles.tools.xorg
 tests.nixos.profiles.tools.zathura
+tests.nixos.profiles.tools.zip
 tests.nixos.profiles.tools.zoxide
 tests.nixos.profiles.video.vlc
 tests.nixos.profiles.video.youtubedownloader
