@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   registerRepo
+### abstract:
+###   "registerRepo: keep track of cloned repositories"
+### usage: |
+###   registerRepo <URL>
+###
+### info: |
+###    `man git`
+###
+###
+### ---
+###
+function registerRepo() {
+    URL=${1}
+    REPO_NAME=${URL:t:r}
+
+    case ${URL} in
+    https://github*)
+        git clone ${URL} ~/SRC/GITHUB/${REPO_NAME}
+        ;;
+    *)
+        echo "No location to clone to configured"
+        return
+        ;;
+    esac;
+
+    ### BACKUP
+    ### KOPIA can only backup folders
+    cp ~/SRC/registeredRepos/registeredRepos{,OLD}
+
+    echo $1 >> ~/SRC/registeredRepos/registeredRepos
+    mv ~/SRC/registeredRepos/registeredRepos{,TMP}
+
+    sort -u ~/SRC/registeredRepos/registeredReposTMP > ~/SRC/registeredRepos/registeredRepos &&
+    rm ~/SRC/registeredRepos/registeredReposTMP
+}
+registerRepo ${@};

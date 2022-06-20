@@ -67,6 +67,7 @@ let
   home-profile-clipmenu           = (import                 ../../home/profiles/clipmenu/testScript.py.nix                 { inherit              username;});
   # home-profile-emacs            = readFile                ../../home/profiles/editor/emacs/testScript.py;                  ### TODO: needs hw-acceleration
   home-profile-fcitx              = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix        { inherit              username;});
+  home-profile-directoryStructure = (import                 ../../home/profiles/directoryStructure/testScript.py.nix       { inherit              username;});
   home-profile-dotLocal           = (import                 ../../home/profiles/dotLocal/testScript.py.nix                 { inherit hmProfileDir username;});
   home-profile-exa                = (import                 ../../home/profiles/exa/testScript.py.nix                      { inherit hmProfileDir;         });
   home-profile-git                = (import                 ../../home/profiles/git/testScript.py.nix                      { inherit hmProfileDir username;});
@@ -182,6 +183,7 @@ let
         ${home-profile-bat}
         ${home-profile-chromium}
         ${home-profile-clipmenu}
+        ${home-profile-directoryStructure}
         ${home-profile-exa}
         ${home-profile-dotLocal}
         ${home-profile-manualActions}

@@ -100,6 +100,7 @@ tests.home.profiles.alacritty
 tests.home.profiles.bat
 tests.home.profiles.browser.chromium
 tests.home.profiles.clipmenu
+tests.home.profiles.directoryStructure
 # tests.home.profiles.display.cursor                ### TODO: implement
 tests.home.profiles.display.i3
 tests.home.profiles.dotLocal

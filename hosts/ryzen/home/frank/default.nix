@@ -22,6 +22,7 @@ in
     profiles.clipmenu
     profiles.direnv
     profiles.display.i3
+    profiles.directoryStructure
     profiles.dotLocal
     profiles.editor.emacs
     profiles.exa
