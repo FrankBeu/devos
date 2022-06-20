@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
   inherit version;
 
 
-  src =  ../../src/shellColorDefinitions;
+  src =  ../sourcesLocal/shellColorDefinitions;
 
 
   installPhase = ''

@@ -18,7 +18,7 @@ buildGoModule rec {
   #   sha256 = "sha256:0fmh1k5rvxvzdfrdhmny7i1in6cra56c2sas3iykz6b3nhf7n0fj";
   # };
 
-  src =  ../../src/i3statusBar;
+  src =  ../sourcesLocal/i3statusBar;
 
   ### vendorFolder exists:
   # vendorSha256 = null;
