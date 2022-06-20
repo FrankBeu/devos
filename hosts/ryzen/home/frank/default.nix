@@ -23,9 +23,9 @@ in
     profiles.browser.firefox.orgCapture
     profiles.browser.firefox.tridactyl
     profiles.clipmenu
+    profiles.directoryStructure
     profiles.direnv
     profiles.display.i3
-    profiles.directoryStructure
     profiles.dotLocal
     profiles.editor.emacs
     profiles.exa
@@ -33,6 +33,7 @@ in
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
     profiles.manualActions
+    profiles.pistol
     profiles.ripgrep
     profiles.security.age
     profiles.security.gocryptfs

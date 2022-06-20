@@ -37,9 +37,9 @@ in
     profiles.networking.dhcp
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure
-    # profiles.services.printing
     profiles.security.agebox
     # profiles.services.pipewire
+    # profiles.services.printing
     profiles.services.ssh
 
     profiles.sound
