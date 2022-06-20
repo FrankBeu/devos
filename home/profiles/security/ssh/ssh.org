@@ -1,0 +1,34 @@
+{ username, hostName }:
+''
+** ssh
+*** USAGE
+**** KEY-GENERATION
+***** w/ password
+#+BEGIN_SRC shell :results none
+  USER=${username}
+  HOST=${hostName}
+  DIR=~/.ssh/
+  # DIR=~/TMP/''${USER}/ssh/''${HOST}/
+  mkdir -p ''${DIR} && \
+  ssh-keygen -t ed25519 -a 100 -C ''${USER}@''${HOST} -f ''${DIR}/id_ed25519
+#+END_SRC
+***** w/o password
+#+BEGIN_SRC shell :results none
+  USER=${username}
+  HOST=${hostName}
+  DIR=~/.ssh/
+  # DIR=~/TMP/''${USER}/ssh/''${HOST}/
+  mkdir -p ''${DIR} && \
+  ssh-keygen -t ed25519 -a 100 -C ''${USER}@''${HOST} -f ''${DIR}/id_ed25519 -N ""
+#+END_SRC
+*** INFO
+*** TODO ROTATION
+**** change key
+cf. KEY-GENERATION
+**** change  authorizedKeys
+#+BEGIN_SRC nix
+  users.users.NAME.openssh.authorizedKeys.keys = [
+    ### :r =~/.ssh/id_ed25519.pub=
+    ];
+#+END_SRC
+'' ### KEEP: closes nix string

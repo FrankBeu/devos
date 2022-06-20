@@ -20,6 +20,8 @@ in
       };
     };
 
+    publicSSHKeys = true;
+
     ###  DO NOT SET ANY OTHER VARIABLES - HAVE TO BE SET IN TEST
   };
 }

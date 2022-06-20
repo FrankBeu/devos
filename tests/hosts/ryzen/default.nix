@@ -49,6 +49,7 @@ let
   nixos-profile-tools-system    = readFile                ../../nixos/profiles/tools/system/testScript.py;
   nixos-profile-tools-usbutils  = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
   nixos-profile-tools-xorg      = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
+  nixos-profile-services-ssh    = readFile                ../../nixos/profiles/services/ssh/testScript.py;
   nixos-profile-tools-zathura   = readFile                ../../nixos/profiles/tools/zathura/testScript.py;
   nixos-profile-video-vlc       = readFile                ../../nixos/profiles/video/vlc/testScript.py;
   nixos-profile-video-ytdl      = readFile                ../../nixos/profiles/video/youtubedownloader/testScript.py;
@@ -73,6 +74,7 @@ let
   home-profile-stateVersion     = (import                 ../../home/profiles/stateVersion/testScript.py.nix             { inherit              username;});
   home-profile-ripgrep          = (import                 ../../home/profiles/ripgrep/testScript.py.nix                  { inherit              username;});
   home-profile-security-age     = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
+  home-profile-security-ssh     = (import                 ../../home/profiles/security/ssh/testScript.py.nix             { inherit              username;});
   home-profile-security-summon  = (import                 ../../home/profiles/security/summon/testScript.py.nix          { inherit hmProfileDir username;});
   home-profile-shell-nushell    = (import                 ../../home/profiles/shell/nushell/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-tools-nixTools   = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix           { inherit              username;});
@@ -148,6 +150,7 @@ let
         ${nixos-profile-manualActions}
         ${nixos-profile-ranger}
         ${nixos-profile-security-age}
+        ${nixos-profile-services-ssh}
         ${nixos-profile-timezone}
         ${nixos-profile-tools-android}
         ${nixos-profile-tools-drawio}
@@ -183,6 +186,7 @@ let
         ${home-profile-manualActions}
         ${home-profile-ripgrep}
         ${home-profile-security-age}
+        ${home-profile-security-ssh}
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}
       '';

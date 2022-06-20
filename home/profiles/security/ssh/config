@@ -1,0 +1,53 @@
+###
+##
+# * SSH-CONFIG
+#
+
+###
+##
+# ** GLOBAL
+#
+# ServerAliveInterval 120
+ServerAliveInterval 60
+# ServerAliveCountMax 60
+
+###
+##
+# ** HOSTS
+#
+
+###
+##
+# *** NUC
+#
+Host nuc
+    # HostName 192.168.0.17
+    # HostName 93.207.166.144
+    # HostName 84.133.249.75
+    HostName thesym.site
+    Port 62626
+    User frank
+
+Host nucX
+    # HostName 192.168.0.17
+    # HostName 93.207.166.144
+    # HostName 84.133.249.75
+    HostName thesym.site
+    Port 62626
+    User frank
+    ###
+    ## GUI-forwarding
+    #
+    ForwardX11 yes
+    Compression yes
+
+Host nucR
+    Host thesym.site
+    HostName thesym.site
+    User frank
+    RemoteForward 62628 localhost:62629
+
+Host ryzen
+    HostName 192.168.0.31
+    Port 22
+    User root

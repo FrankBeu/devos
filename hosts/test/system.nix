@@ -18,8 +18,8 @@ in
     profiles.users.root
     profiles.users.test
   ] ++ [
-  ################################################################################################
-  ### DEBUG
+    ################################################################################################
+    ### DEBUG
   ]
   ++ suites.debug
   # ++ suites.i3
@@ -39,7 +39,14 @@ in
 
   ### use publicly available ssh-key
   environment.etc = {
-    "ssh/ssh_host_ed25519_key"    .source = "${self}/secrets/secretKeys/NixOS/id_ed25519";
-    "ssh/ssh_host_ed25519_key.pub".source = "${self}/secrets/secretKeys/NixOS/id_ed25519.pub";
+    "ssh/ssh_host_ed25519_key"     = {
+      source = "${self}/secrets/secretKeys/hosts/test/id_ed25519";
+      mode   = "600";
+    };
+    "ssh/ssh_host_ed25519_key.pub" = {
+      source = "${self}/secrets/secretKeys/hosts/test/id_ed25519.pub";
+      mode   = "644";
+
+    };
   };
 }

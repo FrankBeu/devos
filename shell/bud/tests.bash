@@ -51,7 +51,7 @@ tests.nixos.profiles.manualActions
 tests.nixos.profiles.security.agebox
 tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
-# tests.nixos.profiles.services.ssh                 ### TODO: implement
+tests.nixos.profiles.services.ssh
 # tests.nixos.profiles.services.xserver             ### TODO: implement
 # tests.nixos.profiles.sound                        ### TODO: implement
 # tests.nixos.profiles.systemd.sleepDisable         ### TODO: implement
@@ -112,6 +112,7 @@ tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.manualActions
 tests.home.profiles.ripgrep
 tests.home.profiles.security.age
+tests.home.profiles.security.ssh
 tests.home.profiles.security.summon
 tests.home.profiles.shell.nushell
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed

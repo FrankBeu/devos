@@ -31,6 +31,8 @@ in
 
     inherit currentColorSchemeName;
 
+    publicSSHKeys = false;### TODO make default when variables are typed
+
     users = {
       frank = import ./frank/default.nix;
     };
