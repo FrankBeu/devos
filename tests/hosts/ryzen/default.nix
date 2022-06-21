@@ -65,6 +65,7 @@ let
 
   home-profile-bat                = (import                 ../../home/profiles/bat/testScript.py.nix                        { inherit hmProfileDir username;});
   home-profile-chromium           = (import                 ../../home/profiles/browser/chromium/testScript.py.nix           { inherit hmProfileDir;         });
+  home-profile-display-cursor     = (import                 ../../home/profiles/display/cursor/testScript.py.nix             { inherit hmProfileDir username;});
   home-profile-firefox-main       = (import                 ../../home/profiles/browser/firefox/main/testScript.py.nix       { inherit hmProfileDir username;});
   home-profile-firefox-orgCapture = (import                 ../../home/profiles/browser/firefox/orgCapture/testScript.py.nix { inherit              username;});
   home-profile-firefox-tridactyl  = (import                 ../../home/profiles/browser/firefox/tridactyl/testScript.py.nix  { inherit              username;});
@@ -188,6 +189,7 @@ let
 
         ${home-profile-bat}
         ${home-profile-chromium}
+        ${home-profile-display-cursor}
         ${home-profile-firefox-main}
         ${home-profile-firefox-orgCapture}
         ${home-profile-firefox-tridactyl}

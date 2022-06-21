@@ -25,6 +25,7 @@ in
     profiles.clipmenu
     profiles.directoryStructure
     profiles.direnv
+    profiles.display.cursor
     profiles.display.i3
     profiles.dotLocal
     profiles.editor.emacs

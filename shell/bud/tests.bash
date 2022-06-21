@@ -105,7 +105,7 @@ tests.home.profiles.browser.firefox.orgCapture
 tests.home.profiles.browser.firefox.tridactyl
 tests.home.profiles.clipmenu
 tests.home.profiles.directoryStructure
-# tests.home.profiles.display.cursor                ### TODO: implement
+tests.home.profiles.display.cursor
 tests.home.profiles.display.i3
 tests.home.profiles.dotLocal
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
