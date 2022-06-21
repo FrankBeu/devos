@@ -31,6 +31,7 @@ in
     profiles.editor.emacs
     profiles.exa
     profiles.filemanager.ranger
+    profiles.flameshot
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
     profiles.manualActions

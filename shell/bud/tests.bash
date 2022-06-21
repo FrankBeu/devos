@@ -110,6 +110,7 @@ tests.home.profiles.display.i3
 tests.home.profiles.dotLocal
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
 tests.home.profiles.exa
+tests.home.profiles.flameshot
 # tests.home.profiles.filemanager.ranger            ### TODO: implement ?? nec check if configuration is already defined via nixos - remove profile
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA

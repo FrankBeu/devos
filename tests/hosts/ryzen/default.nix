@@ -75,6 +75,7 @@ let
   home-profile-directoryStructure = (import                 ../../home/profiles/directoryStructure/testScript.py.nix         { inherit              username;});
   home-profile-dotLocal           = (import                 ../../home/profiles/dotLocal/testScript.py.nix                   { inherit hmProfileDir username;});
   home-profile-exa                = (import                 ../../home/profiles/exa/testScript.py.nix                        { inherit hmProfileDir;         });
+  home-profile-flameshot          = (import                 ../../home/profiles/flameshot/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-git                = (import                 ../../home/profiles/git/testScript.py.nix                        { inherit hmProfileDir username;});
   home-profile-manualActions      = (import                 ../../home/profiles/manualActions/testScript.py.nix              { inherit              username;});
   home-profile-stateVersion       = (import                 ../../home/profiles/stateVersion/testScript.py.nix               { inherit              username;});
@@ -196,6 +197,7 @@ let
         ${home-profile-clipmenu}
         ${home-profile-directoryStructure}
         ${home-profile-exa}
+        ${home-profile-flameshot}
         ${home-profile-dotLocal}
         ${home-profile-manualActions}
         ${home-profile-ripgrep}
