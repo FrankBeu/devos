@@ -13,17 +13,33 @@ let
       machine = { pkgs, profiles, suites, variables, ... }:
       {
         imports = with profiles; [
+          alacritty
+          filemanager.ranger
         ] ++
-        # suites.debug ++
+        # suites.debug   ++
+        suites.i3        ++
+        suites.rustTools ++ ### testDependency: procs
         [];
+
+        variables = {
+          displaymanager = {
+            autologin = {
+              enabled  = true;
+              inherit username;
+            };
+          };
+        };
 
         users.users.${username}.shell = pkgs.zsh;### shell has to be set in order to create aliases
 
+        systemd.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit username; }).tmpfiles ];### KEEP (multiline-)string-import
 
         home-manager.users.${username} = { profiles, suites, ... }:
         {
           imports = with profiles; [
+            alacritty
             directoryStructure
+            display.i3
           ];
         };
       };

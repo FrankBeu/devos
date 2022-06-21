@@ -39,6 +39,17 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.directoryStructure::dotLocal"):
         machine.succeed(f"[[ -s /home/{username}/.local/bin/registerRepo ]]")
+
+
+
+
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.directoryStructure::i3config"):
+    machine.wait_for_x()
+    ranger = machine.succeed("procs ranger --no-header")
+    assert_lacks(ranger, "ranger")
+    machine.send_key("meta_r-slash")
+    machine.send_key("meta_r-j")
+    machine.wait_until_succeeds(f"pgrep -u {username} ranger")
 ''
 
 # Local Variables:

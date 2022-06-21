@@ -4,6 +4,10 @@ let
   shell = nixosConfig.users.users.${username}.shell.pname;
 in
 {
+  xdg.configFile."i3/config".text = pkgs.lib.mkDefault( pkgs.lib.mkAfter ''
+    ${(import ./i3/additional.nix )}
+  '' );
+
   programs.${shell}.enable = true;
   home = {
 
