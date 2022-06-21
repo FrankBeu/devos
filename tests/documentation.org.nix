@@ -134,6 +134,18 @@ can be faked with ~''${TEST_USER}~
 #+BEGIN_SRC python :results none
 machine.execute('TEST_USER=''${username} bud COMMAND')
 #+END_SRC
+**** test existence of binary
+always surround searchPattern with newlines
+otherwise false positives are possible
+#+BEGIN_SRC python
+    output = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains(output, '\nriv\n')
+#+END_SRC
+***** a testHelperFunction exists
+#+BEGIN_SRC python
+    output = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains_line(output, 'riv')
+#+END_SRC
 *** ~send_key~
 =nixos/lib/test-driver/test-driver.py=
 **** constructed from QEMU-doc

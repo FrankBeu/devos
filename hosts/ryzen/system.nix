@@ -33,6 +33,7 @@ in
     profiles.filemanager.ranger
     profiles.i18n.common
     # profiles.i18n.fcitx
+    profiles.image.common
     profiles.manualActions
     profiles.networking.dhcp
     profiles.networking.nameserver.regular

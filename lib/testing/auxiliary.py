@@ -20,6 +20,21 @@ def assert_lacks(haystack: str, needle: str) -> None:
         raise Exception(f"Unexpected string '{needle}' was found")
 
 
+def assert_contains_line(haystack: str, needle: str) -> None:
+    '''
+    Checks if the given needle is present in the haystack (assumed: ls-output).
+    A needle has to be the only pattern on a line.
+    Same as assert_contains except needle is surrounded by new-lines.
+    '''
+    line = f"\n{needle}\n"
+    if line not in haystack:
+        print("The haystack that will cause the following exception is:")
+        print("---")
+        print(haystack)
+        print("---")
+        raise Exception(f"Expected string '{needle}' was not found on own line")
+
+
 def assert_contains_regex(haystack: str, needle_regex_string: str, multiline: bool=True) -> None:
     '''
     checks if the given regexString (e.g. r"google.com.\t[0-9]+\tIN\tA\t[0-9.]+")
