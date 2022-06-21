@@ -132,10 +132,10 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     machine.succeed(f'diff -r {dotLocal_TARGET_path_clT} {dotLocal_template_path_clT}')
 
     message = machine.succeed(f'cat {dotLocal_tmp_path_clT}/message')
-    assert_contains_regex(message, fr'\tA \[34;1mdotLocal\[0m-script-template was \[32;1mcreated:\[0m \[33m{dotLocal_template_path_clT}/dotLocal/{script_name}\[0m.\n'\
-                                   fr'\n'                                                                                                                                         \
-                                   fr'\tInsert the snippet from the \[35mclipboard\[0m into \[33m./default.nix\[0m.'                                                      )
-                                   ### mind the trailing \n
+    assert_contains_regex(message,  fr'\tA \[34;1mdotLocal\[0m-script-template was \[32;1mcreated:\[0m \[33m{dotLocal_template_path_clT}/dotLocal/{script_name}\[0m.\n'\
+                                    fr'\n'                                                                                                                                         \
+                                    fr'\tInsert the snippet from the \[35mclipboard\[0m into \[33m./default.nix\[0m.'                                                      )
+                                    ### mind the trailing \n
 
     clipboard = machine.succeed(f'cat {dotLocal_tmp_path_clT}/clipboard')
     assert_contains_regex(clipboard, 'home.file.".local/bin/templateTestDotLocal".source = ./dotLocal/templateTestDotLocal;')
@@ -145,11 +145,11 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.bud.template::error:EXISTS"):
 
-    (status, error_response) = machine.execute(f'su - {username} -c     " '\
-                                               f'cd {i3_template_path} && '\
-                                               f'export DISPLAY=:0     && '\
-                                               f'bud template i           '\
-                                               f'"'                        )
+    (status, error_response) = machine.execute( f'su - {username} -c     " '\
+                                                f'cd {i3_template_path} && '\
+                                                f'export DISPLAY=:0     && '\
+                                                f'bud template i           '\
+                                                f'"'                        )
 
     assert status == 1, "calling must fail if the directory-to-create already exists"
     assert_contains_regex(error_response, fr"""\tA directory \[31;1malready exists\[0m at \[33m{i3_template_path}/i3\[0m.""")

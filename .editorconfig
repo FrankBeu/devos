@@ -81,10 +81,14 @@ charset                    = unset
 end_of_line                = unset
 indent_size                = unset
 indent_style               = unset
-insert_final_newline       = false
+insert_final_newline       = unset
 tab_width                  = unset
 trim_trailing_whitespace   = false
 
+### filespecific
+### insert_final_newline
+[tests/home/profiles/bat/files/testFileSource.battestsyntax]
+insert_final_newline       = false
 
 ### TODO doc
 ### TODO can be aligned

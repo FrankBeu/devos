@@ -52,7 +52,7 @@ toc: true
 - preparationScripts have to remain external
 - to be reusable in integration-tests
 - do not import rules as arrays - import rules as {multiline,}-string:
-   hosts must be able to import multiple rules
+    hosts must be able to import multiple rules
 ** run
 *** single test
 #+BEGIN_EXAMPLE shell

@@ -16,8 +16,8 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     response = machine.succeed('TEST_USER=${username} bud prepvm test')
     assert_contains_regex(response, r"source ${budDir}/shell/bud/prepvm/test")
 
-    environment_after_prep = machine.succeed('source ${budDir}/shell/bud/prepvm/test && '\
-                                             'env')
+    environment_after_prep = machine.succeed( 'source ${budDir}/shell/bud/prepvm/test && '\
+                                              'env')
 
     machine.log(environment_after_prep)
     assert_contains_regex(environment_after_prep, r"QEMU_.*")
