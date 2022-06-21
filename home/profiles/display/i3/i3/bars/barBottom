@@ -1,0 +1,44 @@
+# -*- mode:conf; eval:(rainbow-mode 1) -*-
+#################################################################################################### BAR-BOTTOM
+bar {
+    id                       bottom
+    modifier                 $mod
+    status_command           exec i3statusBarTime
+
+    font                     pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+
+    mode                     hide
+    position                 bottom
+
+    workspace_buttons        yes
+    strip_workspace_numbers  yes
+
+    binding_mode_indicator   yes
+
+    tray_output              primary
+    tray_padding             5
+
+    colors {
+        background               #2e2a31
+        statusline               #b6b6b2
+        separator                #2e2a31
+
+        ###                      BORDER  FILLING TEXT
+        focused_workspace        #000000 $color  #000000
+        active_workspace         #444444 #5f676a #ffffff
+        inactive_workspace       #333333 #222222 #888888
+        urgent_workspace         #2f343a #900000 #ffffff
+        binding_mode             #2f343a #222222 #f0f0f0
+    }
+}
+
+### modifier               $alt
+### status_command         /usr/bin/env i3status-rs ~/.config/i3/i3status-rust/config-Bar-3.toml
+### tray_output            DP-1
+### tray_output            DP-2
+### tray_output            DP-3
+
+### background             #050505
+### statusline             #ffffff
+### separator              #444444
+### binding_mode           #2f343a #900000 #ffffff

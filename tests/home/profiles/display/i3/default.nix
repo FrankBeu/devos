@@ -25,6 +25,9 @@ let
           };
         };
 
+        bud.localFlakeClone               = "/home/${username}/DEVOS"; ### documentation relies on the location
+        variables.documentation.user.name = username;
+
         ### golden/gitVersionTarget.png
         systemd.tmpfiles.rules = [ ( import ./testPreparation.nix ).tmpfiles ];
 
@@ -43,7 +46,6 @@ let
       ''
         ${testHelpers}
         start_all()
-        ${testScriptNixos}
         ${testScriptExternal}
       '';
 
@@ -52,8 +54,6 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  userID   = host.config.users.users.${username}.uid;
-  testScriptNixos    = (import  ../../../../nixos/profiles/display/i3/testScript.py.nix { inherit userID; });
   testScriptExternal = (import ./testScript.py.nix {inherit username;});
 
 in

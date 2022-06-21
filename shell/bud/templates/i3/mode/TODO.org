@@ -1,0 +1,9 @@
+* i3-templates
+** TODO implement
+*** TODO additional
+new
+used to create appSpecific i3configuration
+cf.: =home/profiles/docDotLocal/i3/additional.nix=
+*** TODO mode
+current i3
+used to create a mode

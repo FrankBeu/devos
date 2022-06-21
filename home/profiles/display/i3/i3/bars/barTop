@@ -1,0 +1,52 @@
+# -*- mode:conf; eval:(rainbow-mode 1) -*-
+#################################################################################################### BAR-TOP
+bar {
+    id                       top
+    modifier                 $alt
+    status_command           exec i3statusBar
+
+    font                     pango:RobotoMono, FontAwesome5Free, FontAwesome5Brands 16
+
+    mode                     hide
+    position                 top
+
+    workspace_buttons        no
+    strip_workspace_numbers  yes
+
+    binding_mode_indicator   no
+
+    colors {
+        background               #2e2a31
+        statusline               #b6b6b2
+        separator                #2e2a31
+        ###                      BORDER  FILLING TEXT
+        focused_workspace        #000000 $color  #000000
+        active_workspace         #444444 #5f676a #ffffff
+        inactive_workspace       #333333 #222222 #888888
+        urgent_workspace         #2f343a #900000 #ffffff
+        binding_mode             #2f343a #900000 #ffffff
+    }
+}
+
+### DEVEL
+### status_command           exec ~/SRC/GITEA/i3statusBar/i3statusBar
+### status_command           /usr/bin/env i3status-rs ~/.config/i3/i3status-rust/config-Bar-1.toml
+
+### binding_mode_indicator   yes
+### modifier                 $mod
+### output                   DP-3
+### output                   primary
+### position                 bottom
+### strip_workspace_numbers  yes
+### tray_output              primary
+### tray_padding             5
+### workspace_buttons        yes
+
+### background               #050505
+### background               #1E2029
+### background               #1E2029
+### statusline               #ffffff
+### statusline               #b6b6b2
+### separator                #444444
+### separator                #AF3A03
+### separator                $color

@@ -1,10 +1,7 @@
-###
-##
-# * barista
-#
 { pkgs
 , fetchFromGitHub
-, ... }:
+, ...
+}:
 {
   fonts = {
     fontconfig.enable = pkgs.lib.mkForce true;

@@ -1,0 +1,117 @@
+#!/usr/bin/env zsh
+
+#################################################################################################### ALL POSSIBLE SCREEN-ANCHORS
+### ASUMED: MAX 2 MONITORS
+### POSSIBLE VALUES OF POSITIONAL-ARG1:
+### ONE OF MONITOR-Y-X:
+### LTL LTM LTR RTL RTM RTR
+### LML LMM LMR RML RMM RMR
+### LBL LBM LBR RBL RBM RBR
+
+DESIRED_ANCHOR=${1}
+
+### GET ${SCREEN<N>[@]} 0:NAME; 1:X; 2:Y; 3:X-OFFSET; 4:Y-OFFSET;
+SCREEN1=($(xrandr | grep -w connected  | sed 's/primary //' | awk -F'[ x+]' '{print $1,$3,$4,$5,$6}' | head -n 1))
+SCREEN2=($(xrandr | grep -w connected  | sed 's/primary //' | awk -F'[ x+]' '{print $1,$3,$4,$5,$6}' | tail -n 1))
+
+### POSITION OF SCREEN
+if [ ${SCREEN1[4]} -eq 0  ]
+then
+    RI=(${SCREEN2[@]});
+    LE=(${SCREEN1[@]});
+else
+    RI=(${SCREEN1[@]});
+    LE=(${SCREEN2[@]});
+fi
+
+### [2] X
+### [4] X-OFFSET
+### (monitor-X)-X
+(( LL = ${LE[4]} + 0            ))
+(( LM = ${LE[4]} + ${LE[2]} / 2 ))
+(( LR = ${LE[4]} + ${LE[2]}     ))
+(( RL = ${RI[4]} + 0            ))
+(( RM = ${RI[4]} + ${RI[2]} / 2 ))
+(( RR = ${RI[4]} + ${RI[2]}     ))
+
+### [5] Y-OFFSET
+### monitor-Y
+(( LTY = ${LE[5]} + 0 ))
+(( RTY = ${RI[5]} + 0 ))
+
+### [3] Y
+### [5] Y-OFFSET
+### monitor-Y-"Y" - collision RM
+(( LMY = ${LE[5]} + ${LE[3]} / 2 ))
+(( RMY = ${RI[5]} + ${RI[3]} / 2 ))
+
+### [3] Y
+### [5] Y-OFFSET
+### monitor-Y
+(( LBY = ${LE[5]} + ${LE[3]} ))
+(( RBY = ${RI[5]} + ${RI[3]} ))
+
+LTL=(${LL} ${LTY})
+LTM=(${LM} ${LTY})
+LTR=(${LR} ${LTY})
+RTL=(${RL} ${RTY})
+RTM=(${RM} ${RTY})
+RTR=(${RR} ${RTY})
+
+LML=(${LL} ${LMY})
+LMM=(${LM} ${LMY})
+LMR=(${LR} ${LMY})
+RML=(${RL} ${RMY})
+RMM=(${RM} ${RMY})
+RMR=(${RR} ${RMY})
+
+LBL=(${LL} ${LBY})
+LBM=(${LM} ${LBY})
+LBR=(${LR} ${LBY})
+RBL=(${RL} ${RBY})
+RBM=(${RM} ${RBY})
+RBR=(${RR} ${RBY})
+
+#################################################################################################### WINDOW POSITIONING
+CURRENT=$(xdotool getwindowfocus)
+
+### WIDTH, HEIGHT
+WID=$(xdotool getwindowgeometry "${CURRENT}" | grep Geometry | awk  -F'[:x]' '{print $2}')
+HEI=$(xdotool getwindowgeometry "${CURRENT}" | grep Geometry | awk  -F'[:x]' '{print $3}')
+
+TARGET_ANCHOR=(${(P)DESIRED_ANCHOR})
+
+TARGET_ANCHOR_X=${TARGET_ANCHOR[1]}
+TARGET_ANCHOR_Y=${TARGET_ANCHOR[2]}
+
+case ${DESIRED_ANCHOR} in
+    ### X-LEFT
+    LTL|RTL|LML|RML|LBL|RBL)
+        (( POSITION_X = ${TARGET_ANCHOR_X} + 5 ))
+        ;;
+    ### X-MIDDLE
+    LTM|RTM|LMM|RMM|LBM|RBM)
+        (( POSITION_X = ${TARGET_ANCHOR_X} - ${WID} / 2 ))
+        ;;
+    ### X-RIGHT
+    LTR|RTR|LMR|RMR|LBR|RBR)
+        (( POSITION_X = ${TARGET_ANCHOR_X} - ${WID} - 5 ))
+        ;;
+esac
+
+case ${DESIRED_ANCHOR} in
+    ### Y-TOP
+    LTL|LTM|LTR|RTL|RTM|RTR)
+        (( POSITION_Y = ${TARGET_ANCHOR_Y} + 5 ))
+        ;;
+    ### Y-MIDDLE
+    LML|LMM|LMR|RML|RMM|RMR)
+        (( POSITION_Y = ${TARGET_ANCHOR_Y} - ${HEI} / 2 ))
+        ;;
+    ### Y-BOTTOM
+    LBL|LBM|LBR|RBL|RBM|RBR)
+        (( POSITION_Y = ${TARGET_ANCHOR_Y} - ${HEI} - 5 ))
+        ;;
+esac
+
+xdotool windowmove "${CURRENT}" ${POSITION_X} ${POSITION_Y}

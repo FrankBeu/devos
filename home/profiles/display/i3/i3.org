@@ -1,0 +1,85 @@
+---
+title: i3
+linktitle: i3
+description: documentation for the i3 and related tools
+categories:
+keywords: [ barista, statusBar, i3, xserver, windowManager ]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "i3"
+    identifier: "i3"
+draft: false
+toc: true
+---
+* i3
+** INFO
+*** reference
+http://i3wm.org/docs/userguide.html
+*** keys
+**** keycodes
+#+BEGIN_SRC shell :results none
+xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+#+END_SRC
+**** keybindings
+#+BEGIN_SRC shell :results none
+xevk
+#+END_SRC
+***** use keycode and keysym in
+#+BEGIN_EXAMPLE
+bindcode $mod+59     exec --no-startup-id COMMAND
+bindcode $mod+60     exec --no-startup-id COMMAND
+bindsym  $mod+comma  exec --no-startup-id COMMAND
+bindsym  $mod+period exec --no-startup-id COMMAND
+bindsym  $mod+Tab    exec --no-startup-id COMMAND
+#+END_EXAMPLE
+**** move starting application to WORKSPACE
+#+BEGIN_SRC shell :results none
+xprop | grep WM_CLASS
+#+END_SRC
+#+BEGIN_SRC conf
+assign [class="VirtualBox"] → $WS4
+assign [class="Eclipse"]    → $WS9
+assign [class="Firefox"]    → $WS10
+assign [class="Chromium"]   → $WS10
+#+END_SRC
+**** names
+#+BEGIN_SRC conf
+bindsym $mod+comma
+bindsym $mod+period
+bindsym $mod+slash
+#+END_SRC
+*** comments
+NEVER APPEND
+ALWAYS ON OWN LINE
+*** rules
+get class with ~xprop~ - click
+** i3statusBar
+*** based on barista
+*** INFO
+**** colors
+***** are taken from i3-config automatically
+**** icons
+- material-icons \\
+  https://github.com/google/material-design-icons \\
+  https://barista.run/pango/icons/material
+  - search \\
+    https://fonts.google.com/icons?selected=Material+Icons
+- material-design-icons \\
+  https://github.com/Templarian/MaterialDesign-Webfont \\
+  https://barista.run/pango/icons/mdi
+  - search \\
+    https://materialdesignicons.com/
+- fontAwesome \\
+  https://github.com/FortAwesome/Font-Awesome   \\
+  https://barista.run/pango/icons/fontawesome   \\
+  - search \\
+    https://fontawesome.com/icons?d=gallery&m=free
+*** reload
+=SUPER-SHIFT-Y SUPER-R=
+**** TODO dynamic keybinding
+same for documentation
+** hostSpecific
+Initial screenConfiguration is host-specific. \\
+If the file =hosts/<HOSTNAME>/system/misc/immediate/i3.nix= exist, it will be directly applied. \\
+It is called /immediate/ because from the =hosts/<HOSTNAME>/system/misc/default.nix= point of view it is not imported but used directly.
