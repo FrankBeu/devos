@@ -15,6 +15,7 @@ let
         imports = with profiles; [
           display.i3
           display.manager.lightdm
+          services.documentation
         ];
 
         variables = {
@@ -24,7 +25,10 @@ let
               inherit username;
             };
           };
+          documentation.user.name = username;
         };
+
+        bud.localFlakeClone = "/home/${username}/DEVOS"; ### documentation relies on the location
       };
     };
 
