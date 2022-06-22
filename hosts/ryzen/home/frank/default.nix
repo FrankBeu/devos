@@ -35,6 +35,7 @@ in
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
     profiles.manualActions
+    profiles.notification.dunst
     profiles.pistol
     profiles.ripgrep
     profiles.security.age

@@ -78,6 +78,7 @@ let
   home-profile-flameshot          = (import                 ../../home/profiles/flameshot/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-git                = (import                 ../../home/profiles/git/testScript.py.nix                        { inherit hmProfileDir username;});
   home-profile-manualActions      = (import                 ../../home/profiles/manualActions/testScript.py.nix              { inherit              username;});
+  home-profile-notification-dunst = (import                 ../../home/profiles/notification/dunst/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-stateVersion       = (import                 ../../home/profiles/stateVersion/testScript.py.nix               { inherit              username;});
   home-profile-ripgrep            = (import                 ../../home/profiles/ripgrep/testScript.py.nix                    { inherit              username;});
   home-profile-security-age       = (import                 ../../home/profiles/security/age/testScript.py.nix               { inherit hmProfileDir username;});
@@ -105,20 +106,20 @@ let
 
         systemd.tmpfiles.rules = [
           ### bud: home/${username}/DEVOS
-          ( import ../../nixos/profiles/bud/testPreparation.nix            { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/nuke/testPreparation.nix                      { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/prepvm/testPreparation.nix                    { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/template/testPreparation.nix                  { inherit budDir group self username; }).tmpfiles
-          ( import ../../bud/testCreate/testPreparation.nix                { inherit budDir group self username; }).tmpfiles
+          ( import ../../nixos/profiles/bud/testPreparation.nix               { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/nuke/testPreparation.nix                         { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/prepvm/testPreparation.nix                       { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/template/testPreparation.nix                     { inherit budDir group self username; }).tmpfiles
+          ( import ../../bud/testCreate/testPreparation.nix                   { inherit budDir group self username; }).tmpfiles
 
-          ### colorscheme: colorTest{Target,Actual}
-          ( import ../../nixos/modules/colorscheme/testPreparation.nix     { inherit colorscheme;                }).tmpfiles
-          ### variables: variablesTest{Target,Actual}
-          ( import ../../nixos/modules/variables/testPreparation.nix       { inherit variables;                  }).tmpfiles
+          ### colorscheme: colorTest                                          {Target,Actual}
+          ( import ../../nixos/modules/colorscheme/testPreparation.nix        { inherit colorscheme;                }).tmpfiles
+          ### variables: variablesTest                                        {Target,Actual}
+          ( import ../../nixos/modules/variables/testPreparation.nix          { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
-          ( import ../../nixos/profiles/console/testPreparation.nix                                               ).tmpfiles
-          ### home-profiles-bat
-          ( import ../../home/profiles/bat/testPreparation.nix             { inherit        group      username; }).tmpfiles
+          ( import ../../nixos/profiles/console/testPreparation.nix                                                  ).tmpfiles
+          ( import ../../home/profiles/bat/testPreparation.nix                { inherit        group      username; }).tmpfiles
+          ( import ../../home/profiles/notification/dunst/testPreparation.nix                                        ).tmpfiles
         ];
 
         home-manager.users.${username} = { profiles, suites, variables, ... }:
@@ -152,7 +153,6 @@ let
         ${nixos-module-variables}
 
 
-        # $${nixos-profile-console}      ### TODO reactivate after graphical
         ${nixos-profile-curSysPkgs}
         ${nixos-profile-editor-vim}
         ${nixos-profile-imageCommon}
@@ -208,11 +208,13 @@ let
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}
       '';
-        # ${home-profile-git}
-        # ${home-profile-emacs}          ### TODO reactivate after graphical
-        # ${home-profile-fcitx}          ### TODO reactivate after graphical
-        # ${home-profile-stateVersion}   ### TODO reactivate after nixos-option is fixed
-        # ${home-profile-tools-nixTools} ### TODO reactivate after zsh
+        # ${nixos-profile-console}           ### TODO reactivate after graphical
+        # ${home-profile-emacs}              ### TODO reactivate after graphical
+        # ${home-profile-fcitx}              ### TODO reactivate after graphical
+        # ${home-profile-git}                ### TODO reactivate after graphical
+        # ${home-profile-notification-dunst} ### TODO reactivate after passthrough screenshots are different as on standalone because of different execution-duration
+        # ${home-profile-stateVersion}       ### TODO reactivate after nixos-option is fixed
+        # ${home-profile-tools-nixTools}     ### TODO reactivate after zsh
         ### all documentation tests seem to be unreliable reactivate after passthrough or other improvements
 
       name = self.inputs.latest.lib.toUpper name;

@@ -116,6 +116,7 @@ tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.manualActions
+tests.home.profiles.notification.dunst
 tests.home.profiles.ripgrep
 tests.home.profiles.security.age
 tests.home.profiles.security.gocryptfs

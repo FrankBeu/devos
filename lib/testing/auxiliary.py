@@ -124,14 +124,17 @@ def check_golden_scrot(file_name_golden: str, scrot_name_actual: str, debug=Fals
     the name to a goldenFile, which has to be found in the machines's /tmp folder,
     a name for the actual scrot to compare,
     and optionally a debug-flag, because a screenshot will not be made available if the function fails.
-    Both binary files are diffed.
-    The golden file has to be imported seperately from devos:...currentTest/golden/... to machine:/tmp
+    Both binary files get diffed.
+    The golden file has to be imported seperately from devos: ...currentTest/golden/... to machine:/tmp
+    TODO how to get TESTNAME / goldenPath: /tmp/TESTNAME/golden/{file_name_golden}
+    TODO align extensions: both or none
     '''
     machine.sleep(1)
     machine.screenshot(scrot_name_actual)
 
     if not debug:
         filename_actual = os.path.join(_out_dir(), "{}.png".format(scrot_name_actual))
+        machine.wait_for_file(filename_actual)
         machine.succeed(f"cmp /tmp/{file_name_golden} {filename_actual}")
 
 
@@ -158,7 +161,7 @@ def check_screen_text(command: str, assertions: List[str], debug=False) -> None:
 
 
 def _out_dir() -> str:
-        out_dir = os.environ.get("out", os.getcwd())
+        out_dir = os.environ["out"]
         return out_dir
 
 def ensure_dotLocal_header(filename: str, dotLocal_location: str) -> None:

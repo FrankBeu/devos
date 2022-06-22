@@ -433,4 +433,26 @@ machine.log(print(gitVersion))
 because of reduced brittleness in host-tests
 *** TODO check user nixos and root on hosts *NixOS*
 *** TODO move ~machine.wait_for_unit("multi-user.target")~ to =default.nix=, everywhere
+** UNSORTED
+*** debug Scrot tests
+#+BEGIN_SRC shell :results drawer
+  bt ...
+#+END_SRC
+#+BEGIN_SRC shell :results drawer
+  D
+  riv result/'*'
+#+END_SRC
+#+BEGIN_SRC python :results none
+    machine.screenshot("1_initial")
+    machine.send_key("alt")
+    machine.sleep(1)
+    machine.screenshot("2_before")
+    machine.send_key("meta_r-m")
+    machine.send_key("meta_r-u")
+    machine.sleep(1)
+    machine.screenshot("3_message")
+    machine.send_key("meta_r-semicolon")
+    machine.sleep(1)
+    machine.screenshot("4_after")
+#+END_SRC
 '' ### KEEP: closes nix string
