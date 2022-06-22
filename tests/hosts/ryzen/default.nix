@@ -84,6 +84,7 @@ let
   home-profile-rofi               = (import                 ../../home/profiles/rofi/testScript.py.nix                       { inherit hmProfileDir username;});
   home-profile-security-age       = (import                 ../../home/profiles/security/age/testScript.py.nix               { inherit hmProfileDir username;});
   home-profile-security-gocryptfs = (import                 ../../home/profiles/security/gocryptfs/testScript.py.nix         { inherit hmProfileDir username;});
+  home-profile-security-gopass    = (import                 ../../home/profiles/security/gopass/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-security-sops      = (import                 ../../home/profiles/security/sops/testScript.py.nix              { inherit hmProfileDir username;});
   home-profile-security-ssh       = (import                 ../../home/profiles/security/ssh/testScript.py.nix               { inherit              username;});
   home-profile-security-summon    = (import                 ../../home/profiles/security/summon/testScript.py.nix            { inherit hmProfileDir username;});
@@ -205,6 +206,7 @@ let
         ${home-profile-ripgrep}
         ${home-profile-security-age}
         ${home-profile-security-gocryptfs}
+        ${home-profile-security-gopass}
         ${home-profile-security-sops}
         ${home-profile-security-ssh}
         ${home-profile-security-summon}

@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   gopb
+### abstract:
+###   "GOPassBrowser: a workaround till browser integration for age exists"
+### usage: |
+###   gopb PATTERN
+###
+### info: |
+###    `man gopass`
+###
+###
+### ---
+###
+function gopb() {
+    gopass show -c ${1} username &&
+    gopass show -c ${1}
+}
+gopb ${@};
+
+### TODO doc
+### TODO multiple modes zsh + yaml
+### TODO yaml will be parsed by `dotLocalInfo`
+### TODO update all scripts to yamlDoc

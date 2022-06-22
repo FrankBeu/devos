@@ -121,6 +121,7 @@ tests.home.profiles.ripgrep
 tests.home.profiles.rofi
 tests.home.profiles.security.age
 tests.home.profiles.security.gocryptfs
+tests.home.profiles.security.gopass
 tests.home.profiles.security.sops
 tests.home.profiles.security.ssh
 tests.home.profiles.security.summon

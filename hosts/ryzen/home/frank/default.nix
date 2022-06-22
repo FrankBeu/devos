@@ -41,6 +41,7 @@ in
     profiles.rofi
     profiles.security.age
     profiles.security.gocryptfs
+    profiles.security.gopass
     profiles.security.sops
     profiles.security.ssh
     profiles.security.summon

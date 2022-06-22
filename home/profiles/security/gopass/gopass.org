@@ -1,0 +1,99 @@
+{ useremail }:
+''
+---
+title: gopass
+linktitle: gopass
+description: documentation for the gopass
+categories:
+keywords: [ gopass, credentials, password, secret, security ]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "gopass"
+    identifier: "gopass"
+draft: false
+toc: true
+---
+* gopass
+** INFO
+*** cheatsheet
+https://woile.github.io/gopass-cheat-sheet/
+*** presentation
+https://woile.github.io/gopass-presentation/
+*** configuration
+https://github.com/gopasspw/gopass/blob/master/docs/config.md#configuration-options
+** TASKS
+*** enable debugging
+https://github.com/gopasspw/gopass/blob/master/docs/config.md
+#+BEGIN_SRC shell :results none
+GOPASS_DEBUG_LOG=~/TMP/gopass.log gopass
+#+END_SRC
+*** setup
+#+BEGIN_SRC shell :results none
+  gopass setup --create --crypto age --email ${useremail}
+#+END_SRC
+**** TODO add gitremote                                         :afterK8S:
+*** create new stores
+**** create main store
+~gopass setup~ will do this for you
+#+BEGIN_SRC shell :results none
+gopass init --crypto age --path ~/.local/share/gopass/stores/root
+#+END_SRC
+**** create substores
+- k8s
+  #+BEGIN_SRC shell :results none
+    gopin --store k8s --crypto age --path ~/.local/share/gopass/stores/k8s
+  #+END_SRC
+- thesym.site
+  #+BEGIN_SRC shell :results none
+    gopin --store thesym.site --crypto age --path ~/.local/share/gopass/stores/thesym.site
+  #+END_SRC
+**** add recipient
+#+BEGIN_SRC shell :results none
+  goprec add --store root age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+  goprec add --store root age1m06a8j9km3z9remssw370ckjzent92ujd4jh3sv7vq2d2ynfny5qm4tzwx
+#+END_SRC
+**** remove recipient
+additionally rotate all pws !!!
+#+BEGIN_SRC shell :results none
+  goprec rm --force
+#+END_SRC
+*** change keyring-password
+- decrypt =~/.config/gopass/age-keyring.age=
+- reencrypt with new password
+*** decrypt password w/o gopass
+#+BEGIN_SRC shell :results none
+age --decrypt --identity <(echo AGE-SECRET-KEY-...........................................................) PASSWORD.age
+age --decrypt --identity  PASSWORD.age
+#+END_SRC
+** errorMessages
+*** Failed to list public key
+**** command
+#+BEGIN_SRC shell :results none
+  goprec add --store root age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+#+END_SRC
+**** message
+#+BEGIN_SRC shell :results none
+Enter your PIN:
+WARNING: Failed to list public key "age1m06a8j9km3z9remssw370ckjzent92ujd4jh3sv7vq2d2ynfny5qm4tzwx": no identity matched any of the recipients
+#+END_SRC
+**** cause
+wrong password
+** TODO TODOS
+*** browserSupport
+currently no browserSupport is enabled due to the fact, \\
+that the ageKeyring has to be decrypted interactively
+*** check if a ssh-agent could be usefull
+**** Not today... - Introducing Janus (SSH Agent written in Go)
+   https://ixday.github.io/post/janus/
+**** Comparing gopasspw:master...IxDay:master · gopasspw/gopass
+https://github.com/gopasspw/gopass/compare/master...IxDay:master
+**** janus/decrypt.go at master · IxDay/janus
+https://github.com/IxDay/janus/blob/master/cmd/decrypt.go
+*** age-plugin-pass
+https://github.com/FiloSottile/age/discussions/256#discussioncomment-2638232
+*** integrations
+https://github.com/gopasspw/gopass#integrations
+**** tessen                                                      :wayland:
+https://github.com/ayushnix/tessen
+'' ### KEEP: closes nix string
