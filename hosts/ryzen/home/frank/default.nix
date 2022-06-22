@@ -38,6 +38,7 @@ in
     profiles.notification.dunst
     profiles.pistol
     profiles.ripgrep
+    profiles.rofi
     profiles.security.age
     profiles.security.gocryptfs
     profiles.security.sops

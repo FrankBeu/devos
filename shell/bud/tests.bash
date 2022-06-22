@@ -118,6 +118,7 @@ tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.manualActions
 tests.home.profiles.notification.dunst
 tests.home.profiles.ripgrep
+tests.home.profiles.rofi
 tests.home.profiles.security.age
 tests.home.profiles.security.gocryptfs
 tests.home.profiles.security.sops

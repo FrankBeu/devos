@@ -81,6 +81,7 @@ let
   home-profile-notification-dunst = (import                 ../../home/profiles/notification/dunst/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-stateVersion       = (import                 ../../home/profiles/stateVersion/testScript.py.nix               { inherit              username;});
   home-profile-ripgrep            = (import                 ../../home/profiles/ripgrep/testScript.py.nix                    { inherit              username;});
+  home-profile-rofi               = (import                 ../../home/profiles/rofi/testScript.py.nix                       { inherit hmProfileDir username;});
   home-profile-security-age       = (import                 ../../home/profiles/security/age/testScript.py.nix               { inherit hmProfileDir username;});
   home-profile-security-gocryptfs = (import                 ../../home/profiles/security/gocryptfs/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-security-sops      = (import                 ../../home/profiles/security/sops/testScript.py.nix              { inherit hmProfileDir username;});
@@ -200,6 +201,7 @@ let
         ${home-profile-flameshot}
         ${home-profile-dotLocal}
         ${home-profile-manualActions}
+        ${home-profile-rofi}
         ${home-profile-ripgrep}
         ${home-profile-security-age}
         ${home-profile-security-gocryptfs}
