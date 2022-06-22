@@ -115,6 +115,7 @@ tests.home.profiles.flameshot
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
+tests.home.profiles.languages.golang
 tests.home.profiles.manualActions
 tests.home.profiles.notification.dunst
 tests.home.profiles.ripgrep

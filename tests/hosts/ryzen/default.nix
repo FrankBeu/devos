@@ -77,6 +77,7 @@ let
   home-profile-exa                = (import                 ../../home/profiles/exa/testScript.py.nix                        { inherit hmProfileDir;         });
   home-profile-flameshot          = (import                 ../../home/profiles/flameshot/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-git                = (import                 ../../home/profiles/git/testScript.py.nix                        { inherit hmProfileDir username;});
+  home-profile-languages-golang   = (import                 ../../home/profiles/languages/golang/testScript.py.nix                        { inherit hmProfileDir username;});
   home-profile-manualActions      = (import                 ../../home/profiles/manualActions/testScript.py.nix              { inherit              username;});
   home-profile-notification-dunst = (import                 ../../home/profiles/notification/dunst/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-stateVersion       = (import                 ../../home/profiles/stateVersion/testScript.py.nix               { inherit              username;});
@@ -201,6 +202,7 @@ let
         ${home-profile-exa}
         ${home-profile-flameshot}
         ${home-profile-dotLocal}
+        ${home-profile-languages-golang}
         ${home-profile-manualActions}
         ${home-profile-rofi}
         ${home-profile-ripgrep}

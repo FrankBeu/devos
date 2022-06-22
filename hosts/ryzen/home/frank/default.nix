@@ -34,6 +34,7 @@ in
     profiles.flameshot
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
+    profiles.languages.golang
     profiles.manualActions
     profiles.notification.dunst
     profiles.pistol
