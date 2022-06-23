@@ -42,6 +42,7 @@ in
     # profiles.services.pipewire
     # profiles.services.printing
     profiles.services.ssh
+    profiles.shell.zsh
 
     profiles.sound
     profiles.systemd.sleepDisable

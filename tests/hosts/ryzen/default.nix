@@ -90,7 +90,9 @@ let
   home-profile-security-ssh       = (import                 ../../home/profiles/security/ssh/testScript.py.nix               { inherit              username;});
   home-profile-security-summon    = (import                 ../../home/profiles/security/summon/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-shell-nushell      = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
+  home-profile-shell-zsh          = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
   home-profile-tools-nixTools     = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
+  home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
 
 
   test = {
@@ -213,6 +215,7 @@ let
         ${home-profile-security-ssh}
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}
+        ${home-profile-shell-zsh}
       '';
         # ${nixos-profile-console}           ### TODO reactivate after graphical
         # ${home-profile-emacs}              ### TODO reactivate after graphical

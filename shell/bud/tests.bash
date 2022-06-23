@@ -127,6 +127,7 @@ tests.home.profiles.security.sops
 tests.home.profiles.security.ssh
 tests.home.profiles.security.summon
 tests.home.profiles.shell.nushell
+tests.home.profiles.shell.zsh
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
 

@@ -1,0 +1,15 @@
+---
+title: shell
+linktitle: shell
+description: documentation for shell and related tools
+categories:
+keywords: [cli, shell, fuzzyfinder, zsh]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "shell"
+    identifier: "shell"
+draft: false
+toc: true
+---
+* shell

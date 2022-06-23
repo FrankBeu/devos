@@ -1,0 +1,31 @@
+# -*- mode:org; -*-
+{ username }:
+''
+** zsh
+*** zshenv
+**** volatiles
+fast changing ENVs are created outside of nixos \\
+ =~/.config/zsh/.zshenvVolatile=
+***** setup instructions:
+=$HOME/manualActions/manualActions.org=
+*** zshrc
+**** optionsPrintOrder
+variables in =zshrc= are ordered by appearance \\
+cf. =home-manager/modules/programs/zsh.nix=
+*** keybindings
+**** get key-identifier
+=Ctrl-V= (verbatim)
+*** completion
+has to be enabled manually
+**** do not use:
+#+begin_src nix
+  # enableCompletion = true;
+#+end_src
+*** profiling
+**** put ~zmodload zsh/zprof~ on top of
+=$ZDOTDIR/.zshrc=
+**** call ~zprof~
+*** DOC
+can be found under:
+file:///etc/profiles/per-user/${username}/share/zsh/htmldoc/index.html
+'' ### KEEP: closes nix string

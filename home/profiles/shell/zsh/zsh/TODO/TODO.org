@@ -1,0 +1,3 @@
+* zshrc.d
+** dissolve
+each profile installing the program has to take care of the alias/keybindings etc

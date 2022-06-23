@@ -1,0 +1,113 @@
+** zsh-plugins
+*** installed
+**** mollifier/cd-gitroot
+ cd to gitroot \\
+ https://github.com/mollifier/cd-gitroot
+***** USAGE
+#+begin_src shell :results drawer
+  cd-gitroot [PATH]
+#+end_src
+**** fzf-tab
+use fzf for completions \\
+https://github.com/Aloxaf/fzf-tab
+**** via homeManager-packages
+***** zsh-completions
+      additional completion definitions for Zsh. \\
+      https://github.com/zsh-users/zsh-completions
+**** via system-packages
+***** cod
+completion-daemon, create completions from --help \\
+https://github.com/dim-an/cod/
+****** USAGE
+******* learn new command
+#+begin_src shell :results drawer
+  cod learn -- dig -h
+#+end_src
+***** zdharma/fast-syntax-highlighting
+       https://github.com/zdharma/fast-syntax-highlighting
+****** USAGE
+#+begin_src shell :results drawer
+  fast-theme -l
+#+end_src
+***** zsh-autosuggestions
+      start writing a command... \\
+      https://github.com/zsh-users/zsh-autosuggestions
+***** zsh-bd
+back-directory \\
+https://github.com/Tarrasch/zsh-bd
+***** zsh-nix-shell
+use zsh on ~nix-shell~ \\
+https://github.com/chisui/zsh-nix-shell
+*** FUNDUS
+- resty \\
+  cli REST-client for pipelines \\
+  https://github.com/micha/resty
+- zsh-plugin-appup \\
+  docker-compose shortcut \\
+  https://github.com/Cloudstek/zsh-plugin-appup
+- zsh-autopair \\
+  Auto-close and delete matching delimiters in zsh \\
+  https://github.com/hlissner/zsh-autopair
+- zsh-history \\
+  A plugin for zsh history extended by golang, dealing it like SQL \\
+  https://github.com/b4b4r07/zsh-history
+- zsh-plugin-homeassistant-cli \\
+  A Oh my ZSH plugin for homeassistant CLI \\
+  https://www.home-assistant.io/ \\
+  https://github.com/frosit/zsh-plugin-homeassistant-cli
+- forgit \\
+  A utility tool powered by fzf for using git interactively \\
+  https://github.com/wfxr/forgit
+- crash \\
+  Proper error handling, exceptions and try/catch for ZSH \\
+  https://github.com/molovo/crash
+- zsh-docker-run \\
+  Run your favourite commands naturally, with Docker \\
+  https://github.com/rawkode/zsh-docker-run
+- zsh-fast-alias-tips \\
+  Help remembering the aliases you defined once \\
+  https://github.com/sei40kr/zsh-fast-alias-tips
+- hbt \\
+   Experimental command suggestion system based on historical usage of commands in certain locations. \\
+  https://github.com/lzambarda/hbt
+- kube-aliases.plugin.zsh \\
+  Kubernetes Aliases and Bash Functions \\
+  https://github.com/Dbz/kube-aliases/blob/master/kube-aliases.plugin.zsh
+- gtm-terminal-plugin \\
+  Plugin for Bash or ZSH to be used with the Git Time Metric platform \\
+  https://github.com/git-time-metric/gtm-terminal-plugin
+- git-extra-commands \\
+  A collection of git utilities and useful extra git scripts I've discovered or written, packaged for ease of use with shell frameworks. \\
+  https://github.com/unixorn/git-extra-commands
+- git-aliases \\
+  https://github.com/mdumitru/git-aliases
+- igit \\
+  Interactive git commands using fzf, available as zsh plugin \\
+  https://github.com/ytakahashi/igit
+- zsh-git-acp \\
+  https://github.com/MenkeTechnologies/zsh-git-acp
+- zsh-clean-project \\
+  ZSH plugin to remove files from projects (automatically by default) \\
+  https://github.com/wwilsman/zsh-clean-project
+- cd-reminder \\
+  An Oh-My-Zsh Plugin to display reminders when cd-ing into specified directories \\
+  https://github.com/bartboy011/cd-reminder
+- git-flow-completion \\
+  Bash, Zsh and fish completion support for git-flow. \\
+  https://github.com/bobthecow/git-flow-completion
+*** TODO TODOS
+- zsh-async \\
+  https://github.com/mafredri/zsh-async
+- zsh-auto-notify \\
+  ZSH plugin that automatically sends out a notification when a long running task has completed. \\
+  https://github.com/MichaelAquilina/zsh-auto-notify
+- zsh-hints \\
+  display hints after keypress \\
+  https://github.com/joepvd/zsh-hints
+- colors \\
+  https://github.com/zpm-zsh/colors
+- jq-zsh-plugin \\
+  https://github.com/reegnz/jq-zsh-plugin
+- kubecolor \\
+  Simplify and colorize the output of ~kubectl get events -w~ \\
+  https://github.com/droctothorpe/kubecolor

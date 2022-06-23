@@ -1,0 +1,98 @@
+
+### Rust
+##
+#
+# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+###
+##
+# *** FLUTTER
+#
+
+
+#######################################################################
+###
+##
+# ** PATH
+#
+
+###
+##
+# *** APPEND
+#
+
+###
+##
+# **** DOCKERIZED
+#
+#path=('$HOME/PATH/dockerized/bin' $path)
+path+=("$HOME/PATH/dockerized/bin")
+
+###
+##
+# **** RUST
+#
+
+if [ -x "$(command -v rustc)" ]; then
+    path+=("$HOME/.cargo/bin")
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+fi
+
+###
+##
+# **** DART
+#
+if [ -x "$(command -v dart)" ]; then
+    path+=("$HOME/.pub-cache/bin")
+fi
+
+###
+##
+# **** HASKELL
+#
+### Terminal-Executables
+path+=("$HOME/PATH/dist")
+# path+=("$HOME/PATH/npm/dist")
+path+=("$HOME/.yarn/bin")
+# path+=("$HOME/dockerized/yarn/.yarn/bin")
+# path+=("$HOME/.config/yarn/global/node_modules/.bin")
+
+###
+##
+# **** go
+#
+if [ -x "$(command -v go)" ]; then
+# # export GOROOT=/usr/local/go
+# # export GOROOT=/usr/bin/go
+#     export GOROOT=/usr/lib/go
+    export GOPATH=$HOME/go
+#     export GOBIN=$GOPATH/bin
+    path+=("$GOPATH/bin")
+    path+=("$GOROOT/bin")
+fi
+
+###
+##
+# **** krew
+#
+if [ -d ~/.krew ]; then
+    export KREW_ROOT=$HOME/.krew
+    path+=("$KREW_ROOT/bin")
+fi
+
+
+###
+##
+# *** PREPEND
+#
+
+### path=('/home/frank/pear/bin' $path)
+### export to sub-processes (make it inherited by child processes)
+#
+export PATH
+
+#######################################################################
+###  dockerized
+#
+# export PATH=$HOME/dockerized/bin:$PATH
