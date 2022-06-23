@@ -1,0 +1,150 @@
+#################################################################################
+###
+##
+# * display
+#
+
+###
+##
+# ** backlight
+#
+alias xam="sudo zsh -c 'echo `cat /sys/class/backlight/acpi_video0/max_brightness` >! /sys/class/backlight/acpi_video0/brightness'"
+
+###
+##
+# ** arrangement of screens
+# *** INFO
+# **** Dimensions
+#      |    MAC    |  SAMSUNG  |    AOC    |
+#      |-----------+-----------+-----------|
+#      | 2560x1440 | 1920x1080 | 1920x1080 |
+#      |    <c>    |    <c>    |    <c>    |
+#
+
+###
+##
+# **** alignment
+# ***** A vertical
+# ****** top
+#        0
+# ****** middle (S to bottom of M)
+#        M: 240
+#        S: 600 (240+360)
+# ****** bottom
+#        M: 480
+#        S: 360
+# *** ACTIVE
+#
+
+
+###
+##
+# **** MAC SAMSUNG (desktop)
+#
+alias xd='xrandr --auto && \
+        xrandr \
+        --output DP-1 --pos    0x0   --rotate normal \
+        --output DP-2 --pos 2560x0   --rotate normal --primary \
+        --output DP-3 --off'
+
+###
+##
+# **** SAMSUNG MAC (bed)
+#
+alias xb='xrandr --auto && \
+        xrandr \
+        --output DP-2 --pos    0x340 --rotate normal --primary \
+        --output DP-1 --pos 1920x0   --rotate normal \
+        --output DP-3 --off'
+
+###
+##
+# **** only MAC (single)
+#
+alias xm='xrandr --auto && \
+        xrandr \
+        --output DP-1 --pos 0x0 --rotate normal --primary \
+        --output DP-2 --off \
+        --output DP-3 --off'
+
+###
+##
+# **** only SAMSUNG (single)
+#
+alias xs='xrandr --auto && \
+        xrandr \
+        --output DP-2 --auto --primary \
+        --output DP-1 --off \
+        --output DP-3 --off'
+
+
+###
+##
+# **** only AOC (single)
+#
+alias xa='xrandr --auto && \
+        xrandr \
+        --output DP-3 --pos 0x0 --rotate left --primary \
+        --output DP-1 --off \
+        --output DP-2 --off'
+
+
+###
+##
+# **** AOC SAMSUNG MAC (all3)
+#
+alias x3='xrandr --auto && \
+        xrandr \
+        --output DP-3 --pos    0x0   --rotate left \
+        --output DP-2 --pos 1080x240 --rotate normal --primary \
+        --output DP-1 --pos 3000x240 --rotate normal'
+
+
+###
+##
+# **** AOC MAC SAMSUNG (all3 - desktop)
+#
+alias xd3='xrandr --auto && \
+        xrandr \
+        --output DP-3 --pos    0x0   --rotate left \
+        --output DP-1 --pos 1920x0   --rotate normal \
+        --output DP-2 --pos 4480x0   --rotate normal --primary'
+
+
+###
+##
+# *** FUNDUS
+###
+##
+# **** 2 screens
+##
+# ***** OTHER - DP-1
+#alias xl='xrandr --output DP-2 --rotate normal --left-of  DP-1; xrandr --output DP-3 --rotate normal --left-of  DP-1; xrandr --auto'
+##
+# ***** DP-1 - OTHER
+#alias xr='xrandr --output DP-2 --rotate normal --right-of DP-1; xrandr --output DP-3 --rotate normal --right-of DP-1; xrandr --auto'
+
+###
+##
+# ***** S to bottom of M to middle of A
+#
+# alias xd='xrandr --auto && \
+#        xrandr \
+#        --output DP-3 --pos    0x0   --rotate left             \
+#        --output DP-2 --pos 1080x240 --rotate normal --primary \
+#        --output DP-1 --off'
+
+###
+##
+# **** 3 screens
+##
+# ***** side by side
+# alias xa='xrandr --output DP-2 --pos 0x0 --rotate left --output DP-1 --pos 1920x000 --output DP-3 --pos 4480x360'
+##
+# ***** SAMSUNG MAC AOC(vert)
+# alias xb='xrandr --output DP-1 --pos 1920x480 --rotate normal --output DP-2 --pos 4480x0 --rotate left --output DP-3 --pos 0x860 --rotate normal'
+##
+# ***** AOC(hor, above) MAC SAMSUNG
+#       DP-2 above DP-1; DP-3 on the right
+# alias xa='xrandr --output DP-1 --pos 0x1080 --rotate normal --output DP-2 --pos 480x0 --rotate normal --output DP-3 --pos 2560x1080 --rotate normal'
+

@@ -46,6 +46,7 @@ in
     profiles.security.sops
     profiles.security.ssh
     profiles.security.summon
+    profiles.shell.aliases
     profiles.shell.nushell
     profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
     profiles.stateVersion

@@ -1,0 +1,11 @@
+### shared alises related to displays, monitors, xrandr,...
+### host specific aliases are defined in
+### hosts/<HOSTNAME>/misc/screens/default.nix
+
+
+
+###
+##
+# ** backlight
+#
+alias xam="sudo zsh -c 'echo `cat /sys/class/backlight/acpi_video0/max_brightness` >! /sys/class/backlight/acpi_video0/brightness'"
