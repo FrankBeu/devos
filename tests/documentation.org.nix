@@ -1,5 +1,8 @@
 # -*- mode:org; -*-
 { config }:
+let
+  username = config.variables.documentation.user.name;
+in
 ''
 ---
 title: testing

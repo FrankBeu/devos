@@ -49,6 +49,7 @@ in
     profiles.shell.aliases
     profiles.shell.cod
     profiles.shell.nushell
+    profiles.shell.snippets
     profiles.shell.vivid
     profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
     profiles.stateVersion
