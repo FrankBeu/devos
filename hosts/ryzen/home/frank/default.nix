@@ -51,6 +51,7 @@ in
     profiles.shell.fuzzy.fzf
     # profiles.shell.fuzzy.skim
     profiles.shell.nushell
+    # profiles.shell.prompts.starship
     profiles.shell.snippets
     profiles.shell.vivid
     profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh

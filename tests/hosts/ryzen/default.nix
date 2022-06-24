@@ -100,6 +100,7 @@ let
 
   ### FUNDUS
   #home-profile-shell-fuzzy-skim       = (import                 ../../home/profiles/shell/fuzzy/skim/testScript.py.nix           { inherit hmProfileDir username;});
+  #home-profile-shell-prompts-starship = (import                 ../../home/profiles/shell/prompts/starship/testScript.py.nix     { inherit hmProfileDir username;});
 
   test = {
     nodes = {
@@ -239,6 +240,7 @@ let
 
         ### FUNDUS
         # ${home-profile-shell-fuzzy-skim}
+        # ${home-profile-shell-prompts-starship}
       name = self.inputs.latest.lib.toUpper name;
   };
 

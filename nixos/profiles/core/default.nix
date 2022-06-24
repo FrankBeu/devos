@@ -48,15 +48,6 @@ in
       bindfs
     ];
 
-    ### Starship is a fast and featureful shell prompt
-    ### starship.toml has sane defaults that can be changed there
-    shellInit = ''
-      export STARSHIP_CONFIG=${
-        pkgs.writeText "starship.toml"
-        (fileContents ./starship.toml)
-      }
-    '';
-
   };
 
 
@@ -90,22 +81,11 @@ in
     '';
 
   };
-  #   ### Enable starship
-  #   promptInit = ''
-  #     eval "$(${pkgs.starship}/bin/starship init bash)"
-  #   '';
-  #   ### Enable direnv, a tool for managing shell environments
-  #   interactiveShellInit = ''
-  #     eval "$(${pkgs.direnv}/bin/direnv hook bash)"
-  #   '';
-  # };
 
+  ### TODO direnv extract
   programs.zsh = {
     enable = true;
-    ### Enable starship
-    promptInit = ''
-      eval "$(${pkgs.starship}/bin/starship init zsh)"
-    '';
+
     ### Enable direnv, a tool for managing shell environments
     interactiveShellInit = ''
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"

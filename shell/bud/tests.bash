@@ -131,6 +131,7 @@ tests.home.profiles.shell.cod
 tests.home.profiles.shell.fuzzy.fzf
 tests.home.profiles.shell.fuzzy.skim
 tests.home.profiles.shell.nushell
+tests.home.profiles.shell.prompts.starship
 tests.home.profiles.shell.snippets.pet
 tests.home.profiles.shell.vivid
 tests.home.profiles.shell.zsh
