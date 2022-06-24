@@ -4,8 +4,11 @@ machine.wait_for_unit("multi-user.target")
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.virtualisation.docker"):
-    output = machine.succeed('ls /run/current-system/sw/bin/')
-    assert_contains(output, 'docker')
+    sw_bin_content = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains_line(sw_bin_content, 'docker')
+
+
+
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.virtualisation.docker::group"):
     output = machine.succeed('getent group')

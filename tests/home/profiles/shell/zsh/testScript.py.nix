@@ -15,7 +15,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     assert_contains(SHELL, r'/run/current-system/sw/bin/zsh')
 
     hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
-    assert_contains(hm_bin_content, 'zsh')
+    assert_contains_line(hm_bin_content, 'zsh')
 
 
 

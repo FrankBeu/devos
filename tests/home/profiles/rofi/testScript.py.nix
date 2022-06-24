@@ -10,8 +10,8 @@ golden_path    = "tests.home.profiles.rofi/golden"
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.rofi"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains(hm_profile_dir, 'rofi')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'rofi')
 
 
 

@@ -9,8 +9,8 @@ username       = '${username}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.age"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains(hm_profile_dir, 'age')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'age')
 
 
 

@@ -9,8 +9,8 @@ username       = '${username}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.browser.firefox.main"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains(hm_profile_dir, 'firefox')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'firefox')
 
 
 

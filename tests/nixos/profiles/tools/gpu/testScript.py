@@ -2,6 +2,6 @@ machine.wait_for_unit("multi-user.target")
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.tools.gpu"):
-        output = machine.succeed('ls /run/current-system/sw/bin/')
-        assert_contains(output, 'vulkaninfo')
-        assert_contains(output, 'glxinfo')
+    sw_bin_content = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains_line(sw_bin_content, 'vulkaninfo')
+    assert_contains_line(sw_bin_content, 'glxinfo')

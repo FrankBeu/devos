@@ -9,18 +9,19 @@ username       = '${username}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.git::docDotLocal"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains_line(hm_profile_dir, 'go')
-    assert_contains_line(hm_profile_dir, 'gofumpt')
-    assert_contains_line(hm_profile_dir, 'goimports')
-    assert_contains_line(hm_profile_dir, 'gomodifytags')
-    assert_contains_line(hm_profile_dir, 'golangci-lint')
-    assert_contains_line(hm_profile_dir, 'gopls')
-    assert_contains_line(hm_profile_dir, 'gotests')
-    assert_contains_line(hm_profile_dir, 'gotestsum')
-    assert_contains_line(hm_profile_dir, 'go-outline')
-    assert_contains_line(hm_profile_dir, 'impl')
-    assert_contains_line(hm_profile_dir, 'reflex')
+
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'go')
+    assert_contains_line(hm_bin_content, 'gofumpt')
+    assert_contains_line(hm_bin_content, 'goimports')
+    assert_contains_line(hm_bin_content, 'gomodifytags')
+    assert_contains_line(hm_bin_content, 'golangci-lint')
+    assert_contains_line(hm_bin_content, 'gopls')
+    assert_contains_line(hm_bin_content, 'gotests')
+    assert_contains_line(hm_bin_content, 'gotestsum')
+    assert_contains_line(hm_bin_content, 'go-outline')
+    assert_contains_line(hm_bin_content, 'impl')
+    assert_contains_line(hm_bin_content, 'reflex')
 ''
 
 

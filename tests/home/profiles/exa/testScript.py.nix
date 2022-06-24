@@ -6,8 +6,8 @@ hm_profile_dir = '${hmProfileDir}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.exa"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains(hm_profile_dir, 'exa')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'exa')
 ''
 
 # Local Variables:

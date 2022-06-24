@@ -9,11 +9,11 @@ username       = '${username}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.gopass"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains(hm_profile_dir, 'gopass')
-    assert_contains(hm_profile_dir, 'gopass-jsonapi')
-    assert_contains(hm_profile_dir, 'git-credential-gopass')
-    assert_contains(hm_profile_dir, 'xdotool')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'gopass')
+    assert_contains_line(hm_bin_content, 'gopass-jsonapi')
+    assert_contains_line(hm_bin_content, 'git-credential-gopass')
+    assert_contains_line(hm_bin_content, 'xdotool')
 
 
 

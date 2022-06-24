@@ -17,9 +17,8 @@ username       = '${username}'
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.display.cursor::find-cursor"):
-        hm_profile_dir = machine.succeed("ls ${hmProfileDir}")
-        assert_contains(hm_profile_dir, 'find-cursor')
-
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'find-cursor')
 
 
 

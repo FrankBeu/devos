@@ -23,9 +23,9 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.notification.dunst::notify-send"):
-    hm_profile_dir = machine.succeed(f'ls {hm_profile_dir}')
-    assert_contains_line(hm_profile_dir, 'dunstify')
-    assert_contains_line(hm_profile_dir, 'notify-send')
+    hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
+    assert_contains_line(hm_bin_content, 'dunstify')
+    assert_contains_line(hm_bin_content, 'notify-send')
 
 
 

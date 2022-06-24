@@ -4,12 +4,12 @@ machine.wait_for_unit("multi-user.target")
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.bud"):
-        run_current_system = machine.succeed('ls /run/current-system/sw/bin/')
-        assert_contains(run_current_system, 'bud')
+    run_current_system = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains_line(run_current_system, 'bud')
 
-        ### check test-setup - this test is run prior to each test.bud.*
-        localFlakeClone = machine.succeed('ls /home/${username}')
-        assert_contains(localFlakeClone, 'DEVOS')
+    ### check test-setup - this test is run prior to each test.bud.*
+    localFlakeClone = machine.succeed('ls /home/${username}')
+    assert_contains(localFlakeClone, 'DEVOS')
 ''
 
 # Local Variables:
