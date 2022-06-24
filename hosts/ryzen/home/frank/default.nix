@@ -48,6 +48,8 @@ in
     profiles.security.summon
     profiles.shell.aliases
     profiles.shell.cod
+    profiles.shell.fuzzy.fzf
+    # profiles.shell.fuzzy.skim
     profiles.shell.nushell
     profiles.shell.snippets
     profiles.shell.vivid

@@ -91,12 +91,15 @@ let
   home-profile-security-summon         = (import                 ../../home/profiles/security/summon/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-shell-aliases           = (import                 ../../home/profiles/shell/aliases/testScript.py.nix              { inherit              username;});
   home-profile-shell-cod               = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit              username;});
+  home-profile-shell-fuzzy-fzf         = (import                 ../../home/profiles/shell/fuzzy/fzf/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-shell-nushell           = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
   home-profile-shell-snippets-pet      = (import                 ../../home/profiles/shell/snippets/pet/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});
   home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-tools-nixTools          = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
 
+  ### FUNDUS
+  #home-profile-shell-fuzzy-skim       = (import                 ../../home/profiles/shell/fuzzy/skim/testScript.py.nix           { inherit hmProfileDir username;});
 
   test = {
     nodes = {
@@ -219,6 +222,7 @@ let
         ${home-profile-security-summon}
         ${home-profile-shell-aliases}
         ${home-profile-shell-cod}
+        ${home-profile-shell-fuzzy-fzf}
         ${home-profile-shell-nushell}
         ${home-profile-shell-snippets-pet}
         ${home-profile-shell-vivid}
@@ -233,6 +237,8 @@ let
         # ${home-profile-tools-nixTools}     ### TODO reactivate after zsh
         ### all documentation tests seem to be unreliable reactivate after passthrough or other improvements
 
+        ### FUNDUS
+        # ${home-profile-shell-fuzzy-skim}
       name = self.inputs.latest.lib.toUpper name;
   };
 
