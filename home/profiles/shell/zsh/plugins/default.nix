@@ -1,6 +1,6 @@
 {config, nixosConfig, pkgs, lib, zshDotDir, ...}:
 let
-  inherit (config.home) homeDirectory;
+  inherit (config.home) username homeDirectory;
 
   pluginsDir = "${zshDotDir}/plugins";
   plugins = [
@@ -29,12 +29,12 @@ let
     ### cod
     ### fast-syntax-highlighting
     ### zsh-autosuggestions
-    ### zsh-bd
     ### zsh-nix-shell
 
     ### TEMPLATES
     # rec {
     #   name = "";
+    #   ### file = "";
     #   file = "${name}.plugin.zsh";
     #   src = pkgs.fetchFromGitHub {
     #     owner = "";
@@ -42,18 +42,6 @@ let
     #     rev = "";
     #     sha256 = lib.fakeSha256;
     #     # sha256 = "";
-    #   };
-    # }
-    #
-    # {
-    #   name = "";
-    #   file = "";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "";
-    #     repo = "";
-    #     rev = "";
-    #     # sha256 = "";
-    #     sha256 = lib.fakeSha256;
     #   };
     # }
   ];
@@ -79,12 +67,13 @@ in {
 
 
       ### NIX-PKGS
-      zsh-defer source /run/current-system/sw/share/zsh-bd/bd.plugin.zsh
-      zsh-defer +1 +2 source <(cod init $$ zsh)
-      zsh-defer source /run/current-system/sw/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-      zsh-defer source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      zsh-defer source /run/current-system/sw/share/zsh-nix-shell/nix-shell.plugin.zsh
+      zsh-defer source /etc/profiles/per-user/${username}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+      zsh-defer source /etc/profiles/per-user/${username}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      zsh-defer source /etc/profiles/per-user/${username}/share/zsh-nix-shell/nix-shell.plugin.zsh
     '';
+      # zsh-defer source /run/current-system/sw/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+      # zsh-defer source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      # zsh-defer source /run/current-system/sw/share/zsh-nix-shell/nix-shell.plugin.zsh
   };
 
   ### install plugins

@@ -9,17 +9,19 @@ let
 
   test = {
     nodes = {
-      machine = { suites, profiles, variables, ... }:
+      machine = { suites, pkgs, profiles, variables, ... }:
       {
         imports = with profiles; [
         ] ++
         # suites.debug ++
         [];
 
+        users.users.${username}.shell = pkgs.zsh;
 
         home-manager.users.${username} = { profiles, suites, ... }:
         {
           imports = with profiles; [
+            shell.zsh
             shell.cod
           ];
         };

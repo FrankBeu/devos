@@ -1,6 +1,10 @@
 { pkgs,  ... }:
 {
-  home.packages = with pkgs; [
-    cod
-  ];
+  home.packages = [ pkgs.cod ];
+
+  programs.zsh = {
+    initExtra = ''
+      ${builtins.readFile ./cod.zsh }
+    '';
+  };
 }
