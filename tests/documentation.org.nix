@@ -153,6 +153,20 @@ otherwise false positives are possible
 ***** r-strings
 ****** ~/~ will be treated as escaped
 ****** ~$ + * ( ) …~ have to be escaped if used literally
+**** ~machine.wait_until_succeeds(f'cat FILE')~
+does not work. Throws: No such file or directory
+use instead:
+#+BEGIN_SRC python :results none
+    machine.wait_for_file(f"/home/{username}/.config/zsh/.zshrc")
+    zshrc = machine.succeed(f'cat /home/{username}/.config/zsh/.zshrc')
+#+END_SRC
+**** prepare interactive cli
+- create file with required pythonCode
+     =/home/${username}/DEVOS/interactivePreparation.py=
+- import file on cli
+#+BEGIN_SRC python :results none
+  from interactivePreparation import *
+#+END_SRC
 *** ~send_key~
 =nixos/lib/test-driver/test-driver.py=
 **** constructed from QEMU-doc

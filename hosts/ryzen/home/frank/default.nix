@@ -46,21 +46,23 @@ in
     profiles.security.sops
     profiles.security.ssh
     profiles.security.summon
-    profiles.shell.aliases
-    profiles.shell.cod
-    profiles.shell.fuzzy.fzf
+    # profiles.shell.aliases
+    # profiles.shell.cod
+    # profiles.shell.fuzzy.fzf
     # profiles.shell.fuzzy.skim
     profiles.shell.nushell
-    profiles.shell.prompts.powerline
+    # profiles.shell.prompts.powerline
     # profiles.shell.prompts.starship
-    profiles.shell.snippets.pet
-    profiles.shell.vivid
-    profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
+    # profiles.shell.snippets.pet
+    # profiles.shell.vivid
+    # profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
     profiles.stateVersion
     profiles.tools.nixTools
 
     # inputs.nix-colors.homeManagerModule
-  ];
+  ] ++
+  suites.zsh ++
+  [];
 
   colorscheme = self.lib.colorscheme.loadColorScheme customSchemes nixColorSchemes variables.users.${username}.currentColorSchemeName;
 }

@@ -7,6 +7,7 @@ username       = '${username}'
 
 ### TODO refine after alias-module
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.shell.aliases"):
+    machine.wait_for_file(f"/home/{username}/.config/zsh/.zshrc")
     zshrc = machine.wait_until_succeeds(f'cat /home/{username}/.config/zsh/.zshrc')
     assert_contains(zshrc, "alias sys='sudo systemctl'")
     # assert_contains_regex(zshrc, r'zsh-defer \+1 \+2 source <\(cod init \$\$ zsh\)')

@@ -89,15 +89,18 @@ let
   home-profile-security-sops           = (import                 ../../home/profiles/security/sops/testScript.py.nix              { inherit hmProfileDir username;});
   home-profile-security-ssh            = (import                 ../../home/profiles/security/ssh/testScript.py.nix               { inherit              username;});
   home-profile-security-summon         = (import                 ../../home/profiles/security/summon/testScript.py.nix            { inherit hmProfileDir username;});
-  home-profile-shell-aliases           = (import                 ../../home/profiles/shell/aliases/testScript.py.nix              { inherit              username;});
-  home-profile-shell-cod               = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit hmProfileDir username;});
-  home-profile-shell-fuzzy-fzf         = (import                 ../../home/profiles/shell/fuzzy/fzf/testScript.py.nix            { inherit hmProfileDir username;});
+  # home-profile-shell-aliases           = (import                 ../../home/profiles/shell/aliases/testScript.py.nix              { inherit              username;});### home.suites.zsh
+  # home-profile-shell-cod               = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit hmProfileDir username;});### home.suites.zsh
+  # home-profile-shell-fuzzy-fzf         = (import                 ../../home/profiles/shell/fuzzy/fzf/testScript.py.nix            { inherit hmProfileDir username;});### home.suites.zsh
   home-profile-shell-nushell           = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
-  home-profile-shell-prompts-powerline = (import                 ../../home/profiles/shell/prompts/powerline/testScript.py.nix    { inherit hmProfileDir username;});
-  home-profile-shell-snippets-pet      = (import                 ../../home/profiles/shell/snippets/pet/testScript.py.nix         { inherit hmProfileDir username;});
-  home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});
-  home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
+  # home-profile-shell-prompts-powerline = (import                 ../../home/profiles/shell/prompts/powerline/testScript.py.nix    { inherit hmProfileDir username;});### home.suites.zsh
+  # home-profile-shell-snippets-pet      = (import                 ../../home/profiles/shell/snippets/pet/testScript.py.nix         { inherit hmProfileDir username;});### home.suites.zsh
+  # home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});### home.suites.zsh
+  # home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});### home.suites.zsh
   home-profile-tools-nixTools          = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
+
+
+  home-suite-zsh                      = (import                 ../../home/suites/zsh/testScript.nix                             { inherit hmProfileDir username;}).testScript;
 
   ### FUNDUS
   #home-profile-shell-fuzzy-skim       = (import                 ../../home/profiles/shell/fuzzy/skim/testScript.py.nix           { inherit hmProfileDir username;});
@@ -222,14 +225,10 @@ let
         ${home-profile-security-sops}
         ${home-profile-security-ssh}
         ${home-profile-security-summon}
-        ${home-profile-shell-aliases}
-        ${home-profile-shell-cod}
-        ${home-profile-shell-fuzzy-fzf}
         ${home-profile-shell-nushell}
-        ${home-profile-shell-prompts-powerline}
-        ${home-profile-shell-snippets-pet}
-        ${home-profile-shell-vivid}
-        ${home-profile-shell-zsh}
+
+
+        ${home-suite-zsh}
       '';
         # ${nixos-profile-console}           ### TODO reactivate after graphical
         # ${home-profile-emacs}              ### TODO reactivate after graphical
@@ -243,6 +242,16 @@ let
         ### FUNDUS
         # ${home-profile-shell-fuzzy-skim}
         # ${home-profile-shell-prompts-starship}
+
+        ### instead of ${home-suite-zsh}
+        # ${home-profile-shell-aliases}
+        # ${home-profile-shell-cod}
+        # ${home-profile-shell-fuzzy-fzf}
+        # ${home-profile-shell-prompts-powerline}
+        # ${home-profile-shell-snippets-pet}
+        # ${home-profile-shell-vivid}
+        # ${home-profile-shell-zsh}
+
       name = self.inputs.latest.lib.toUpper name;
   };
 

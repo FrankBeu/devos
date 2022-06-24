@@ -40,13 +40,13 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.shell.zsh::plugins::autosuggestions"):
     ### WAIT FOR LOGIN
-    machine.sleep(1)
+    machine.sleep(2)
     ### CREATE TESTCOMMAND
     machine.send_chars("echo autosuggestionsTest\n")
     ### ENTER FIRST CHAR
     machine.send_key("e")
     ### WAIT FOR SUGGESTION
-    machine.sleep(1)
+    machine.sleep(2)
     ### JUMP TO END OF SUGGESTED TESTCOMMAND
     machine.send_key("ctrl-e")
     ### CREATE FILE

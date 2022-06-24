@@ -139,6 +139,8 @@ tests.home.profiles.shell.zsh
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
 
+tests.home.suites.zsh
+
 
 ### HOSTS
 tests.hosts.test

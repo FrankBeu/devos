@@ -2,7 +2,7 @@ result
 .direnv
 doc/index.html
 
-# Result of bud commands
+### results of bud commands
 vm
 iso
 doi
@@ -11,3 +11,6 @@ pkgs/_sources/.shake*
 
 **/IGNORE/
 *.qcow2
+
+### imports for interactive test cli
+interactivePreparation.py
