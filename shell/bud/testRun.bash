@@ -1,3 +1,4 @@
 cd ${FLAKEROOT}
 
-nix build ${FLAKEROOT}#${1}
+### rest of arguments
+nix "${@:2}" build ${FLAKEROOT}#${1}

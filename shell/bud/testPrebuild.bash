@@ -1,3 +1,4 @@
 cd ${FLAKEROOT}
 
-nix build ${FLAKEROOT}#${1}.driverInteractive
+### rest of arguments
+nix build "${@:2}" ${FLAKEROOT}#${1}.driverInteractive
