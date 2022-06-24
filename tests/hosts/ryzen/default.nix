@@ -92,6 +92,7 @@ let
   home-profile-shell-aliases           = (import                 ../../home/profiles/shell/aliases/testScript.py.nix              { inherit              username;});
   home-profile-shell-cod               = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit              username;});
   home-profile-shell-nushell           = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
+  home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});
   home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-tools-nixTools          = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
 
@@ -218,6 +219,7 @@ let
         ${home-profile-shell-aliases}
         ${home-profile-shell-cod}
         ${home-profile-shell-nushell}
+        ${home-profile-shell-vivid}
         ${home-profile-shell-zsh}
       '';
         # ${nixos-profile-console}           ### TODO reactivate after graphical

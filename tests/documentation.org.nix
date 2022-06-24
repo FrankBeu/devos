@@ -146,6 +146,10 @@ otherwise false positives are possible
     output = machine.succeed('ls /run/current-system/sw/bin/')
     assert_contains_line(output, 'riv')
 #+END_SRC
+**** python
+***** r-strings
+****** ~/~ will be treated as escaped
+****** ~$ + * ( ) …~ have to be escaped if used literally
 *** ~send_key~
 =nixos/lib/test-driver/test-driver.py=
 **** constructed from QEMU-doc

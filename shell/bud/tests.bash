@@ -129,6 +129,7 @@ tests.home.profiles.security.summon
 tests.home.profiles.shell.aliases
 tests.home.profiles.shell.cod
 tests.home.profiles.shell.nushell
+tests.home.profiles.shell.vivid
 tests.home.profiles.shell.zsh
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
