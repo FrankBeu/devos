@@ -91,9 +91,10 @@ let
   home-profile-security-summon    = (import                 ../../home/profiles/security/summon/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-shell-aliases      = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit              username;});
   home-profile-shell-nushell      = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
+  home-profile-shell-cod          = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-shell-zsh          = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
   home-profile-tools-nixTools     = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
-  home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
+  home-profile-shell-zsh          = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
 
 
   test = {
@@ -216,6 +217,7 @@ let
         ${home-profile-security-ssh}
         ${home-profile-security-summon}
         ${home-profile-shell-aliases}
+        ${home-profile-shell-cod}
         ${home-profile-shell-nushell}
         ${home-profile-shell-zsh}
       '';
