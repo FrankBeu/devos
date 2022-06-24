@@ -1,0 +1,26 @@
+From 5a57667136f8f3aa942e81bc0f20e4ab414e0497 Mon Sep 17 00:00:00 2001
+From: Frank Beutelschiess <frank@thesym.site>
+Date: Tue, 12 Oct 2021 18:25:43 +0200
+Subject: [PATCH 2/2] fix shellVar foreground-color
+
+---
+ defaults.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/defaults.go b/defaults.go
+index f9e9e79..cc0cf1e 100644
+--- a/defaults.go
++++ b/defaults.go
+@@ -630,7 +630,8 @@ var defaults = Config{
+ 			TimeFg: 15,
+ 			TimeBg: 236,
+ 
+-			ShellVarFg: 52,
++			// ShellVarFg: 52,
++			ShellVarFg: 11,
+ 			ShellVarBg: 11,
+ 
+ 			ShEnvFg: 15,
+-- 
+2.34.1
+

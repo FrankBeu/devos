@@ -46,4 +46,31 @@ A package provided by a flake can be used by referencing it like:
 #+BEGIN_SRC nix
   inherit (inputs.rnix-lsp.packages."$${prev.system}") rnix-lsp;
 #+END_SRC
+** creation
+*** patching
+**** create patch(es) between commits
+***** XOR
+#+BEGIN_SRC shell :results none
+git format-patch -1 HEAD
+#+END_SRC
+#+BEGIN_SRC shell :results none
+git format-patch HEAD~1
+#+END_SRC
+**** patchPhase
+#+BEGIN_SRC nix
+patches = [
+  FILENAME.patch
+  ### ...
+];
+#+END_SRC
+*** patches can also be applied as overlay
+if derivation exists
+cf.: \\
+doc: http://doc.local/structural/overlays/ \\
+org: [[file:~/DEVOS/overlays/documentation.org.nix::*patches][patches]]
+** specific
+*** i3statusBar
+**** TODO extract/reactivate (externalModule?|subModule)
+*** riv
+*** powerline-go
 '' ### KEEP: closes nix string

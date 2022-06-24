@@ -93,6 +93,7 @@ let
   home-profile-shell-cod               = (import                 ../../home/profiles/shell/cod/testScript.py.nix                  { inherit              username;});
   home-profile-shell-fuzzy-fzf         = (import                 ../../home/profiles/shell/fuzzy/fzf/testScript.py.nix            { inherit hmProfileDir username;});
   home-profile-shell-nushell           = (import                 ../../home/profiles/shell/nushell/testScript.py.nix              { inherit hmProfileDir username;});
+  home-profile-shell-prompts-powerline = (import                 ../../home/profiles/shell/prompts/powerline/testScript.py.nix    { inherit hmProfileDir username;});
   home-profile-shell-snippets-pet      = (import                 ../../home/profiles/shell/snippets/pet/testScript.py.nix         { inherit hmProfileDir username;});
   home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});
   home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});
@@ -225,6 +226,7 @@ let
         ${home-profile-shell-cod}
         ${home-profile-shell-fuzzy-fzf}
         ${home-profile-shell-nushell}
+        ${home-profile-shell-prompts-powerline}
         ${home-profile-shell-snippets-pet}
         ${home-profile-shell-vivid}
         ${home-profile-shell-zsh}

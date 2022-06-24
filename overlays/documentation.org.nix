@@ -20,4 +20,11 @@ toc: true
 ** ATTENTION
 *** if overlay is not working
 check ~git add~
+** patches
+apply as overlay: \\
+https://nixos.wiki/wiki/Overlays#Adding_patches
+*** creation
+cf.:
+doc: http://doc.local/structural/pkgs/ \\
+org: [[file:~/DEVOS/pkgs/documentation.org.nix::*patching][patching]]
 '' ### KEEP: closes nix string
