@@ -8,7 +8,6 @@ in
   name           = "frank";
   email          = "fbeutelschiess@gmail.com";
 
-  defaultBrowser = "chromium-browser";
-  # defaultBrowser = "firefox";
+  # defaultBrowser = "chromium-browser";
+  defaultBrowser = "firefox";
 }
-

@@ -102,6 +102,8 @@ tests.home.profiles.browser.chromium
 tests.home.profiles.browser.firefox.main
 tests.home.profiles.browser.firefox.orgCapture
 tests.home.profiles.browser.firefox.tridactyl
+tests.home.profiles.browser.defaultBrowser.varC
+tests.home.profiles.browser.defaultBrowser.varF
 tests.home.profiles.clipmenu
 tests.home.profiles.directoryStructure
 tests.home.profiles.display.cursor

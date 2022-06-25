@@ -12,7 +12,7 @@ in {
   imports = [
 
     ### TODO TEST
-    ./zsh/zshenv.nix  ### ENV
+    ./zsh/zshenv.nix  ### ENV  TODO distribute
     ./zsh/zshrc.nix   ### RC
     ./plugins         ### PLUGINS
   ];

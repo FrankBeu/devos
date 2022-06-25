@@ -21,11 +21,6 @@ let
           source $XDG_CONFIG_HOME/zsh/volatiles/.zshenvVolatile
         fi'';
 
-      ### BROWSER
-      ###
-      BROWSER = "export BROWSER='${variables.users.${username}.defaultBrowser}'";
-
-
       ### EDITOR
       ### TODO: use emacsclient in terminal as EDITOR
       ###       not working for `gopass edit test`
@@ -52,7 +47,6 @@ in {
 
     ${zshenv.VOLATILES}
 
-    ${zshenv.BROWSER}
     ${zshenv.EDITOR}
     ${zshenv.VISUAL}
     ${zshenv.SYSTEMD_EDITOR}

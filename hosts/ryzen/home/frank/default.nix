@@ -19,6 +19,7 @@ in
     profiles.alacritty
     profiles.bat
     profiles.browser.chromium
+    profiles.browser.defaultBrowser
     profiles.browser.firefox.main
     profiles.browser.firefox.orgCapture
     profiles.browser.firefox.tridactyl
