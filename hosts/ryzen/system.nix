@@ -30,6 +30,7 @@ in
     profiles.editor.emacs
     profiles.editor.vim
     profiles.filemanager.ranger
+    profiles.fonts
     profiles.i18n.common
     # profiles.i18n.fcitx
     profiles.image.common
