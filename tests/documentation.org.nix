@@ -160,13 +160,6 @@ use instead:
     machine.wait_for_file(f"/home/{username}/.config/zsh/.zshrc")
     zshrc = machine.succeed(f'cat /home/{username}/.config/zsh/.zshrc')
 #+END_SRC
-**** prepare interactive cli
-- create file with required pythonCode
-     =/home/${username}/DEVOS/interactivePreparation.py=
-- import file on cli
-#+BEGIN_SRC python :results none
-  from interactivePreparation import *
-#+END_SRC
 *** ~send_key~
 =nixos/lib/test-driver/test-driver.py=
 **** constructed from QEMU-doc
@@ -476,4 +469,14 @@ because of reduced brittleness in host-tests
     machine.sleep(1)
     machine.screenshot("4_after")
 #+END_SRC
+*** interactiveTests
+**** prepare interactive cli
+=test/interactiveTestConsolePreparation.py=
+=lib/testing/auxiliary.py= and additionally defined ~symbols~ can be made available within the interactiveTestConsole. \\
+after starting the interactiveTestConsole with ~bti~ (wd: =./DEVOS=), import the file with:
+#+BEGIN_SRC python :results none
+from tests.interactiveTestConsolePreparation import *
+### (TABing helps)
+#+END_SRC
+All definitions will be made available in the global namespace just like in regular tests.
 '' ### KEEP: closes nix string
