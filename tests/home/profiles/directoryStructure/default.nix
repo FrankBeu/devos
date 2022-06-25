@@ -13,7 +13,6 @@ let
       machine = { pkgs, profiles, suites, variables, ... }:
       {
         imports = with profiles; [
-          alacritty
           filemanager.ranger
         ] ++
         # suites.debug   ++

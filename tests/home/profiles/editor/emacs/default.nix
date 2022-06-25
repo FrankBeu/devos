@@ -14,7 +14,6 @@ let
       {
         imports = with profiles; [
           editor.emacs
-          # alacritty
           # ] ++ suites.i3;
         ];
 

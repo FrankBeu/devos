@@ -12,7 +12,6 @@ let
       machine = { suites, profiles, ... }:
       {
         imports = with profiles; [
-          alacritty
         ] ++
         suites.i3 ++
         # suites.debug ++

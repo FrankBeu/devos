@@ -568,7 +568,8 @@ hints:
   ### NIX LOG
   - regex: *nixDerivationRegex
     command:
-      program: "/run/current-system/sw/bin/alacritty"
+      # program: "/run/current-system/sw/bin/alacritty"
+      program: *alacrittyPath
       args: *nixLogArgs
     post_processing: true
     mouse:
@@ -1023,4 +1024,3 @@ key_bindings:
   #render_timer: false
   #persistent_logging: false
   #log_level: Warn
-

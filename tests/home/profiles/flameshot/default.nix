@@ -12,7 +12,6 @@ let
       machine = { pkgs, profiles, suites, variables, ... }:
       {
         imports = with profiles; [
-          alacritty
         ] ++
         suites.i3 ++
         # suites.debug ++

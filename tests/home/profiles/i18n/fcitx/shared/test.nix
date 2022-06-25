@@ -16,7 +16,6 @@ let
       {
         imports = with profiles; [
           i18n.fcitx
-          alacritty
         ] ++ suites.i3;
 
         variables = {

@@ -12,7 +12,6 @@ let
       machine = { suites, pkgs, profiles, variables, ... }:
       {
         imports = with profiles; [
-          alacritty
           shell.zsh
         ] ++
         # suites.debug ++

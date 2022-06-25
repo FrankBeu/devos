@@ -27,7 +27,6 @@ tests.nixos.modules.colorscheme
 tests.nixos.modules.variables
 
 
-tests.nixos.profiles.alacritty
 tests.nixos.profiles.autologin.root
 tests.nixos.profiles.autologin.variable
 tests.nixos.profiles.bud

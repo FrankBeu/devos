@@ -1,4 +1,5 @@
-{ username }:
+{ profileDirectory, username }:
+
 {
       # import:
         # - "~/.config/alacritty/themes/symSite.yaml"
@@ -12,5 +13,7 @@
             ["-e", "/home/${username}/.local/share/alacritty/hintHandler/nixLog"]
           emacsProgram: &emacsProgram
             "/home/${username}/.local/share/alacritty/hintHandler/emacsclient"
+          alacrittyPath: &alacrittyPath
+            "${profileDirectory}/bin/alacritty"
       ### nixVariableAnchorsEnd'';
 }

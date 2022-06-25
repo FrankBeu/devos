@@ -22,7 +22,6 @@ in
 
 
     ### PROFILES
-    profiles.alacritty
     profiles.bat
     profiles.bud
     profiles.console
