@@ -4,16 +4,51 @@
 , ...
 }:
 let
-  host     = self.nixosConfigurations.test;
-  username = host.config.variables.testing.user.name;
+  host           = self.nixosConfigurations.test;
+  username       = host.config.variables.testing.user.name;
+  userNameAbbrv  = host.config.variables.users.${username}.abbreviation;
+  defaultBrowser = "firefox";
+
 
   test = {
     nodes = {
-      machine = { suites, profiles, ... }:
+      machine = { pkgs, profiles, suites, ... }:
       {
-        imports = with profiles; [
+        imports = [
+          profiles.shell.zsh
+          profiles.core
 
-        ];
+          profiles.fonts
+        ] ++
+        suites.i3 ++
+        # suites.debug ++
+        [];
+
+        variables = {
+          displaymanager = {
+            autologin = {
+              enabled  = true;
+              inherit username;
+            };
+          };
+        };
+
+        users.users.${username}.shell = pkgs.zsh;
+
+        home-manager.users.${username} = { profiles, suites, ... }:
+        {
+          imports = [
+            profiles.alacritty
+            profiles.display.i3
+          ] ++
+          suites.zsh ++
+          [];
+
+          variables.users.${username} = {
+            abbreviation   = userNameAbbrv;
+            defaultBrowser = defaultBrowser;
+          };
+        };
       };
     };
 

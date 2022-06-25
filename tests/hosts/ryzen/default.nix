@@ -31,6 +31,7 @@ let
   nixos-profile-console                = consPreamble + readFile ../../nixos/profiles/console/testScript.py;
   nixos-profile-curSysPkgs             = readFile                ../../nixos/profiles/currentSystemPackages/testScript.py;
   nixos-profile-editor-vim             = readFile                ../../nixos/profiles/editor/vim/testScript.py;
+  nixos-profile-fonts                  = readFile                ../../nixos/profiles/fonts/testScript.py;
   nixos-profile-imageCommon            = readFile                ../../nixos/profiles/image/common/testScript.py;
   nixos-profile-manualActions          = (import                 ../../nixos/profiles/manualActions/testScript.py.nix                { inherit group username;       });
   nixos-profile-ranger                 = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
@@ -175,6 +176,7 @@ let
 
         ${nixos-profile-curSysPkgs}
         ${nixos-profile-editor-vim}
+        ${nixos-profile-fonts}
         ${nixos-profile-imageCommon}
         ${nixos-profile-manualActions}
         ${nixos-profile-ranger}

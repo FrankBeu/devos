@@ -42,7 +42,7 @@ tests.nixos.profiles.domain.variable
 tests.nixos.profiles.editor.emacs
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
-# tests.nixos.profiles.fonts                        ### TODO: implement
+tests.nixos.profiles.fonts
 # tests.nixos.profiles.i18n.common                  ### TODO: implement
 tests.nixos.profiles.i18n.fcitx
 tests.nixos.profiles.image.common
