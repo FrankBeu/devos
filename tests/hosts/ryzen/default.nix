@@ -35,6 +35,7 @@ let
   nixos-profile-ranger                 = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   nixos-profile-security-age           = readFile                ../../nixos/profiles/security/agebox/testScript.py;
   nixos-profile-services-ssh           = readFile                ../../nixos/profiles/services/ssh/testScript.py;
+  nixos-profile-systemd-sleepDisable   = (import                 ../../nixos/profiles/systemd/sleepDisable/testScript.py.nix      { inherit hmProfileDir username;});
   nixos-profile-timezone               = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profile-tools-android          = (import                 ../../nixos/profiles/tools/android/testScript.py.nix             { inherit userID;               });
   nixos-profile-tools-drawio           = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
@@ -176,6 +177,7 @@ let
         ${nixos-profile-ranger}
         ${nixos-profile-security-age}
         ${nixos-profile-services-ssh}
+        ${nixos-profile-systemd-sleepDisable}
         ${nixos-profile-timezone}
         ${nixos-profile-tools-android}
         ${nixos-profile-tools-drawio}

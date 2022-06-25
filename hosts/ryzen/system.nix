@@ -44,7 +44,7 @@ in
     profiles.shell.zsh
 
     profiles.sound
-    profiles.systemd.sleepDisable
+    # profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
 
     profiles.tools.android

@@ -53,7 +53,7 @@ tests.nixos.profiles.services.documentation
 tests.nixos.profiles.services.ssh
 # tests.nixos.profiles.services.xserver             ### TODO: implement
 # tests.nixos.profiles.sound                        ### TODO: implement
-# tests.nixos.profiles.systemd.sleepDisable         ### TODO: implement
+tests.nixos.profiles.systemd.sleepDisable
 tests.nixos.profiles.timezone.amsterdam
 # tests.nixos.profiles.tools.less                   ### TODO: implement
 # tests.nixos.profiles.tools.network                ### TODO: implement
