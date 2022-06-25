@@ -33,13 +33,14 @@ in
     profiles.i18n.common
     # profiles.i18n.fcitx
     profiles.image.common
+    # profiles.lutris                       ### TODO
     profiles.manualActions
     profiles.networking.dhcp
     profiles.networking.nameserver.regular
-    # profiles.networking.nameserver.secure
+    # profiles.networking.nameserver.secure ### TODO
     profiles.security.agebox
-    # profiles.services.pipewire
-    # profiles.services.printing
+    # profiles.services.pipewire            ### TODO
+    # profiles.services.printing            ### TODO
     profiles.services.ssh
     profiles.shell.zsh
 
@@ -66,6 +67,7 @@ in
     profiles.video.vlc
     profiles.video.youtubedownloader
     profiles.virtualisation.docker
+    # profiles.vulkan                       ### TODO
 
     ### AUTOLOGIN ON CONSOLE
     # profiles.autologin.mainUser
