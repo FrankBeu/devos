@@ -2,28 +2,48 @@
 ''
 machine.wait_for_unit("multi-user.target")
 
+path_to_DEVOS = "/home/${username}/DEVOS"
+
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.bud.nuke"):
     ### CREATE TARGETS
-    machine.succeed("mkdir /home/${username}/DEVOS/result/")
-    machine.succeed("touch /home/${username}/DEVOS/result/test-script")
-    machine.succeed("touch /home/${username}/DEVOS/testvm.qcow2")
-    machine.succeed("touch /home/${username}/DEVOS/ryzenvm.qcow2")
+    machine.succeed(f"mkdir {path_to_DEVOS}/result/")
+    machine.succeed(f"touch {path_to_DEVOS}/result/test-script")
+
+    machine.succeed(f"touch {path_to_DEVOS}/testvm.qcow2")
+    machine.succeed(f"touch {path_to_DEVOS}/ryzenvm.qcow2")
+
+    machine.succeed(f"mkdir {path_to_DEVOS}/__pycache__")
+    machine.succeed(f"mkdir {path_to_DEVOS}/lib/testing/__pycache__")
+    machine.succeed(f"mkdir {path_to_DEVOS}/tests/__pycache__")
+
 
     ### BEFORE
-    bud_dir = machine.succeed("ls /home/${username}/DEVOS")
-    assert_contains(bud_dir, 'result')
-    assert_contains(bud_dir, 'ryzenvm.qcow2')
-    assert_contains(bud_dir, 'testvm.qcow2')
+    DEVOS_content_before = machine.succeed(f"ls -R {path_to_DEVOS}")
+    assert_contains(DEVOS_content_before, 'result')
+
+    assert_contains(DEVOS_content_before, 'ryzenvm.qcow2')
+    assert_contains(DEVOS_content_before, 'testvm.qcow2')
+
+    assert_contains(DEVOS_content_before, '__pycache__')
+    assert_contains(DEVOS_content_before, 'lib/testing/__pycache__')
+    assert_contains(DEVOS_content_before, 'tests/__pycache__')
+
 
     ### NUKE
-    machine.succeed("bud nuke") ### executed in /tmp; ensures $${FLAKEROOT} is set
+    machine.succeed("cd /tmp && bud nuke") ### executed from /tmp - ensures $${FLAKEROOT} is set
+
 
     ### AFTER
-    bud_dir = machine.succeed("ls /home/${username}/DEVOS")
-    assert_lacks(bud_dir, 'result')
-    assert_lacks(bud_dir, 'ryzenvm.qcow2')
-    assert_lacks(bud_dir, 'testvm.qcow2')
+    DEVOS_content_after = machine.succeed(f"ls -R {path_to_DEVOS}")
+    assert_lacks(DEVOS_content_after, 'result')
+
+    assert_lacks(DEVOS_content_after, 'ryzenvm.qcow2')
+    assert_lacks(DEVOS_content_after, 'testvm.qcow2')
+
+    assert_lacks(DEVOS_content_after, '__pycache__')
+    assert_lacks(DEVOS_content_after, 'lib/testing/__pycache__')
+    assert_lacks(DEVOS_content_after, 'tests/__pycache__')
 ''
 
 # Local Variables:
