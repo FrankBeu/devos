@@ -58,6 +58,7 @@ in
     # profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
     profiles.stateVersion
     profiles.tools.nixTools
+    profiles.xdg
 
     # inputs.nix-colors.homeManagerModule
   ] ++
