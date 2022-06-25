@@ -11,6 +11,3 @@ pkgs/_sources/.shake*
 
 **/IGNORE/
 *.qcow2
-
-### imports for interactive test cli
-interactivePreparation.py
