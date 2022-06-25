@@ -8,7 +8,8 @@ with profiles; rec
     shell.aliases
     shell.cod
     shell.fuzzy.fzf
-    shell.prompts.powerline
+    # shell.prompts.powerline ### TODO colors
+    shell.prompts.starship
     shell.snippets.pet
     shell.vivid
     shell.zsh                ### depends on nixos.profiles.shell.zsh
