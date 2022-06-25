@@ -99,9 +99,10 @@ let
   # home-profile-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                { inherit hmProfileDir username;});### home.suites.zsh
   # home-profile-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                  { inherit hmProfileDir username;});### home.suites.zsh
   home-profile-tools-nixTools          = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix             { inherit              username;});
+  home-profile-xdg                     = (import                 ../../home/profiles/xdg/testScript.py.nix                        { inherit              username;});
 
 
-  home-suite-zsh                      = (import                 ../../home/suites/zsh/testScript.nix                             { inherit hmProfileDir username;}).testScript;
+  home-suite-zsh                       = (import                 ../../home/suites/zsh/testScript.nix                             { inherit hmProfileDir username;}).testScript;
 
   ### FUNDUS
   #home-profile-shell-fuzzy-skim       = (import                 ../../home/profiles/shell/fuzzy/skim/testScript.py.nix           { inherit hmProfileDir username;});
@@ -228,6 +229,7 @@ let
         ${home-profile-security-ssh}
         ${home-profile-security-summon}
         ${home-profile-shell-nushell}
+        ${home-profile-xdg}
 
 
         ${home-suite-zsh}
