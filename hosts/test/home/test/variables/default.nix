@@ -8,5 +8,7 @@ in
   name           = "test";
   email          = "test@thesym.site";
 
-  defaultBrowser = "chromium-browser";
+  ### TODO remove and substitute in all dependents with solution in defaultBrowser
+  # defaultBrowser = "chromium-browser";
+  # defaultBrowser = "firefox";
 }
