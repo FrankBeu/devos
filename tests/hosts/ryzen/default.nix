@@ -66,6 +66,7 @@ let
   nixos-suite-virtmanager              = (import                 ../../nixos/suites/virtmanager/testScript.nix                       { inherit userID               ;}).testScript;
 
 
+  home-profiles-alacritty              = (import                 ../../home/profiles/alacritty/testScript.py.nix                     { inherit hmProfileDir username;});
   home-profile-bat                     = (import                 ../../home/profiles/bat/testScript.py.nix                           { inherit hmProfileDir username;});
   home-profile-chromium                = (import                 ../../home/profiles/browser/chromium/testScript.py.nix              { inherit hmProfileDir         ;});
   home-profiles-browser-defaultBrowser = (import                 ../../home/profiles/browser/defaultBrowser/shared/testScript.py.nix { inherit defaultBrowser username;});
@@ -211,6 +212,7 @@ let
         ${nixos-suite-virtmanager}
 
 
+        ${home-profile-alacritty}
         ${home-profile-bat}
         ${home-profile-chromium}
         ${home-profiles-browser-defaultBrowser}
