@@ -4,9 +4,9 @@
 ### name:
 ###   bak
 ### abstract:
-###   "BAcKup: append _BAK$(date +%s) to <FILENAME>"
+###   "BAcKup: append _BAK$(date +%s) to <FILE_OR_DIR>"
 ### usage: |
-###   bak <FILENAME>
+###   bak <PATH_TO_FILE_OR_DIR>
 ###
 ### info: |
 ###    `man date`
@@ -15,7 +15,7 @@
 ### ---
 ###
 function bak() {
-    file=${1%/}
-    cp "$file" "$file""_BAK$(date +%s)"
+    NODE=${1%/}
+    cp -r "$NODE" "$NODE""_BAK$(date +%s)"
 }
 bak ${@};
