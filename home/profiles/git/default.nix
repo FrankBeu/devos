@@ -5,6 +5,10 @@ let
   userEmail       = variables.users.${username}.email;
 in
 {
+  home.shellAliases = {
+    gswls = ''git ls-files -v | grep "^S"''       ;### SkipWorktree LS
+  };
+
   programs.git = {
 
     attributes = [
@@ -20,27 +24,31 @@ in
     ];
 
     aliases = {
-      a   = "add -p";
-      al  = "config --get-regexp '^alias\.'";  ### ALiases
-      ad  = "add .";                           ### Add Dot
-      bD  = "branch -D";
-      ba  = "branch -a";
-      bd  = "branch -d";
-      c   = "commit";
-      cl  = "clone";
-      co  = "checkout";
-      cob = "checkout -b";
-      d   = "diff";
-      dc  = "diff --cached";
-      ds  = "diff --staged";
-      f   = "fetch -p";
-      i   = "init";
-      p   = "push";
-      r   = "restore";
-      ro  = "remote get-url origin";          ### Remote Origin
-      rg  = "remote get-url github";          ### Remote Github
-      rs  = "restore --staged";
-      st  = "status -sb";
+      a    = "add -p";
+      al   = "config --get-regexp '^alias\.'"     ;### ALiases
+      ad   = "add ."                              ;### Add Dot
+      bD   = "branch -D";
+      ba   = "branch -a";
+      bd   = "branch -d";
+      c    = "commit";
+      cl   = "clone";
+      co   = "checkout";
+      cob  = "checkout -b";
+      d    = "diff";
+      dc   = "diff --cached";
+      ds   = "diff --staged";
+      f    = "fetch -p";
+      i    = "init";
+      ### swls                                ;### SkipWorktree LS -> check home.shellAliases
+      swa  = "update-index --skip-worktree "  ;### SkipWorktree Add    <FILE>
+      swr  = "update-index --no-skip-worktree";### SkipWorktree Remove <FILE>
+      p    = "push";
+      r    = "restore";
+      ro   = "remote get-url origin"              ;### Remote Origin
+      rg   = "remote get-url github"              ;### Remote Github
+      rs   = "restore --staged";
+      st   = "status -sb";
+
 
       ### reset
       soft = "reset --soft";
@@ -120,6 +128,11 @@ in
       # merge.tool = "nvim -d";
 
       pull.rebase = true;
+
+      include = {
+        path = "./volatiles";
+      };
+
     };
 
     userEmail = userEmail;
