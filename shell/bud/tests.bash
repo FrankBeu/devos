@@ -48,6 +48,7 @@ tests.nixos.profiles.i18n.fcitx
 tests.nixos.profiles.image.common
 tests.nixos.profiles.manualActions
 tests.nixos.profiles.security.agebox
+tests.nixos.profiles.security.sopsNix
 tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 tests.nixos.profiles.services.ssh

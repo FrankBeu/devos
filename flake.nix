@@ -109,6 +109,13 @@
       };
     };
 
+    sops-nix = {
+      url    = github:Mic92/sops-nix;
+      inputs = {
+        nixpkgs.follows = "nixos";
+      };
+    };
+
   };
 
   outputs =
@@ -124,6 +131,7 @@
     , nixos-hardware
     , nur
     , nvfetcher
+    , sops-nix
     , ...
     } @ inputs:
     digga.lib.mkFlake

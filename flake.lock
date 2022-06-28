@@ -500,6 +500,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-21_11": {
+      "locked": {
+        "lastModified": 1654346688,
+        "narHash": "sha256-Y7QtZkfdxTvACCvWmDjpN6qOf4OKkZATufHcJP2VMKM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2de556c4cd46a59e8ce2f85ee4dd400983213d45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-22_05": {
+      "locked": {
+        "lastModified": 1654373220,
+        "narHash": "sha256-3vKFnZz2oYHo4YcelaNOhO4XQ2jiIEXrp1s4w+e773c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d6cb04299ce8964290ae7fdcb87aa50da0500b5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1655276313,
@@ -652,7 +684,30 @@
         "nixos-hardware": "nixos-hardware",
         "nur": "nur",
         "nvfetcher": "nvfetcher",
-        "rnix-lsp": "rnix-lsp"
+        "rnix-lsp": "rnix-lsp",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixos"
+        ],
+        "nixpkgs-21_11": "nixpkgs-21_11",
+        "nixpkgs-22_05": "nixpkgs-22_05"
+      },
+      "locked": {
+        "lastModified": 1654401128,
+        "narHash": "sha256-uCdQ2fzIPGakHw2TkvOncUvCl7Fo7z/vagpDWYooO7s=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "f075361ecbde21535b38e41dfaa28a28f160855c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "utils": {

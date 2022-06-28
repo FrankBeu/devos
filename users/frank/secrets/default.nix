@@ -13,10 +13,12 @@ let
   ### TODO dynamize
   ### TODO enable all defined secrets automatically
   ### TODO must come from variables.users because user on another host can have different
-  username           = "USERNAME";
-  userSecretNamesR   = [];
+  username           = "frank";
+  userSecretNamesR   = [
+  ];
   userSecretNamesRX  = [];
-  userSecretNamesRWX = [];
+  userSecretNamesRWX = [
+  ];
 
 
   defaultSopsFile = {
