@@ -22,12 +22,58 @@ https://github.com/Mic92/sops-nix
 ** ATTENTION
 *** test-host
 - ssh-secret-key is publicly available
-- nixos-age-key  is publicly available
+- test-age-key  is publicly available
 **** test-{host,user}-secrets can be edited using
 #+BEGIN_SRC shell :results none
-  EDITOR=vim SOPS_AGE_KEY_FILE="${config.bud.localFlakeClone}/secrets/secretKeys/users/nixos/key.sec" \sops "${config.bud.localFlakeClone}/secrets/users/nixos/NixOS/secrets.yaml"
-  EDITOR=vim SOPS_AGE_KEY_FILE="${config.bud.localFlakeClone}/secrets/secretKeys/users/nixos/key.sec" \sops "${config.bud.localFlakeClone}/secrets/hosts/NixOS/secrets.yaml"
+  EDITOR=vim SOPS_AGE_KEY_FILE="${config.bud.localFlakeClone}/secrets/keys/publiclyAvailable/users/test/key.sec"  \sops "${config.bud.localFlakeClone}/secrets/users/test/test/secrets.yaml"
+  EDITOR=vim SOPS_AGE_KEY_FILE="${config.bud.localFlakeClone}/secrets/keys/publiclyAvailable/users/test/key.sec" \\sops "${config.bud.localFlakeClone}/secrets/hosts/test/secrets.yaml"
 #+END_SRC
+*** keys
+**** ${config.bud.localFlakeClone}/secrets/keys/publiclyAvailable
+all keys are version controlled
+**** ${config.bud.localFlakeClone}/secrets/keys/secret
+all files are gitignored \\
+(except the .gitignore)
+***** vm w/ secrets
+Each vm which uses secrets needs to have an ssh-key availble here \\
+cf.: ="${config.bud.localFlakeClone}/hosts/test/system.nix:42:2"= \\
+In order to be picked up by the flake, a checked in dummy key has to be overlayed with a real key.
+****** copy the publiclyAvailable host key to the new vmHost's secret-folder
+#+BEGIN_SRC shell :results none
+    HOST=<HOSTNAME>
+    cp \
+    ${config.bud.localFlakeClone}/secrets/keys/publiclyAvailable/hosts/test/ \
+    ${config.bud.localFlakeClone}/secrets/keys/secret/hosts/''${HOST}
+#+END_SRC
+****** check it in
+****** generate a passwordless key
+#+BEGIN_SRC shell :results none
+HOST=<HOSTNAME>
+DIR=${config.bud.localFlakeClone}/secrets/keys/secret/hosts/''${HOST}
+mkdir -p ''${DIR} &&
+ssh-keygen     \
+    -t ed25519 \
+    -a 100     \
+    -P ""      \
+    -C ''${HOST} \
+    -f ''${DIR}/ssh_host_ed25519_key
+#+END_SRC
+****** tell git not to care about changes
+#+BEGIN_SRC shell :results none
+HOST=<HOSTNAME>
+git update-index --skip-worktree ~/DEVOS/secrets/keys/secret/hosts/''${HOST}/ssh_host_ed25519_key
+git update-index --skip-worktree ~/DEVOS/secrets/keys/secret/hosts/''${HOST}/ssh_host_ed25519_key.pub
+#+END_SRC
+****** add age-handle to =${config.bud.localFlakeClone}/.sops.yaml=
+1. key to clipboard
+    #+BEGIN_SRC shell :results none
+    HOST=<HOSTNAME>
+    PATH_TO_PUB_KEY=${config.bud.localFlakeClone}/secrets/keys/secret/''${HOST}/ssh_host_ed25519_key.pub
+    cat ''${PATH_TO_PUB_KEY} | ssh-to-age | xsel -ib
+    #+END_SRC
+2. add to =.sops.yaml= manually
+****** reencrypt affected secrets
+* secret
 ** keyCreation
 *** user
 cf. age
@@ -52,17 +98,17 @@ cf. age
   EXAMPLE = config.sops.secrets.NAME.path;
 #+END_SRC
 ** user-passwords
+location: =${config.bud.localFlakeClone}/secrets/users/<USER>/<HOST>/secrets.yaml=
 - can only be used hashed
 - when editing with emacs, a hash can be inserted by the following instruction
   - yank the following line:
   #+BEGIN_SRC shell :results none
      mkpasswd -m sha-512
   #+END_SRC
-  - position the cursor at the inserting location
+  - move the cursor to location the password should be insterted
   - press =C-U SPC ! C-Y=
-  - append the PASSWORD
+  - append  a space and the PASSWORD
   - press =RET=
-*** TODO dynamic keybindings
 ** keyChanges
 *** create key
 *** remove old key
@@ -85,6 +131,8 @@ each secret has to be
   ="${config.bud.localFlakeClone}/secrets/users/<USERNAME>/<HOST>/secrets.yaml"=
 - registered in
   ="${config.bud.localFlakeClone}/users/<USERNAME>/secrets/default.nix"=
+** TODO TODOS
+*** TODO link to sops
 ** DEPRECATED GPG                                                  :noexport:
 :LOGBOOK:
 - State "DEPRECATED" from "TEST"       [2022-05-21 Sat 09:55] \\
@@ -106,4 +154,17 @@ gpg --show-keys "${config.bud.localFlakeClone}/secrets/publicKeys/hosts/${config
 #+begin_src shell :results none
   gpg --import "${config.bud.localFlakeClone}/secrets/publicKeys/hosts/${config.networking.hostName}.asc"
 #+end_src
+** UNSORTED
+**** generate a ssh-userKey
+#+BEGIN_SRC shell :results none
+USER=<USERNAME>
+HOST=<HOSTNAME>
+DIR=${config.bud.localFlakeClone}/secrets/users/''${USER}/''${HOST}
+mkdir -p ''${DIR} &&
+ssh-keygen                 \
+    -t ed25519             \
+    -a 100                 \
+    -C ''${USER}@''${HOST} \
+    -f ''${DIR}/ssh_host_ed25519_key
+#+END_SRC
 '' ### KEEP: closes nix string

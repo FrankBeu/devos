@@ -14,17 +14,17 @@ in
   ### DO NOT IMPORT ANY OTHER PROFILES OR SUITES
   ### test is only used as test-host
   imports = [
+    profiles.security.sopsNix
   ] ++ [
     profiles.users.root
     profiles.users.test
-  ] ++ [
-    ################################################################################################
-    ### DEBUG
-  ]
-  ++ suites.debug
-  # ++ suites.i3
+  ] ++
   ################################################################################################
-  ;
+  ### DEBUG
+  # suites.debug ++
+  # suites.i3 ++
+  ################################################################################################
+  [];
 
   boot.loader = {
     systemd-boot.enable      = true;
@@ -37,16 +37,22 @@ in
 
   networking.networkmanager.enable = true;
 
-  ### use publicly available ssh-key
-  environment.etc = {
-    "ssh/ssh_host_ed25519_key"     = {
-      source = "${self}/secrets/secretKeys/hosts/test/id_ed25519";
-      mode   = "600";
+  ### make ssh-key available prior to sops-nix
+  ### TODO extract to lib for every vm
+  system.activationScripts =
+    let
+      sshKey    = builtins.readFile "${self}/secrets/keys/publiclyAvailable/hosts/test/ssh_host_ed25519_key";
+      sshKeyPub = builtins.readFile "${self}/secrets/keys/publiclyAvailable/hosts/test/ssh_host_ed25519_key.pub";
+    in
+    {
+      "1-add-ssh-key" = {
+        text = ''
+          echo "create ssh-key needed by sops-nix from PUBLICLY AVAILABLE KEY"
+          mkdir -p /etc/ssh
+          echo "${sshKey}   " > "/etc/ssh/ssh_host_ed25519_key"
+          echo "${sshKeyPub}" > "/etc/ssh/ssh_host_ed25519_key.pub"
+          chmod 600             "/etc/ssh/ssh_host_ed25519_key"
+        '';
+      };
     };
-    "ssh/ssh_host_ed25519_key.pub" = {
-      source = "${self}/secrets/secretKeys/hosts/test/id_ed25519.pub";
-      mode   = "644";
-
-    };
-  };
 }

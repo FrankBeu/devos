@@ -40,6 +40,7 @@ in
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure ### TODO
     profiles.security.agebox
+    profiles.security.sopsNix
     # profiles.services.pipewire            ### TODO
     # profiles.services.printing            ### TODO
     profiles.services.ssh

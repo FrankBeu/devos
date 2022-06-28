@@ -14,6 +14,7 @@ in
       test = import ../home/test/variables;
     };
 
+    ### add nixos.profiles.autologin.variable to activate
     tty = {
       autologin = {
         username = mainUser;

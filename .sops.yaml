@@ -1,0 +1,58 @@
+### TODO check if secrets from HOST can be reused as vmHOST
+### virtualisation.vmVariant
+keys:
+  ### HOSTS
+  - &ryzen            age1ajavs7njj95asdmvx346plh2p9xqflgxl9z2ejpuqztdzsty344se3sxax
+  - &vmRyzen          age17ew8tzxakfx8yz34lhf04pam5ydptvuxc57hsmxu0hggweqtas7q52qah8
+  - &test             age1mnv9ewltq0ra0hkmekm686dk723jhnycrf4xu87pr57xcvd84a9qu3jeaj
+  ### USER
+  - &frank-at-ryzen   age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+  - &frank-at-vmRyzen age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
+  - &test-at-test     age1p2nq8v5l94zjzzee978f7munsfmcr6dtd98v5j6h7yruz30c94fsgept23
+
+creation_rules:
+  ### HOSTS
+  - path_regex: ./secrets/hosts/ryzen/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *ryzen
+  - path_regex: ./secrets/hosts/vmRyzen/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-vmRyzen
+      - *vmRyzen
+  - path_regex: ./secrets/hosts/test/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *test           ### PUBLICLY AVAILABLE
+      - *test-at-test   ### PUBLICLY AVAILABLE
+
+  ### USER
+  - path_regex: ./secrets/users/(frank|root)/ryzen/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *ryzen
+  - path_regex: ./secrets/users/(frank|root)/vmRyzen/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-vmRyzen
+      - *vmRyzen
+  - path_regex: ./secrets/users/(test|root)/test/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *test         ### PUBLICLY AVAILABLE
+      - *test-at-test ### PUBLICLY AVAILABLE
+
+  ### SHARED
+  - path_regex: ./secrets/shared/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *ryzen
+      - *vmRyzen
+      ### - *test         ### NEVER ENABLE: PUBLICLY AVAILABLE
+      ### - *test-at-test ### NEVER ENABLE: PUBLICLY AVAILABLE

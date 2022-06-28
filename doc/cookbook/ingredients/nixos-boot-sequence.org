@@ -1,0 +1,36 @@
+* nixos boot sequence
+#+BEGIN_EXAMPLE nix
+### STAGE-1
+### STAGE-2
+  system.activationScripts = {
+    "1" = {
+      text = ''
+        echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ system.activationScript 1"
+      '';
+    };
+
+    a = {
+      text = ''
+        echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ system.activationScript a"
+        ls /etc/ssh
+      '';
+    };
+
+    z = {
+      text = ''
+        echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ system.activationScript z"
+      '';
+    };
+
+  };
+
+  boot.postBootCommands = ''
+    echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ postBootCommand"
+    ls /etc/ssh
+  '';
+#+END_EXAMPLE
+** INFO
+https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/stage-1.nix
+https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/stage-2.nix
+** TODO TODOS
+*** hugoify

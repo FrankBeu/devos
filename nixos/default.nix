@@ -16,6 +16,7 @@ in
       home.nixosModules.home-manager
       agenix.nixosModules.age
       bud.nixosModules.bud
+      sops-nix.nixosModules.sops
     ];
   };
 

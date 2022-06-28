@@ -44,14 +44,17 @@ toc: true
   #+BEGIN_SRC nix
   <USERNAME> = import ../home/<USERNAME>/variables;
   #+END_SRC
-- add to =hosts/test/home.nix=: ~home-manager.users~
+- add to =hosts/<HOSTNAME>/home.nix=: ~home-manager.users~
   #+BEGIN_SRC nix
   "<USERNAME>" = import ./home/<USERNAME>;
   #+END_SRC
-- add to =hosts/test/system.nix=: ~imports~
+- add to =hosts/<HOSTNAME>/system.nix=: ~imports~
 #+BEGIN_SRC nix
 profiles.users.<USERNAME>
 #+END_SRC
 
 *** TODO create ~bud new (user|host)~
+** groups
+groups can be set precautionary - they will only be applied, if the actual group exists \\
+applying userGroups can be tested by logging into a virtualConsole
 '' ### KEEP: closes nix string

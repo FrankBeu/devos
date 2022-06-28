@@ -36,8 +36,9 @@ let
   nixos-profile-manualActions          = (import                 ../../nixos/profiles/manualActions/testScript.py.nix                { inherit group username;       });
   nixos-profile-ranger                 = readFile                ../../nixos/profiles/filemanager/ranger/testScript.py;
   nixos-profile-security-age           = readFile                ../../nixos/profiles/security/agebox/testScript.py;
+  nixos-profile-security-sopsNix       = (import                 ../../nixos/profiles/security/sopsNix/testScript.py.nix             { inherit              username;});
   nixos-profile-services-ssh           = readFile                ../../nixos/profiles/services/ssh/testScript.py;
-  nixos-profile-systemd-sleepDisable   = (import                 ../../nixos/profiles/systemd/sleepDisable/testScript.py.nix      { inherit hmProfileDir username;});
+  nixos-profile-systemd-sleepDisable   = (import                 ../../nixos/profiles/systemd/sleepDisable/testScript.py.nix         { inherit hmProfileDir username;});
   nixos-profile-timezone               = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profile-tools-android          = (import                 ../../nixos/profiles/tools/android/testScript.py.nix                { inherit userID;               });
   nixos-profile-tools-drawio           = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
@@ -120,6 +121,10 @@ let
         imports = with profiles; [
           # autologin.variable
           autologin.root
+
+          ### preparationScripts
+          ../../nixos/profiles/security/sopsNix/testPreparation.nix
+          ### TODO check if all systemd.tmpfiles can also be just imported -> check host~ and standalone~tests
         ];
 
         variables = {
@@ -182,6 +187,7 @@ let
         ${nixos-profile-manualActions}
         ${nixos-profile-ranger}
         ${nixos-profile-security-age}
+        ${nixos-profile-security-sopsNix}
         ${nixos-profile-services-ssh}
         ${nixos-profile-systemd-sleepDisable}
         ${nixos-profile-timezone}
