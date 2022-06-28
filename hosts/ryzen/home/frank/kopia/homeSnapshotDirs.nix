@@ -1,0 +1,20 @@
+[
+  "AKTUELLES"
+  "ARCHIVES"
+  "BAK"
+  "DEVOS"
+  "DEVOSEMACS"
+  "DEVOSNIXOS"  ### TODO remove after resolvation
+  "DOCUMENTS"
+  "DOWNLOADS"
+  "GAMES"
+  "MUSIC"
+  "NOTES"
+  "NOW"
+  "PICTURES"
+  "ROUTINES"
+  "SRC/GITEA"
+  "SRC/registeredRepos"
+  "UNSORTED"
+  "VIDEOS"
+]

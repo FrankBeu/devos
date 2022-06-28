@@ -88,6 +88,7 @@ tests.nixos.profiles.virtualisation.docker
 tests.nixos.profiles.virtualisation.libvirtd
 tests.nixos.profiles.virtualisation.virtmanager
 
+
 tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 # tests.nixos.suites.gnome                          ### TODO: needs hw-acceleration
@@ -97,7 +98,11 @@ tests.nixos.suites.virtmanager
 
 
 ### HOME
+tests.home.modules.services.backup.kopia
+
+
 tests.home.profiles.alacritty
+tests.home.profiles.backup.kopia
 tests.home.profiles.bat
 tests.home.profiles.browser.chromium
 tests.home.profiles.browser.firefox.main
@@ -141,6 +146,7 @@ tests.home.profiles.shell.zsh
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
 tests.home.profiles.xdg
+
 
 tests.home.suites.zsh
 

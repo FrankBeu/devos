@@ -15,8 +15,10 @@ in
 {
   imports = [
     ../../variables
+    ./kopia
 
     profiles.alacritty
+    profiles.backup.kopia
     profiles.bat
     profiles.browser.chromium
     profiles.browser.defaultBrowser
