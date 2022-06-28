@@ -15,9 +15,17 @@ let
   ### TODO must come from variables.users because user on another host can have different
   username           = "frank";
   userSecretNamesR   = [
+    # "kopia/SAFE/configFile"
+    "kopia/SAFE/passwordFile"
+    "kopia/SAFE/environmentFile"
+    "kopia/HOME/INTERNAL/environmentFile"
+    "kopia/HOME/EXTERNAL/environmentFile"
+    "kopia/HOME/REMOTE/environmentFile"
   ];
   userSecretNamesRX  = [];
   userSecretNamesRWX = [
+    "kopia/SAFE/scripts/update"
+    "kopia/SAFE/scripts/plain"
   ];
 
 

@@ -1,0 +1,113 @@
+---
+title: backup
+linktitle: backup
+description: documentation for backup
+categories:
+keywords: [ backup ]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "backup"
+    identifier: "backup"
+draft: false
+toc: true
+---
+* backup
+** levels
+*** vcs
+*** gitea                                                          :noexport:
+https://gitea.thesym.site
+*** backup
+everything not suitable for vcs \\
+stuff, which has to be secured against user-errors
+*** critical
+- age-keys
+- ssh-keys
+  - user
+  - machine
+- passwords
+- backup-config
+- DEVOS
+**** unencrypted on external hidden device
+***** optionally on paper
+** structural
+*** OVERVIEW
+- dataPoint
+- device
+  - host (point of usage)
+  - storage
+- repositoriy
+- mountpoint
+- service
+- timer
+*** INFO
+**** dataPoint
+- HOME
+- K8SPERSISTENCE
+- SAFE
+**** device
+***** host (point of usage)
+- mac
+- nuc
+- ryzen
+***** storage
+- BAK (on each location)
+**** repository
+naming always from the location of the most frequent usage of the dataPoint
+***** HOME, K8SPERSISTENCE
+secures against
+- (USAGE)
+- INTERNAL
+   userIncident
+- EXTERNAL
+   deviceIncident
+- REMOTE
+   locationIncident
+***** SAFE
+due to the fact, that critical data should not be spread out
+only EXTERNAL is realized
+but cloned on each location
+**** mountpoint
+***** bak
+devices
+systemd
+***** restore
+repositories
+kopia
+needs bak-mountpoint
+**** service
+mount
+snap
+umount
+**** timer
+***** w/
+- HOME
+- K8SPERSISTENCE
+- starts service
+- automatically
+***** w/o
+- SAFE
+- manual
+- data does not change often
+- on change
+**** TASKS
+need aliases
+- mount
+- trigger service
+- connect to repo
+- disconnect from repo
+- snap
+- inspect
+- restore
+- umount
+- mount-snap-umount
+   service with dependencies
+** TODO TODOS
+*** backup QR
+https://fukuchi.org/works/qrencode/
+https://github.com/ruediger/qrencode-el
+#+BEGIN_SRC shell :results none
+gpg --export-secret-key -a | qrencode -l L -8 -o key.png
+#+END_SRC
+
+

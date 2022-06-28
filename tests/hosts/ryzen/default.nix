@@ -67,8 +67,12 @@ let
   nixos-suite-virtmanager              = (import                 ../../nixos/suites/virtmanager/testScript.nix                       { inherit userID               ;}).testScript;
 
 
+  home-module-services-backup-kopia    = (import                 ../../home/modules/services/backup/kopia/testScript.py.nix          { inherit              username;});
+
+
   home-profiles-alacritty              = (import                 ../../home/profiles/alacritty/testScript.py.nix                     { inherit hmProfileDir username;});
   home-profile-bat                     = (import                 ../../home/profiles/bat/testScript.py.nix                           { inherit hmProfileDir username;});
+  home-profile-backup-kopia            = (import                 ../../home/profiles/backup/kopia/testScript.py.nix                  { inherit hmProfileDir username;});
   home-profile-chromium                = (import                 ../../home/profiles/browser/chromium/testScript.py.nix              { inherit hmProfileDir         ;});
   home-profiles-browser-defaultBrowser = (import                 ../../home/profiles/browser/defaultBrowser/shared/testScript.py.nix { inherit defaultBrowser username;});
   home-profile-display-cursor          = (import                 ../../home/profiles/display/cursor/testScript.py.nix                { inherit hmProfileDir username;});
@@ -218,8 +222,11 @@ let
         ${nixos-suite-virtmanager}
 
 
+
+
         ${home-profile-alacritty}
         ${home-profile-bat}
+        ${home-profile-backup-kopia}
         ${home-profile-chromium}
         ${home-profiles-browser-defaultBrowser}
         ${home-profile-display-cursor}
@@ -247,13 +254,15 @@ let
 
         ${home-suite-zsh}
       '';
-        # ${nixos-profile-console}           ### TODO reactivate after graphical
-        # ${home-profile-emacs}              ### TODO reactivate after graphical
-        # ${home-profile-fcitx}              ### TODO reactivate after graphical
-        # ${home-profile-git}                ### TODO reactivate after graphical
-        # ${home-profile-notification-dunst} ### TODO reactivate after passthrough screenshots are different as on standalone because of different execution-duration
-        # ${home-profile-stateVersion}       ### TODO reactivate after nixos-option is fixed
-        # ${home-profile-tools-nixTools}     ### TODO reactivate after zsh
+        # ${home-module-services-backup-kopia} ### TODO implement  after passthrough
+
+        # ${nixos-profile-console}             ### TODO reactivate after graphical
+        # ${home-profile-emacs}                ### TODO reactivate after graphical
+        # ${home-profile-fcitx}                ### TODO reactivate after graphical
+        # ${home-profile-git}                  ### TODO reactivate after graphical
+        # ${home-profile-notification-dunst}   ### TODO reactivate after passthrough screenshots are different as on standalone because of different execution-duration
+        # ${home-profile-stateVersion}         ### TODO reactivate after nixos-option is fixed
+        # ${home-profile-tools-nixTools}       ### TODO reactivate after zsh
         ### all documentation tests seem to be unreliable reactivate after passthrough or other improvements
 
         ### FUNDUS
@@ -268,6 +277,7 @@ let
         # ${home-profile-shell-snippets-pet}
         # ${home-profile-shell-vivid}
         # ${home-profile-shell-zsh}
+
 
       name = self.inputs.latest.lib.toUpper name;
   };
