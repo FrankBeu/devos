@@ -114,6 +114,7 @@ tests.home.profiles.clipmenu
 tests.home.profiles.directoryStructure
 tests.home.profiles.display.cursor
 tests.home.profiles.display.i3
+tests.home.profiles.docDotLocal
 tests.home.profiles.dotLocal
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
 tests.home.profiles.exa

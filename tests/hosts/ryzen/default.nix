@@ -83,6 +83,7 @@ let
   # home-profile-emacs                 = readFile                ../../home/profiles/editor/emacs/testScript.py;                     ### TODO: needs hw-acceleration
   home-profile-fcitx                   = (import                 ../../home/profiles/i18n/fcitx/shared/testScript.py.nix             { inherit              username;});
   home-profile-directoryStructure      = (import                 ../../home/profiles/directoryStructure/testScript.py.nix            { inherit              username;});
+  home-profiles-docDotLocal            = (import                 ../../home/profiles/docDotLocal/testScript.py.nix                   { inherit              username;});
   home-profile-dotLocal                = (import                 ../../home/profiles/dotLocal/testScript.py.nix                      { inherit hmProfileDir username;});
   home-profile-exa                     = (import                 ../../home/profiles/exa/testScript.py.nix                           { inherit hmProfileDir         ;});
   home-profile-flameshot               = (import                 ../../home/profiles/flameshot/testScript.py.nix                     { inherit hmProfileDir username;});
@@ -235,9 +236,10 @@ let
         ${home-profile-firefox-tridactyl}
         ${home-profile-clipmenu}
         ${home-profile-directoryStructure}
+        ${home-profiles-docDotLocal}
+        ${home-profile-dotLocal}
         ${home-profile-exa}
         ${home-profile-flameshot}
-        ${home-profile-dotLocal}
         ${home-profile-languages-golang}
         ${home-profile-manualActions}
         ${home-profile-rofi}

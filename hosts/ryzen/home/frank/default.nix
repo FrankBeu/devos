@@ -30,6 +30,7 @@ in
     profiles.direnv
     profiles.display.cursor
     profiles.display.i3
+    profiles.docDotLocal
     profiles.dotLocal
     profiles.editor.emacs
     profiles.exa
