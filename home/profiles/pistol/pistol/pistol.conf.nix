@@ -12,6 +12,8 @@ audio/*                             mediainfo               %pistol-filename%
 # inode/directory                   ls -l --color           %pistol-filename%
 inode/directory                     exa -l --color=always   %pistol-filename%
 text/html                           w3m -T text/html -dump  %pistol-filename%
+image/*                             mediainfo               %pistol-filename%
+video/*                             mediainfo               %pistol-filename%
 
 fpath .*.md${extSuffixes}?$           ${batCmd} md          %pistol-filename%
 fpath .*.nix${extSuffixes}?$          ${batCmd} nix         %pistol-filename%
