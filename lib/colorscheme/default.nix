@@ -5,7 +5,7 @@ let
     let scheme = if lib.hasPrefix "custom-" currentColorSchemeName then customSchemes else nixColorSchemes;
     in (builtins.getAttr currentColorSchemeName scheme);
 
-  allColorsInfo = { colors }:
+    allColorsInfo = { colors }:
     with colors;
     ''
       ### base00 #${base00} Default Background
@@ -33,7 +33,20 @@ let
       ### base16 #${base16}
       ### base17 #${base17}'';
 
+      addBase24Fallbacks = { colorscheme }:
+      {
+        ### fallback
+        # base10 	base00
+        # base11 	base00
+        # base12 	base08
+        # base13 	base0A
+        # base14 	base0B
+        # base15 	base0C
+        # base16 	base0D
+        # base17 	base0E
+      };
+
+
 in
-### TODO mapBase16ToBase24
 ### TODO unit-test
 { inherit allColorsInfo loadColorScheme; }
