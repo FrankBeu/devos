@@ -12,4 +12,23 @@
       sha256 = "sha256-GqPuYscLhkR5E2HnSFV4R48hCWvtM3C++3zlJhiK/aw=";
     });
   };
+  starship = {
+    pname = "starship";
+    version = "v1.9.1";
+    src = fetchFromGitHub ({
+      owner = "starship";
+      repo = "starship";
+      rev = "v1.9.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-IujaGyAGYlBb4efaRb13rsPSD2gWAg5UgG10iMp9iQE=";
+    });
+    cargoLock = {
+      lockFile = ./starship-v1.9.1/Cargo.lock;
+      outputHashes = {
+
+      };
+    };rustToolchainSha256 = "sha256-HhkjtODLw16O7DNPew9+vqOtbM6hcAmLH55XnZ0G6Fk=";
+    rustToolchainChannel = "nightly";
+    rustToolchainDate = "2022-07-01";
+  };
 }

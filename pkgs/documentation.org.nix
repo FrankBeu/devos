@@ -20,8 +20,12 @@ toc: true
 is implemented as overlay
 ** sources
 Are managed by ~nvfetcher~. \\
-In a package they can be used like:
+In a package they can be used just like:
+callPackage will take care of the rest
 #+BEGIN_SRC nix
+  { # ...
+    , sources
+      };
   ### XOR
   inherit (sources.SOURCENAME) pname version src;
   inherit (sources.SOURCENAME) pname version src cargoLock;
@@ -39,7 +43,15 @@ nvfetcher
 nvfetcher  -f      <REGEX>
 nvfetcher --filter <REGEX>
 #+END_SRC
+**** add =Cargo.lock= to git (optional)
+allways add file to git \\
+even after updates (filename will change) \\
+otherwise nix will throw the following error:
+#+BEGIN_EXAMPLE
+error: getting status of '/nix/store/SHA-source/pkgs/_sources/NAME-SHA: No such file or directory
+#+END_EXAMPLE
 ** packages
+*** purpose
 packages not available via a channel
 ** flake
 A package provided by a flake can be used by referencing it like:

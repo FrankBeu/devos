@@ -44,6 +44,7 @@ in
     # profiles.services.pipewire            ### TODO
     # profiles.services.printing            ### TODO
     profiles.services.ssh
+    profiles.shell.prompts.starship
     profiles.shell.zsh
 
     profiles.sound

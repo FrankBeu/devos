@@ -12,22 +12,11 @@ let
       machine = { suites, pkgs, profiles, variables, ... }:
       {
         imports = with profiles; [
+          shell.prompts.starship
           shell.zsh
         ] ++
         # suites.debug ++
         [];
-
-        users.users.${username}.shell = pkgs.zsh;
-
-        home-manager.users.${username} = { profiles, suites, ... }:
-        {
-          imports = with profiles; [
-            shell.zsh
-            stateVersion ### needed for the location of the zshHistoryFile
-
-            shell.prompts.starship
-          ];
-        };
       };
     };
 
@@ -45,8 +34,8 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  hmProfileDir       = host.config.home-manager.users.${username}.home.profileDirectory;
-  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDir username; });
+  version    = host.pkgs.sources.starship.version;
+  testScriptExternal = (import ./testScript.py.nix { inherit version; });
 
 in
 {

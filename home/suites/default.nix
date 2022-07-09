@@ -8,11 +8,10 @@ with profiles; rec
     shell.aliases
     shell.cod
     shell.fuzzy.fzf
-    # shell.prompts.powerline ### TODO colors
-    shell.prompts.starship
     shell.snippets.pet
     shell.vivid
     shell.zsh                ### depends on nixos.profiles.shell.zsh
     stateVersion             ### stateVersion is needed for location of zsh_history
+    ### prompts can be found at nixos.profiles.shell.zsh because they have to be available for root
   ];
 }
