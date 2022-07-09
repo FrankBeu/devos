@@ -1,6 +1,6 @@
 {
     "manix": {
-        "pinned": false,
+        "pinned": true,
         "cargoLock": null,
         "name": "manix",
         "src": {
@@ -18,5 +18,29 @@
         "passthru": null,
         "extract": null,
         "rustGitDeps": null
+    },
+    "starship": {
+        "pinned": false,
+        "cargoLock": "./starship-v1.9.1/Cargo.lock",
+        "name": "starship",
+        "src": {
+            "deepClone": false,
+            "owner": "starship",
+            "name": null,
+            "repo": "starship",
+            "type": "github",
+            "sha256": "sha256-IujaGyAGYlBb4efaRb13rsPSD2gWAg5UgG10iMp9iQE=",
+            "rev": "v1.9.1",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "v1.9.1",
+        "passthru": {
+            "rustToolchainSha256": "sha256-HhkjtODLw16O7DNPew9+vqOtbM6hcAmLH55XnZ0G6Fk=",
+            "rustToolchainChannel": "nightly",
+            "rustToolchainDate": "2022-07-01"
+        },
+        "extract": null,
+        "rustGitDeps": {}
     }
 }

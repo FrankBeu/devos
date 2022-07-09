@@ -206,6 +206,27 @@
         "url": "file:///home/frank/DEVOSEMACS"
       }
     },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "latest"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1657347958,
+        "narHash": "sha256-UViOt1l9Qu1StbAIDe+xMjRbkEnefbISbs256J5IcHE=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "d223a6c360d0873488b70df0a9d27e0f6487b8fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -676,6 +697,7 @@
         "deploy": "deploy",
         "digga": "digga",
         "emacsFlake": "emacsFlake",
+        "fenix": "fenix",
         "home": "home",
         "latest": "latest_2",
         "naersk": "naersk",
@@ -686,6 +708,23 @@
         "nvfetcher": "nvfetcher",
         "rnix-lsp": "rnix-lsp",
         "sops-nix": "sops-nix"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1657292522,
+        "narHash": "sha256-mAxbvJzcpozcQpcfNAP1eU27NgAqT6pDB/eaQOe/piI=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "2836dd15f753a490ea5b89e02c6cfcecd2f32984",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     },
     "sops-nix": {

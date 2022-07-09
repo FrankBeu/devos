@@ -61,8 +61,15 @@
       ###    if buildScripts (in nixpkgs/pkgs/build-support/emacs) will be updated, builds will fail.
       ###    also cachix will be missed more likely and emacs-git-native-comp is really expensive
       # inputs = {
-      #   nixpkgs.follows = "nixos";
-      # };
+        #   nixpkgs.follows = "nixos";
+        # };
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs = {
+        nixpkgs.follows = "latest";
+      };
     };
 
     home = {
@@ -112,7 +119,8 @@
     sops-nix = {
       url    = github:Mic92/sops-nix;
       inputs = {
-        nixpkgs.follows = "nixos";
+        nixpkgs.follows     = "nixos";
+        flake-utils.follows = "digga/flake-utils-plus/flake-utils";
       };
     };
 
@@ -125,6 +133,7 @@
     , deploy
     , digga
     , emacsFlake
+    , fenix
     , home
     , nix-colors
     , nixos
@@ -150,6 +159,7 @@
             nur.overlay
             agenix.overlay
             nvfetcher.overlay
+            fenix.overlay
           ] ++ [ (import ./pkgs/default.nix { inherit inputs; }) ];
         };
         latest = {
@@ -161,6 +171,7 @@
             nur.overlay
             agenix.overlay
             nvfetcher.overlay
+            fenix.overlay
           ] ++ [ (import ./pkgs/default.nix { inherit inputs; }) ];
         };
       };

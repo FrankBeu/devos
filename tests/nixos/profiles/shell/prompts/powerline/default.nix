@@ -12,6 +12,7 @@ let
       machine = { suites, pkgs, profiles, variables, ... }:
       {
         imports = with profiles; [
+          shell.prompts.powerline
           shell.zsh
         ] ++
         # suites.debug ++
@@ -38,7 +39,7 @@ let
             display.i3
             ### TODO fonts
 
-            shell.prompts.powerline
+            # shell.prompts.powerline
           ];
         };
       };
@@ -58,8 +59,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  hmProfileDir       = host.config.home-manager.users.${username}.home.profileDirectory;
-  testScriptExternal = (import ./testScript.py.nix { inherit hmProfileDir username; });
+  testScriptExternal = (import ./testScript.py.nix {});
 
 in
 {

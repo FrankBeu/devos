@@ -1,0 +1,3 @@
+* powerline-go
+** TODO make useable
+with colorModule

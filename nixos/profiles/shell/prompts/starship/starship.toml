@@ -1,0 +1,494 @@
+### Inspired by Myth Dark Pointed config for Starship (c) 2020 by Mick Hohmann, last changed 2020-10-22 23:08
+### https://raw.githubusercontent.com/mickimnet/myth-prompt-themes/main/dark/pointed/starship/starship.toml
+### Icons can be found at
+### https://www.nerdfonts.com/
+### https://www.nerdfonts.com/cheat-sheet
+
+### https://starship.rs/config/#custom-commands
+
+### TODO https://github.com/starship/starship/discussions/1252#discussioncomment-2348209
+### TODO https://github.com/starship/starship/discussions/1252#discussioncomment-3072177
+
+### Don't print a new line at the start of the prompt
+# add_newline = false
+add_newline = true
+
+### Order of modules on prompt
+# format = """[](bg:#464347 fg:#AFD700)\
+format = """$username\
+        $hostname\
+        $directory\
+        $docker_context\
+	${custom.docker}\
+	${custom.giturl}\
+        $status\
+        (↓ Source control - for right side ↓)\
+        $git_branch\
+        $git_commit\
+        $git_status\
+        $git_state\
+        (↑ Source control - for right side ↑)\
+        (↓ Toolchain version modules ↓)\
+        $golang\
+        $julia\
+        $dart\
+        ${custom.flutter}\
+        $python\
+        $rust\
+        (↑ Toolchain version modules ↑)\
+        (↓ Package modules ↓)\
+        $package\
+        $cmake\
+        (↑ Package modules ↑)\
+        $nix_shell\
+        $memory_usage\
+        $env_var\
+        $battery\
+        $shlvl\
+        $jobs\
+        $cmd_duration\
+        $status\
+        $time\
+        []( fg:#464347)\
+        $line_break\
+        $character\
+  """
+        # (↑ above input line ↑)\
+        # $line_break\
+        # (↓ on input line ↓)\
+
+# right_format		= """$all"""
+
+continuation_prompt	= "▶▶"
+
+
+### Generic prompt configurations
+[character]
+success_symbol	= "[[](bg:#AFD700 fg:#464347)](fg:#AFD700)"
+error_symbol	= "[[](bg:#ff3322 fg:#464347)](fg:#ff3322)"
+vicmd_symbol	= "[[](bg:#6f6a70 fg:#464347)[](bg:#464347 fg:#6f6a70)](bold bg:#6f6a70 fg:#ff3322)"
+format		= "$symbol "
+
+
+[line_break]
+# disabled = true
+disabled = false
+# ~/.config/starship.toml
+
+
+[battery]
+disabled		= true
+# full_symbol		= ""
+full_symbol		= "🔋 "
+# charging_symbol	= " "
+charging_symbol		= "⚡️ "
+# discharging_symbol	= " "
+discharging_symbol	= "💀 "
+unknown_symbol		= ""
+empty_symbol		= ""
+format			= "[[](bg:#FF5511 fg:#464347) $symbol$percentage[](bg:#464347 fg:#FF5511)]($style)"
+[[battery.display]]
+threshold		= 10
+style			= "bold bg:#FF5511 fg:#EEEEEE"
+[[battery.display]]
+threshold		= 20
+style			= "bg:#FF5511 fg:#111111"
+
+
+[cmake]
+# disabled = true
+symbol	= "⚙"
+style	= "bg:#064F8D fg:#EEEEEE"
+format	= "[[](bg:#064F8D fg:#464347) $symbol $version [](bg:#464347 fg:#064F8D)]($style)"
+
+
+[cmd_duration]
+# disabled		= true
+style			= "bg:#464347 fg:#FBDE2D"
+min_time		= 2_000
+show_milliseconds	= true
+show_notifications	= false
+# min_time_to_notify	= 45_000
+min_time_to_notify	= 5_000
+# format		= "[ 祥$duration]($style)"
+# format		= "[ $duration]($style)" ### nerdfonts clock
+format			= "[  $duration ]($style)" ### nerdfonts clock - copyPasted
+
+
+### TODO check with dockerContext
+[custom.docker]
+### BRAND #0073EC
+description	= "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
+# command	= "echo 🐳"
+# symbol	=  "🐳"
+symbol		=  ""
+# symbol	=  "🐟"
+# symbol	=  ""
+style		= "bg:#0073EC fg:#EEEEEE"
+format		= '[[](bg:#0073EC fg:#464347) [$symbol](bg:#0073EC fg:#EEEEEE) [](bg:#464347 fg:#0073EC)]($style)'
+files		= ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
+when		= """ command -v docker &> /dev/null; exit (echo $?); """
+
+
+[custom.flutter]
+### BRAND: https://flutter.dev/brand#color
+### Flutter Navy #042B59
+### Flutter Blue #0553B1
+### Flutter Sky  #027DFD
+description	= "Display flutter version"
+style		= "bg:#042B59 fg:#EEEEEE"
+command		= "flutter --version | sed -n 's/Flutter \\([0-9]*.[0-9]*.[0-9]\\).*/\\1/p'"
+symbol		= ""
+# symbol	= ""
+# symbol	= ""
+format		= '[[](bg:#042B59 fg:#464347) [$symbol](bg:#042B59 fg:#027DFD) $output [](bg:#464347 fg:#042B59)]($style)'
+# format	= '$output    test'
+detect_files	= ["pubspec.yaml", "pubspec.yml", "pubspec.lock"]
+ignore_timeout	= true
+# when		= true
+
+
+[custom.giturl]
+# disabled = true
+description	= "Display symbol for remote Git server origin and upstream"
+command		= """
+GIT_ORIGIN=$(command git remote get-url origin 2> /dev/null)
+if [[ "$GIT_ORIGIN" =~ "github" ]]; then
+    GIT_ORIGIN_SYMBOL=""
+elif [[ "$GIT_ORIGIN" =~ "gitea" ]]; then
+    GIT_ORIGIN_SYMBOL=""
+elif [[ "$GIT_ORIGIN" =~ "gitlab" ]]; then
+    GIT_ORIGIN_SYMBOL=""
+elif [[ "$GIT_ORIGIN" =~ "bitbucket" ]]; then
+    GIT_ORIGIN_SYMBOL=""
+elif [[ "$GIT_ORIGIN" =~ "git" ]]; then
+    GIT_ORIGIN_SYMBOL=""
+else
+    # GIT_ORIGIN_SYMBOL=""
+    GIT_ORIGIN_SYMBOL="·"
+fi
+
+GIT_UPSTREAM=$(command git remote get-url upstream 2> /dev/null)
+if [[ "$GIT_UPSTREAM" =~ "github" ]]; then
+    GIT_UPSTREAM_SYMBOL=""
+elif [[ "$GIT_UPSTREAM" =~ "gitea" ]]; then
+    GIT_UPSTREAM_SYMBOL=""
+elif [[ "$GIT_UPSTREAM" =~ "gitlab" ]]; then
+    GIT_UPSTREAM_SYMBOL=""
+elif [[ "$GIT_UPSTREAM" =~ "bitbucket" ]]; then
+    GIT_UPSTREAM_SYMBOL=""
+elif [[ "$GIT_UPSTREAM" =~ "git" ]]; then
+    GIT_UPSTREAM_SYMBOL=""
+else
+    # GIT_UPSTREAM_SYMBOL=""
+    GIT_UPSTREAM_SYMBOL="·"
+fi
+
+echo "${GIT_ORIGIN_SYMBOL} ${GIT_UPSTREAM_SYMBOL}"
+"""
+
+when	= 'git rev-parse --is-inside-work-tree 2> /dev/null'
+style	= "bg:#96ab5f fg:#111111"
+format	= "[[](bg:#96ab5f fg:#464347) $output [](bg:#464347 fg:#96ab5f)]($style)"
+
+
+[dart]
+###  BRAND: https://dart.dev/brand #13B9FD #02569B
+symbol			= " "
+style			= "bg:#02569B fg:#EEEEEE"
+detect_extensions	= ["dart"]
+detect_files		= ["pubspec.yaml", "pubspec.yml", "pubspec.lock"]
+detect_folders		= [".dart_tool"]
+format			= '[[](bg:#02569B fg:#464347) [$symbol](bg:#02569B fg:#13B9FD)$version [](bg:#464347 fg:#02569B)]($style)'
+version_format		= "v${raw}"
+# version_format			= "v${major}.${minor}.${patch}"
+
+
+[directory]
+style				= "bg:#6F6A70 fg:#EEEEEE"
+read_only			= ""
+read_only_style			= "bg:#ff3322 fg:#EEEEEE"
+truncation_length		= 4
+truncate_to_repo		= true
+# truncation_symbol		= "…/"
+# home_symbol			= ""
+home_symbol			= ""
+
+fish_style_pwd_dir_length	= 3
+format				= "([[](bg:#ff3322 fg:#464347) $read_only [](bg:#464347 fg:#ff3322)]($read_only_style))[[](bg:#6F6A70 fg:#464347) $path [](bg:#464347 fg:#6F6A70)]($style)"
+
+
+[directory.substitutions]
+"/AKTUELLES"			= "﫜 "
+"/ARCHIVES"			= " "
+"/BAK"			= " "
+"/MEDIA"			= " "
+"/MEDIA/ANDROID"		= " "
+# "/MEDIA/BAK"		= "  "
+# "/MEDIA/CCUSB"		= "  "
+
+"/MEDIA/EXTERN"		= " "
+# "/MEDIA/PIC"		= "  "
+"/MUSIC"			= " "
+"/NOTES"			= " "
+"/NOW"			= " "
+# "/PICTURES"			= " "
+"/PICTURES"			= " "
+"/PICTURES/flameshot"		= " "
+# "/ROUTINES"			= "  "
+# "/ROUTINES"			= " "
+"/ROUTINES"			= " "
+# "/SRC"			= " "
+"/SRC"			= " "
+"/SRC/registeredRepos"	= "  "
+# "/SRC/GITEA"		= "  "
+"/SRC/GITHUB"			= " "
+# "/TMP"			= "  "
+# "/UNBAKED"			= "  "
+# "/UNSORTED"			= "  "
+"/VIDEOS"			= " "
+# "/VIDEOS/OBS"		= "  "
+# "/VIRTUALISATION"		= "  "
+
+
+# "/.emacs.d"			= " "
+"/DOCUMENTS" = " "
+"/DOWNLOADS" = " "
+"/MAIL"      = " "
+
+
+[docker_context]
+disabled	= true
+symbol		= " "
+style		= "bg:#3A91DC  fg:#EEEEEE"
+only_with_files = true
+format		= "[[](bg:#3A91DC fg:#464347) $symbol$context[](bg:#464347 fg:#3A91DC)]($style)"
+
+
+[env_var]
+disabled	= true
+symbol		= " "
+style		= "bg:#6f6a70 fg:#EEEEEE"
+variable	= "0"
+default		= "fish"
+format		= "([[](bg:#6f6a70 fg:#464347) $symbol$env_value[](bg:#464347 fg:#6f6a70)]($style))"
+
+
+[git_branch]
+# disabled		= true
+# symbol		= ""
+symbol			= " "
+# symbol		= "🌱 "
+# symbol		= "" # alternate
+style			= "bg:#96ab5f fg:#111111"
+# truncation_length	= 4
+# truncation_symbol	= ""
+format			= "[[](bg:#96ab5f fg:#464347) $symbol$branch[](bg:#464347 fg:#96ab5f)]($style)"
+
+
+[git_commit]
+# disabled		= true
+style			= "bg:#E58F73 fg:#111111"
+commit_hash_length	= 4
+# only_detached		= true
+format			= "[[](bg:#E58F73 fg:#464347) #$hash[](bg:#464347 fg:#E58F73)]($style)"
+
+
+[git_state]
+# disabled	= true
+style		= "bg:#E0B25D fg:#000000"
+# rebase		= " rebasing"
+rebase		= "rebasing"
+merge		= "merging"
+revert		= "reverting"
+# cherry_pick	= " picking"
+cherry_pick	= "picking"
+bisect		= "bisecting"
+am		= "am'ing"
+am_or_rebase	= "am/rebase"
+format		= '[[](bg:#E0B25D fg:#464347) $state ($progress_current/$progress_total) [](bg:#464347 fg:#E0B25D)]($style)'
+
+
+[git_status]
+# disabled	= true
+style		= "bg:#E0B25D fg:#000000"
+stashed		= "  ${count}"
+ahead		= "  ${count}"
+behind		= "  ${count}"
+conflicted	= "  ${count}"
+deleted		= "  ${count}"
+renamed		= " ﰴ ${count}"
+modified	= "  ${count}"
+staged		= "  ${count}"
+untracked	= "  ${count}"
+format		= "([[](bg:#E0B25D fg:#464347) $stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[](bg:#464347 fg:#E0B25D)]($style))"
+
+
+[golang]
+# disabled	= true
+symbol		= " "
+style		= "bg:#7FD5EA fg:#111111"
+format		= "[[](bg:#7FD5EA fg:#464347) $symbol$version[](bg:#464347 fg:#7FD5EA)]($style)"
+
+
+[hostname]
+# disabled	= true
+style		= "bg:#AFD700 fg:#111111"
+# ssh_only	= false
+trim_at		= "."
+format		= "[[](bg:#AFD700 fg:#464347)($style)$hostname[](bg:#464347 fg:#AFD700)]($style)"
+
+
+[jobs]
+# disabled	= true
+symbol		= "  "
+style		= "bold bg:#464347 fg:#FFA200"
+# threshold	= 1
+format		= "[$symbol$number ]($style)"
+
+
+[julia]
+# disabled	= true
+symbol		= " "
+style		= "bg:#4063D8 fg:#EEEEEE"
+format		= "[[](bg:#4063D8 fg:#464347) $symbol$version[](bg:#464347 fg:#4063D8)]($style)"
+
+
+[memory_usage]
+# disabled	= false
+symbol		= " "
+style		= "bg:#BBBBBB fg:#111111"
+threshold	= 75
+format		= "([[](bg:#BBBBBB fg:#464347) $symbol$ram(:$swap)[](bg:#464347 fg:#BBBBBB)]($style))"
+
+
+[nix_shell]
+# disabled	= true
+symbol		= " "
+style		= "bg:#27385D fg:#EEEEEE"
+# impure_msg	= '[\(impure\)](bg:#27385D fg:#FF5511)'
+# pure_msg	= '[\(pure\)](bg:#27385D fg:#AFD700)'
+impure_msg	= '[ impure ](bg:#27385D fg:#FF5511)'
+pure_msg	= '[ pure ](bg:#27385D fg:#AFD700)'
+format		= '[[](bg:#27385D fg:#464347) $symbol$name$state[](bg:#464347 fg:#27385D)]($style)'
+
+
+[package]
+# disabled	= true
+symbol		= " "
+style		= "bg:#6F6A70 fg:#EEEEEE"
+display_private = false
+format		= "[[](bg:#6F6A70 fg:#464347) $symbol$version [](bg:#464347 fg:#6F6A70)]($style)"
+
+
+[python]
+symbol		= " "
+style		= "bg:#EBD45B fg:#111111"
+pyenv_prefix	= "pyenv "
+python_binary	= "python3"
+format		= '[[](bg:#EBD45B fg:#464347) $symbol$pyenv_prefix$version(\($virtualenv\))[](bg:#464347 fg:#EBD45B)]($style)'
+
+
+[rust]
+disabled	= true
+symbol		= " "
+# symbol	= " " # alternate
+style		= "bg:#A72145 fg:#EEEEEE"
+format		= "[[](bg:#A72145 fg:#464347) $symbol$version[](bg:#464347 fg:#A72145)]($style)"
+
+
+[shlvl]
+disabled	= false
+symbol		= " "
+style		= "bold bg:#464347 fg:#FBDE2D"
+threshold	= 2
+format		= "[ $symbol$shlvl ]($style)"
+
+
+[status]
+symbol	= ""
+style	= "bg:#464347 fg:#ff3322"
+format	= "[ $symbol$status]($style)"
+
+
+[time]
+# disabled	= false # TODO enable on the right when this is implemented
+style		= "dimmed"
+format		= "[[](bg:#FFA200 fg:#464347) $time[](bg:#464347 fg:#FFA200)]($style)"
+
+
+[username]
+# disabled	= true
+# show_always	= true
+style_root	= "bold bg:#3388FF fg:#FF5511"
+style_user	= "bg:#3388FF fg:#EEEEEE"
+format		= "[[](bg:#3388FF fg:#464347)$user[](bg:#464347 fg:#3388FF)]($style)"
+
+###EOF.
+
+
+
+### FUNDUS
+# ahead		= " ﲗ ${count}"
+# ahead		= "  ${count}"
+# ahead		= "  ${count}"
+# ahead		= "  ${count}"
+# behind		= "  ${count}"
+# behind		= " ﲔ ${count}"
+# behind		= "  ${count}"
+# behind		= "  ${count}"
+# behind		= "  ${count}"
+# behind		= "  ${count}"
+# diverged	= "${ahead_count} ${behind_count}"
+# modified	= "* ${count}"
+# untracked	= " ${count}"
+# untracked	= "  ${count}"
+
+# " /CLOUD"     = " "
+# " /DOCUMENTS" = ""
+# " /DOWNLOADS" = ""
+# " /MAIL"      = " "
+# " /MUSIC"     = " "
+# " /MUSIC"     = " "
+# " /MUSIC"     = " "
+# " /MUSIC"     = " "
+# " /MUSIC"     = " "
+# " /MUSIC"     = "🎹 "
+# " /ORG"       = " "
+# " /PICTURES"  = " "
+# " /REPOS"     = ""
+# " /VIDEOS"    = " "
+
+# [battery]
+# disabled = true
+# full_symbol = ""
+# charging_symbol = " "
+# discharging_symbol = " "
+# unknown_symbol = ""
+# empty_symbol = ""
+# format = "[[](bg:#FF5511 fg:#464347) $symbol$percentage[](bg:#464347 fg:#FF5511)]($style)"
+# [[battery.display]]
+# threshold = 10
+# style = "bold bg:#FF5511 fg:#EEEEEE"
+# [[battery.display]]
+# threshold = 20
+# style = "bg:#FF5511 fg:#111111"
+
+# symbol		= " "
+# symbol		= " "
+# symbol		= " "
+# symbol		= " "
+# home_symbol			= "𓄎"
+# home_symbol			= ""
+# home_symbol			= "ﮟ"
+# home_symbol			= ""
+# symbol			= "🎯 "
+# symbol			= "🔰 "
+
+# GIT_ORIGIN_SYMBOL=""
+# GIT_ORIGIN_SYMBOL="·"
+# GIT_ORIGIN_SYMBOL="⊙"
+# GIT_ORIGIN_SYMBOL="🞄"
+# GIT_ORIGIN_SYMBOL="🞆"
+
+# renamed		= " ⍈ ${count}"

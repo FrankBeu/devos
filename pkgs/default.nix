@@ -13,6 +13,9 @@ final: prev:
   shellColorDefinitions = final.callPackage         ./shellColorDefinitions   {};
   riv                   = final.callPackage         ./riv                     {};
 
+  ### TEMPORARILY
+  starship              = final.callPackage         ./starship                {};
+
 
   ### PACKAGES PROVIDED BY FLAKES
   inherit (inputs.rnix-lsp.packages."${prev.system}") rnix-lsp;

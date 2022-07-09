@@ -1,19 +1,13 @@
 { config, pkgs,  ... }:
-let
-  systemPkgs = pkgs;
-in
 {
-  home.packages = with pkgs; [
-
-    ### TODO write overlay
+  environment.systemPackages = with pkgs; [
     powerline-go         ### https://github.com/justjanne/powerline-go go
   ];
 
   programs.zsh = {
-    initExtraBeforeCompInit = ''
+    enable = true;
+    promptInit = ''
       ${builtins.readFile ./powerlineGo.zsh}
     '';
-    # initExtra = ''
-    #    '';
   };
 }
