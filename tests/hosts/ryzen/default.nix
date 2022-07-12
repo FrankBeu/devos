@@ -42,6 +42,7 @@ let
   nixos-profiles-systemd-sleepDisable     = (import                 ../../nixos/profiles/systemd/sleepDisable/testScript.py.nix         { inherit hmProfileDir username;});
   nixos-profiles-timezone                 = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profiles-tools-android            = (import                 ../../nixos/profiles/tools/android/testScript.py.nix                { inherit userID;               });
+  nixos-profiles-tools-archive            = readFile                ../../nixos/profiles/tools/archive/testScript.py;
   nixos-profiles-tools-drawio             = readFile                ../../nixos/profiles/tools/drawio/testScript.py;
   nixos-profiles-tools-gotask             = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
   nixos-profiles-tools-gpu                = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
@@ -51,6 +52,7 @@ let
   nixos-profiles-tools-network            = readFile                ../../nixos/profiles/tools/network/testScript.py;
   nixos-profiles-tools-nixTools           = readFile                ../../nixos/profiles/tools/nixTools/testScript.py;
   nixos-profiles-tools-parted             = readFile                ../../nixos/profiles/tools/parted/testScript.py;
+  nixos-profiles-tools-pdf                = readFile                ../../nixos/profiles/tools/pdf/testScript.py;
   nixos-profiles-tools-qalculate          = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
   nixos-profiles-tools-system             = readFile                ../../nixos/profiles/tools/system/testScript.py;
   nixos-profiles-tools-usbutils           = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
@@ -199,6 +201,7 @@ let
         ${nixos-profiles-systemd-sleepDisable}
         ${nixos-profiles-timezone}
         ${nixos-profiles-tools-android}
+        ${nixos-profiles-tools-archive}
         ${nixos-profiles-tools-drawio}
         ${nixos-profiles-tools-gotask}
         ${nixos-profiles-tools-gpu}
@@ -208,6 +211,7 @@ let
         ${nixos-profiles-tools-network}
         ${nixos-profiles-tools-nixTools}
         ${nixos-profiles-tools-parted}
+        ${nixos-profiles-tools-pdf}
         ${nixos-profiles-tools-qalculate}
         ${nixos-profiles-tools-system}
         ${nixos-profiles-tools-usbutils}

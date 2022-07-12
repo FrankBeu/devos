@@ -52,6 +52,7 @@ in
     profiles.timezone.amsterdam
 
     profiles.tools.android
+    profiles.tools.archive
     profiles.tools.drawio
     profiles.tools.gotask
     profiles.tools.gpu
@@ -61,6 +62,7 @@ in
     profiles.tools.network
     profiles.tools.nixTools
     profiles.tools.parted
+    profiles.tools.pdf
     profiles.tools.qalculate
     profiles.tools.system
     profiles.tools.usbutils
