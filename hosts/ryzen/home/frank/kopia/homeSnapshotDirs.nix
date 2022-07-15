@@ -4,6 +4,7 @@
   "ARCHIVES"
   "BAK"
   "DEVOS"
+  "DEVOSBUD"
   "DEVOSEMACS"
   "DEVOSNIXOS"  ### TODO remove after resolvation
   "DOCUMENTS"
