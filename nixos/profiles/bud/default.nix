@@ -1,5 +1,6 @@
 { config
 , lib
+, pkgs
 , variables
 , ...
 }:
@@ -46,5 +47,9 @@ in rec
         ### ALiasBUd    | find bud               | align=                                           | surround=   | rm'
         albu = '' alias | rg --color=always 'bud'| sd '^(\w)(=)' '$1  $2'| sd '^(\w{2})(=)' '$1 $2' | sd '=' ' = '| sd "'" "" '';
       };
+
+    systemPackages = with pkgs; [
+      nixos-generators
+    ];
   };
 }
