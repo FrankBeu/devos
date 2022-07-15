@@ -81,7 +81,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.shell.zsh::volatiles"):
-    machine.succeed(f'[[ -f /home/{username}/.config/zsh/volatiles/zshenv ]]')
+    machine.succeed(f'[[ -f /home/{username}/.config/zsh/volatiles/zshenv  ]]')
     machine.succeed(f'[[ -f /home/{username}/.config/zsh/volatiles/aliases ]]')
 
 

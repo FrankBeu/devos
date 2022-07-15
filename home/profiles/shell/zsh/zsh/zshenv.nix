@@ -17,8 +17,8 @@ let
       ### NOT managed by nix or hm
       ###
       VOLATILES  = ''
-        if [ -f $XDG_CONFIG_HOME/zsh/volatiles/.zshenvVolatile ]; then
-          source $XDG_CONFIG_HOME/zsh/volatiles/.zshenvVolatile
+        if [ -f $XDG_CONFIG_HOME/zsh/volatiles/zshenv ]; then
+          source $XDG_CONFIG_HOME/zsh/volatiles/zshenv
         fi'';
 
       ### EDITOR
