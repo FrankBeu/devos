@@ -7,8 +7,8 @@ test-driven dynamically-themed well-documented host-development
   - modules
   - suites
   - hosts
-**** TODO GPU-passthrough required
-*** WIP dynamicTheme
+**** TODO GPU-passthru is required for graphical host-tests
+*** TODO dynamicTheme
 - ~bud theme {dracula,gruvbox,...}~
 - automagically all (WIP)  programs change their appearance
 *** WIP doc.local
@@ -21,13 +21,9 @@ test-driven dynamically-themed well-documented host-development
 - keep {issues,solutions,ideas} in one location
 - ingredients
 - recipies
-*** WIP manualActions
-- keep track of actions (only todos - tasks should be automated) which have to be done manually
+*** manualActions
+- keep track of actions (only todos - tasks have to be automated) which have to be done manually
 ***  hjkl ⟶ jkl;
-****  TODO TODOS
-- ~nix log~
-- ~gotop~
-- ~alsamixer~
 *** Config-Devel-Workflow
 - use ~ranger~
 - navigate to the symlinked configFile
@@ -47,11 +43,13 @@ test-driven dynamically-themed well-documented host-development
 **** DONE emacs
 **** DONE browser
 chromium
+**** DONE secrets
+**** DONE backup (kopia)
+**** DONE manualActions
+**** DONE pulsewire
+nec for microphone
 *** hardwareAcceleration
 *** after acceleration or on ryzen
-**** secrets
-**** borg
-**** manualActions
 **** colorschemes
 **** cleanup
 ***** documentation
@@ -79,8 +77,7 @@ Do not test for existence, test behavior
 **** nuc
 **** wayland
 **** music
-**** pulsewire
-**** Lutris
+**** lutris
 **** mac
 ***** transfer all configs (=etc/nixos=, =~/.config=)
 ***** data via borg
