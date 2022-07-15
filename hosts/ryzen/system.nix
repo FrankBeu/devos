@@ -47,7 +47,9 @@ in
     profiles.shell.prompts.starship
     profiles.shell.zsh
 
-    profiles.sound
+    # profiles.sound.default
+    profiles.sound.pipewire
+
     # profiles.systemd.sleepDisable
     profiles.timezone.amsterdam
 
