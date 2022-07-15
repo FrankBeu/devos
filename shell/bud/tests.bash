@@ -53,7 +53,7 @@ tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 tests.nixos.profiles.services.ssh
 # tests.nixos.profiles.services.xserver             ### TODO: implement
-# tests.nixos.profiles.sound                        ### TODO: implement
+tests.nixos.profiles.sound.pipewire
 tests.nixos.profiles.systemd.sleepDisable
 tests.nixos.profiles.timezone.amsterdam
 # tests.nixos.profiles.tools.less                   ### TODO: implement
@@ -146,6 +146,7 @@ tests.home.profiles.shell.vivid
 tests.home.profiles.shell.zsh
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
+tests.home.profiles.tools.sound
 tests.home.profiles.xdg
 
 

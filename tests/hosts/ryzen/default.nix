@@ -39,6 +39,7 @@ let
   nixos-profiles-security-sopsNix         = (import                 ../../nixos/profiles/security/sopsNix/testScript.py.nix             { inherit              username;});
   nixos-profiles-services-ssh             = readFile                ../../nixos/profiles/services/ssh/testScript.py;
   nixos-profiles-shell-prompts-starship   = (import                 ../../nixos/profiles/shell/prompts/starship/testScript.py.nix       { inherit (host.pkgs.sources.starship) version; });
+  nixos-profiles-sound-pipewire           = (import                 ../../nixos/profiles/sound/pipewire/testScript.py.nix               { inherit              username;});
   nixos-profiles-systemd-sleepDisable     = (import                 ../../nixos/profiles/systemd/sleepDisable/testScript.py.nix         { inherit hmProfileDir username;});
   nixos-profiles-timezone                 = readFile                ../../nixos/profiles/timezone/amsterdam/testScript.py;
   nixos-profiles-tools-android            = (import                 ../../nixos/profiles/tools/android/testScript.py.nix                { inherit userID;               });
@@ -111,6 +112,7 @@ let
   # home-profiles-shell-vivid             = (import                 ../../home/profiles/shell/vivid/testScript.py.nix                   { inherit hmProfileDir username;});### home.suites.zsh
   # home-profiles-shell-zsh               = (import                 ../../home/profiles/shell/zsh/testScript.py.nix                     { inherit hmProfileDir username;});### home.suites.zsh
   home-profiles-tools-nixTools            = (import                 ../../home/profiles/tools/nixTools/testScript.py.nix                { inherit              username;});
+  home-profiles-tools-sound               = (import                 ../../home/profiles/tools/sound/testScript.py.nix                   { inherit hmProfileDir username;});
   home-profiles-xdg                       = (import                 ../../home/profiles/xdg/testScript.py.nix                           { inherit              username;});
 
 
@@ -198,6 +200,7 @@ let
         ${nixos-profiles-security-age}
         ${nixos-profiles-security-sopsNix}
         ${nixos-profiles-services-ssh}
+        ${nixos-profiles-sound-pipewire}
         ${nixos-profiles-systemd-sleepDisable}
         ${nixos-profiles-timezone}
         ${nixos-profiles-tools-android}
@@ -255,6 +258,7 @@ let
         ${home-profiles-security-ssh}
         ${home-profiles-security-summon}
         ${home-profiles-shell-nushell}
+        ${home-profiles-tools-sound}
         ${home-profiles-xdg}
 
 
