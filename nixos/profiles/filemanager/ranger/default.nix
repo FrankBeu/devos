@@ -4,6 +4,8 @@
     systemPackages = with pkgs; [
       ranger
       pistol
+      ueberzug
+      ffmpeg
     ];
 
     shellAliases = {
