@@ -1,4 +1,5 @@
 [
+  ".config/zsh/volatiles"
   "AKTUELLES"
   "ARCHIVES"
   "BAK"

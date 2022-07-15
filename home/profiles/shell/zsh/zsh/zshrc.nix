@@ -106,6 +106,15 @@
         zsh-defer source "''${file}"
       done
       ########################################################################## END zshrc.d
+
+      ###################################################################################### aliasesVolatile
+      ###
+      ##
+      #
+      if [ -f $XDG_CONFIG_HOME/zsh/volatiles/aliases ]; then
+        source $XDG_CONFIG_HOME/zsh/volatiles/aliases
+      fi
+      ########################################################################## END zshrc.d
       '';
 
       ### ⑰
