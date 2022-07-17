@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "users"
     identifier: "users"
-    weight: 150
+    weight: 160
 draft: false
 toc: true
 ---

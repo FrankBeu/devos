@@ -2,7 +2,7 @@
 test-driven dynamically-themed well-documented host-development
 ** FEATURES
 *** WIP TTD
-  - lib (TODO)
+  - lib
   - profiles
   - modules
   - suites

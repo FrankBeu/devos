@@ -191,6 +191,7 @@
       home     = ./home;
       devshell = ./shell;
 
+
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
 
       deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations { };
@@ -199,11 +200,11 @@
       templates.bud.path        = ./.;
       templates.bud.description = "bud template";
 
+      ### libTests
+      checks = import ./checks { inherit self; };
+
       ### integrationTests (vm)
       tests  = import ./tests { inherit self; };
-
-      ### TODO libUnitTests after native-flakes
-      # checks = ./checks;
 
     }
     //

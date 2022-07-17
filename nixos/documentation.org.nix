@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "nixos"
     identifier: "nixos"
-    weight: 90
+    weight: 100
 draft: false
 toc: true
 ---

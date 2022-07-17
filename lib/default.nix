@@ -8,8 +8,3 @@ in rec
   debugging   = callLib ./debugging;
   testing     = callLib ./testing;
 })
-### TODO doc
-### TODO check how TTD can be implemented
-### write tests
-### access like lib.our.debug.printContainer
-### { lib.our = self.lib; } nixos/default.nix
