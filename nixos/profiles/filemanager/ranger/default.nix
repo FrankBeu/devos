@@ -20,4 +20,7 @@
   ### mans '^FILES' ranger
   ### try to use global configuration for apps used also by root: ranger, bat, vim, ripgrep, zsh??
 
+  ### TODO documentation
+  ### ranger uses terminal colors
+  ### https://github.com/ranger/ranger/blob/master/doc/colorschemes.md
 }
