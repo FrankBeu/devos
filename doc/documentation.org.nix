@@ -10,7 +10,7 @@ keywords: [ nixos, documentation, DEVOS, structure ]
 menu:
   sidebar:
     parent: "structural"
-    weight: 50
+    weight: 60
 draft: false
 toc: true
 ---

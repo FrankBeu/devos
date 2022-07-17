@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "hosts"
     identifier: "hosts"
-    weight: 70
+    weight: 80
 draft: false
 toc: true
 ---

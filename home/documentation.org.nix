@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "home"
     identifier: "home"
-    weight: 60
+    weight: 70
 draft: false
 toc: true
 ---

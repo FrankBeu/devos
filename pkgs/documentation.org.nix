@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "pkgs"
     identifier: "pkgs"
-    weight: 110
+    weight: 120
 draft: false
 toc: true
 ---

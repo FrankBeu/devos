@@ -53,17 +53,18 @@
   environment.etc."/docLocal/content/global/manualActions.org".source = ./content/global/manualActions.org;                                    ###  30
   environment.etc."/docLocal/content/global/workflows.org"    .source = ./content/global/workflows.org;                                        ###  40
   ### STRUCTURAL
-  environment.etc."/docLocal/content/structural/doc.org"      .text   = (import "${self}/doc/documentation.org.nix"      { inherit config; }); ###  50
-  environment.etc."/docLocal/content/structural/home.org"     .text   = (import "${self}/home/documentation.org.nix"     { inherit config; }); ###  60 != doc.local/home
-  environment.etc."/docLocal/content/structural/hosts.org"    .text   = (import "${self}/hosts/documentation.org.nix"    { inherit config; }); ###  70
-  environment.etc."/docLocal/content/structural/lib.org"      .text   = (import "${self}/lib/documentation.org.nix"      { inherit config; }); ###  80
-  environment.etc."/docLocal/content/structural/nixos.org"    .text   = (import "${self}/nixos/documentation.org.nix"    { inherit config; }); ###  90
-  environment.etc."/docLocal/content/structural/overlays.org" .text   = (import "${self}/overlays/documentation.org.nix" { inherit config; }); ### 100
-  environment.etc."/docLocal/content/structural/pkgs.org"     .text   = (import "${self}/pkgs/documentation.org.nix"     { inherit config; }); ### 110
-  environment.etc."/docLocal/content/structural/secrets.org"  .text   = (import "${self}/secrets/documentation.org.nix"  { inherit config; }); ### 120
-  environment.etc."/docLocal/content/structural/shell.org"    .text   = (import "${self}/shell/documentation.org.nix"    { inherit config; }); ### 130
-  environment.etc."/docLocal/content/structural/testing.org"  .text   = (import "${self}/tests/documentation.org.nix"    { inherit config; }); ### 140
-  environment.etc."/docLocal/content/structural/users.org"    .text   = (import "${self}/users/documentation.org.nix"    { inherit config; }); ### 150
+  environment.etc."/docLocal/content/structural/checks.org"   .text   = (import "${self}/checks/documentation.org.nix"   { inherit config; }); ###  50
+  environment.etc."/docLocal/content/structural/doc.org"      .text   = (import "${self}/doc/documentation.org.nix"      { inherit config; }); ###  60
+  environment.etc."/docLocal/content/structural/home.org"     .text   = (import "${self}/home/documentation.org.nix"     { inherit config; }); ###  70 != doc.local/home
+  environment.etc."/docLocal/content/structural/hosts.org"    .text   = (import "${self}/hosts/documentation.org.nix"    { inherit config; }); ###  80
+  environment.etc."/docLocal/content/structural/lib.org"      .text   = (import "${self}/lib/documentation.org.nix"      { inherit config; }); ###  90
+  environment.etc."/docLocal/content/structural/nixos.org"    .text   = (import "${self}/nixos/documentation.org.nix"    { inherit config; }); ### 100
+  environment.etc."/docLocal/content/structural/overlays.org" .text   = (import "${self}/overlays/documentation.org.nix" { inherit config; }); ### 110
+  environment.etc."/docLocal/content/structural/pkgs.org"     .text   = (import "${self}/pkgs/documentation.org.nix"     { inherit config; }); ### 120
+  environment.etc."/docLocal/content/structural/secrets.org"  .text   = (import "${self}/secrets/documentation.org.nix"  { inherit config; }); ### 130
+  environment.etc."/docLocal/content/structural/shell.org"    .text   = (import "${self}/shell/documentation.org.nix"    { inherit config; }); ### 140
+  environment.etc."/docLocal/content/structural/testing.org"  .text   = (import "${self}/tests/documentation.org.nix"    { inherit config; }); ### 150
+  environment.etc."/docLocal/content/structural/users.org"    .text   = (import "${self}/users/documentation.org.nix"    { inherit config; }); ### 160
 
   ### SYSTEM
   environment.etc."/docLocal/content/system/mounts.org"       .source = ./content/system/mounts.org;

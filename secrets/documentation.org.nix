@@ -12,7 +12,7 @@ menu:
     parent: "structural"
     name: "secrets"
     identifier: "secrets"
-    weight: 120
+    weight: 130
 draft: false
 toc: true
 ---
