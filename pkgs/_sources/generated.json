@@ -1,4 +1,24 @@
 {
+    "revealjs": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "revealjs",
+        "src": {
+            "deepClone": false,
+            "owner": "hakimel",
+            "name": null,
+            "repo": "reveal.js",
+            "type": "github",
+            "sha256": "sha256-8E0wG7xyAwyOp1zQWErY3eIipXii9LZm3iFKsznBgnw=",
+            "rev": "4.1.2",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "4.1.2",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
     "manix": {
         "pinned": true,
         "cargoLock": null,
@@ -20,7 +40,7 @@
         "rustGitDeps": null
     },
     "starship": {
-        "pinned": false,
+        "pinned": true,
         "cargoLock": "./starship-v1.9.1/Cargo.lock",
         "name": "starship",
         "src": {

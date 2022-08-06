@@ -1,19 +1,32 @@
 { fetchFromGitHub
 , lib
+, sources
 , stdenv
 }:
-
+let
+  inherit (sources.revealjs)
+  pname
+  version
+  src
+  ;
+in
 stdenv.mkDerivation rec {
-  pname = "revealjs";
-  version =  "4.1.2";
+  inherit
+    pname
+    version
+    src
+    ;
 
-  src = fetchFromGitHub {
-    owner = "hakimel";
-    repo = pname;
-    rev = "${version}";
-    sha256 = "sha256:0z42q4wv6ji1vrkbdx52g2jj5qnxv155il2wly70q0vjphdk0kgh";
-    # sha256 = lib.fakeSha256;
-  };
+  # pname = "revealjs";
+  # version =  "4.1.2";
+
+  # src = fetchFromGitHub {
+  #   owner = "hakimel";
+  #   repo = pname;
+  #   rev = "${version}";
+  #   sha256 = "sha256:0z42q4wv6ji1vrkbdx52g2jj5qnxv155il2wly70q0vjphdk0kgh";
+  #   # sha256 = lib.fakeSha256;
+  # };
 
   patches = [
     ./patches/dist.patch

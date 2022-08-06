@@ -12,6 +12,17 @@
       sha256 = "sha256-GqPuYscLhkR5E2HnSFV4R48hCWvtM3C++3zlJhiK/aw=";
     });
   };
+  revealjs = {
+    pname = "revealjs";
+    version = "4.1.2";
+    src = fetchFromGitHub ({
+      owner = "hakimel";
+      repo = "reveal.js";
+      rev = "4.1.2";
+      fetchSubmodules = false;
+      sha256 = "sha256-8E0wG7xyAwyOp1zQWErY3eIipXii9LZm3iFKsznBgnw=";
+    });
+  };
   starship = {
     pname = "starship";
     version = "v1.9.1";

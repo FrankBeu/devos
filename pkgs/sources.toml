@@ -15,3 +15,7 @@ rustToolchainDate    = "2022-07-01"
 rustToolchainSha256  = "sha256-HhkjtODLw16O7DNPew9+vqOtbM6hcAmLH55XnZ0G6Fk="
 # rustToolchainSha256  = "0000000000000000000000000000000000000000000000000000000000000000"
 ### TODO generate entry with auto-sha
+
+[revealjs]
+src.manual           = "4.1.2"
+fetch.github         = "hakimel/reveal.js"
