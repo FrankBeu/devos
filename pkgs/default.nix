@@ -11,6 +11,7 @@ final: prev:
   ### LOCALLY DEFINED PACKAGES
   i3statusBar           = final.callPackage         ./i3statusBar             {};
   shellColorDefinitions = final.callPackage         ./shellColorDefinitions   {};
+  revealjs              = final.callPackage         ./revealjs                {};
   riv                   = final.callPackage         ./riv                     {};
 
   ### TEMPORARILY

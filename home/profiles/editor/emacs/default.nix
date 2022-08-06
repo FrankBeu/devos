@@ -12,6 +12,7 @@ in
 
     ".emacs.d/languages/golang/config.el".source = "${inputs.emacsFlake.outputs.emacsConfig}/languages/golang/config.el";
     ".emacs.d/languages/golang/funcs.el" .source = "${inputs.emacsFlake.outputs.emacsConfig}/languages/golang/funcs.el";
+    ".emacs.d/orgmode/revealjs"          .source = "${inputs.emacsFlake.outputs.emacsConfig}/orgmode/revealjs";
 
     ".emacs.d/global/packages-local/core-funcs.el"          .source = "${inputs.emacsFlake.outputs.localPackages}/core-funcs.el";
     ".emacs.d/global/packages-local/core-toggle.el"         .source = "${inputs.emacsFlake.outputs.localPackages}/core-toggle.el";

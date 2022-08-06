@@ -66,6 +66,7 @@ in
     profiles.tools.parted
     profiles.tools.pdf
     profiles.tools.qalculate
+    profiles.tools.revealjs
     profiles.tools.system
     profiles.tools.usbutils
     profiles.tools.xorg

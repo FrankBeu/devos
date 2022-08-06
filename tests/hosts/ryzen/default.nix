@@ -55,6 +55,7 @@ let
   nixos-profiles-tools-parted             = readFile                ../../nixos/profiles/tools/parted/testScript.py;
   nixos-profiles-tools-pdf                = readFile                ../../nixos/profiles/tools/pdf/testScript.py;
   nixos-profiles-tools-qalculate          = readFile                ../../nixos/profiles/tools/qalculate/testScript.py;
+  nixos-profiles-tools-revealjs           = (import                 ../../nixos/profiles/tools/revealjs/testScript.py.nix               {});
   nixos-profiles-tools-system             = readFile                ../../nixos/profiles/tools/system/testScript.py;
   nixos-profiles-tools-usbutils           = readFile                ../../nixos/profiles/tools/usbutils/testScript.py;
   nixos-profiles-tools-xorg               = readFile                ../../nixos/profiles/tools/xorg/testScript.py;
@@ -216,6 +217,7 @@ let
         ${nixos-profiles-tools-parted}
         ${nixos-profiles-tools-pdf}
         ${nixos-profiles-tools-qalculate}
+        ${nixos-profiles-tools-revealjs}
         ${nixos-profiles-tools-system}
         ${nixos-profiles-tools-usbutils}
         ${nixos-profiles-tools-xorg}
