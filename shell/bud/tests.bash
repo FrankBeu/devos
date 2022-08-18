@@ -68,6 +68,7 @@ tests.nixos.profiles.tools.gpu
 tests.nixos.profiles.tools.grex
 tests.nixos.profiles.tools.gucharmap
 tests.nixos.profiles.tools.hyperfine
+tests.nixos.profiles.tools.inkscape
 tests.nixos.profiles.tools.less
 tests.nixos.profiles.tools.lsof
 tests.nixos.profiles.tools.network

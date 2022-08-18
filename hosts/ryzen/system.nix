@@ -59,6 +59,7 @@ in
     profiles.tools.gotask
     profiles.tools.gpu
     profiles.tools.gucharmap
+    profiles.tools.inkscape
     profiles.tools.less
     profiles.tools.lsof
     profiles.tools.network

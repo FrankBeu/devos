@@ -48,6 +48,7 @@ let
   nixos-profiles-tools-gotask             = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
   nixos-profiles-tools-gpu                = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
   nixos-profiles-tools-gucharmap          = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
+  nixos-profiles-tools-inkscape           = (import                 ../../nixos/profiles/tools/inkscape testScript.py.nix               {});
   nixos-profiles-tools-less               = readFile                ../../nixos/profiles/tools/less/testScript.py;
   nixos-profiles-tools-lsof               = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
   nixos-profiles-tools-network            = readFile                ../../nixos/profiles/tools/network/testScript.py;
@@ -210,6 +211,7 @@ let
         ${nixos-profiles-tools-gotask}
         ${nixos-profiles-tools-gpu}
         ${nixos-profiles-tools-gucharmap}
+        ${nixos-profiles-tools-inkscape}
         ${nixos-profiles-tools-less}
         ${nixos-profiles-tools-lsof}
         ${nixos-profiles-tools-network}
