@@ -4,10 +4,27 @@
 
   services.xserver = {
     xkbModel     = "logicda";
-    # layout     = "us,ru,in,ara,us,us";
-    # xkbVariant = "intl-unicode,,san-kagapa,qwerty,colemak_dh,colemak_dh_iso";
-    layout       = "us,ru,in,ara";
-    xkbVariant   = "intl-unicode,,san-kagapa,qwerty";
+    layout       = "us,ru,custom-deva,ara";
+    xkbVariant   = "intl-unicode,,,qwerty";
+
+    ### TODO doc
+    ### https://nixos.org/manual/nixos/stable/index.html#custom-xkb-layouts
+    ### modifications require to
+    ### switch and
+    ### systemctl restart display-manager.service
+    ### temporaryly setting a layout (apply a safty-net first):
+    ### setxkbmap -v 10 us
+    ### setxkbmap -v 10 custom-deva
+    ### new layouts:
+    ### https://www.x.org/releases/current/doc/xorg-docs/input/XKB-Enhancing.html#Defining_New_Layouts
+    ### https://wiki.archlinux.org/title/X_keyboard_extension#Basic_examples
+    extraLayouts = {
+      custom-deva = {
+        description = "InScript:devanagari with fixed toggle option";
+        languages = [ "hin" ];
+        symbolsFile = ./layouts/symbols/deva;
+      };
+    };
 
 
 
@@ -42,4 +59,10 @@
 }
 
 ### CURRENT DEFAULT COMMAND
-### setxkbmap -layout "us" -option ""&& setxkbmap -model "logicda" -layout "us,ru,in,ara" -variant "intl-unicode,,san-kagapa,qwerty" -option "ctrl:swap_lalt_lctl,grp:alt_space_toggle,numpad:mac"
+### setxkbmap -layout "us" -option ""
+### setxkbmap -layout "us" -option ""&& setxkbmap -model "logicda" -layout "us,ru,custom-deva,ara" -variant "intl-unicode,,,qwerty" -option "ctrl:swap_lalt_lctl,grp:alt_space_toggle,numpad:mac"
+
+### available layouts: cd /run/current-system/sw/share/X11/xkb/symbols
+
+### available values
+### bat $(sudo nix-build --no-out-link '<nixpkgs>' -A xkeyboard_config)/etc/X11/xkb/rules/base.lst
