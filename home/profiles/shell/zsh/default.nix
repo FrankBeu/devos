@@ -43,7 +43,6 @@ in {
 
   ### ENVs and aliases not managed by nix and git
   systemd.user.tmpfiles.rules = [
-    "D /home/${username}/${zshDotDir}/volatiles         0755 ${username} ${group} - -"
     "f /home/${username}/${zshDotDir}/volatiles/zshenv  0644 ${username} ${group} - -"
     "f /home/${username}/${zshDotDir}/volatiles/aliases 0644 ${username} ${group} - -"
   ];

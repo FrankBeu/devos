@@ -4,6 +4,13 @@
 , ...
 }:
 {
+  imports = [
+    ./dart
+    ./flutter
+    ./navigation
+  ];
+
+  ### TODO split
   home = {
     ### DO not use recursive aliases - at least not for the keyword to search for
     shellAliases =
@@ -12,12 +19,6 @@
         batWatchCmd = ''batwatch --language=syslog --wrap=never --style=header --command -n1'';
       in
       {
-        ### quick cd
-        ".."    = "cd .."         ;
-        "..."   = "cd ../.."      ;
-        "...."  = "cd ../../.."   ;
-        "....." = "cd ../../../..";
-
 
         ### alias
         alrg    = ''alias | rg''                     ;### ALiasRG

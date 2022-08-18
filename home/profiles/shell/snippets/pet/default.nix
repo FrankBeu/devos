@@ -68,6 +68,11 @@ in {
           output      = "match";
         }
         {
+          command     = "qpdf --empty --pages INPUT.pdf 5-z -- OUTPUT.pdf";
+          description = "qpdf:     extract pages (z = lit.: last page)   ";
+          output      = "pdf";
+        }
+        {
           command     = "nmap -PS22 '192.168.0.*'";
           description = "nmap:     scan network for ssh                  ";
           output      = "info";
@@ -77,8 +82,6 @@ in {
           description = "mogrify:  rotate image                          ";
           output      = "rotated image";
         }
-
-
         {
           command     = "mans '^CONDITIONAL EXPRESSIONS' zshmisc";
           description = "man:      zsh tests, [[, ...                    ";
