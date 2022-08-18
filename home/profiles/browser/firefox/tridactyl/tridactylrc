@@ -115,6 +115,18 @@ bind g; home true
 bind gc changelistjump -1
 
 
+"""
+""
+" ** RUSSIAN
+"
+"    used for searchurl define    (определять)
+"    used for searchurl translate (переводить)
+"
+bind в fillcmdline tabopen
+" Вкладка
+bind о fillcmdline winopen
+" Окно
+
 
 """
 ""
@@ -126,7 +138,6 @@ bind gc changelistjump -1
 "    " Local Variables:
 "    " mode: vimrc
 "    " End:
-" *** show single keybinding  :bind jKEYj
 " *** BINDING-FUNDUS
 "    bind f COMMAND
 "    bind F COMMAND
@@ -135,8 +146,6 @@ bind gc changelistjump -1
 "    bind <S-F3> COMMAND
 "    bind <SA-F3> COMMAND
 "    bind --mode=insert emacs qall
-" *** IF A LOC changes, UPDATE /etc/nixos/config/users/config/homemanager/dotLocal/bin/{trili,trihi}
-"
 
 """
 ""
@@ -262,6 +271,7 @@ bind HQy hint -qy
 " *** -!* execute all hints without waiting for a selection
 "
 bind H!C hint -!bf Comments """" -!bf opens in background tabs all visible links whose text matches <WORD>
+
 """
 ""
 " *** -h select element; defaultKeybinding: listed only for the sake of completeness
@@ -271,10 +281,13 @@ bind H!C hint -!bf Comments """" -!bf opens in background tabs all visible links
 ""
 " ** SEARCH
 "    USAGE: (w|t) <searchString>
+"    USAGE: (о|б) <searchString> (Окно|Вкладка): определять(define);переводить(translate)
 "
 set searchurls.a  https://wiki.archlinux.org/index.php?title=Special%3ASearch&profile=default&fulltext=1&search=%s
 set searchurls.ap https://archlinux.org/packages/?q=%s
 set searchurls.d  https://www.google.com/search?q=define+%s
+set searchurls.о  https://www.google.com/search?q=define+%s
+set searchurls.f  https://github.com/flutter/flutter/search?q=%s
 set searchurls.g  https://www.google.com/search?q=%s
 set searchurls.hd https://github.com/search?q=%s+extension%3Adart&type=Code&ref=advsearch&l=&l=
 set searchurls.hg https://github.com/search?q=%s+extension%3Ago&type=Code&ref=advsearch&l=&l=
@@ -282,7 +295,9 @@ set searchurls.hn https://github.com/search?q=%s+extension%3Anix&type=Code&ref=a
 set searchurls.m  https://www.google.com/maps/place/%s
 set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
+set searchurls.p  https://pub.dev/packages?q=%s
 set searchurls.t  https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=%s
+set searchurls.п  https://translate.google.com/?sl=ru&tl=en&text=%s&op=translate
 set searchurls.w  https://en.wikipedia.org/w/index.php?search=%s
 set searchurls.wy https://en.wiktionary.org/wiki/?search=%s
 set searchurls.y  https://www.youtube.com/results?search_query=%s
@@ -297,7 +312,7 @@ quickmark c https://rosettacode.org/wiki/Rosetta_Code
 quickmark d https://dart.dev/
 quickmark f https://api.flutter.dev/
 quickmark g https://go.dev/blog/
-quickmark i https://api.flutter.dev/flutter/material/Icons-class.html
+quickmark i https://fonts.google.com/icons?selected=Material+Icons
 quickmark k https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/
 quickmark l https://filiale.kaufland.de/prospekte.html
 quickmark m https://mail.google.com/mail/u/0/#inbox
@@ -310,6 +325,7 @@ quickmark t https://api.dart.dev/stable/2.16.0/index.html
 quickmark v https://devos.divnix.com/
 quickmark w https://www.google.com/search?client=firefox-b-d&q=wetter+aldingen+remseck
 quickmark u https://docs.flutter.dev/
+quickmark x https://scrumguides.org/scrum-guide.html
 quickmark y https://yogalap.com/app/user/courses
 quickmark z https://configure.zsa.io/moonlander/layouts/XW5OW/latest/0
 
@@ -320,14 +336,15 @@ quickmark O https://github.com/nix-community/awesome-nix
 quickmark P https://github.com/NixOS/nixpkgs
 quickmark R https://github.com/Alikhll/golang-developer-roadmap
 quickmark V https://github.com/divnix/devos
+quickmark X https://c.xkcd.com/random/comic/
 
 
 " quickmark e
 " quickmark h
+" quickmark i https://api.flutter.dev/flutter/material/Icons-class.html
 " quickmark j
 " quickmark q
 " quickmark u
-" quickmark x
 
 " quickmark A
 " quickmark B
@@ -346,6 +363,5 @@ quickmark V https://github.com/divnix/devos
 " quickmark U
 " quickmark W
 " quickmark U
-" quickmark X
 " quickmark Y
 " quickmark Z
