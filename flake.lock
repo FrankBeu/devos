@@ -196,8 +196,8 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1655040116,
-        "narHash": "sha256-k52N4mChArXh0aBF6U5mGcVAKiUkJYjYf8h9KSL8pOw=",
+        "lastModified": 1660670757,
+        "narHash": "sha256-GgS2QOhInXgkJgltO0WIQAx8Fbhlo+7mpCxmn50khEc=",
         "type": "git",
         "url": "file:///home/frank/DEVOSEMACS"
       },
@@ -570,11 +570,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1655211057,
-        "narHash": "sha256-Zs5wm2GuW2nER9uYpgAAxuEqEK3LTo3Y+lwaWn/YYHk=",
+        "lastModified": 1660639432,
+        "narHash": "sha256-2WDiboOCfB0LhvnDVMXOAr8ZLDfm3WdO54CkoDPwN1A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1712ecaa5118815292f57d6669c3c81d84d842b3",
+        "rev": "6c6409e965a6c883677be7b9d87a95fab6c3472e",
         "type": "github"
       },
       "original": {
