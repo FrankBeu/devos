@@ -1996,8 +1996,47 @@ class paste_ext(Command):
         return self.fm.paste(make_safe_path=paste_ext.make_safe_path)
 
 
+
+
+class toggle_lib_and_dir_in_current_working_directory(Command):
+    """:toggle_lib_and_dir_in_current_working_directory
+
+    Toggle between implementation~ (…/lib/…) and test~Dir (…/test/…).
+    """
+
+    marker_lib  = r'/lib'
+    marker_test = r'/test'
+
+    def __init__(self, *args, **kwargs):
+        super(toggle_lib_and_dir_in_current_working_directory, self).__init__(*args, **kwargs)
+        self.current_dir_str = str(self.fm.thisdir)
+
+    def execute(self):
+
+        if self.marker_lib in self.current_dir_str:
+            target_dir_str = self.toggle_dir(self.marker_lib, self.marker_test)
+            self.create_nonexisting_dir(target_dir_str)
+            self.fm.cd(target_dir_str)
+
+        elif self.marker_test in self.current_dir_str:
+            target_dir_str = self.toggle_dir(self.marker_test, self.marker_lib)
+            self.create_nonexisting_dir(target_dir_str)
+            self.fm.cd(target_dir_str)
+
+        else:
+            self.fm.notify(f' not on a dirPath containing {self.marker_lib} or {self.marker_test}', bad=True)
+
+    def toggle_dir(self, marker_current, marker_target):
+        return re.sub(marker_current, marker_target, self.current_dir_str)
+
+    def create_nonexisting_dir(self, target_dir_str):
+        from os.path import join, lexists
+        dir_path = join(target_dir_str)
+        if not lexists(dir_path):
+            os.mkdir(dir_path)
+
 class test(Command):
-    """:echo <text>
+    """:test <text>
 
     Display the text in the statusbar.
     """
