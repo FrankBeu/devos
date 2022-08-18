@@ -24,54 +24,116 @@ in
     ];
 
     aliases = {
-      a    = "add -p";
-      al   = "config --get-regexp '^alias\.'"     ;### ALiases
-      ad   = "add ."                              ;### Add Dot
-      bD   = "branch -D";
-      ba   = "branch -a";
-      bd   = "branch -d";
-      c    = "commit";
-      cl   = "clone";
-      co   = "checkout";
-      cob  = "checkout -b";
-      d    = "diff";
-      dc   = "diff --cached";
-      ds   = "diff --staged";
-      f    = "fetch -p";
-      i    = "init";
+      a     = "add -p";
+      al    = "config --get-regexp '^alias\.'"     ;### ALiases
+      ad    = "add ."                              ;### Add Dot
+      bD    = "branch -D";
+      ba    = "branch -a";
+      bd    = "branch -d";
+      c     = "commit";
+      cl    = "clone";
+      co    = "checkout";
+      cob   = "checkout -b";
+      d     = "diff";
+      dc    = "diff --cached";
+      ds    = "diff --staged";
+      desc  = ''describe''                     ;### Describe (distance to last tag
+      descl = ''describe --tag''               ;### Describe Lightweight (unannotated tags)
+      f     = "fetch -p";
+      i     = "init";
       ### swls                                ;### SkipWorktree LS -> check home.shellAliases
-      swa  = "update-index --skip-worktree "  ;### SkipWorktree Add    <FILE>
-      swr  = "update-index --no-skip-worktree";### SkipWorktree Remove <FILE>
-      p    = "push";
-      r    = "restore";
-      ro   = "remote get-url origin"              ;### Remote Origin
-      rg   = "remote get-url github"              ;### Remote Github
-      rs   = "restore --staged";
-      st   = "status -sb";
+      swa   = "update-index --skip-worktree "  ;### SkipWorktree Add    <FILE>
+      swr   = "update-index --no-skip-worktree";### SkipWorktree Remove <FILE>
+      p     = "push";
+      r     = "restore";
+      ro    = "remote get-url origin"              ;### Remote Origin
+      rg    = "remote get-url github"              ;### Remote Github
+      rs    = "restore --staged";
+      st    = "status -sb";
 
 
       ### reset
-      soft = "reset --soft";
-      hard = "reset --hard";
-      s1ft = "soft HEAD~1";
-      h1rd = "hard HEAD~1";
+      soft  = "reset --soft";
+      hard  = "reset --hard";
+      s1ft  = "soft HEAD~1";
+      h1rd  = "hard HEAD~1";
 
-      ### logging
-      lg   = "log --color --graph --pretty =format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      plog = "log --graph --pretty         ='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'";
-      tlog = "log --stat --since           ='1 Day Ago' --graph --pretty =oneline --abbrev-commit --date =relative";
-      rank = "shortlog -sn --no-merges";
+
+      ### logging (!external command)
+      lgc   = "shortlog -sn --no-merges"                                                                ;### LoG Count
+      lgy   = "log --graph --date=relative --abbrev-commit --pretty=oneline --stat --since='1 Day Ago'" ;### LoG since Yesterday
+
+      lgs   = "log --format=short"                    ;### LoG Short
+      lgm   = "log --format=medium"                   ;### LoG Medium
+      lgf   = "log --format=full"                     ;### LoG Full
+      lgfr  = "log --format=fuller"                   ;### LoG FulleR
+      lgr   = "log --format=reference"                ;### LoG Reference
+      lgw   = "log --format=raw"                      ;### LoG Raw
+
+      ### ALL
+      ### SINGLE-LINE
+      ### LoG SingleFull
+      ### hash author email date dateRelative sigStatus sigName sigFinger subject refName
+      lgsf  = "log --graph --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %<(50)%C(magenta)%aE %<(20)%C(blue)%aN %C(yellow)%G? %<(20)%C(blue)%GS %<(47)%C(magenta)%GF %<(100)%C(yellow)%s %<(45)%C(brightred)%D %C(reset)'";
+      ### LoG SingleLong
+      ### hash author email date dateRelative subject refName
+      lgsl  = "log --graph --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %<(20)%C(blue)%aN %<(50)%C(magenta)%aE %<(100)%C(yellow)%s %<(45)%C(brightred)%D %C(reset)'";
+      ### LoG SingleShort
+      ### hash dateRelative author subject refName
+      lgss  = "log --graph --pretty=format:'%C(red)%h %C(green)%ar %<(20)%C(blue)%aN %<(100)%C(yellow)%s %<(45)%C(brightred)%D %C(reset)'";
+      ### MULTI-LINE
+      ### LoG MultiFull
+      ### hash author email date dateRelative sigStatus sigName sigFinger refName /n subject /n body /n notes
+      lgmf  = "log --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(yellow)%G? %<(20)%C(blue)%GS %<(47)%C(magenta)%GF %<(45)%C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+      ### LoG MultiLong
+      ### hash author email date dateRelative refName /n subject /n body /n notes
+      lgml  = "log --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %<(45)%C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+      ### LoG MultiShort
+      ### hash dateRelative author refName /n subject /n body /notes
+      lgms  = "log --pretty=format:'%C(red)%h %C(green)%ar %C(blue)%aN %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+
+
+      ### ONE
+      ### SINGLE-LINE
+      ### LoG SingleFull
+      lgsf1 = "log -1 --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(yellow)%G? %C(blue)%GS %C(magenta)%GF%n%C(yellow)%s %C(brightred)%D %C(reset)'";
+      ### LoG SingleLong
+      lgsl1 = "log -1 --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE%n%C(yellow)%s %C(brightred)%D %C(reset)'";
+      ### LoG SingleShort
+      lgss1 = "log -1 --pretty=format:'%C(red)%h %C(green)%ar %C(blue)%aN%n%C(yellow)%s %C(brightred)%D %C(reset)'";
+      ### MULTI-LINE
+      ### LoG MultiFull
+      lgmf1 = "log --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(yellow)%G? %C(blue)%GS %C(magenta)%GF %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n' -1";
+      ### LoG MultiLong
+      lgml1 = "log --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n' -1";
+      ### LoG MultiShort
+      lgms1 = "log --pretty=format:'%C(red)%h %C(green)%ar %C(blue)%aN %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n' -1";
+
+
+      ### TEN
+      ### SINGLE-LINE
+      ### LoG SingleFull10
+      lgsf0  = "log -10 --graph --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %<(50)%C(magenta)%aE %<(20)%C(blue)%aN %C(yellow)%G? %<(20)%C(blue)%GS %<(47)%C(magenta)%GF %<(100)%C(yellow)%s %<(50)%C(magenta)%aE %<(45)%C(brightred)%D %C(reset)'";
+      ### LoG SingleLong10
+      lgsl0  = "log -10 --graph --pretty=format:'%C(red)%h %<(20)%C(cyan)%aI %C(green)%ar %<(20)%C(blue)%aN %<(50)%C(magenta)%aE %<(100)%C(yellow)%s %<(45)%C(brightred)%D %C(reset)'";
+      ### LoG SingleShort10
+      lgss0  = "log -10 --graph --pretty=format:'%C(red)%h %C(green)%ar %<(20)%C(blue)%aN %<(100)%C(yellow)%s %<(45)%C(brightred)%D %C(reset)'";
+      ### MULTI-LINE
+      ### LoG MultiFull
+      lgmf0 = "log -10 --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(yellow)%G? %C(blue)%GS %C(magenta)%GF %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+      ### LoG MultiLong
+      lgml0 = "log -10 --pretty=format:'%C(red)%h %C(cyan)%aI %C(green)%ar %C(blue)%aN %C(magenta)%aE %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+      ### LoG MultiShort
+      lgms0 = "log -10 --pretty=format:'%C(red)%h %C(green)%ar %C(blue)%aN %C(brightred)%D%n%n%w(108,2,2)%C(yellow)%s%n%n%w(72,4,4)%C(reset)%b%n%C(cyan)%N%C(reset)%n%n'";
+
 
       ### delete merged branches
       bdm = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d";
 
       ### TODO unsorted
-      hist   = "log --pretty=format:\"%C(reset)%C(yellow)%h %C(cyan)%ad %C(green)[%an]%C(reset) %<(50)%s %C(bold red)%d %C(white)\" -10 --graph --date=short";
-      histnp = "!git --no-pager log --pretty=format:\"%C(reset)%C(yellow)%h %C(cyan)%ad %C(green)[%an]%C(reset) %<(50)%s %C(bold red)%d %C(white)\" -10 --graph --date=short; echo";
       type   = "cat-file -t";
       dump   = "cat-file -p";
       nop    = "--no-pager";
-      mylog  = "!git log --pretty=format:'%h|%an|%s' | while IFS='|' read hash author message; do printf '%s %-20s %s\n' \"$hash\" \"$author\" \"$message\"; done";
       root   = "rev-parse --show-toplevel";
     };
 
@@ -109,7 +171,7 @@ in
         compression = 0;
         editor      = "emacsclient -t -a =\\\"\\\"";
         # editor    = "vim";
-        # pager       = "delta"; ### cf. option delta
+        # pager     = "delta"; ### cf. option delta
       };
 
       credential = {
