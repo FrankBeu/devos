@@ -13,7 +13,7 @@ mode "$mode_dirStruct" {
     bindsym       $mod+h          mode "default", exec --no-startup-id exec emacsclient -nc -a ""
     bindsym       $mod+j          mode "default", exec --no-startup-id alacritty -e ranger ~/DEVOS
     bindsym       $mod+k          mode "default", exec --no-startup-id exec emacsclient -nc -a "" ~/NOTES/AKTUELLES.org; workspace $WS1;
-    bindsym       $mod+l          mode "default", exec --no-startup-id exec emacsclient -nc -a "" ~/NOTES/ROUTINES.org;  workspace $WS1;
+    bindsym       $mod+l          mode "default", exec --no-startup-id exec emacsclient -nc -a "" ~/ROUTINES/ROUTINES.org;  workspace $WS1;
     # bindsym     $mod+semicolon  mode "default", exec --no-startup-id
 
     # bindsym     $mod+n          mode "default", exec --no-startup-id
