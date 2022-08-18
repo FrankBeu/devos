@@ -290,8 +290,9 @@ format			= "[[](bg:#96ab5f fg:#464347) $symbol$branch[](bg:#464347 fg:#96a
 # disabled		= true
 style			= "bg:#E58F73 fg:#111111"
 commit_hash_length	= 4
+tag_symbol = "🔖 "
 # only_detached		= true
-format			= "[[](bg:#E58F73 fg:#464347) #$hash[](bg:#464347 fg:#E58F73)]($style)"
+format			= "[[](bg:#E58F73 fg:#464347) #$hash$tag[](bg:#464347 fg:#E58F73)]($style)"
 
 
 [git_state]
@@ -313,6 +314,7 @@ format		= '[[](bg:#E0B25D fg:#464347) $state ($progress_current/$progress_tot
 # disabled	= true
 style		= "bg:#E0B25D fg:#000000"
 stashed		= "  ${count}"
+diverged	= " "
 ahead		= "  ${count}"
 behind		= "  ${count}"
 conflicted	= "  ${count}"
@@ -321,12 +323,13 @@ renamed		= " ﰴ ${count}"
 modified	= "  ${count}"
 staged		= "  ${count}"
 untracked	= "  ${count}"
-format		= "([[](bg:#E0B25D fg:#464347) $stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[](bg:#464347 fg:#E0B25D)]($style))"
+format		= "([[](bg:#E0B25D fg:#464347) $diverged$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[](bg:#464347 fg:#E0B25D)]($style))"
 
 
 [golang]
 # disabled	= true
-symbol		= " "
+symbol		= "🐹 "
+
 style		= "bg:#7FD5EA fg:#111111"
 format		= "[[](bg:#7FD5EA fg:#464347) $symbol$version[](bg:#464347 fg:#7FD5EA)]($style)"
 
@@ -492,3 +495,7 @@ format		= "[[](bg:#3388FF fg:#464347)$user[](bg:#464347 fg:#3388FF)]($styl
 # GIT_ORIGIN_SYMBOL="🞆"
 
 # renamed		= " ⍈ ${count}"
+
+# symbol		= "ﳑ "
+# symbol		= " "
+# symbol		= " "
