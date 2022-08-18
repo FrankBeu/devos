@@ -1,0 +1,22 @@
+[
+  ".config/zsh/volatiles"
+  "AKTUELLES"
+  "ARCHIVES"
+  "BAK"
+  "DEVOS"
+  "DEVOSBUD"
+  "DEVOSEMACS"
+  "DEVOSNIXOS"  ### TODO remove after resolvation
+  "DOCUMENTS"
+  "DOWNLOADS"
+  "GAMES"
+  "MUSIC"
+  "NOTES"
+  "NOW"
+  "PICTURES"
+  "ROUTINES"
+  "SRC/GITEA"
+  "SRC/registeredRepos"
+  "UNSORTED"
+  "VIDEOS"
+]

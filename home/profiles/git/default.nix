@@ -60,6 +60,7 @@ in
 
 
       ### logging (!external command)
+      l1    = "log -n1";
       lgc   = "shortlog -sn --no-merges"                                                                ;### LoG Count
       lgy   = "log --graph --date=relative --abbrev-commit --pretty=oneline --stat --since='1 Day Ago'" ;### LoG since Yesterday
 

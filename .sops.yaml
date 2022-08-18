@@ -1,17 +1,32 @@
 ### TODO check if secrets from HOST can be reused as vmHOST
 ### virtualisation.vmVariant
 keys:
-  ### HOSTS
+  ### HOSTS           `cat ./ssh_host_ed25519_key.pub | ssh-to-age | xsel -ib`
   - &ryzen            age1ajavs7njj95asdmvx346plh2p9xqflgxl9z2ejpuqztdzsty344se3sxax
   - &vmRyzen          age17ew8tzxakfx8yz34lhf04pam5ydptvuxc57hsmxu0hggweqtas7q52qah8
   - &test             age1mnv9ewltq0ra0hkmekm686dk723jhnycrf4xu87pr57xcvd84a9qu3jeaj
-  ### USER
+  - &nuc              age130kfkw6t46z70sd7hl6hqa2mnprmcf4rfp4cnpajv50kusjd3vhs72a633
+  - &nucVM            age180ufktjf08r9v7yy7femjysu7je29ln658rx0u7pngdkcalxz3lqxrentu
+
+  ### USER            secrets/keys/public/users or SAFE
+  - &frank-at-nuc     age1m06a8j9km3z9remssw370ckjzent92ujd4jh3sv7vq2d2ynfny5qm4tzwx
+  - &frank-at-nucVM   age1m06a8j9km3z9remssw370ckjzent92ujd4jh3sv7vq2d2ynfny5qm4tzwx
   - &frank-at-ryzen   age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
   - &frank-at-vmRyzen age1f27923efgn469cquvcsgdwrdma27fveuw5w4kqnctcd739zpn3hsha6v4u
   - &test-at-test     age1p2nq8v5l94zjzzee978f7munsfmcr6dtd98v5j6h7yruz30c94fsgept23
 
 creation_rules:
   ### HOSTS
+  - path_regex: ./secrets/hosts/nuc/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-nuc
+      - *nuc
+  - path_regex: ./secrets/hosts/nucVM/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-nucVM
+      - *nucVM
   - path_regex: ./secrets/hosts/ryzen/secrets.yaml$
     key_groups:
     - age:
@@ -30,6 +45,16 @@ creation_rules:
       - *test-at-test   ### PUBLICLY AVAILABLE
 
   ### USER
+  - path_regex: ./secrets/users/(frank|root)/nuc/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-nuc
+      - *nuc
+  - path_regex: ./secrets/users/(frank|root)/nucVM/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-nucVM
+      - *nucVM
   - path_regex: ./secrets/users/(frank|root)/ryzen/secrets.yaml$
     key_groups:
     - age:
@@ -52,6 +77,9 @@ creation_rules:
     key_groups:
     - age:
       - *frank-at-ryzen
+      - *frank-at-nuc
+      - *nuc
+      - *nucVM
       - *ryzen
       - *vmRyzen
       ### - *test         ### NEVER ENABLE: PUBLICLY AVAILABLE

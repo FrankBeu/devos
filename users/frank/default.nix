@@ -25,7 +25,7 @@ in
     shell          = pkgs.zsh;
 
     passwordFile   = config.sops.secrets."frank/password/hashed".path;
-    # hashedPassword = "$6$zFsull/7$I9f/Vorw7AU8uPnJcuIZdhVDh3ogCd6h/D7wsYcA46G1IF8w3Yn79hHU6YiHUKNH3RFTHxfnJwmYTU3TLsIMW/";
+    # hashedPassword = "$6$mQLKXsfI/aqkNwhT$NLt4/i4AYn3AueTVNHBcQ87Z6E10BOcNHUAiba/o0EDcR7y07SwM4kuql.Ymbhqfp8AWqkbosZMzyY76pU1Cw.";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHpiELFqAVRt7V9fFUmem+JA4yIiz0CMNSwPI+i1Bhky frank@lap"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGldXvefZTLktraSKNbNRkhHid/NOM3hckQ7/ibhFr5Z frank@mac"

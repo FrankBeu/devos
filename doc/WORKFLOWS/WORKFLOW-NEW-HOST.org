@@ -1,0 +1,144 @@
+* NEW-HOST-WORKFLOW
+** write host-test
+create new folder =tests/hosts/{{HOSTNAME}}= \\
+copy e.g. =tests/hosts/ryzen/default.nix=
+*** thin out, adjust, ...
+#+BEGIN_EXAMPLE nix
+  host           = self.nixosConfigurations.{{HOSTNAME}}VM;
+#+END_EXAMPLE
+comment out import of unneeded test \\
+remove unneeded test
+** create host
+start by copying e.g. =hosts/ryzen/= to =hosts/{{HOSTNAME}}/=
+** create {{HOSTNAME}}VM
+used for tests
+*** copy ...
+*** adjust
+#+BEGIN_EXAMPLE nix
+let hostname = {{HOSTNAME}};
+#+END_EXAMPLE
+** secrets
+*** add =secrets/keys/secret/hosts/{{HOSTNAME}}VM=
+**** cf.: [[file:secrets/documentation.org.nix::*vm w/ secrets][vm w/ secrets]]
+**** create dummy
+**** add to git
+#+BEGIN_EXAMPLE shell
+cd secrets/keys/secret/hosts/{{HOSTNAME}}/
+git add . -f
+#+END_EXAMPLE
+**** commit
+**** skip-changes
+#+BEGIN_EXAMPLE shell
+git update-index --skip-worktree ~/DEVOS/secrets/keys/secret/hosts/{{HOSTNAME}}VM/ssh_host_ed25519_key
+git update-index --skip-worktree ~/DEVOS/secrets/keys/secret/hosts/{{HOSTNAME}}VM/ssh_host_ed25519_key.pub
+#+END_EXAMPLE
+**** create real keys
+**** generate
+#+BEGIN_SRC shell :results drawer
+  ssh-keygen -t ed25519 -a 100 -C {{HOSTNAME}} -f ~/DEVOS/secrets/keys/secret/hosts/{{HOSTNAME}}VM/ssh_host_ed25519_key -N ""
+#+END_SRC
+**** add it to the SAFE
+**** replace dummies with real keys (never check them in!)
+**** ageHandle
+***** get
+#+BEGIN_EXAMPLE shell
+cat ./ssh_host_ed25519_key.pub | ssh-to-age | xsel -ib
+#+END_EXAMPLE
+***** add it to  =.sops.yaml=
+**** adjust =.sops.yaml=
+*** create new host-ssh-key etc/ssh
+**** adjust =.sops.yaml=
+**** add it to the SAFE
+*** secrets
+- add =secrets/users/{{USERNAME}}/{{HOSTNAME}}=
+- add =secrets/users/{{USERNAME}}/{{HOSTNAME}}VM=
+- add =secrets/users/root/{{HOSTNAME}}=
+- add =secrets/users/root/{{HOSTNAME}}VM=
+**** reEncrypt
+#+BEGIN_EXAMPLE shell
+export PATH_TO_NEW_KEY={{PATH_TO_NEW_KEY}}
+sops updatekeys ./secrets/hosts/{{HOSTNAME}}/secrets.yaml
+sops updatekeys ./secrets/hosts/{{HOSTNAME}}VM/secrets.yaml
+sops updatekeys ./secrets/users/{{USERNAME}}/{{HOSTNAME}}/secrets.yaml
+sops updatekeys ./secrets/users/{{USERNAME}}/{{HOSTNAME}}VM/secrets.yaml
+sops updatekeys ./secrets/users/root/{{HOSTNAME}}/secrets.yaml
+sops updatekeys ./secrets/users/root/{{HOSTNAME}}VM/secrets.yaml
+#+END_EXAMPLE
+***** easiest way working with other keys
+is to swap the {current,new} age key in =/home/{{USERNAME}}/.config/age=
+because sops is an alias defining the editor and decrypts keys, ...
+** add everything to index
+** adjust host until host-test turns green
+#+BEGIN_EXAMPLE shell
+bt tests.hosts.{{HOSTNAME}}
+#+END_EXAMPLE
+*** TODO needs passthru-tests
+** commit
+** create partition-layout
+if needed
+** move DEVOS to new machine
+** create harwareConfig
+#+BEGIN_EXAMPLE shell
+mkdir hosts/nuc/system/GENERATED
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+sudo nixos-generate-config --dir ./hosts/nuc/system/GENERATED
+#+END_EXAMPLE
+*** mv statements to their places
+**** prepare machine
+add =hosts/{{HOSTNAME}}/system/*=
+=hosts/nuc/system/hardware/hardware-configuration.nix=
+=hosts/nuc/system/misc/aliases/display/default.nix=
+=hosts/nuc/system/misc/aliases/brightness/default.nix=
+=hosts/nuc/system/misc/mountsAdditional=
+=hosts/nuc/system/misc/mountsBackup=
+=hosts/nuc/system/misc/default.nix=
+=hosts/nuc/system/networking/default.nix=
+** add host-ssh-key to etc/ssh
+** install nix
+[[https://nixos.wiki/wiki/NixOS_Installation_Guide#NixOS_installation][NixOS Installation Guide - NixOS Wiki]]
+- mount partitions
+- swapon
+#+BEGIN_EXAMPLE shell
+cd /mnt
+sudo nixos-install
+#+END_EXAMPLE
+*** if on a system without flakes
+#+BEGIN_EXAMPLE shell
+nix-channel --update
+nix-env -f '<nixpkgs>' -iA nixUnstable
+### in DEVOS
+nix develop --extra-experimental-feature 'nix-command flakes'
+#+END_EXAMPLE
+** switch
+#+BEGIN_EXAMPLE shell
+bud rebuild {{HOSTNAME}} build
+bud rebuild {{HOSTNAME}} switch
+#+END_EXAMPLE
+** user
+add ssh-key
+add age-key
+add gopass config and stores
+** enjoy
+* TODO TODOS
+** TODO hostname - vm{{Hostname}}
+*** change to {{hostname}}VM
+use suffix because appending to a variable is much cheaper -> can be scripted
+*** update doc
+** TODO change vmRyzen -> ryzenVM
+** TODO add to doc.local
+** TODO change age key
+** TODO check if gopass keyring can be applied from secret-store
+** TODO create template, command
+bud-workflow-script
+cf.: commit
+** TODO doc.local away from 80
+** TODO printer
+backend
+link
+** TODO templates for host
+- full
+- empty
+- server
+  - sleep disable
+  - ...

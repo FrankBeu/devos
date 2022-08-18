@@ -29,8 +29,8 @@
   ### TODO extract to lib for every vm
   system.activationScripts =
     let
-      sshKey    = builtins.readFile "${self}/secrets/keys/secret/hosts/vmRyzen/ssh_host_ed25519_key";
-      sshKeyPub = builtins.readFile "${self}/secrets/keys/secret/hosts/vmRyzen/ssh_host_ed25519_key.pub";
+      sshKey    = builtins.readFile "${self}/secrets/keys/secret/hosts/ryzenVM/ssh_host_ed25519_key";
+      sshKeyPub = builtins.readFile "${self}/secrets/keys/secret/hosts/ryzenVM/ssh_host_ed25519_key.pub";
     in
     {
       "1-add-ssh-key" = {
