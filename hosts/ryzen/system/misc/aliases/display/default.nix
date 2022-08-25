@@ -2,8 +2,8 @@
   environment = {
     shellAliases = {
 
-        ### only AOC (single)
 
+        ### only AOC (single)
         "xa" =
           ''
             xrandr --auto && \
@@ -12,8 +12,16 @@
             --output HDMI-A-0      --off'';
 
 
-        ### only SAMSUNG (single)
+        ### only AOC (single,supine)
+        "xas" =
+          ''
+            xrandr --auto && \
+            xrandr \
+            --output DisplayPort-0 --pos 0x0 --rotate inverted --primary \
+            --output HDMI-A-0      --off'';
 
+
+        ### only SAMSUNG (single)
         "xs" =
           ''
             xrandr --auto && \
@@ -22,8 +30,8 @@
             --output DisplayPort-0 --off'';
 
 
-        ### SAMSUNG AOC (bed)
 
+        ### SAMSUNG AOC (bed)
         "xb" =
           ''
             xrandr --auto && \
@@ -32,8 +40,8 @@
             --output DisplayPort-0 --pos 1920x0 --rotate left   --primary'';
 
 
-        ### AOC SAMSUNG (desk)
 
+        ### AOC SAMSUNG (desk)
         "xd" =
           ''
             xrandr --auto && \
