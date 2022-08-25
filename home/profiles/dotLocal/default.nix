@@ -24,12 +24,6 @@ in
     file.".docLocal/content/homemanager/dotlocal.org".text = pkgs.lib.mkDefault( pkgs.lib.mkAfter ''
       ${(builtins.readFile ./dotLocal.org)}
     '');
-
-    shellAliases = {
-      scang = ''scan Gray  ''       ;### SCANGray
-      scanc = ''scan Color ''       ;### SCANColor
-      rscc  = ''checkoutNthCommit '';### ReadtheSourceCheckoutnthCommit
-    };
   };
 
   ### STATE

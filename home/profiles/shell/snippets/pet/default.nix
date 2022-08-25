@@ -48,6 +48,11 @@ in {
           output      = "SHA256";
         }
         {
+          command     = "ssh-keygen -R 192.168.0.17";
+          description = "ssh:      remove host from known-hosts          ";
+          output      = "message";
+        }
+        {
           command     = "rsync -raP ./FILENAME USERNAME@192.168.0.31:/home/frank/MEDIA/EXTERN/FILENAME";
           description = "rsync:    sync file to machine                  ";
           output      = "log";

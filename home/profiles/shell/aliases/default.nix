@@ -21,25 +21,25 @@
       {
 
         ### alias
-        alrg    = ''alias | rg''                     ;### ALiasRG
-        alal    = ''alrg ^al''                       ;### ALlALiases (listing aliases)
+        alrg    = ''alias | rg''                                                   ;### ALiasRG
+        alal    = ''alrg ^al''                                                     ;### ALlALiases (listing aliases)
 
 
         ### btrfs
-        bf   = ifSudo ''sudo btrfs''                 ;### BtrFs
-        bff  = ifSudo ''sudo btrfs filesystem''      ;### BtrFs Filesystem
-        bffl = ifSudo ''sudo btrfs filesystem label'';### BtrFs Filesystem Label
-        bffd = ifSudo ''sudo btrfs filesystem df''   ;### BtrFs Filesystem Disk free
-        bffs = ifSudo ''sudo btrfs filesystem show'' ;### BtrFs Filesystem Show
-        bffu = ifSudo ''sudo btrfs filesystem usage'';### BtrFs Filesystem Usage
+        bf   = ifSudo ''sudo btrfs''                                               ;### BtrFs
+        bff  = ifSudo ''sudo btrfs filesystem''                                    ;### BtrFs Filesystem
+        bffl = ifSudo ''sudo btrfs filesystem label''                              ;### BtrFs Filesystem Label
+        bffd = ifSudo ''sudo btrfs filesystem df''                                 ;### BtrFs Filesystem Disk free
+        bffs = ifSudo ''sudo btrfs filesystem show''                               ;### BtrFs Filesystem Show
+        bffu = ifSudo ''sudo btrfs filesystem usage''                              ;### BtrFs Filesystem Usage
 
 
         ### delta
-        deltas = ''delta -s ''                       ;### DELTA Side-by-side
+        deltas = ''delta -s ''                                                     ;### DELTA Side-by-side
 
 
         ### editorconfig
-        ecc = ''editorconfig-checker''               ;### EditorConfig-Checker
+        ecc = ''editorconfig-checker''                                             ;### EditorConfig-Checker
 
 
         ### git
@@ -83,6 +83,7 @@
 
         hin  = ''nix-info -m''                                                     ;### Help-Info-Nix
 
+
         ### TODO dynamic username - extract to home.core??
         hvhs = ''nixos-option home-manager.users.frank.home.stateVersion''         ;### Help-Version-HomeState
         hvn  = ''nixos-version''                                                   ;### Help-Version-Nix
@@ -90,9 +91,20 @@
         hnx  = ''nixos-help''                                                      ;### Help-NiXos
         hcp  = ''bat /etc/currentSystemPackages -l s''                             ;### Help-CurrentPackages ### TODO write language highlighting only name without version
 
+
         ### TODO fix nixos-option
         ### does only work here - why not in tools/nixTools - different self WHY?
         nixos-option = ''nixos-option -I nixpkgs=${self}/lib/compat'';
+
+
+        ### ReadtheSource
+        rscc  = ''checkoutNthCommit ''                                             ;### ReadtheSourceCheckoutnthCommit
+
+
+        ### scanning
+        scang = ''scan Gray  ''                                                    ;### SCANGray
+        scanc = ''scan Color ''                                                    ;### SCANColor
+
 
         ### sudo
         sdv = ifSudo ''sudo -E''                                                   ;### SuDoenV
@@ -101,11 +113,14 @@
         sdp = ifSudo ''sudo $(fc -ln -1)''                                         ;### SuDoPlease
         sdr = ifSudo ''sudo su''                                                   ;### SuDo Root
 
+
         ### top
         top = ''btm'';
 
+
         ### touch
         twd = ''install -m 644 -D /dev/null''                                      ;### TouchWithDirectories
+
 
         ### mount
         ma  = ifSudo ''sudo mount -a''                                             ;### Mount All
