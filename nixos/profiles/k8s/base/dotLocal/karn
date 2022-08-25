@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   karn
+### abstract:
+###   "K8sAllResourcesNamespaced: get all resouces defined in current namespace"
+### usage: |
+###   choose namespace && `karn`
+###
+### info: |
+###    `kubectl --help`
+###
+###
+### ---
+###
+function karn() {
+        for APIRESOURCES in `kubectl api-resources --verbs=list --namespaced -o name`; do
+        RESOURCES=$(kubectl get --show-kind --ignore-not-found ${APIRESOURCES})
+        [[ ! -z ${RESOURCES} ]] && echo -e "\x1b[33m${APIRESOURCES}\x1b[0m\n${RESOURCES}\n";
+        done
+}
+karn

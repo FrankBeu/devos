@@ -46,6 +46,11 @@ tests.nixos.profiles.fonts
 # tests.nixos.profiles.i18n.common                  ### TODO: implement
 tests.nixos.profiles.i18n.fcitx
 tests.nixos.profiles.image.common
+tests.nixos.profiles.k8s.base
+tests.nixos.profiles.k8s.cdk8s
+tests.nixos.profiles.k8s.gui
+tests.nixos.profiles.k8s.k3d
+tests.nixos.profiles.k8s.k3s
 tests.nixos.profiles.manualActions
 tests.nixos.profiles.security.agebox
 tests.nixos.profiles.security.sopsNix
@@ -125,6 +130,7 @@ tests.home.profiles.flameshot
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
 tests.home.profiles.i18n.fcitx.varB
+tests.home.profiles.k8s.pulumi
 tests.home.profiles.languages.golang
 tests.home.profiles.manualActions
 tests.home.profiles.notification.dunst

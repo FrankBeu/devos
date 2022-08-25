@@ -1,6 +1,28 @@
 {
+    "kube2pulumi": {
+        "pinned": true,
+        "cargoLock": null,
+        "name": "kube2pulumi",
+        "src": {
+            "deepClone": false,
+            "owner": "pulumi",
+            "name": null,
+            "repo": "kube2pulumi",
+            "type": "github",
+            "sha256": "sha256-CS6fSiSDJTQ6KKKZL7VRn8SRWjPqrGwLqcjLiCuW/U4=",
+            "rev": "v0.0.11",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "v0.0.11",
+        "passthru": {
+            "vendorSha256": "sha256-Fk0YoS0mn1QANbFIA+jN+/bu0sim2wpAOcm/niYE1oc="
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
     "revealjs": {
-        "pinned": false,
+        "pinned": true,
         "cargoLock": null,
         "name": "revealjs",
         "src": {
@@ -16,6 +38,58 @@
         },
         "version": "4.1.2",
         "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "cert-manager": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "cert-manager",
+        "src": {
+            "url": "https://github.com/jetstack/cert-manager/releases/download/v1.9.1/kubectl-cert_manager-linux-amd64.tar.gz",
+            "name": null,
+            "type": "url",
+            "sha256": "sha256-6ttScrr2EoziHvfIQjNWt423hZDtqOCI6dq0+NkHxkk="
+        },
+        "version": "v1.9.1",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "kubectl-neat": {
+        "pinned": true,
+        "cargoLock": null,
+        "name": "kubectl-neat",
+        "src": {
+            "url": "https://github.com/itaysk/kubectl-neat/releases/download/v2.0.3/kubectl-neat_linux_amd64.tar.gz",
+            "name": null,
+            "type": "url",
+            "sha256": "sha256-sDYwCrM/og+f+fzYehvcMtyvcRC8KM3rh5qwfT2cljs="
+        },
+        "version": "v2.0.3",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "crd2pulumi": {
+        "pinned": true,
+        "cargoLock": null,
+        "name": "crd2pulumi",
+        "src": {
+            "deepClone": false,
+            "owner": "pulumi",
+            "name": null,
+            "repo": "crd2pulumi",
+            "type": "github",
+            "sha256": "sha256-jGCtHDceJMGG2WHRldEyToZRNp3ZTt4Tir7DAsaWgfI=",
+            "rev": "v1.2.0",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "v1.2.0",
+        "passthru": {
+            "vendorSha256": "sha256-XM1uedApVLkFzUpNPYS5YyMiWrOpzTvqKjWIV7s/1mI="
+        },
         "extract": null,
         "rustGitDeps": null
     },

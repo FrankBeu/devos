@@ -190,6 +190,11 @@ let
 
 
         ${nixos-modules-colorscheme}
+        ${(import ../../nixos/profiles/k8s/base/testScript.py.nix  { inherit username;})}
+        ${(import ../../nixos/profiles/k8s/cdk8s/testScript.py.nix { inherit username;})}
+        ${(import ../../nixos/profiles/k8s/gui/testScript.py.nix   { inherit username;})}
+        ${(import ../../nixos/profiles/k8s/k3d/testScript.py.nix   { inherit username;})}
+        ${(import ../../nixos/profiles/k8s/k3s/testScript.py.nix   { inherit username;})}
         ${nixos-modules-variables}
 
 
@@ -251,6 +256,7 @@ let
         ${home-profiles-dotLocal}
         ${home-profiles-exa}
         ${home-profiles-flameshot}
+        ${(import ../../home/profiles/k8s/pulumi/testScript.py.nix { inherit hmProfileDir;})}
         ${home-profiles-languages-golang}
         ${home-profiles-manualActions}
         ${home-profiles-rofi}

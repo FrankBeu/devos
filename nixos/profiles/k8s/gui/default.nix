@@ -1,3 +1,7 @@
+{ config, pkgs, ...}:
+{
   environment.systemPackages = with pkgs; [
-    kaliases   ### OVERLAY
+    lens
+    octant
   ];
+}

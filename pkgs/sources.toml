@@ -1,11 +1,12 @@
-# nvfetcher.toml
+### nvfetcher.toml
+### https://github.com/berberman/nvfetcher
 [manix]
 src.git      = "https://github.com/mlvzk/manix"
 fetch.github = "mlvzk/manix"
 
 
 [starship]
-# src.git    ="https://github.com/starship/starship"
+# src.git            = "https://github.com/starship/starship"
 src.manual           = "v1.9.1"
 fetch.github         = "starship/starship"
 cargo_lock           = "Cargo.lock"
@@ -16,6 +17,36 @@ rustToolchainSha256  = "sha256-HhkjtODLw16O7DNPew9+vqOtbM6hcAmLH55XnZ0G6Fk="
 # rustToolchainSha256  = "0000000000000000000000000000000000000000000000000000000000000000"
 ### TODO generate entry with auto-sha
 
+
 [revealjs]
 src.manual           = "4.1.2"
 fetch.github         = "hakimel/reveal.js"
+
+
+[crd2pulumi]
+# src.git            = "https://github.com/pulumi/crd2pulumi"
+# src.manual         = "v1.2.2" # needs 1.18
+src.manual           = "v1.2.0" # needs 1.16
+fetch.github         = "pulumi/crd2pulumi"
+[crd2pulumi.passthru]
+vendorSha256         = "sha256-XM1uedApVLkFzUpNPYS5YyMiWrOpzTvqKjWIV7s/1mI="
+# vendorsha256       = "0000000000000000000000000000000000000000000000000000000000000000"
+# vendorSha256       = "sha256-kVD+TwU+tizNSXKIc7OqIJIA0nPOyfF9kVxBAYBzOKU="
+
+
+[kube2pulumi]
+src.manual           = "v0.0.11"
+fetch.github         = "pulumi/kube2pulumi"
+[kube2pulumi.passthru]
+vendorSha256         = "sha256-Fk0YoS0mn1QANbFIA+jN+/bu0sim2wpAOcm/niYE1oc="
+# vendorsha256       = "0000000000000000000000000000000000000000000000000000000000000000"
+
+
+[cert-manager]
+src.github         = "cert-manager/cert-manager"
+fetch.url          = "https://github.com/jetstack/cert-manager/releases/download/$ver/kubectl-cert_manager-linux-amd64.tar.gz"
+
+
+[kubectl-neat]
+src.github         = "itaysk/kubectl-neat"
+fetch.url          = "https://github.com/itaysk/kubectl-neat/releases/download/$ver/kubectl-neat_linux_amd64.tar.gz"

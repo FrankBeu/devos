@@ -151,3 +151,18 @@ navigate to
 **** solution
 - check =flake.nix= nixpkgs might have changed
 - check =nixos/default.nix= for channel changes
+*** use ldflags instead of buildFlags
+**** message
+#+BEGIN_EXAMPLE shell
+trace: warning: Use the `ldflags` and/or `tags` attributes instead of `buildFlags`/`buildFlagsArray`
+#+END_EXAMPLE
+**** solution
+replace ~buildFlagsArray~ with ~ldflags~ in a derivation using ~buildGoModule~
+#+BEGIN_EXAMPLE shell
+  buildFlagsArray = [
+    "-ldflags=-X github.com/pulumi/crd2pulumi/gen.Version=${version}"
+  ];
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+  ldflags = "-X github.com/pulumi/crd2pulumi/gen.Version=${version}";
+#+END_EXAMPLE

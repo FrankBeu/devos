@@ -1,0 +1,26 @@
+---
+title: k8s
+linktitle: k8s
+description: documentation for k8s-related stuff
+categories:
+keywords: [tools, k8s, container ]
+menu:
+  sidebar:
+    parent: "system"
+draft: false
+toc: true
+---
+* k8s
+** production
+*** k3s
+https://k3s.io/ \\
+https://rancher.com/docs/k3s/latest/en/ \\
+https://github.com/k3s-io/k3s/ \\
+[[https://nixos.wiki/wiki/K3s][K3s - NixOS Wiki]]
+** development
+*** k3d
+[[../home-manager/k3d.org][-> home-manager]]
+* TODO TODOS
+** create Tests
+** proxy
+=nixos/profiles/domain/kubeProxy/default.nix=

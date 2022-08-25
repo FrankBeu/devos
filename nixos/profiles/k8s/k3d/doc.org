@@ -1,0 +1,25 @@
+---
+title: k3d
+linktitle: k3d
+description: documentation for k3d
+categories:
+keywords: [k8s, k3d, container]
+menu:
+  sidebar:
+    parent: "home-manager"
+    name: "k3d"
+    identifier: "k3d"
+draft: false
+toc: true
+---
+* k3d
+containered k8s \\
+used for development \\
+https://github.com/rancher/k3d \\
+https://k3d.io/
+** clusterCreation
+#+begin_src shell :results drawer
+k3d create --name <NAME> --api-port 6551 --publish 33333:80
+#+end_src
+** config
+=~/.kube/config= will be updated automatically on cluster creation

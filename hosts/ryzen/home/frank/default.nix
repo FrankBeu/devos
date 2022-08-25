@@ -38,6 +38,8 @@ in
     profiles.flameshot
     profiles.git
     # profiles.i18n.fcitx         ### kills emacs
+    profiles.k8s.base
+    profiles.k8s.pulumi
     profiles.languages.golang
     profiles.manualActions
     profiles.notification.dunst

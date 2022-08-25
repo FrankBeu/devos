@@ -34,6 +34,11 @@ in
     profiles.i18n.common
     # profiles.i18n.fcitx
     profiles.image.common
+    profiles.k8s.cdk8s
+    profiles.k8s.base
+    profiles.k8s.gui
+    profiles.k8s.k3d
+    profiles.k8s.k3s
     # profiles.lutris                       ### TODO
     profiles.manualActions
     profiles.networking.dhcp
