@@ -6,7 +6,7 @@ with profiles; rec
   # base = [ direnv     ];
   zsh =  [
     shell.aliases
-    shell.cod
+    # shell.cod              ### TODO currently broken
     shell.fuzzy.fzf
     shell.snippets.pet
     shell.vivid

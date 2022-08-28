@@ -13,7 +13,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')
     assert_contains_line(hm_bin_content, 'go')
     assert_contains_line(hm_bin_content, 'gofumpt')
-    assert_contains_line(hm_bin_content, 'goimports')
+    assert_contains_line(hm_bin_content, 'gotools')
     assert_contains_line(hm_bin_content, 'gomodifytags')
     assert_contains_line(hm_bin_content, 'golangci-lint')
     assert_contains_line(hm_bin_content, 'gopls')

@@ -12,7 +12,7 @@
   environment.systemPackages = with pkgs; [
     xorg.xkill
     xsel
-    xlibs.xwininfo
+    xorg.xwininfo
   ];
 
   environment.etc."/docLocal/content/system/xserver.org".source = ./xserver.org;

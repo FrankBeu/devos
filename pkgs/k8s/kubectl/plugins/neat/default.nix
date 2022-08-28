@@ -28,6 +28,6 @@ stdenv.mkDerivation rec {
     description = "Clean up Kubernetes yaml and json output to make it readable";
     homepage    = "https://github.com/itaysk/kubectl-neat";
     license     = licenses.asl20;
-    maintainers = [ fb ];
+    maintainers = with maintainers; [ fb ];
   };
 }

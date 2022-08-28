@@ -1,5 +1,5 @@
 {
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.05";
   ### stateVersion != version
   ### after a hm upgrade check
   ### https://nix-community.github.io/home-manager/release-notes.html

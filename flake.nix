@@ -9,7 +9,7 @@
   };
 
   inputs = {
-    nixos.url  = "github:nixos/nixpkgs/release-21.11";
+    nixos.url  = "github:nixos/nixpkgs/release-22.05";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
 
     agenix = {
@@ -73,7 +73,7 @@
     };
 
     home = {
-      url    = "github:nix-community/home-manager/release-21.11";
+      url    = "github:nix-community/home-manager/release-22.05";
       ### on update check ./home/profiles/stateVersion/default.nix
       inputs = {
         nixpkgs.follows = "nixos";

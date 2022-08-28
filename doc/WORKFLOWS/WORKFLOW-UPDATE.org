@@ -1,0 +1,37 @@
+* UPDATE-WORKFLOW
+** cleanUp
+commit or stash everything
+** run all tests
+#+BEGIN_SRC shell :results drawer
+bta
+#+END_SRC
+all running tests have to pass
+** read ReleaseNotes
+*** Homemanager
+[[https://nix-community.github.io/home-manager/release-notes.html][Appendix E. Release Notes]]
+*** nixos
+[[https://nixos.org/manual/nixos/unstable/release-notes.html][NixOS - NixOS 22.11 manual]]
+** update
+*** home-manager
+- =flake.nix=
+- =home/profiles/stateVersion/default.nix=
+*** flake
+#+BEGIN_SRC shell :results drawer
+bud update
+#+END_SRC
+** run all tests again
+#+BEGIN_SRC shell :results drawer
+bta
+#+END_SRC
+fix DEVOS by tracing causes for failing tests
+** build
+#+BEGIN_SRC shell :results drawer
+bb
+#+END_SRC
+fix DEVOS by tracing causes for failing builds
+*** bisect =hosts/{{HOSTNAME}}/{system,home}.nix=
+** commit
+** switch
+#+BEGIN_SRC shell :results drawer
+bs
+#+END_SRC

@@ -159,7 +159,7 @@
       kb-row-left                = "Control+Page_Up";
       kb-row-right               = "Control+Page_Down";
       ### kb-row-select          = "Control+space";  ### REFERENCE
-      kb-row-tab                 = "Tab";
+      ### kb-row-tab                 = "Tab";        ### REFERENCE
       kb-screenshot              = "Alt+S";
       kb-secondary-paste         = "Control+v,Insert";
       kb-select-10               = "Super+0";
@@ -188,7 +188,8 @@
       kb-row-select              = "Super+space";
 
       kb-mode-previous           = "Shift+Left,Control+ISO_Left_Tab,Super+J";
-      kb-row-up                  = "Up,Control+p,ISO_Left_Tab,Super+k";
+      # kb-row-up                  = "Up,Control+p,ISO_Left_Tab,Super+k";
+      kb-row-up                  = "Up,Control+p,Super+k";
       kb-row-down                = "Down,Control+n,Super+l";
       kb-mode-next               = "Shift+Right,Control+Tab,Super+colon";
 

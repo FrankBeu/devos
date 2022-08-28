@@ -155,7 +155,7 @@ def check_screen_text(command: str, assertions: List[str], debug=False) -> None:
         assert_contains(commandOutput, assertion)
 
     if debug:
-        machine.log(print(commandOutput))
+        machine.log(commandOutput)
 
     restore_console_after_scrot()
 
@@ -165,7 +165,7 @@ def _out_dir() -> str:
         return out_dir
 
 def ensure_dotLocal_header(filename: str, dotLocal_location: str) -> None:
-        machine.log(print("FILENAME:",filename))
+        machine.log(f"FILENAME: {filename}")
         file_content = machine.succeed("cat " + os.path.join(dotLocal_location, filename))
         lines = file_content.split("\n", 18)
 

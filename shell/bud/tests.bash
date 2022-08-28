@@ -36,7 +36,7 @@ tests.nixos.profiles.currentSystemPackages
 # tests.nixos.profiles.display.gnome                ### TODO: needs hw-acceleration
 tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar
-tests.nixos.profiles.domain.local
+# tests.nixos.profiles.domain.local                 ### TODO: reenable
 tests.nixos.profiles.domain.server
 tests.nixos.profiles.domain.variable
 tests.nixos.profiles.editor.emacs
@@ -58,6 +58,8 @@ tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 tests.nixos.profiles.services.ssh
 # tests.nixos.profiles.services.xserver             ### TODO: implement
+tests.nixos.profiles.shell.prompts.powerline
+tests.nixos.profiles.shell.prompts.starship
 tests.nixos.profiles.sound.pipewire
 tests.nixos.profiles.systemd.sleepDisable
 tests.nixos.profiles.timezone.amsterdam
@@ -108,7 +110,7 @@ tests.nixos.suites.virtmanager
 tests.home.modules.services.backup.kopia
 
 
-tests.home.profiles.alacritty
+# tests.home.profiles.alacritty                     ### TODO: reenable
 tests.home.profiles.backup.kopia
 tests.home.profiles.bat
 tests.home.profiles.browser.chromium
@@ -118,14 +120,14 @@ tests.home.profiles.browser.firefox.tridactyl
 tests.home.profiles.browser.defaultBrowser.varC
 tests.home.profiles.browser.defaultBrowser.varF
 tests.home.profiles.clipmenu
-tests.home.profiles.directoryStructure
+# tests.home.profiles.directoryStructure            ### TODO: reenable
 tests.home.profiles.display.cursor
 tests.home.profiles.display.i3
 tests.home.profiles.docDotLocal
 tests.home.profiles.dotLocal
 tests.home.profiles.editor.emacs                    ### TODO: needs hw-acceleration
 tests.home.profiles.exa
-tests.home.profiles.flameshot
+# tests.home.profiles.flameshot                     ### TODO: reenable
 # tests.home.profiles.filemanager.ranger            ### TODO: implement ?? nec check if configuration is already defined via nixos - remove profile
 tests.home.profiles.git
 tests.home.profiles.i18n.fcitx.varA
@@ -133,7 +135,7 @@ tests.home.profiles.i18n.fcitx.varB
 tests.home.profiles.k8s.pulumi
 tests.home.profiles.languages.golang
 tests.home.profiles.manualActions
-tests.home.profiles.notification.dunst
+# tests.home.profiles.notification.dunst             ### TODO: reenable
 tests.home.profiles.ripgrep
 tests.home.profiles.rofi
 tests.home.profiles.security.age
@@ -147,23 +149,22 @@ tests.home.profiles.shell.cod
 tests.home.profiles.shell.fuzzy.fzf
 tests.home.profiles.shell.fuzzy.skim
 tests.home.profiles.shell.nushell
-tests.home.profiles.shell.prompts.powerline
-tests.home.profiles.shell.prompts.starship
 tests.home.profiles.shell.snippets.pet
 tests.home.profiles.shell.vivid
-tests.home.profiles.shell.zsh
+# tests.home.profiles.shell.zsh                     ### TODO: reenable
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
 tests.home.profiles.tools.nixTools
 tests.home.profiles.tools.sound
 tests.home.profiles.xdg
 
 
-tests.home.suites.zsh
+# tests.home.suites.zsh                             ### TODO: reenable
 
 
 ### HOSTS
 tests.hosts.test
-tests.hosts.ryzen
+# tests.hosts.nuc
+# tests.hosts.ryzen
 )
 
 for i in "${allTests[@]}"; do

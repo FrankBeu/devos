@@ -28,6 +28,6 @@ stdenv.mkDerivation rec {
     description = "kubectl-plugin for cert-manager";
     homepage    = "https://cert-manager.io/docs/usage/kubectl-plugin/";
     license     = licenses.asl20;
-    maintainers = [ fb ];
+    maintainers = with maintainers; [ fb ];
   };
 }

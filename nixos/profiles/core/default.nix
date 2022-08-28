@@ -13,11 +13,7 @@ in
     openFirewall = lib.mkDefault false;
   };
 
-  ### This is just a representation of the nix default
-  nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-
   environment = {
-
     ### Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
       binutils
@@ -50,10 +46,8 @@ in
 
   };
 
-
   fonts = {
-    fonts = with pkgs; [ powerline-fonts dejavu_fonts ];
-
+    fonts                   = with pkgs; [ powerline-fonts dejavu_fonts ];
     fontconfig.defaultFonts = {
       monospace = [ "DejaVu Sans Mono for Powerline" ];
       sansSerif = [ "DejaVu Sans"                    ];
@@ -61,28 +55,24 @@ in
   };
 
   nix = {
-    ### Improve nix store disk usage
-    autoOptimiseStore  = true;
-    gc.automatic       = true;
-    optimise.automatic = true;
-
-    ### Prevents impurities in builds
-    useSandbox = true;
-
-    ### give root and @wheel special privileges with nix
-    trustedUsers = [ "root" "@wheel" ];
-
     ### Generally useful nix option defaults
-    extraOptions = pkgs.lib.mkDefault ''
+    extraOptions       = pkgs.lib.mkDefault ''
       min-free = 536870912
       keep-outputs = true
       keep-derivations = true
       fallback = true
     '';
-
+    gc.automatic       = true;
+    optimise.automatic = true;
+    settings           = {
+      auto-optimise-store = true;                                              ### Improve nix store disk usage
+      sandbox             = true;                                              ### Prevents impurities in builds
+      system-features     = [ "nixos-test" "benchmark" "big-parallel" "kvm" ]; ### This is just a representation of the nix default
+      trusted-users       = [ "root" "@wheel" ];                               ### give root and @wheel special privileges with nix
+    };
   };
 
-  ### TODO direnv extract
+  ### TODO extract direnv
   programs.zsh = {
     enable = true;
 
@@ -92,7 +82,6 @@ in
     '';
   };
 
-  ### Service that makes Out of Memory Killer more effective
-  services.earlyoom.enable = true;
+  services.earlyoom.enable = true; ### Service that makes Out of Memory Killer more effective
 
 }

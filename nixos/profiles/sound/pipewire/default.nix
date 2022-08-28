@@ -23,7 +23,8 @@
     ### needed for osu
     pulse.enable         = true;
 
-    media-session.enable = true;
+    media-session.enable = false;
+    wireplumber.enable   = true;
 
     jack.enable          = true;
 

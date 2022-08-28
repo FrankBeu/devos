@@ -4,10 +4,7 @@
     # errcheck                                    ### error-linter https://github.com/kisielk/errcheck already included with golangci-lint
     go
     gofumpt                                     ### formatting
-    goimports                                   ### godoc, ...
-    ### TODO UPDATE
-    # gotools
-    ### TODO UPDATE-END
+    gotools                                     ### godoc, ...
     gomodifytags                                ### https://github.com/fatih/gomodifytags
     golangci-lint
     gopls
