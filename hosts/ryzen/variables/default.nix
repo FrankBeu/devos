@@ -38,5 +38,7 @@ in
     };
 
     testing.test = "TEST";   ### used in tests.nixos.modules.variables
+
+    domain = "thesym.site";
   };
 }
