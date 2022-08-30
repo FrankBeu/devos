@@ -10,6 +10,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    alsa-utils
     xorg.xkill
     xsel
     xorg.xwininfo

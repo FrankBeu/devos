@@ -5,11 +5,13 @@
 , suites
 , ...
 }:
-let hostname = nuc;
+let
+  hostname     = builtins.baseNameOf (builtins.toString ./.);
+  hostBaseName = removeSuffix "VM" hostname;
 in
 {
   imports = [
-    ../${hostname}
+    ../${hostBaseName}
   ];
 
   networking.interfaces = pkgs.lib.mkForce {} // { eth0.useDHCP = true; };
@@ -18,10 +20,10 @@ in
 
   ### TODO check
   nix.extraOptions = pkgs.lib.mkForce ''
-      min-free = 536870912
-      keep-outputs = true
-      keep-derivations = true
-    '';
+    min-free = 536870912
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   ### TODO check if the following can be used
   # virtualisation.vmVariant
@@ -31,8 +33,8 @@ in
   ### TODO extract to lib for every vm
   system.activationScripts =
     let
-      sshKey    = builtins.readFile "${self}/secrets/keys/secret/hosts/${hostname}VM/ssh_host_ed25519_key";
-      sshKeyPub = builtins.readFile "${self}/secrets/keys/secret/hosts/${hostname}VM/ssh_host_ed25519_key.pub";
+      sshKey    = builtins.readFile "${self}/secrets/keys/secret/hosts/${hostname}/ssh_host_ed25519_key";
+      sshKeyPub = builtins.readFile "${self}/secrets/keys/secret/hosts/${hostname}/ssh_host_ed25519_key.pub";
     in
     {
       "1-add-ssh-key" = {

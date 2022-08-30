@@ -1,7 +1,11 @@
 {
   boot.loader = {
-    systemd-boot.enable = true;
-    efi                 = {
+    systemd-boot = {
+      enable             = true;
+      configurationLimit = 20;
+    };
+
+    efi          = {
       canTouchEfiVariables = true;
       efiSysMountPoint     = "/boot";
     };

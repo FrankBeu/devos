@@ -11,11 +11,12 @@
       ./i3statusBar    ### == barista != i3statusRust
     ] ++ lib.optional (builtins.pathExists hostSpecificTargetFile) ./i3/hostSpecific; ### only import if the target-file exists
 
+    home.file.".local/bin/xsd"      .source = ./dotLocal/xsd;            ### bin
+    xdg.dataFile."i3/windowToAnchor".source = ./dotLocal/windowToAnchor; ### share
+
     home.file.".docLocal/content/homemanager/i3.org".text = pkgs.lib.mkDefault( pkgs.lib.mkAfter ''
       ${(builtins.readFile ./i3.org)}
     '');
-
-    xdg.dataFile."i3/windowToAnchor".source = ./SCRIPTS/windowToAnchor;
 
     xdg.configFile."i3/config".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 1
     ''

@@ -21,6 +21,9 @@ let hostname = {{HOSTNAME}};
 *** add =secrets/keys/secret/hosts/{{HOSTNAME}}VM=
 **** cf.: [[file:secrets/documentation.org.nix::*vm w/ secrets][vm w/ secrets]]
 **** create dummy
+#+BEGIN_EXAMPLE shell
+cp -r secrets/keys/secret/hosts/TEMPLATE secrets/keys/secret/hosts/{{HOSTNAME}}/
+#+END_EXAMPLE
 **** add to git
 #+BEGIN_EXAMPLE shell
 cd secrets/keys/secret/hosts/{{HOSTNAME}}/
@@ -56,7 +59,10 @@ cat ./ssh_host_ed25519_key.pub | ssh-to-age | xsel -ib
 - add =secrets/users/root/{{HOSTNAME}}VM=
 **** reEncrypt
 #+BEGIN_EXAMPLE shell
+# ??
 export PATH_TO_NEW_KEY={{PATH_TO_NEW_KEY}}
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
 sops updatekeys ./secrets/hosts/{{HOSTNAME}}/secrets.yaml
 sops updatekeys ./secrets/hosts/{{HOSTNAME}}VM/secrets.yaml
 sops updatekeys ./secrets/users/{{USERNAME}}/{{HOSTNAME}}/secrets.yaml

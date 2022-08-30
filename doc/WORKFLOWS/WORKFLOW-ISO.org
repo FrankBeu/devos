@@ -1,0 +1,19 @@
+* ISO-WORKFLOW
+** create {{.hostname}}ISO
+** create ISO
+#+BEGIN_SRC shell :results drawer
+nixos-generate -f iso --flake '.#smallISO' -o ISO/smallISO
+#+END_SRC
+#+BEGIN_SRC shell :results drawer
+nixos-generate -f iso --flake '.#stickISO' -o ISO/stickISO
+#+END_SRC
+** burn to stick
+#+BEGIN_EXAMPLE shell
+sudo dd if=./ISO/smallISO/iso/nixos.iso of=/dev/sd{{X}} bs=4M status=progress conv=fdatasync
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+sudo dd if=./ISO/stickISO/iso/nixos.iso of=/dev/sd{{X}} bs=4M status=progress conv=fdatasync
+#+END_EXAMPLE
+** do NOT commit the result located in =ISO=
+ -> may contain keys
+*** DONE gitignore

@@ -1,0 +1,13 @@
+* ATTENTION
+** paths
+*** or
+**** all paths given are relative to
+#+BEGIN_EXAMPLE nix
+${config.bud.localFlakeClone}
+#+END_EXAMPLE
+**** all paths given have to be specified with
+#+BEGIN_EXAMPLE nix
+${config.bud.localFlakeClone}
+#+END_EXAMPLE
+prepended
+***** for easier c&p

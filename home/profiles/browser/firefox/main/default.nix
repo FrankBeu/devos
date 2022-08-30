@@ -19,7 +19,8 @@ in
           "font.name.monospace.x-western"     = "Noto Sans Mono"; ### about:preferences#general::Fonts and Colors::Advanced
           "font.name.sans-serif.x-western"    = "Noto Sans";      ### about:preferences#general::Fonts and Colors::Advanced
           "font.name.serif.x-western"         = "Noto Serif";     ### about:preferences#general::Fonts and Colors::Advanced
-          "full-screen-api.ignore-widgets"    = true;             ### enable full-i3-container
+          "full-screen-api.ignore-widgets"    = true;             ### about:config; enable full-i3-container
+          "extensions.autoDisableScopes"      = 0;                ### about:config; enable all extensions automatically; https://extensionworkshop.com/documentation/enterprise/enterprise-distribution/#firefox-settings
         };
       };
     };

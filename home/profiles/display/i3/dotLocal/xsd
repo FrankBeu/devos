@@ -1,0 +1,111 @@
+#!/usr/bin/env zsh
+###
+### ---
+### name:
+###   xsd
+### abstract:
+###   "X-SingleDisplay: set rotation for a single display and disable all others"
+### usage: |
+###   xsd {d|h}[0-9]{n|i|l|r}
+###       {DisplayPort|HDMI}Number{Normal|Inverted|Left|Right}
+### info: |
+###    `man xrandr`
+###
+###
+### ---
+###
+source ${XDG_DATA_HOME}/shellColorDefinitions
+
+
+function xsd() {
+
+  ### validate DISPLAY_TYP_TARGET
+  declare -a DISPLAY_TYPES
+  DISPLAY_TYPES=(D H) ### DisplayPort,DP HDMI
+  DISPLAY_TYP_TARGET=${1:0:1:u}
+  ### get index; if nonexisting: 0
+  if [[ ${DISPLAY_TYPES[(I)${DISPLAY_TYP_TARGET}]} -lt 1 ]]
+  then
+    echo -e ""
+    echo -e "\tThe ${UB}first${NE} character has to be one of the following:"
+    echo -e "\t\t${MB}d${NE}: ${UB}DisplayPort, DP${NE}"
+    echo -e "\t\t${MB}h${NE}: ${UB}HDMI${NE}"
+    echo -e ""
+    exit 1
+  fi
+
+
+  ### validate DISPLAY_NUM_TARGET
+  DISPLAY_NUM_TARGET=${1:1:1}
+  if ! [[ "$DISPLAY_NUM_TARGET" =~ ^[0-9]$ ]]
+  then
+    echo -e ""
+    echo -e "\tThe ${UB}second${NE} character has to be a ${RB}integer${NE}:"
+    exit 1
+  fi
+
+
+  ### validate DISPLAY_ROT_TARGET
+  declare -A ROTATIONS
+  ROTATIONS=([n]="normal" [i]="inverted" [l]="left" [r]="right" )
+  DISPLAY_ROT_TARGET=${1:2:1}
+  if [[ -z ${ROTATIONS[${DISPLAY_ROT_TARGET:-argNotGiven}]} ]]
+  then
+    echo -e ""
+    echo -e "\tThe ${UB}third${NE} character has to be one of the following:"
+    for ROTATION in "${ROTATIONS[@]}"; do echo -e "\t\t•${MB}${ROTATION:0:1}${UB}${ROTATION:1}${NE}"; done
+    echo -e ""
+    exit 1
+  fi
+
+
+  ### all available displays
+  declare -a DISPLAYS_AVAILABLE
+  DISPLAYS_AVAILABLE=(`xrandr | rg '^[^ S]' | awk '{ print $1 }' | tr '\n' ' '`)
+
+
+  ### get all available display-numbers for the DISPLAY_TYP_TARGET
+  declare -a DISPLAY_NUMBERS_AVAILABLE
+  for DISPLAY in $DISPLAYS_AVAILABLE;
+  do
+    if [[ ${DISPLAY} =~ ^${DISPLAY_TYP_TARGET} ]]
+    then
+      DISPLAY_NUMBERS_AVAILABLE+=(${DISPLAY: -1})
+    fi
+  done
+
+
+  ### check if DISPLAY_NUM_TARGET exists for DISPLAY_TYP_TARGET
+  if [[ ${DISPLAY_NUMBERS_AVAILABLE[(I)${DISPLAY_NUM_TARGET}]} -lt 1 ]]
+  then
+    echo -e ""
+    echo -e "\tDisplayNumber ${UB}${DISPLAY_NUM_TARGET}${NE} is not available."
+    echo -e "\tcf.: \`${MB}xrandr${NE}\`"
+    echo -e ""
+    exit 1
+  fi
+
+
+  xrandr --display :0 --auto
+  ### disable all displays not starting with DISPLAY_TYP_TARGET and not ending with DISPLAY_NUMBER_TARGET
+  ### set primary and rotation for the target-display
+  DISABLE_COMMAND='xrandr --display :0 --output ${DISPLAY} --off'
+  ENABLE_COMMAND=' xrandr --display :0 --output ${DISPLAY} --primary --rotate ${ROTATIONS[${DISPLAY_ROT_TARGET}]}'
+  for DISPLAY in $DISPLAYS_AVAILABLE;
+  do
+    ### check if display starts with TYPE
+    if [[ ${DISPLAY} =~ ^${DISPLAY_TYP_TARGET} ]]
+    then
+      ### check if display ends with NUMBER
+      if [[ ${DISPLAY} =~ ${DISPLAY_NUM_TARGET}$ ]]
+      then
+        eval ${ENABLE_COMMAND}
+      else
+        eval ${DISABLE_COMMAND}
+      fi
+    else
+      eval ${DISABLE_COMMAND}
+    fi
+  done
+}
+xsd ${@}

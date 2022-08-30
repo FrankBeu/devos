@@ -7,6 +7,8 @@ keys:
   - &test             age1mnv9ewltq0ra0hkmekm686dk723jhnycrf4xu87pr57xcvd84a9qu3jeaj
   - &nuc              age130kfkw6t46z70sd7hl6hqa2mnprmcf4rfp4cnpajv50kusjd3vhs72a633
   - &nucVM            age180ufktjf08r9v7yy7femjysu7je29ln658rx0u7pngdkcalxz3lqxrentu
+  - &smallISO         age19gzf906vy0nh84q74wefwehwe657hv0xf46zuz8sz8574grrcq4sljljhz
+  - &stickISO         age1gyc80zpstf063n3ez9s4gsu5jfnnja8ttq47t46gdx678zgm0gdqlyp9hp
 
   ### USER            secrets/keys/public/users or SAFE
   - &frank-at-nuc     age1m06a8j9km3z9remssw370ckjzent92ujd4jh3sv7vq2d2ynfny5qm4tzwx
@@ -37,6 +39,16 @@ creation_rules:
     - age:
       - *frank-at-vmRyzen
       - *vmRyzen
+  - path_regex: secrets/hosts/stickISO/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *stickISO
+  - path_regex: secrets/hosts/smallISO/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *smallISO
   - path_regex: secrets/hosts/test/secrets.yaml$
     key_groups:
     - age:
@@ -65,6 +77,16 @@ creation_rules:
     - age:
       - *frank-at-vmRyzen
       - *vmRyzen
+  - path_regex: secrets/users/(test|root)/smallISO/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *smallISO
+  - path_regex: secrets/users/(frank|root)/stickISO/secrets.yaml$
+    key_groups:
+    - age:
+      - *frank-at-ryzen
+      - *stickISO
   - path_regex: secrets/users/(test|root)/test/secrets.yaml$
     key_groups:
     - age:
@@ -82,5 +104,7 @@ creation_rules:
       - *nucVM
       - *ryzen
       - *vmRyzen
+      - *smallISO
+      - *stickISO
       ### - *test         ### NEVER ENABLE: PUBLICLY AVAILABLE
       ### - *test-at-test ### NEVER ENABLE: PUBLICLY AVAILABLE

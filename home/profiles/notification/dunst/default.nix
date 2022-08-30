@@ -29,7 +29,8 @@
   };
 
   programs.zsh.shellGlobalAliases =  lib.mkIf nixosConfig.programs.zsh.enable {
-    FINISHED = ''&& (){ dunstify -u low "''${@}" finished. }'';### FINISHED [[OPTIONS>]<MESSAGE>] - notify when preceding command has finished
+    FIN  = ''&& (){ dunstify -u low "''${@}" finished. }''; ### FINished          [[<OPTIONS>]<MESSAGE>] - notify when preceding command has finished
+    FINC = ''&& (){ dunstify -u low "''${@}" finished. }''; ### FINished-Critical [[<OPTIONS>]<MESSAGE>] - notify when preceding command has finished with sticky notification
   };
 
 }

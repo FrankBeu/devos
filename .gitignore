@@ -11,6 +11,9 @@ pkgs/_sources/.shake*
 
 **/IGNORE/
 
+### generated isos
+ISO/**
+
 ### VM-state
 *.qcow2
 
