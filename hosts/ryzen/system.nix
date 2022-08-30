@@ -43,7 +43,7 @@ in
     profiles.k8s.k3s
     # profiles.lutris                       ### TODO
     profiles.manualActions
-    profiles.networking.dhcp
+    profiles.networking.dhcp.false
     profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure ### TODO
     profiles.security.agebox
