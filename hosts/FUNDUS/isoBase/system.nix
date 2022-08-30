@@ -15,7 +15,7 @@ in
     profiles.users.root                  ### make sure to configure ssh keys
     ### TODO
     # profiles.users.${mainUser}
-    profiles.users.nixos
+    profiles.users.test
 
     # profiles.networking
 
