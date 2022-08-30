@@ -17,27 +17,27 @@ keys:
 
 creation_rules:
   ### HOSTS
-  - path_regex: ./secrets/hosts/nuc/secrets.yaml$
+  - path_regex: secrets/hosts/nuc/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-nuc
       - *nuc
-  - path_regex: ./secrets/hosts/nucVM/secrets.yaml$
+  - path_regex: secrets/hosts/nucVM/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-nucVM
       - *nucVM
-  - path_regex: ./secrets/hosts/ryzen/secrets.yaml$
+  - path_regex: secrets/hosts/ryzen/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-ryzen
       - *ryzen
-  - path_regex: ./secrets/hosts/vmRyzen/secrets.yaml$
+  - path_regex: secrets/hosts/vmRyzen/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-vmRyzen
       - *vmRyzen
-  - path_regex: ./secrets/hosts/test/secrets.yaml$
+  - path_regex: secrets/hosts/test/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-ryzen
@@ -45,27 +45,27 @@ creation_rules:
       - *test-at-test   ### PUBLICLY AVAILABLE
 
   ### USER
-  - path_regex: ./secrets/users/(frank|root)/nuc/secrets.yaml$
+  - path_regex: secrets/users/(frank|root)/nuc/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-nuc
       - *nuc
-  - path_regex: ./secrets/users/(frank|root)/nucVM/secrets.yaml$
+  - path_regex: secrets/users/(frank|root)/nucVM/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-nucVM
       - *nucVM
-  - path_regex: ./secrets/users/(frank|root)/ryzen/secrets.yaml$
+  - path_regex: secrets/users/(frank|root)/ryzen/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-ryzen
       - *ryzen
-  - path_regex: ./secrets/users/(frank|root)/vmRyzen/secrets.yaml$
+  - path_regex: secrets/users/(frank|root)/vmRyzen/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-vmRyzen
       - *vmRyzen
-  - path_regex: ./secrets/users/(test|root)/test/secrets.yaml$
+  - path_regex: secrets/users/(test|root)/test/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-ryzen
@@ -73,7 +73,7 @@ creation_rules:
       - *test-at-test ### PUBLICLY AVAILABLE
 
   ### SHARED
-  - path_regex: ./secrets/shared/secrets.yaml$
+  - path_regex: secrets/shared/secrets.yaml$
     key_groups:
     - age:
       - *frank-at-ryzen
