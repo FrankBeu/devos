@@ -86,9 +86,24 @@ tab_width                  = unset
 trim_trailing_whitespace   = false
 
 ### filespecific
-### insert_final_newline
+[checks/lib/debugging/default.nix]
+indent_size = unset
+
+[home/profiles/shell/zsh/plugins/default.nix]
+indent_size = unset
+
+[home/profiles/tools/sound/config/ncpamixer.conf]
+indent_size = unset
+
+[nixos/profiles/display/i3/keyboard/layouts/symbols/deva]
+indent_size = unset
+
+[pkgs/_sources/**]
+indent_size          = unset
+insert_final_newline = unset
+
 [tests/home/profiles/bat/files/testFileSource.battestsyntax]
-insert_final_newline       = false
+insert_final_newline = false
 
 ### TODO doc
 ### TODO can be aligned

@@ -11,7 +11,7 @@ username       = '${username}'
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.shell.zsh"):
     SHELL = machine.succeed(f"su - {username} -c '"                                      \
                             f'echo $SHELL'\
-                             "'"                                                         )
+                            "'"                                                         )
     assert_contains(SHELL, r'/run/current-system/sw/bin/zsh')
 
     hm_bin_content = machine.succeed(f'ls {hm_profile_dir}/bin')

@@ -14,7 +14,7 @@ in
     ${home-profile-shell-fuzzy-fzf}
     ${home-profile-shell-snippets-pet}
     ${home-profile-shell-vivid}
-    ${home-profile-shell-zsh}                ### depends on nixos.profiles.shell.zsh
-                                             ### prompts:   nixos.profiles.shell.prompts
+    ${home-profile-shell-zsh}               ### depends on nixos.profiles.shell.zsh
+                                            ### prompts:   nixos.profiles.shell.prompts
   '';
 }

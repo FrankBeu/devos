@@ -12,7 +12,7 @@ let
       machine = { suites, profiles, variables, ... }:
       {
         imports = [
-         ./testPreparation.nix
+          ./testPreparation.nix
 
           profiles.security.sopsNix
         ] ++

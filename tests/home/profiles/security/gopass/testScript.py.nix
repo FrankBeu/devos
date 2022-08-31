@@ -47,10 +47,10 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.gopass::manualActions"):
     manualActions = machine.succeed(f'cat /home/{username}/.manualActions/manualActions.org')
-    assert_contains(manualActions, '** gopass\n'     \
-                                   '*** TODO setup\n'\
-                                   '***** from SAFE' )
-                                   ### mind the trailing \n
+    assert_contains(manualActions,  '** gopass\n'     \
+                                    '*** TODO setup\n'\
+                                    '***** from SAFE' )
+                                    ### mind the trailing \n
 ''
 
 # Local Variables:
