@@ -1,3 +1,4 @@
+" -*- default-input-method: "cyrillic-jis-russian"; -*-
 """
 ""
 " * TIDACTYLRC
@@ -281,7 +282,8 @@ bind H!C hint -!bf Comments """" -!bf opens in background tabs all visible links
 ""
 " ** SEARCH
 "    USAGE: (w|t) <searchString>
-"    USAGE: (о|б) <searchString> (Окно|Вкладка): определять(define);переводить(translate)
+"    USAGE: (о|б) <searchString> (Окно|Вкладка)
+" *** INFO
 "
 set searchurls.a  https://wiki.archlinux.org/index.php?title=Special%3ASearch&profile=default&fulltext=1&search=%s
 set searchurls.ap https://archlinux.org/packages/?q=%s
@@ -300,7 +302,29 @@ set searchurls.t  https://translate.google.com/#view=home&op=translate&sl=auto&t
 set searchurls.п  https://translate.google.com/?sl=ru&tl=en&text=%s&op=translate
 set searchurls.w  https://en.wikipedia.org/w/index.php?search=%s
 set searchurls.wy https://en.wiktionary.org/wiki/?search=%s
+set searchurls.в  https://ru.wikipedia.org/w/index.php?search=%s
+set searchurls.вс https://ru.wiktionary.org/wiki/?search=%s
 set searchurls.y  https://www.youtube.com/results?search_query=%s
+""" a   Archlinux
+""" ap  ArchlinuxPackages
+""" d   googleDefine
+""" о   Определять (define)
+""" f   githubFlutter
+""" g   Google
+""" hd  gitHub-extension-Dart
+""" hg  gitHub-extension-Go
+""" hn  gitHub-extension-Nix
+""" m   googleMaps
+""" np  NixPackages
+""" no  NixOptions
+""" p   Pub
+""" t   Translate
+""" п   Переводить (translate)
+""" w   Wiki
+""" wy  WiktionarY
+""" в   Википедия
+""" вс  ВикиСловарь
+""" y   Youtube
 """
 ""
 " ** QUICKMARKS
@@ -313,6 +337,7 @@ quickmark d https://dart.dev/
 quickmark f https://api.flutter.dev/
 quickmark g https://go.dev/blog/
 quickmark i https://fonts.google.com/icons?selected=Material+Icons
+quickmark j https://nix.dev/
 quickmark k https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/
 quickmark l https://filiale.kaufland.de/prospekte.html
 quickmark m https://mail.google.com/mail/u/0/#inbox
@@ -342,7 +367,6 @@ quickmark X https://c.xkcd.com/random/comic/
 " quickmark e
 " quickmark h
 " quickmark i https://api.flutter.dev/flutter/material/Icons-class.html
-" quickmark j
 " quickmark q
 " quickmark u
 
