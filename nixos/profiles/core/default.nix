@@ -62,7 +62,13 @@ in
       keep-derivations = true
       fallback = true
     '';
-    gc.automatic       = true;
+
+    gc = {
+      automatic  = true;
+      persistent = true;
+      dates      = "weekly";
+    };
+
     optimise.automatic = true;
     settings           = {
       auto-optimise-store = true;                                              ### Improve nix store disk usage
