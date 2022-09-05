@@ -28,6 +28,11 @@ in {
           output      = "none";
         }
         {
+          command     = "vim '+call cursor(LINE, COLUMN) FILENAME'";
+          description = "vim:      Open file with cursor at position     ";
+          output      = "editor";
+        }
+        {
           command     = "VBoxManage controlvm Kali-Linux-2020.4-vbox-amd64 pause";
           description = "vbox:     Kali pause                            ";
           output      = "stopped machine";
@@ -113,9 +118,19 @@ in {
           output      = "match";
         }
         {
+          command     = "GOPASS_DEBUG_LOG=~/TMP/gopass.log gopass";
+          description = "gopass:   Run with logfile                      ";
+          output      = "log";
+        }
+        {
           command     = "git rev-list --count HEAD";
           description = "git:      Count commits in the current branch   ";
           output      = "int";
+        }
+        {
+          command     = "e +4:4 FILENAME";
+          description = "emacs:    Open file with cursor at position     ";
+          output      = "window";
         }
         {
           command     = "dig TXT +short o-o.myaddr.l.google.com @ns1.google.com";

@@ -8,6 +8,7 @@
     ./dart
     ./flutter
     ./navigation
+    ./nix
   ];
 
   ### TODO split
@@ -53,25 +54,6 @@
 
         ### internet ip
         myip = ''dig +short myip.opendns.com @208.67.222.222 2>&1'';
-
-
-        ### nix
-        n    =        ''nix''                                                      ;
-        np   =        ''n  profile''                                               ;
-        npi  =        ''np install''                                               ;
-        npr  =        ''np remove''                                                ;### Nix Profile Remove
-        ns   =        ''n  search --no-update-lock-file''                          ;
-        nf   =        ''n  flake''                                                 ;
-        nl   =        ''n  log''                                                   ;
-        nr   =        ''n  repl''                                                  ;### Nix Repl
-        nrpk =        ''n  repl "<nixpkgs>"''                                      ;### Nix Repl PacKages
-        nrfl =        ''n  repl flake.nix''                                        ;### Nix Repl FLake
-        srch =        ''ns nixos''                                                 ;### nix SeaRCH
-        orch =        ''ns override''                                              ;### nix search Override [seaRCH]
-        nrb  = ifSudo ''sudo nixos-rebuild''                                       ;
-        mn   = ''
-          manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
-        '';
 
 
         ### help / documentation
