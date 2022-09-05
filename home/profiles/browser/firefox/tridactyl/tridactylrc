@@ -347,7 +347,8 @@ quickmark p https://nixos.org/manual/nixpkgs/unstable/
 quickmark r https://totale.rosettastone.com/plan
 quickmark s https://spiegel.de/
 quickmark t https://api.dart.dev/stable/2.16.0/index.html
-quickmark v https://devos.divnix.com/
+" quickmark v https://devos.divnix.com/
+quickmark v https://digga.divnix.com/
 quickmark w https://www.google.com/search?client=firefox-b-d&q=wetter+aldingen+remseck
 quickmark u https://docs.flutter.dev/
 quickmark x https://scrumguides.org/scrum-guide.html
