@@ -27,8 +27,9 @@ in
     profiles.console
     profiles.currentSystemPackages
     profiles.documentation
-    profiles.domain.kubeProxy
-    profiles.domain.variable
+    profiles.domain.variable.dev
+    profiles.domain.variable.stage
+    # profiles.domain.variable.prod
     profiles.editor.emacs
     profiles.editor.vim
     profiles.filemanager.ranger

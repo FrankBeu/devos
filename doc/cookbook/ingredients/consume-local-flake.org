@@ -1,0 +1,31 @@
+* consume local flake
+** =flake.nix=
+#+BEGIN_EXAMPLE nix
+### ...
+inputs = {
+  domainTestServer = {
+    url = path:pkgs/sourcesLocal/domainTestServer;
+    inputs = {
+      nixpkgs.follows = "latest";
+    };
+  };
+};
+### ...
+#+END_EXAMPLE
+** profile
+#+BEGIN_EXAMPLE nix
+{ inputs
+, pkgs
+, ...
+}:
+let
+  domainTestServer = inputs.domainTestServer.defaultPackage.${pkgs.system};
+in
+{
+  environment.systemPackages = [
+    domainTestServer
+  ];
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify

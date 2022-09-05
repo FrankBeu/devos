@@ -15,6 +15,12 @@ let
   defaultBrowser = hostVariables.users.${username}.defaultBrowser;
 
 
+  ### nixos.profiles.domain.variable
+  ### TODO create module
+  domainVariableDEV   = rec {port = 32080; variant =   "dev"; subDomain =   "dev.${hostVariables.domain}";};
+  domainVariableSTAGE = rec {port = 31080; variant = "stage"; subDomain = "stage.${hostVariables.domain}";};
+  # domainVariablePROD  = rec {port = 30080; variant =  "prod"; subDomain =       "${hostVariables.domain}";};
+
 
   ### TODO call directly in test: only one statment to handle
   bud-nuke                                = (import                 ../../bud/nuke/testScript.py.nix                                    {inherit        username;       });
@@ -49,7 +55,7 @@ let
   nixos-profiles-tools-gotask             = readFile                ../../nixos/profiles/tools/gotask/testScript.py;
   nixos-profiles-tools-gpu                = readFile                ../../nixos/profiles/tools/gpu/testScript.py;
   nixos-profiles-tools-gucharmap          = readFile                ../../nixos/profiles/tools/gucharmap/testScript.py;
-  nixos-profiles-tools-inkscape           = (import                 ../../nixos/profiles/tools/inkscape testScript.py.nix               {});
+  nixos-profiles-tools-inkscape           = (import                 ../../nixos/profiles/tools/inkscape/testScript.py.nix               {});
   nixos-profiles-tools-less               = readFile                ../../nixos/profiles/tools/less/testScript.py;
   nixos-profiles-tools-lsof               = readFile                ../../nixos/profiles/tools/lsof/testScript.py;
   nixos-profiles-tools-network            = readFile                ../../nixos/profiles/tools/network/testScript.py;
@@ -139,6 +145,12 @@ let
           ### preparationScripts
           ../../nixos/profiles/security/sopsNix/testPreparation.nix
           ### TODO check if all systemd.tmpfiles can also be just imported -> check host~ and standalone~tests
+
+          ### nixos.profiles.domain.variable create testserver as long as the kube is without declarative setup
+          (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableDEV)   port variant;})
+          (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableSTAGE) port variant;})
+          # (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariablePROD)  port variant;})
+
         ];
 
         variables = {
@@ -201,6 +213,9 @@ let
 
 
         ${nixos-profiles-curSysPkgs}
+        ${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariableDEV)   port subDomain variant; })}     ### DEV
+        ${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariableSTAGE) port subDomain variant; })}     ### STAGE
+        # ''${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariablePROD)  port subDomain variant; })} ### PROD
         ${nixos-profiles-editor-vim}
         ${nixos-profiles-fonts}
         ${nixos-profiles-imageCommon}

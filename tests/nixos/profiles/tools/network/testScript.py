@@ -13,3 +13,6 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
     sw_bin_content = machine.succeed('ls /run/current-system/sw/bin/')
     assert_contains_line(sw_bin_content, 'drill')
+
+    sw_bin_content = machine.succeed('ls /run/current-system/sw/bin/')
+    assert_contains_line(sw_bin_content, 'domainTestServer')

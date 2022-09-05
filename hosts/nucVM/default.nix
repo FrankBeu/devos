@@ -7,7 +7,7 @@
 }:
 let
   hostname     = builtins.baseNameOf (builtins.toString ./.);
-  hostBaseName = removeSuffix "VM" hostname;
+  hostBaseName = lib.removeSuffix "VM" hostname;
 in
 {
   imports = [

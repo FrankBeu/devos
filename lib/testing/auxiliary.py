@@ -1,6 +1,11 @@
+import importlib
 import os.path
 import re
+import sys
+from pprint import pprint
+from typing import Any
 from typing import List
+
 
 def assert_contains(haystack: str, needle: str) -> None:
     if needle not in haystack:
@@ -217,5 +222,31 @@ def ensure_dotLocal_header(filename: str, dotLocal_location: str) -> None:
             #         return ""
             #     case _:
                 #         break
+
+
+def import_via_globals(module_name: str) -> None:
+    '''
+    import_via_globals adds a module_name to globals()
+    Host-test can be composed of multiple test.py-files.
+    In order to prevent any ImportErrors packages may only be imported,
+    if they are not already available.
+    USAGE:
+    After calling the function, assign the global to a local variable:
+    module_name = '{{MODULE_NAME}}'
+    import_via_globals(module_name)
+    {{MODULE_NAME}} = globals()[module_name]
+    '''
+
+    if module_name not in sys.modules:
+        globals()[module_name] = importlib.import_module(module_name)
+
+
+def dump_object(object: Any) -> None:
+    '''
+    dump_object pretty-prints an arbitrary object
+    '''
+    pprint(vars(object))
+
+
 
 ### TODO: make machine available via shell.nix: extra sources nixos-tests for lsp

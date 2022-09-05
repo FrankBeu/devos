@@ -3,7 +3,7 @@
 ###       here: order can be easily specified
 ###       here: name can easily be copied
 ###       here: shows missing/disabled tests
-### ATTENTION: switch after update
+### ATTENTION: update requires `direnv reload`
 cd ${FLAKEROOT}
 
 
@@ -38,7 +38,9 @@ tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar
 # tests.nixos.profiles.domain.local                 ### TODO: reenable
 tests.nixos.profiles.domain.server
-tests.nixos.profiles.domain.variable
+tests.nixos.profiles.domain.variable.dev
+tests.nixos.profiles.domain.variable.stage
+tests.nixos.profiles.domain.variable.prod
 tests.nixos.profiles.editor.emacs
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger

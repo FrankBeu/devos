@@ -217,6 +217,23 @@
         "type": "github"
       }
     },
+    "domainTestServer": {
+      "inputs": {
+        "nixpkgs": [
+          "latest"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-xGU3FdnmvaXWqs6yU4SjrP/Fbdwu3BUrFW8Q04eqxiQ=",
+        "path": "pkgs/sourcesLocal/domainTestServer",
+        "type": "path"
+      },
+      "original": {
+        "path": "pkgs/sourcesLocal/domainTestServer",
+        "type": "path"
+      }
+    },
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -246,7 +263,7 @@
       },
       "locked": {
         "lastModified": 1660670757,
-        "narHash": "sha256-OWZ4MgUnXQYuo8W2+1Uo3hzKly/XPvvfUIR1lZATXbw=",
+        "narHash": "sha256-gzqIc7WnNoTioKJ6IYlSJQkI6yfNWDpB2prYaX5VmpE=",
         "type": "git",
         "url": "file:///home/frank/DEVOSEMACS"
       },
@@ -731,6 +748,7 @@
         "darwin": "darwin",
         "deploy": "deploy",
         "digga": "digga",
+        "domainTestServer": "domainTestServer",
         "emacsFlake": "emacsFlake",
         "fenix": "fenix",
         "home": "home",

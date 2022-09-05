@@ -124,6 +124,13 @@
       };
     };
 
+    domainTestServer = {
+      url = path:pkgs/sourcesLocal/domainTestServer;
+      inputs = {
+        nixpkgs.follows = "latest";
+      };
+    };
+
   };
 
   outputs =
