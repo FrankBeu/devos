@@ -1,9 +1,10 @@
-{ username }:
+{ username, variant }:
 ''
 machine.wait_for_unit("multi-user.target")
 
+variant = "${variant}"
 
-with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.variantstest"):
+with subtest(f"▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.nixos.profiles.variantstest.{variant}"):
 
 ''
 

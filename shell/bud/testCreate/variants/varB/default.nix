@@ -1,12 +1,12 @@
 { self, mkTest, testHelpers, ... }:
 let
-  ### TODO variantSpecific settings
+  variantSpecifics  = {
+    variant = "varB";
+    ### TODO variantSpecific settings
+  };
 
   name   = with builtins; baseNameOf (toString ./.);
-  shared = (import ../shared/test.nix {
-    inherit mkTest name self testHelpers
-    ### TODO forward variantSpecific settings
-    ;});
+  shared = (import ../shared/test.nix { inherit mkTest name self testHelpers variantSpecifics; });
 in
 with shared;
 {

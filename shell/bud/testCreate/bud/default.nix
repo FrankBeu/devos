@@ -10,6 +10,7 @@ let
   budDir   = "/home/${username}/DEVOS";
 
   test = {
+    # extraPythonPackages = p: [];
     nodes = {
       machine = { suites, profiles, variables, ... }:
       {

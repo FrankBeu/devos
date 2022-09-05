@@ -2,14 +2,20 @@
 , name
 , self
 , testHelpers
-### TODO forwarded variantSpecific settings
+, variantSpecifics
 , ...
 }:
 let
   host     = self.nixosConfigurations.test;
   username = host.config.variables.testing.user.name;
 
+  inherit (variantSpecifics)
+    variant
+    ### TODO variantSpecific-settings
+  ;
+
   test = {
+    # extraPythonPackages = p: [];
     nodes = {
       machine = { suites, profiles, variables, ... }:
       {
@@ -49,7 +55,7 @@ let
       name = self.inputs.latest.lib.toUpper name;
   };
 
-  testScriptExternal = (import ./testScript.py.nix {inherit username;});
+  testScriptExternal = (import ./testScript.py.nix {inherit username variant;});
 in
 {
   inherit host test;

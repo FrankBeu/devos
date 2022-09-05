@@ -8,6 +8,7 @@ let
   username = host.config.variables.testing.user.name;
 
   test = {
+    # extraPythonPackages = p: [];
     nodes = {
       machine = { suites, profiles, variables, ... }:
       {
