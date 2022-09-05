@@ -15,6 +15,6 @@
 ### ---
 ###
 function rgf () {
-    "/run/current-system/sw/bin/rg" -p $@ $(pwd) | $PAGER
+    "/run/current-system/sw/bin/rg" -p $@ | $PAGER
 }
 rgf ${@};
