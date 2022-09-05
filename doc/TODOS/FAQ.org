@@ -1,0 +1,32 @@
+* FAQ
+** what is the =SUPER= -key
+- could be the =Windows-key= or the =Command-key=
+- just try all the =MODIFIERS:= \\
+    hold a =MODIFIER= and press =SPACE= \\
+    if a terminal opens you have found your =SUPER= -key
+- it is used to control
+  - the *window-manager*
+  - the *application-launcher*
+       (=SUPER+COMMA=)
+  - the *notification-center*
+       (=SUPER+M=)
+  - could act as *fileopener*
+       (=SUPER+SLASH=)
+  - *screenshots*
+       (=SUPER+DOT=)
+  - ...
+** how to open a terminal
+- press =SUPER+SPACE= or =SUPER+ENTER=
+** how to start a specific program
+- press =SUPER+COMMA SUPER+COMMA=
+- enter the program name
+- navigate with  =SUPER+K= and =SUPER+K=
+- launch with =ENTER= or =SUPER+SEMICOLON=
+** how to get help / open the documentation
+- press =SUPER+F1= \\
+** how to shutdown the computer
+- press =SUPER+COMMA= =SUPER+Y= \\
+- choose *Shut down*
+- press =ENTER= or =SUPER+SEMICOLON=
+** *TODOS*
+*** TODO create this file dynamically from module
