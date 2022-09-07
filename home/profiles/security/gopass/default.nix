@@ -23,53 +23,6 @@ in
       pinentry-gnome           ### needed for browser; needs nixos.profiles.gopassDependency
     ];
 
-    ### TODO
-    ### config
-    file.".config/gopass/config.yml"               .text = (import ./gopass/config.nix { inherit username; });
-    ### DOC
-    file.".docLocal/content/homemanager/gopass.org".text = (import ./gopass.org        { useremail = variables.users.${username}.email; });
-    ### TODO WORKAROUND till age-ssh-agent-alike available
-    file.".local/bin/gopb".source = ./gopass/gopb;
-    ### gopass-bridge
-    ### TODO after age ssh-agent-alike
-    # file.".config/gopass/gopass_wrapper.sh"        .source = ./gopass/gopass_wrapper.sh;
-    ### gopass-jsonapi firefox
-    ### check: gopass-jsonapi configure --print
-    ### TODO after age ssh-agent-alike
-    # file.".mozilla/native-messaging-hosts/com.justwatch.gopass.json".text = ''
-      # {
-      # "name":        "com.justwatch.gopass",
-      # "description": "Gopass wrapper to search and return passwords",
-      # "path":        "/home/${username}/.config/gopass/gopass_wrapper.sh",
-      # "type":        "stdio",
-      # "allowed_extensions": [
-      # "{eec37db0-22ad-4bf1-9068-5ae08df8c7e9}"
-      # ]
-      # }
-    # '';
-
-    ### gopass-jsonapi chromium
-    ### check: gopass-jsonapi configure --print
-    ### TODO after age ssh-agent-alike
-    # file.".config/chromium/NativeMessagingHosts/com.justwatch.gopass.json".text = ''
-    #   {
-    #   "name":        "com.justwatch.gopass",
-    #   "description": "Gopass wrapper to search and return passwords",
-    #   "path":        "/home/${username}/.config/gopass/gopass_wrapper.sh",
-    #   "type":        "stdio",
-    #   "allowed_origins": [
-    #   "chrome-extension://kkhfnlkhiapbiehimabddjbimfaijdhk/"
-    #   ]
-    #   }
-    # '';
-
-    ### manualActions
-    file.".manualActions/manualActions.org".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 70 ''
-      ** gopass
-      *** TODO setup
-      ***** from SAFE
-      - =~/.config/gopass/age-keyring.age=
-      - =~/.local/share/gopass/stores='');
     sessionVariables = {
       GPG_TTY = "$(tty)";
     };
@@ -114,6 +67,49 @@ in
         goph     = ''(){ gopass help ''${1} BTMN ;}'';  ### Help       Shows a list of commands or help for one command
         ### gopb -> dotLocal
       };
+
+    ### config
+    file.".config/gopass/config.yml"               .text = (import ./gopass/config.nix { inherit username; });
+    ### DOC
+    file.".docLocal/content/homemanager/gopass.org".text = (import ./gopass.org        { useremail = variables.users.${username}.email; });
+    ### gopass-bridge
+    file.".config/gopass/gopass_wrapper.sh"        .source = ./gopass/gopass_wrapper.sh;
+    ### `gopass-jsonapi firefox`
+    ### check: `gopass-jsonapi configure --print`
+    file.".mozilla/native-messaging-hosts/com.justwatch.gopass.json".text = ''
+      {
+          "name":        "com.justwatch.gopass",
+          "description": "Gopass wrapper to search and return passwords",
+          "path":        "/home/${username}/.config/gopass/gopass_wrapper.sh",
+          "type":        "stdio",
+          "allowed_extensions": [
+              "{eec37db0-22ad-4bf1-9068-5ae08df8c7e9}"
+          ]
+      }
+    '';
+
+    ### `gopass-jsonapi chromium`
+    ### check: `gopass-jsonapi configure --print`
+    file.".config/chromium/NativeMessagingHosts/com.justwatch.gopass.json".text = ''
+      {
+          "name":        "com.justwatch.gopass",
+          "description": "Gopass wrapper to search and return passwords",
+          "path":        "/home/${username}/.config/gopass/gopass_wrapper.sh",
+          "type":        "stdio",
+          "allowed_origins": [
+              "chrome-extension://kkhfnlkhiapbiehimabddjbimfaijdhk/"
+          ]
+      }
+    '';
+
+    ### manualActions
+    file.".manualActions/manualActions.org".text = pkgs.lib.mkDefault( pkgs.lib.mkOrder 70 ''
+      ** gopass
+      *** TODO setup
+      ***** from SAFE
+      - =~/.config/gopass/age-keyring.age=
+      - =~/.local/share/gopass/stores='');
+
   };
 
   programs = {
@@ -165,6 +161,6 @@ in
 # scp -rP <PORT> <USER>@<IP>:/home/<USER>/<EMAIL>.pub.asc /home/<USER>/<EMAIL>.pub.asc
 # #+end_src
 # *** import
-# #+begin_src shell :results drawer
-# gpg --import <EMAIL>.pub.asc
-# #+end_src'');
+  # #+begin_src shell :results drawer
+  # gpg --import <EMAIL>.pub.asc
+  # #+end_src'');
