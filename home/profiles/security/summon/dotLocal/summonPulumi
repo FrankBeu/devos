@@ -14,9 +14,14 @@
 ###
 ### ---
 ###
-#
 function summonPulumi() {
-    ENV=${1}
-    PULUMI_ARGS=${@:2}
-    summon --up -e ${ENV} zsh -c "pulumi ${PULUMI_ARGS}"
+  ENV=${1}
+  PULUMI_ARGS=${@:2}
+  summon                                                                   \
+    --provider /etc/profiles/per-user/${USER}/bin/gopass-summon-provider   \
+    --up                                                                   \
+    --environment ${ENV}                                                   \
+    zsh -c "pulumi ${PULUMI_ARGS}"
 }
+
+summonPulumi "${@}"

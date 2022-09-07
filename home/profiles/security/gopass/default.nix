@@ -20,6 +20,7 @@ in
       gopass-jsonapi           ### https://github.com/gopasspw/gopass-jsonapi
       git-credential-gopass    ### https://github.com/gopasspw/git-credential-gopass
       xdotool                  ### TODO conditional import; why is this needed after all
+      pinentry-gnome           ### needed for browser; needs nixos.profiles.gopassDependency
     ];
 
     ### TODO
@@ -69,6 +70,9 @@ in
       ***** from SAFE
       - =~/.config/gopass/age-keyring.age=
       - =~/.local/share/gopass/stores='');
+    sessionVariables = {
+      GPG_TTY = "$(tty)";
+    };
 
     shellAliases =
       let

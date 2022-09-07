@@ -1,14 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-if [ -f ~/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-	source ~/.gpg-agent-info
-	export GPG_AGENT_INFO
-else
-	eval $(gpg-agent --daemon)
-fi
+export PATH="$PATH:$HOME/.nix-profile/bin"
 
 export GPG_TTY="$(tty)"
 
-~/.nix-profile/bin/.gopass-jsonapi-wrapped listen
+/etc/profiles/per-user/${USER}/bin/gopass-jsonapi listen
 
 exit $?

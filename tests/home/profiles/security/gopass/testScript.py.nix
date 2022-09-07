@@ -14,6 +14,7 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     assert_contains_line(hm_bin_content, 'gopass-jsonapi')
     assert_contains_line(hm_bin_content, 'git-credential-gopass')
     assert_contains_line(hm_bin_content, 'xdotool')
+    assert_contains_line(hm_bin_content, 'pinentry')
 
 
 
@@ -32,12 +33,6 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 
 
-with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.gopass::docLocal"):
-    machine.succeed(f'[[ -s /home/{username}/.local/bin/gopb ]]')
-
-
-
-
 with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.gopass::i3config"):
     i3config = machine.succeed(f'cat /home/{username}/.config/i3/config')
     assert_contains(i3config, 'for_window [class="gopass"]')
@@ -51,6 +46,16 @@ with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
                                     '*** TODO setup\n'\
                                     '***** from SAFE' )
                                     ### mind the trailing \n
+
+
+
+
+### TODO pinentry-gnome depends on nixos.profiles.security.gopassDependency check if working
+with subtest("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ tests.home.profiles.security.gopass::retrieve"):
+
+
+
+
 ''
 
 # Local Variables:

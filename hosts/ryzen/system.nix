@@ -49,6 +49,7 @@ in
     # profiles.networking.nameserver.secure ### TODO
     profiles.security.agebox
     profiles.security.sopsNix
+    profiles.security.gopassDependency
     # profiles.services.pipewire            ### TODO
     # profiles.services.printing            ### TODO
     profiles.services.ssh

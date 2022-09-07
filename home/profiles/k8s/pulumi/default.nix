@@ -11,10 +11,16 @@ in
     ];
 
     shellAliases = {
-      p     = ''summonPulumi dev'';
+      p     = ''summonPulumi dev''  ;
       pS    = ''summonPulumi stage'';
-      pPROD = ''summonPulumi prod'';
+      pPROD = ''summonPulumi prod'' ;
+      pl    = ''pulumi login file://$XDG_STATE_HOME/pulumi'';
     };
+
+    sessionVariables = {
+      PULUMI_SKIP_UPDATE_CHECK = "true";
+    };
+
   };
 
   ### $XDG_STATE_HOME is not available; hm: config.xdg.stateHome is not implemented

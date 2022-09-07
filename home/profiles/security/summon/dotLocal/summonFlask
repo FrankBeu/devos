@@ -15,7 +15,13 @@
 ### ---
 ###
 function summonFlask() {
-    ENV=${1}
-    # FLASK_ARGS=${@:2}
-    summon --up -e ${ENV} bash -c 'flask run --host="::" --port=8080'
+  ENV=${1}
+  # FLASK_ARGS=${@:2}
+  summon                                                                   \
+    --provider /etc/profiles/per-user/${USER}/bin/gopass-summon-provider   \
+    --up                                                                   \
+    --environment ${ENV}                                                   \
+    bash -c 'flask run --host="::" --port=8080'
 }
+
+summonFlask "${@}"

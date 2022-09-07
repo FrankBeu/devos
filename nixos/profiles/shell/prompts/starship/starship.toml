@@ -3,6 +3,7 @@
 ### Icons can be found at
 ### https://www.nerdfonts.com/
 ### https://www.nerdfonts.com/cheat-sheet
+### https://brandcolors.net/
 
 ### https://starship.rs/config/#custom-commands
 
@@ -13,11 +14,16 @@
 # add_newline = false
 add_newline = true
 
+
+### arrow-within: [](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347)
+
+
 ### Order of modules on prompt
 # format = """[](bg:#464347 fg:#AFD700)\
 format = """$username\
         $hostname\
         $directory\
+        $kubernetes\
         $docker_context\
 	${custom.docker}\
 	${custom.giturl}\
@@ -193,7 +199,9 @@ format	= "[[](bg:#96ab5f fg:#464347) $output [](bg:#464347 fg:#96ab5f)]($s
 
 
 [dart]
-###  BRAND: https://dart.dev/brand #13B9FD #02569B
+### BRAND: https://dart.dev/brand
+### #13B9FD
+### #02569B
 symbol			= " "
 style			= "bg:#02569B fg:#EEEEEE"
 detect_extensions	= ["dart"]
@@ -327,11 +335,13 @@ format		= "([[](bg:#E0B25D fg:#464347) $diverged$stashed$staged$modified$rena
 
 
 [golang]
+### BRAND: https://go.dev/assets/go-brand-book-v1.9.5.pdf
+### #00ADD8
 # disabled	= true
 symbol		= "🐹 "
 
-style		= "bg:#7FD5EA fg:#111111"
-format		= "[[](bg:#7FD5EA fg:#464347) $symbol$version[](bg:#464347 fg:#7FD5EA)]($style)"
+style		= "bg:#00ADD8 fg:#111111"
+format		= "[[](bg:#00ADD8 fg:#464347) [$symbol](bg:#00ADD8 fg:#EEEEEE)$version[](bg:#464347 fg:#00ADD8)]($style)"
 
 
 [hostname]
@@ -355,6 +365,27 @@ format		= "[$symbol$number ]($style)"
 symbol		= " "
 style		= "bg:#4063D8 fg:#EEEEEE"
 format		= "[[](bg:#4063D8 fg:#464347) $symbol$version[](bg:#464347 fg:#4063D8)]($style)"
+
+### BRAND: https://cncf-branding.netlify.app/projects/kubernetes/
+### k8s primary #326ce5
+[kubernetes]
+disabled               = false
+# symbol               = "⛵ "
+# symbol               = "ﴱ "
+symbol                 = "☸ "
+style                  = "bg:#326ce5 fg:#EEEEEE"
+### ┌── context namespace
+format                 = "[[](bg:#326ce5 fg:#464347) $symbol[](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347) $context [](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347) $namespace [](bg:#464347 fg:#326ce5)]($style)"
+### ┌── user context namespace
+# format               = "[[](bg:#326ce5 fg:#464347) $symbol[](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347) $user [](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347) $context [](bg:#464347 fg:#326ce5)[](bg:#326ce5 fg:#464347) $namespace [](bg:#464347 fg:#326ce5)]($style)"
+###                     | SYMBOL                                                                               | USER                                                     | CONTEXT                                                     | NAMESPACE
+### ┌── oneSegment: user@context@namespace
+# format               = "[[](bg:#326ce5 fg:#464347) $symbol $user@$context@$namespace [](bg:#464347 fg:#326ce5)]($style)"
+[kubernetes.context_aliases]
+"k3d-kube-dev"         = "dev"
+"k3d-kube-stage"       = "stage"
+[kubernetes.user_aliases]
+"admin@k3d-kube-.*"    = "admin"
 
 
 [memory_usage]

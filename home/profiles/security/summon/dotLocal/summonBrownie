@@ -15,7 +15,13 @@
 ### ---
 ###
 function summonBrownie() {
-    ENV=${1}
-    BROWNIE_ARGS=${@:2}
-    summon --up -e ${ENV} bash -c 'brownie '${BROWNIE_ARGS}' --network ${BROWNIE_NETWORK}'
+  ENV=${1}
+  BROWNIE_ARGS=${@:2}
+  summon                                                                   \
+    --provider /etc/profiles/per-user/${USER}/bin/gopass-summon-provider   \
+    --up                                                                   \
+    --environment ${ENV}                                                   \
+    bash -c 'brownie '${BROWNIE_ARGS}' --network ${BROWNIE_NETWORK}'
 }
+
+summonBrownie "${@}"

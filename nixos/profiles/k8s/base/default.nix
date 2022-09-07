@@ -15,7 +15,7 @@
       ###
       ### PLUGINS
       ### https://github.com/ishantanu/awesome-kubectl-plugins
-      ### NeverEver use a plugin manager: krew
+      ### NeverEver use a plugin manager: e.g. krew
       kubectl-cert-manager
       kubectl-doctor
       kubectl-example
@@ -31,23 +31,17 @@
     shellAliases = {
       ### TODO check if aliases are sufficient
       ### kubectl = ''kubecolor'' ;
-      ktx  = ''kubectx''                   ;
-      kns  = ''kubens''                    ;
+      ktx     = ''kubectx''                   ;
+      kns     = ''kubens''                    ;
 
-      kci  = ''kubectl cluster-info''      ;
-      kcid = ''kubectl cluster-info dump'' ;
-      # kcid = ''kubectl cluster-info dump lpj'' ;
+      kci     = ''kubectl cluster-info''      ;
+      kcid    = ''kubectl cluster-info dump'' ;
+
+      kgimguc = ''kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq --count'';### KubectlGetIMaGesUsedClusterwide
+      kgnstl  = ''kubectl get ns -o jsonpath='{range .items[*]}{..tier}{"\n"}{end}' | sort -u''                               ;### KubectlGetNameSpacesTierLabels
     }                                                //
     (import ./aliases/generated_kubectl_aliases.nix) //
     (import ./aliases/generated_kbcolor_aliases.nix) //
     {};
   };
-
-  ### TODO
-  # programs.zsh.initExtra = ''
-  #   compdef kubecolor=kubectl
-  # '';
-
-  # global
-  # g coya=" | yq . -y |cat -plyaml";
 }
