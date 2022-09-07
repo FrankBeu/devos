@@ -1,0 +1,20 @@
+* tests
+** ATTENTION
+*** never try to use python on the host
+- python acts on the driverLayer
+- use ~machine.exec()...~
+- e.g. ~request.get()~ will be executed on the host (DNS); use ~machine.exec('curl...')~
+** IDEAS
+*** use python as testLang on SUT
+- write pythonScript
+- transfer it to the SUT (in =default.nix=)
+- exec it with ~machine.succeed('python TEST')~
+- needs python to be available on SUT
+** DEBUG
+*** view actual used sources for python-tests
+- open repl: =nr=
+- load flake: ~:lf ./.~
+- open a dirview: ~:e nixosConfigurations.NixOS.pkgs.path~
+- navigate to:
+  - =nixos/tests/make-test-python.nix=
+  - =nixos/lib/testing-python.nix=

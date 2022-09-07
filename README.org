@@ -10,10 +10,10 @@ test-driven dynamically-themed well-documented host-development
 **** TODO GPU-passthru is required for graphical host-tests
 *** TODO dynamicTheme
 - ~bud theme {dracula,gruvbox,...}~
-- automagically all (WIP)  programs change their appearance
+- ... and automagically all (WIP) programs change their appearance...
 *** WIP doc.local
 - a documentation-server
-- displays only the host-specific available features
+- displays only the available features (host-specific)
 - available by pressing =SUPER-F1=
 - hugo
 *** WIP cookbook
@@ -37,9 +37,11 @@ test-driven dynamically-themed well-documented host-development
 - remove the local copy with =xno= (eXecuteNixdevelOut)
 - switch with =bs= (BudSwitchlocalmachine)
 **** TODO dynamic docKeybindings
+** WORKFLOWS
+cf.: =doc/WORKFLOWS=
 ** ROADMAP
-*** make ryzen useable
-**** DONE i3 (x)
+*** DONE make ryzen useable
+**** DONE i3 (on X)
 **** DONE emacs
 **** DONE browser
 chromium
@@ -48,30 +50,53 @@ chromium
 **** DONE manualActions
 **** DONE pulsewire
 nec for microphone
-*** hardwareAcceleration
-*** after acceleration or on ryzen
-**** colorschemes
-**** cleanup
-***** documentation
-***** TODOS
-***** {fixMissing,improve} tests
+*** DONE nuc
+*** DONE generate ISOs
+*** DONE DEV-STICK for external usage
+*** DONE k8s
+*** cleanup hostTests
+*** gpuPassthrou for tests
+*** allTests
+*** v1
+*** keep a changelog
+*** cleanup
+**** documentation
+***** sidebarRight: indent according to level
+***** colorize headlines like orgMode
+***** enable all docs
+***** all doc-TODOS
+***** cleanup docDir
+**** TODOS
+**** {fixMissing,improve} tests
 Do not test for existence, test behavior
-**** langs
-***** nixlang
-****** [#A] lsp
-***** python
-****** [#A] lsp in tests
-******* machine
-******* driver
-******* lib.testing
+*** exampleHost: nixos{,VM,ISO}
+public keys
+testHost only for tests
+*** CI/CD-able
+**** usecase-tests
+trust the tests
+**** autoUpdate hosts
+*** langs
+**** nixlang
+***** [#A] lsp
+**** python
+***** [#A] lsp in tests
+****** machine
+****** driver
+****** lib.testing
 *** ISO (FULL)
-*** RESCUE-STICK
-*** DEV-STICK
+*** fully-encrypted-Stick
+with personal keys and gopassStore
+"lo(o)sable"
+*** Rescue-Stick
+*** Install-Stick
+*** ALIASES
+*** DYNAMIC-THEME
 *** LATER
 **** langs
 ***** golang
 ***** flutter
-**** k8s
+***** rust
 **** firefox
 ***** addons
 **** nuc
@@ -84,79 +109,35 @@ Do not test for existence, test behavior
 ***** cleanup
 ***** new SSD
 ***** devos
-** COMMANDS
-*** if nix <2.4 is used run:
-#+BEGIN_SRC shell :results drawer
-  alias nix='nix --extra-experimental-features nix-command --extra-experimental-features flakes'
-#+END_SRC
-or set them =~/.config/nix/nix.conf=
-*** print available commands
-#+BEGIN_SRC shell :results drawer
-  menu
-#+END_SRC
-*** check coding styles
-#+BEGIN_SRC shell :results drawer
-  editorconfig-checker
-#+END_SRC
-*** remove all build-files
-#+BEGIN_SRC shell :results drawer
-  bud nuke
-#+END_SRC
-*** TODO create iso
-#+BEGIN_SRC shell :results drawer
-  bud build isoBase bootstrapIso --extra-experimental-features nix-command --extra-experimental-features flakes
-  bud build isoBase bootstrapIso flakes
-#+END_SRC
-*** TODO burn iso onto stick
-#+BEGIN_SRC shell :results drawer
-  bud nuke
-#+END_SRC
-#+BEGIN_SRC shell :results drawer
-  sudo -E $(which bud) burn
-#+END_SRC
-*** checks / tests
-**** checks
-#+BEGIN_SRC shell :results drawer
-nix build .#checks.libTests
-#+END_SRC
-**** integrationTests
-#+BEGIN_SRC shell :results drawer
-nix build .#tests.integrationTests.test.x86_64-linux.pythonTest
-#+END_SRC
-*** DEBUGGING
-**** load flake in repl
-#+BEGIN_SRC shell :results drawer
-  nix repl
-#+END_SRC
-#+BEGIN_EXAMPLE shell
-> :lf ./.
-#+END_EXAMPLE
+**** cookbook
 ** INFO
-*** testing
-**** view used sources for python-tests
-on repl
-load flake
-and
-~:e nixosConfigurations.NixOS.pkgs.path~
-navigate to
-- =nixos/tests/make-test-python.nix=
-- =nixos/lib/testing-python.nix=
-** DEBUG
-*** option not available
-**** message
+*** DOCUMENTATION
+**** devDoc
+- inline
+- =README.org=
+**** userDoc
+- will be made available on the hosts via hugo
+- =doc.org[.nix]=
+*** TESTING
+cf.: =tests/README.org=
+*** COMMANDS
+cf.: =shell/README.org=
+*** DEBUG
+**** option not available
+***** message
 #+BEGIN_SRC shell :results none
   error: The option `<OPTION>' does not exist. Definition values:
   ### ...
 #+END_SRC
-**** solution
+***** solution
 - check =flake.nix= nixpkgs might have changed
 - check =nixos/default.nix= for channel changes
-*** use ldflags instead of buildFlags
-**** message
+**** use ldflags instead of buildFlags
+***** message
 #+BEGIN_EXAMPLE shell
 trace: warning: Use the `ldflags` and/or `tags` attributes instead of `buildFlags`/`buildFlagsArray`
 #+END_EXAMPLE
-**** solution
+***** solution
 replace ~buildFlagsArray~ with ~ldflags~ in a derivation using ~buildGoModule~
 #+BEGIN_EXAMPLE shell
   buildFlagsArray = [

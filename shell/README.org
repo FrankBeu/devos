@@ -1,0 +1,50 @@
+* shell
+** COMMANDS
+*** if nix <2.4 is used run:
+#+BEGIN_SRC shell :results drawer
+  alias nix='nix --extra-experimental-features nix-command --extra-experimental-features flakes'
+#+END_SRC
+or set them =~/.config/nix/nix.conf=
+*** print available commands
+#+BEGIN_SRC shell :results drawer
+  menu
+#+END_SRC
+*** check coding styles
+#+BEGIN_SRC shell :results drawer
+  editorconfig-checker
+#+END_SRC
+*** remove all build-files
+#+BEGIN_SRC shell :results drawer
+  bud nuke
+#+END_SRC
+*** TODO create iso
+#+BEGIN_SRC shell :results drawer
+  bud build isoBase bootstrapIso --extra-experimental-features nix-command --extra-experimental-features flakes
+  bud build isoBase bootstrapIso flakes
+#+END_SRC
+*** TODO burn iso onto stick
+**** TODO reenable
+#+BEGIN_SRC shell :results drawer
+  bud nuke
+#+END_SRC
+#+BEGIN_SRC shell :results drawer
+  sudo -E $(which bud) burn
+#+END_SRC
+**** cf.: =doc/WORKFLOWS/WORKFLOW-ISO.org=
+*** checks / tests
+**** checks
+#+BEGIN_SRC shell :results drawer
+nix build .#checks.libTests
+#+END_SRC
+**** integrationTests
+#+BEGIN_SRC shell :results drawer
+nix build .#tests.integrationTests.test.x86_64-linux.pythonTest
+#+END_SRC
+*** DEBUGGING
+**** load flake in repl
+#+BEGIN_SRC shell :results drawer
+  nix repl
+#+END_SRC
+#+BEGIN_EXAMPLE shell
+> :lf ./.
+#+END_EXAMPLE
