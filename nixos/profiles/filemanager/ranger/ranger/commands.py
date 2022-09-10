@@ -1998,8 +1998,9 @@ class paste_ext(Command):
 
 
 
-class toggle_lib_and_dir_in_current_working_directory(Command):
-    """:toggle_lib_and_dir_in_current_working_directory
+class toggle_location_impl_and_test_flutter(Command):
+    """
+    :toggle_location_impl_and_test_flutter
 
     Toggle between implementation~ (…/lib/…) and test~Dir (…/test/…).
     """
@@ -2008,7 +2009,7 @@ class toggle_lib_and_dir_in_current_working_directory(Command):
     marker_test = r'/test'
 
     def __init__(self, *args, **kwargs):
-        super(toggle_lib_and_dir_in_current_working_directory, self).__init__(*args, **kwargs)
+        super(toggle_location_impl_and_test_flutter, self).__init__(*args, **kwargs)
         self.current_dir_str = str(self.fm.thisdir)
 
     def execute(self):
@@ -2034,6 +2035,58 @@ class toggle_lib_and_dir_in_current_working_directory(Command):
         dir_path = join(target_dir_str)
         if not lexists(dir_path):
             os.mkdir(dir_path)
+
+
+class toggle_location_impl_and_test_nixos(Command):
+    """
+    :toggle_location_impl_and_test_nixos
+
+    Toggle between implementation~ (...[^test]/{bud,home,host,nixos}/...) and test~Dir (.../test/{bud,home,host,nixos}/...).
+    """
+
+    marker_impl_array = [r'nixos', r'home/modules', r'home/profiles', r'home/suites', r'host', r'bud' ]### sortet by frequency, estimated
+    marker_test       = 'tests'
+
+    def __init__(self, *args, **kwargs):
+        super(toggle_location_impl_and_test_nixos, self).__init__(*args, **kwargs)
+        self.current_dir_str = str(self.fm.thisdir)
+
+    def execute(self):
+        for marker_impl in self.marker_impl_array:
+            if marker_impl in self.current_dir_str:
+                if self.marker_test not in self.current_dir_str:
+                    target_dir_str = self.toggle_dir(marker_impl)
+                    self.notify_nonexisting_dir(target_dir_str)
+                    self.fm.cd(target_dir_str)
+                    # self.fm.notify(f'2 {marker_impl} {self.marker_test} {self.current_dir_str} {target_dir_str} ')
+                    break
+                elif self.marker_test in self.current_dir_str:
+                    target_dir_str = self.toggle_dir(marker_impl)
+                    self.notify_nonexisting_dir(target_dir_str)
+                    self.fm.cd(target_dir_str)
+                    # self.fm.notify(f'2 {marker_impl} {self.marker_test} {self.current_dir_str} {target_dir_str} ')
+                    break
+        else:
+            self.fm.notify(f' not on a testable dirPath (containing {self.marker_impl_array})', bad=True)
+
+
+    def toggle_dir(self, marker_impl):
+        if self.marker_test in self.current_dir_str:
+            if marker_impl == "bud":
+                return re.sub(f"{self.marker_test}.*", "shell/bud", self.current_dir_str)
+            return re.sub(f"{self.marker_test}/", "", self.current_dir_str)
+        if marker_impl == "bud":
+            return re.sub(f'shell/{marker_impl}.*', f"{self.marker_test}/{marker_impl}", self.current_dir_str)
+        return re.sub(marker_impl, f"{self.marker_test}/{marker_impl}", self.current_dir_str)
+
+    def notify_nonexisting_dir(self, target_dir_str):
+        from os.path import join, lexists
+        dir_path = join(target_dir_str)
+        if not lexists(dir_path):
+            dir_path_relative_to_bud_dir = re.sub('.*test', 'test', dir_path)
+            attribute_chain = re.sub(r'/', '.', dir_path_relative_to_bud_dir)
+            self.fm.notify(f' testDir does not exist: run `bud testCreate [vsgdb] {attribute_chain}` first', bad=True)
+            
 
 class test(Command):
     """:test <text>
