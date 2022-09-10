@@ -107,66 +107,71 @@
         ### mount
         ma  = ifSudo ''sudo mount -a''                                             ;### Mount All
 
+
+
         ### systemd
-        sys       =    ifSudo '' sudo systemctl''                                  ;### Sudo SYStemcontrol
-        st        =           ''      systemctl        status''                    ;###      STatus
-        up        =    ifSudo '' sudo systemctl        start''                     ;###      UP
-        dn        =    ifSudo '' sudo systemctl        stop''                      ;###      DowN
-        re        =    ifSudo '' sudo systemctl        restart''                   ;###      REstart
-        usys      =           ''      systemctl --user''                           ;### User SYStemcontrol
-        ust       =           ''      systemctl --user status''                    ;### User STatus
-        uup       =           ''      systemctl --user start''                     ;### User Up
-        udn       =           ''      systemctl --user stop''                      ;### User DowN
-        ure       =           ''      systemctl --user restart''                   ;### User REstart
+        sys       =    ifSudo '' sudo systemctl''                                           ;### Sudo SYStemcontrol
+        st        =           ''      systemctl          status''                           ;###      STatus
+        up        =    ifSudo '' sudo systemctl          start''                            ;###      UP
+        dn        =    ifSudo '' sudo systemctl          stop''                             ;###      DowN
+        re        =    ifSudo '' sudo systemctl          restart''                          ;###      REstart
+        usys      =           ''      systemctl --user''                                    ;### User SYStemcontrol
+        ust       =           ''      systemctl --user   status''                           ;### User STatus
+        uup       =           ''      systemctl --user   start''                            ;### User Up
+        udn       =           ''      systemctl --user   stop''                             ;### User DowN
+        ure       =           ''      systemctl --user   restart''                          ;### User REstart
 
-        syslmnt   =           '' sudo systemctl        --type mount''              ;### Sudo SYStemcontrol MouNT
-        syslmnta  =           '' sudo systemctl        --type mount        --all'' ;### Sudo SYStemcontrol MouNT             All
+        syssh     =           ''      systemctl          show''                             ;###      SYStemcontrol Show
+        sysshug   =           ''      systemctl          show -pUser,UID,Group,GID traefik'';###      SYStemcontrol Show User Group
 
-        sysld     =           '' sudo systemctl          list-dependencies''       ;### Sudo SYStemcontrol List Depend
-        syslda    =           '' sudo systemctl          list-dependencies --all'' ;### Sudo SYStemcontrol List Depend       All
-        syslj     =           '' sudo systemctl          list-jobs''               ;### Sudo SYStemcontrol List Jobs
-        syslja    =           '' sudo systemctl          list-jobs         --all'' ;### Sudo SYStemcontrol List Jobs         All
-        syslm     =           '' sudo systemctl          list-machines''           ;### Sudo SYStemcontrol List Machines
-        syslma    =           '' sudo systemctl          list-machines     --all'' ;### Sudo SYStemcontrol List Machines     All
-        sysls     =           '' sudo systemctl          list-sockets''            ;### Sudo SYStemcontrol List Sockets
-        syslsa    =           '' sudo systemctl          list-sockets      --all'' ;### Sudo SYStemcontrol List Sockets      All
-        syslt     =           '' sudo systemctl          list-timers''             ;### Sudo SYStemcontrol List Timers
-        syslta    =           '' sudo systemctl          list-timers       --all'' ;### Sudo SYStemcontrol List Timers       All
-        syslf     =           '' sudo systemctl          list-unit-files''         ;### Sudo SYStemcontrol List unitsFiles
-        syslfa    =           '' sudo systemctl          list-unit-files   --all'' ;### Sudo SYStemcontrol List unitsFiles   All
-        syslu     =           '' sudo systemctl          list-units''              ;### Sudo SYStemcontrol List Units
-        syslua    =           '' sudo systemctl          list-units        --all'' ;### Sudo SYStemcontrol List Units        All
-        syslut    =           '' sudo systemctl        --type=target''             ;### Sudo SYStemcontrol List Units Target
-        sysluta   =           '' sudo systemctl        --type=target       --all'' ;### Sudo SYStemcontrol List Units Target All
+        syslmnt   =           '' sudo systemctl        --type mount''                       ;### Sudo SYStemcontrol MouNT
+        syslmnta  =           '' sudo systemctl        --type mount        --all''          ;### Sudo SYStemcontrol MouNT             All
 
-        usysld    =           ''      systemctl --user   list-dependencies''       ;### User SYStemcontrol List Depend
-        usyslda   =           ''      systemctl --user   list-dependencies --all'' ;### User SYStemcontrol List Depend       All
-        usyslj    =           ''      systemctl --user   list-jobs''               ;### User SYStemcontrol List Jobs
-        usyslja   =           ''      systemctl --user   list-jobs         --all'' ;### User SYStemcontrol List Jobs         All
-        usyslm    =           ''      systemctl --user   list-machines''           ;### User SYStemcontrol List Machines
-        usyslma   =           ''      systemctl --user   list-machines     --all'' ;### User SYStemcontrol List Machines     All
-        usysls    =           ''      systemctl --user   list-sockets''            ;### User SYStemcontrol List Sockets
-        usyslsa   =           ''      systemctl --user   list-sockets      --all'' ;### User SYStemcontrol List Sockets      All
-        usyslt    =           ''      systemctl --user   list-timers''             ;### User SYStemcontrol List Timers
-        usyslta   =           ''      systemctl --user   list-timers       --all'' ;### User SYStemcontrol List Timers       All
-        usyslf    =           ''      systemctl --user   list-unit-files''         ;### User SYStemcontrol List unitsFiles
-        usyslfa   =           ''      systemctl --user   list-unit-files   --all'' ;### User SYStemcontrol List unitsFiles   All
-        usyslu    =           ''      systemctl --user   list-units''              ;### User SYStemcontrol List Units
-        usyslua   =           ''      systemctl --user   list-units        --all'' ;### User SYStemcontrol List Units        All
-        usyslut   =           ''      systemctl --user --type=target''             ;### User SYStemcontrol List Units Target
-        usysluta  =           ''      systemctl --user --type=target       --all'' ;### User SYStemcontrol List Units Target All
+        sysld     =           '' sudo systemctl          list-dependencies''                ;### Sudo SYStemcontrol List Depend
+        syslda    =           '' sudo systemctl          list-dependencies --all''          ;### Sudo SYStemcontrol List Depend       All
+        syslj     =           '' sudo systemctl          list-jobs''                        ;### Sudo SYStemcontrol List Jobs
+        syslja    =           '' sudo systemctl          list-jobs         --all''          ;### Sudo SYStemcontrol List Jobs         All
+        syslm     =           '' sudo systemctl          list-machines''                    ;### Sudo SYStemcontrol List Machines
+        syslma    =           '' sudo systemctl          list-machines     --all''          ;### Sudo SYStemcontrol List Machines     All
+        sysls     =           '' sudo systemctl          list-sockets''                     ;### Sudo SYStemcontrol List Sockets
+        syslsa    =           '' sudo systemctl          list-sockets      --all''          ;### Sudo SYStemcontrol List Sockets      All
+        syslt     =           '' sudo systemctl          list-timers''                      ;### Sudo SYStemcontrol List Timers
+        syslta    =           '' sudo systemctl          list-timers       --all''          ;### Sudo SYStemcontrol List Timers       All
+        syslf     =           '' sudo systemctl          list-unit-files''                  ;### Sudo SYStemcontrol List unitsFiles
+        syslfa    =           '' sudo systemctl          list-unit-files   --all''          ;### Sudo SYStemcontrol List unitsFiles   All
+        syslu     =           '' sudo systemctl          list-units''                       ;### Sudo SYStemcontrol List Units
+        syslua    =           '' sudo systemctl          list-units        --all''          ;### Sudo SYStemcontrol List Units        All
+        syslut    =           '' sudo systemctl        --type=target''                      ;### Sudo SYStemcontrol List Units Target
+        sysluta   =           '' sudo systemctl        --type=target       --all''          ;### Sudo SYStemcontrol List Units Target All
 
-        jl        =           ''     journalctl                ''                  ;###      JournalcontroL
-        jlu       =           ''     journalctl              -u''                  ;###      JournalcontroL Unit
-        jlb       =           ''     journalctl           -b   ''                  ;###      JournalcontroL Boot
-        jlbu      =           ''     journalctl           -b -u''                  ;###
-        jlfuc     = ''${batWatchCmd} journalctl        -f    -u''                  ;###      JournalctLFollowUnitColored
+        usysld    =           ''      systemctl --user   list-dependencies''                ;### User SYStemcontrol List Depend
+        usyslda   =           ''      systemctl --user   list-dependencies --all''          ;### User SYStemcontrol List Depend       All
+        usyslj    =           ''      systemctl --user   list-jobs''                        ;### User SYStemcontrol List Jobs
+        usyslja   =           ''      systemctl --user   list-jobs         --all''          ;### User SYStemcontrol List Jobs         All
+        usyslm    =           ''      systemctl --user   list-machines''                    ;### User SYStemcontrol List Machines
+        usyslma   =           ''      systemctl --user   list-machines     --all''          ;### User SYStemcontrol List Machines     All
+        usysls    =           ''      systemctl --user   list-sockets''                     ;### User SYStemcontrol List Sockets
+        usyslsa   =           ''      systemctl --user   list-sockets      --all''          ;### User SYStemcontrol List Sockets      All
+        usyslt    =           ''      systemctl --user   list-timers''                      ;### User SYStemcontrol List Timers
+        usyslta   =           ''      systemctl --user   list-timers       --all''          ;### User SYStemcontrol List Timers       All
+        usyslf    =           ''      systemctl --user   list-unit-files''                  ;### User SYStemcontrol List unitsFiles
+        usyslfa   =           ''      systemctl --user   list-unit-files   --all''          ;### User SYStemcontrol List unitsFiles   All
+        usyslu    =           ''      systemctl --user   list-units''                       ;### User SYStemcontrol List Units
+        usyslua   =           ''      systemctl --user   list-units        --all''          ;### User SYStemcontrol List Units        All
+        usyslut   =           ''      systemctl --user --type=target''                      ;### User SYStemcontrol List Units Target
+        usysluta  =           ''      systemctl --user --type=target       --all''          ;### User SYStemcontrol List Units Target All
 
-        ujl       =           ''     journalctl --user         ''                  ;### User JournalcontroL
-        ujlu      =           ''     journalctl --user       -u''                  ;### User JournalcontroL Unit
-        ujlb      =           ''     journalctl --user    -b   ''                  ;### User JournalcontroL Boot
-        ujlbu     =           ''     journalctl --user    -b -u''                  ;###
-        ujlfuc    = ''${batWatchCmd} journalctl --user -f    -u''                  ;### User JournalctLFollowUnitColored
+        jl        =           ''     journalctl                ''                           ;###      JournalcontroL
+        jlu       =           ''     journalctl              -u''                           ;###      JournalcontroL Unit
+        jlb       =           ''     journalctl           -b   ''                           ;###      JournalcontroL Boot
+        jlbu      =           ''     journalctl           -b -u''                           ;###
+        jlfuc     = ''${batWatchCmd} journalctl        -f    -u''                           ;###      JournalctLFollowUnitColored
+
+        ujl       =           ''     journalctl --user         ''                           ;### User JournalcontroL
+        ujlu      =           ''     journalctl --user       -u''                           ;### User JournalcontroL Unit
+        ujlb      =           ''     journalctl --user    -b   ''                           ;### User JournalcontroL Boot
+        ujlbu     =           ''     journalctl --user    -b -u''                           ;###
+        ujlfuc    = ''${batWatchCmd} journalctl --user -f    -u''                           ;### User JournalctLFollowUnitColored
 
       };
   };
