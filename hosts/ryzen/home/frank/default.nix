@@ -17,6 +17,7 @@ in
     ../../variables
     ./kopia
 
+    profiles.actionButton
     profiles.alacritty
     profiles.backup.kopia
     profiles.bat

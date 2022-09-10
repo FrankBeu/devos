@@ -1,4 +1,5 @@
 [
+  ".config/actionButton/FUNDUS"
   ".config/zsh/volatiles"
   "AKTUELLES"
   "ARCHIVES"

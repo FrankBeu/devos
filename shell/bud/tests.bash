@@ -113,6 +113,7 @@ tests.nixos.suites.virtmanager
 tests.home.modules.services.backup.kopia
 
 
+tests.home.profiles.actionButton
 # tests.home.profiles.alacritty                     ### TODO: reenable
 tests.home.profiles.backup.kopia
 tests.home.profiles.bat

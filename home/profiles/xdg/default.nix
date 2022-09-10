@@ -22,6 +22,13 @@
     };
   };
 
+  ### TODO use absolute path so they are reusable with systemd-tmpfiles cf.: https://nix-community.github.io/home-manager/release-notes.html#sec-release-20.09-state-version-changes
+  # check where the following is set
+  # home.file."DEBUG".text   =  ''
+  #   ${config.home.homeDirectory}
+  #   ${config.home.username}
+  # '';
+
   xdg.userDirs = {
     enable            = true;
     createDirectories = true;

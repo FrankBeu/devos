@@ -171,6 +171,7 @@ let
           ( import ../../nixos/modules/variables/testPreparation.nix          { inherit variables;                  }).tmpfiles
           ### console: golden/consoleFontTarget.png
           ( import ../../nixos/profiles/console/testPreparation.nix                                                  ).tmpfiles
+
           ( import ../../home/profiles/bat/testPreparation.nix                { inherit        group      username; }).tmpfiles
           ( import ../../home/profiles/notification/dunst/testPreparation.nix                                        ).tmpfiles
         ];
@@ -178,10 +179,13 @@ let
         home-manager.users.${username} = { profiles, suites, variables, ... }:
         {
           imports   = [];
-          home.file = {
+          home = {
             ### variables: variablesTestActual
-            "tmp/variablesTestActual".text = ( import ../../nixos/modules/variables/testPreparationHome.nix { inherit variables; } );
+            file."tmp/variablesTestActual".text = ( import ../../nixos/modules/variables/testPreparationHome.nix { inherit variables; } );
           };
+          systemd.user.tmpfiles.rules = [
+            ( import ../../home/profiles/actionButton/testPreparation.nix       { inherit        group      username; }).tmpfiles
+          ];
         };
       };
     };
@@ -295,6 +299,7 @@ let
         # ${home-modules-services-backup-kopia} ### TODO implement  after passthrough
 
         # ${nixos-profiles-console}             ### TODO reactivate after graphical
+        ${(import ../../home/profiles/actionButton/testScript.py.nix { inherit hmProfileDir username; })}
         # ${home-profiles-emacs}                ### TODO reactivate after graphical
         # ${home-profiles-fcitx}                ### TODO reactivate after graphical
         # ${home-profiles-git}                  ### TODO reactivate after graphical
