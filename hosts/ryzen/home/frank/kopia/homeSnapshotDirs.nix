@@ -10,6 +10,7 @@
   "DOCUMENTS"
   "DOWNLOADS"
   "GAMES"
+  "KUBE"
   "MUSIC"
   "NOTES"
   "NOW"

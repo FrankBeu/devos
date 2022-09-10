@@ -24,6 +24,7 @@ in
 
           A    = "cd $HOME/MEDIA/ANDROID"                                 ;
           AS   = "cd $HOME/MEDIA/ANDROID/Internal\\ shared\\ storage/DCIM";  ### Android_Storage
+          AK   = "cd $HOME/AKTUELLES"                                     ;
           B    = "cd $HOME/BAK"                                           ;
           C    = "cd $HOME/.config"                                       ;  ###       externaly created
           D    = "cd $HOME/DEVOS"                                         ;
@@ -36,7 +37,7 @@ in
           E    = "cd $HOME/.emacs.d"                                      ;  ### cond. externaly created
           G    = "cd $HOME/GAMES"                                         ;  ### cond. externaly created
           I    = "cd $HOME/MUSIC"                                         ;
-          K    = "cd $HOME/AKTUELLES"                                     ;
+          K    = "cd $HOME/KUBE"                                          ;
           L    = "cd $HOME/DOWNLOADS"                                     ;
           M    = "cd $HOME/MEDIA"                                         ;
           MB   = "cd $HOME/MEDIA/BAK"                                     ;  ### SUBDIR-ALIASES are created in ../backup/kopia/default.nix:68:86
@@ -65,7 +66,8 @@ in
           ### ALiasRangeR | find ranger                | align=                                     | surround=   | rm'
           alrr = '' alias | rg --color=always 'ranger' | sd '(r)=' '$1   =' | sd '(^\w{3})=' '$1 =' | sd '=' ' = '| sd "'" "" '';
 
-          rra    = "ranger $HOME/MEDIA/ANDROID/Internal\\ shared\\ storage/DCIM";
+          rras    = "ranger $HOME/MEDIA/ANDROID/Internal\\ shared\\ storage/DCIM";
+          rrak   = "ranger $HOME/AKTUELLES";
           rrb    = "ranger $HOME/BAK"                                         ;
           rrc    = "ranger $HOME/.config"                                     ;  ###       externaly created
           rrd    = "ranger $HOME/DEVOS"                                       ;
@@ -78,7 +80,7 @@ in
           rre    = "ranger $HOME/.emacs.d"                                    ;  ### cond. externaly created
           rrg    = "ranger $HOME/GAMES"                                       ;  ### cond. externaly created  ### rg reserved for rip-grep
           rri    = "ranger $HOME/MUSIC"                                       ;
-          rrk    = "ranger $HOME/AKTUELLES"                                   ;
+          rrk    = "ranger $HOME/KUBE"                                        ;
           rrl    = "ranger $HOME/DOWNLOADS"                                   ;
           rrm    = "ranger $HOME/MEDIA"                                       ;
           rrmb   = "ranger $HOME/MEDIA/BAK"                                   ;  ### SUBDIRS-ALIASES are created in ../backup/kopia/default.nix:71:85

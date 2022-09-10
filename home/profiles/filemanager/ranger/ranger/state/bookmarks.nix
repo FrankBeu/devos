@@ -8,7 +8,7 @@ D:/home/${username}/DEVOS
 E:/home/${username}/.emacs.d
 G:/home/${username}/GAMES
 I:/home/${username}/MUSIC
-K:/home/${username}/AKTUELLES
+K:/home/${username}/KUBE
 L:/home/${username}/DOWNLOADS
 M:/home/${username}/MEDIA
 N:/home/${username}/NOTES
