@@ -17,7 +17,7 @@
   services.dunst = {
     enable    = true;
     # settings  = pkgs.callPackage (import ./dunst/dunstrc.nix) {};
-    settings  = (import ./dunst/dunstrc.nix { inherit pkgs; });
+    settings  = (import ./dunst/dunstrc.nix { inherit config pkgs variables; });
     # iconTheme = {
       #   # name = "hicolor";
       #   name = "Adwaita";

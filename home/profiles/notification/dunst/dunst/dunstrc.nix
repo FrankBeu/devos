@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{ config
+, pkgs
+, variables
+, ...
+}:
+let
+  inherit (config.home) username;
+  browser = variables.users.${username}.defaultBrowser;
+in
 {
   ### See dunst(5) for all configuration options
   global = {
@@ -235,8 +243,7 @@
     # dmenu = "rofi -dmenu -p dunst:";  ### TODO use rofi if exists
 
     ### Browser for opening urls in context menu.
-    # browser = "/run/current-system/sw/bin/xdg-open";    ### TODO
-    browser = "/run/current-system/sw/bin/chromium";
+    browser = "${pkgs.${browser}}/bin/${browser}";
 
     ### Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true;
