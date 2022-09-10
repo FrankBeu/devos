@@ -243,6 +243,7 @@ let
         ${nixos-profiles-tools-qalculate}
         ${nixos-profiles-tools-revealjs}
         ${nixos-profiles-tools-system}
+        ${(import ../../nixos/profiles/tools/serialization/remarshal/testScript.py.nix {})}
         ${nixos-profiles-tools-usbutils}
         ${nixos-profiles-tools-xorg}
         ${nixos-profiles-tools-zathura}

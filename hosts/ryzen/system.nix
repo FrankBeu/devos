@@ -77,6 +77,7 @@ in
     profiles.tools.pdf
     profiles.tools.qalculate
     profiles.tools.revealjs
+    profiles.tools.serialization.remarshal
     profiles.tools.system
     profiles.tools.usbutils
     profiles.tools.xorg
