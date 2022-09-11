@@ -1,0 +1,19 @@
+* tests: multiple tmpfiles
+** =testPreparation.nix=
+#+BEGIN_EXAMPLE nix
+{ username }:
+let content = ''\x23\x21/usr/bin/env\x20zsh\x0a\x0atouch\x20\x7e/actionButtonTestSuccess\x0a''; in ### systemd-escape
+{
+  tmpfiles = ''
+    L /home/${username}/.config/actionButton/i.zsh - - - - ${./i.zsh}
+    f /home/${username}/.config/actionButton/u.zsh - - - - ${content}
+  '';
+}
+#+END_EXAMPLE
+*** =default.nix=
+#+BEGIN_EXAMPLE shell
+systemd.user.tmpfiles.rules = [ ( import ./testPreparation.nix { inherit username; }).tmpfiles ];### KEEP (multiline-)string-import
+#+END_EXAMPLE
+
+** TODO TODOS
+*** hugoify

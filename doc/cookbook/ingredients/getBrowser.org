@@ -1,0 +1,18 @@
+* getBrowser
+** defaultBrowser
+#+BEGIN_EXAMPLE nix
+{ config
+, pkgs
+, variables
+, ...
+}:
+let
+  inherit (config.home) username;
+  browser = variables.users.${username}.defaultBrowser;
+in
+{
+  browser = "${pkgs.${browser}}/bin/${browser}";
+}
+#+END_EXAMPLE
+** TODO TODOS
+*** hugoify
