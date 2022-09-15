@@ -1,109 +1,114 @@
 ### Editor configuration, see http://editorconfig.org
-root = true
+root                     = true
 
 [*]
-end_of_line = lf
-insert_final_newline = true
+end_of_line              = lf
+insert_final_newline     = true
 trim_trailing_whitespace = true
-charset = utf-8
-indent_style = space
-indent_size = 2
+charset                  = utf-8
+indent_style             = space
+indent_size              = 2
 
 ### IGNORE DIFFS/PATCHES
 [*.{diff,patch}]
-end_of_line = unset
-insert_final_newline = unset
+end_of_line              = unset
+insert_final_newline     = unset
 trim_trailing_whitespace = unset
-indent_size = unset
+indent_size              = unset
 
 [{.*,secrets}/**]
-end_of_line = unset
-insert_final_newline = unset
+end_of_line              = unset
+insert_final_newline     = unset
 trim_trailing_whitespace = unset
-charset = unset
-indent_style = unset
-indent_size = unset
+charset                  = unset
+indent_style             = unset
+indent_size              = unset
 
 [*.py]
-indent_size = 4
+indent_size              = 4
 trim_trailing_whitespace = true
 
 [*.toml]
-indent_size = unset
+indent_size              = unset
 trim_trailing_whitespace = true
 
 [*.md]
-max_line_length = off
+max_line_length          = off
 trim_trailing_whitespace = false
 
 [*.org]
-indent_size = unset
+indent_size              = unset
 trim_trailing_whitespace = true
 
 ### IGNORE RANGER-CONFIG (in order to be able to diff against upstream)
 [**/ranger/ranger/**]
-end_of_line = unset
-insert_final_newline = unset
+end_of_line              = unset
+insert_final_newline     = unset
 trim_trailing_whitespace = unset
-indent_size = unset
+indent_size              = unset
 
 ### golang
 [*.go]
-indent_style = tab
+indent_style             = tab
 trim_trailing_whitespace = true
 
 [go.mod]
-indent_style = tab
+indent_style             = tab
 trim_trailing_whitespace = true
 
 ### shell
 [*.sh]
-indent_style = unset
+indent_style             = unset
 trim_trailing_whitespace = true
 
 ### lisp
 [*.el]
-indent_style = unset
+indent_style             = unset
 trim_trailing_whitespace = true
 
 ### misc
 [LICENSE]
-indent_size = unset
+indent_size              = unset
 trim_trailing_whitespace = true
 
 [**/themes/*]
-indent_size = unset
+indent_size              = unset
 trim_trailing_whitespace = true
 
-### do NOT touch golden-files
-[**/golden/**]
-charset                    = unset
-end_of_line                = unset
-indent_size                = unset
-indent_style               = unset
-insert_final_newline       = unset
-tab_width                  = unset
-trim_trailing_whitespace   = false
+### do NOT touch golden-files or cert
+[{**/golden/**,**/cert/**}]
+charset                  = unset
+end_of_line              = unset
+indent_size              = unset
+indent_style             = unset
+insert_final_newline     = unset
+tab_width                = unset
+trim_trailing_whitespace = false
 
 ### filespecific
 [checks/lib/debugging/default.nix]
-indent_size = unset
+indent_size              = unset
 
 [home/profiles/shell/zsh/plugins/default.nix]
-indent_size = unset
+indent_size              = unset
 
 [home/profiles/tools/sound/config/ncpamixer.conf]
-indent_size = unset
+indent_size              = unset
 
 [nixos/profiles/display/i3/keyboard/layouts/symbols/deva]
-indent_size = unset
+indent_size              = unset
 
 [pkgs/_sources/**]
-indent_size          = unset
-insert_final_newline = unset
+indent_size              = unset
+insert_final_newline     = unset
 
 [tests/home/profiles/bat/files/testFileSource.battestsyntax]
-insert_final_newline = false
+insert_final_newline     = false
+
+### ignore files with ^M
+[nixos/profiles/domain/server/README.org]
+end_of_line              = unset
+
 
 ### TODO doc
 ### TODO can be aligned
