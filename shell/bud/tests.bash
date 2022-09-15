@@ -140,6 +140,7 @@ tests.home.profiles.k8s.pulumi
 tests.home.profiles.languages.golang
 tests.home.profiles.manualActions
 # tests.home.profiles.notification.dunst             ### TODO: reenable
+tests.home.profiles.obs
 tests.home.profiles.ripgrep
 tests.home.profiles.rofi
 tests.home.profiles.security.age

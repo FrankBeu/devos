@@ -282,6 +282,7 @@ let
         ${(import ../../home/profiles/k8s/pulumi/testScript.py.nix                          {inherit hmProfileDir;})}
         # ''${home-profiles-languages-golang}                                                       ### TODO
         # ''${home-profiles-manualActions}                                                          ### TODO
+        ${(import ../../home/profiles/obs/testScript.py.nix                                 {inherit hmProfileDir;})}
         # ''${home-profiles-rofi}                                                                   ### TODO
         # ''${home-profiles-ripgrep}                                                                ### TODO
         # ''${home-profiles-security-age}                                                           ### TODO

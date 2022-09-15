@@ -44,6 +44,7 @@ in
     profiles.languages.golang
     profiles.manualActions
     profiles.notification.dunst
+    profiles.obs
     profiles.pistol
     profiles.ripgrep
     profiles.rofi
