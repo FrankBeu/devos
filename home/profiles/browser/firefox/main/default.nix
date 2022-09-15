@@ -1,10 +1,12 @@
 { config
+, nixosConfig
 , pkgs
 , variables
 , ...
 }:
 let
-  inherit (config.home) username;
+  inherit (config.home)                         username homeDirectory;
+  inherit (nixosConfig.users.users.${username}) group                 ;
 in
 {
 
@@ -35,4 +37,12 @@ in
       # tab-session-manager ### session no tabs or windows
     ];
   };
+  ### TODO addons-keybindings: split with new addon-implementation
+  ### needs to exist and be overrideable on switch
+  systemd.user.tmpfiles.rules =
+    [
+      "L ${homeDirectory}/.mozilla/firefox/${variables.users.${username}.abbreviation}/extension-settings.json 644 ${username} ${group} ${./extension-settings.json}"
+    ];
 }
+
+
