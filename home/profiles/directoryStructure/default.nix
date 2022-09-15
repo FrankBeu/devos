@@ -108,6 +108,8 @@ in
       "d /home/${username}/AKTUELLES            755 ${username} users"
       "d /home/${username}/ARCHIVES             755 ${username} users"
       "d /home/${username}/BAK                  755 ${username} users"
+      "d /home/${username}/DOCUMENTS            755 ${username} users"
+      "d /home/${username}/DOCUMENTS/CCUSB      755 ${username} users"
       "d /home/${username}/MEDIA                755 ${username} users"
       "d /home/${username}/MEDIA/ANDROID        755 ${username} users"
       "d /home/${username}/MEDIA/BAK            755 ${username} users"  ### +SUBDIRS are created in cf. ../backup/kopia/default.nix:16:73
