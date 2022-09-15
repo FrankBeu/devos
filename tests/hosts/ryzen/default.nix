@@ -291,6 +291,7 @@ let
         # ''${home-profiles-security-ssh}                                                           ### TODO
         # ''${home-profiles-security-summon}                                                        ### TODO
         # ''${home-profiles-shell-nushell}                                                          ### TODO
+        ${(import ../../home/profiles/tools/libreoffice/testScript.py.nix                   {inherit hmProfileDir;})}
         # ''${home-profiles-tools-sound}                                                            ### TODO
         # ''${home-profiles-xdg}                                                                    ### TODO
 

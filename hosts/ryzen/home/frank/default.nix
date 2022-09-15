@@ -64,6 +64,7 @@ in
     # profiles.shell.vivid
     # profiles.shell.zsh                ### depends on nixos.profiles.shell.zsh
     profiles.stateVersion
+    profiles.tools.libreoffice
     profiles.tools.nixTools
     profiles.tools.sound
     profiles.xdg

@@ -51,6 +51,7 @@ in
     profiles.security.ssh
     profiles.security.summon
     profiles.stateVersion
+    profiles.tools.libreoffice
     profiles.tools.nixTools
     profiles.tools.sound
     profiles.xdg

@@ -157,6 +157,7 @@ tests.home.profiles.shell.snippets.pet
 tests.home.profiles.shell.vivid
 # tests.home.profiles.shell.zsh                     ### TODO: reenable
 # tests.home.profiles.stateVersion                  ### TODO reactivate after nixos-option is fixed
+tests.home.profiles.tools.libreoffice
 tests.home.profiles.tools.nixTools
 tests.home.profiles.tools.sound
 tests.home.profiles.xdg
