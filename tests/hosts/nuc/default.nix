@@ -13,13 +13,15 @@ let
   readFile       = builtins.readFile;
   budDir         = hostVariables.budLocalFlakeCloneLocation;
   defaultBrowser = hostVariables.users.${username}.defaultBrowser;
+  domain         = hostVariables.domain;
+  hostName       = host.config.networking.hostName;
 
 
   ### nixos.profiles.domain.variable
   ### TODO create module
-  # domainVariableDEV   = rec {port = 32080; variant =   "dev"; subDomain =   "dev.${hostVariables.domain}";};
-  # domainVariableSTAGE = rec {port = 31080; variant = "stage"; subDomain = "stage.${hostVariables.domain}";};
-  domainVariablePROD  = rec {port = 30080; variant =  "prod"; subDomain =       "${hostVariables.domain}";};
+  # domainVariableDEV   = rec {ports = { http = 32080; https = 32443;}; variant =   "dev"; subDomain =   "dev.${domain}";};
+  # domainVariableSTAGE = rec {ports = { http = 31080; https = 31443;}; variant = "stage"; subDomain = "stage.${domain}";};
+  domainVariablePROD  = rec {ports = { http = 30080; https = 30443;}; variant =  "prod"; subDomain =       "${domain}";};
 
 
   # bud-nuke                                = (import                 ../../bud/nuke/testScript.py.nix                                    {inherit        username;       });
@@ -134,7 +136,7 @@ let
 
   test = {
     nodes = {
-      machine = { colorscheme, inputs, profiles, pkgs, suites, variables, ... }:
+      machine = { colorscheme, inputs, lib, profiles, pkgs, suites, variables, ... }:
       {
         ### ARRANGE
         imports = with profiles; [
@@ -146,9 +148,9 @@ let
           # ### TODO check if all systemd.tmpfiles can also be just imported -> check host~ and standalone~tests
 
           ### nixos.profiles.domain.variable create testserver as long as the kube is without declarative setup
-          # (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableDEV)   port variant;})
-          # (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableSTAGE) port variant;})
-          (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariablePROD)  port variant;})
+          # (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs lib pkgs self; inherit (domainVariableDEV)   ports variant;})
+          # (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs lib pkgs self; inherit (domainVariableSTAGE) ports variant;})
+          (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs lib pkgs self; inherit (domainVariablePROD)  ports variant;})
 
         ];
 
@@ -211,9 +213,9 @@ let
 
 
         # ''${nixos-profiles-curSysPkgs}                                                            ### TODO
-        # ''${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariableDEV)   port subDomain variant; })} ### DEV
-        # ''${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariableSTAGE) port subDomain variant; })} ### STAGE
-        ${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix { inherit (domainVariablePROD)  port subDomain variant; })}     ### PROD
+        # ''${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix { inherit (domainVariableDEV)   ports subDomain variant; })} ### DEV
+        # ''${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix { inherit (domainVariableSTAGE) ports subDomain variant; })} ### STAGE
+        ${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix { inherit (domainVariablePROD)  ports subDomain variant; })}     ### PROD
         # ''${nixos-profiles-editor-vim}                                                            ### TODO
         # ''${nixos-profiles-fonts}                                                                 ### TODO
         # ''${nixos-profiles-imageCommon}                                                           ### TODO
@@ -271,7 +273,7 @@ let
         # ''${home-profiles-dotLocal}                                                               ### TODO
         # ''${home-profiles-exa}                                                                    ### TODO
         # ''${home-profiles-flameshot}                                                              ### TODO
-        ${(import ../../home/profiles/k8s/pulumi/testScript.py.nix { inherit hmProfileDir;})}
+        # ''${(import ../../home/profiles/k8s/pulumi/testScript.py.nix { inherit hmProfileDir;})}
         # ''${home-profiles-languages-golang}                                                       ### TODO
         # ''${home-profiles-manualActions}                                                          ### TODO
         # ''${home-profiles-rofi}                                                                   ### TODO

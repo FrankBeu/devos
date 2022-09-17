@@ -1,0 +1,134 @@
+### https://github.com/traefik/traefik/blob/master/traefik.sample.toml
+[global]
+  checkNewVersion    = false
+  sendAnonymousUsage = false
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"
+
+[log]
+  level      = "DEBUG"
+  # level    = "ERROR"
+  # filePath = "var/log/traefik/traefik.log"
+  # filePath   = "/home/frank/TMP/traefik/logs/traefik.log"
+  # format     = "json"
+  format   = "common"
+
+[accessLog]
+  filePath = "var/log/traefik/traefikAccess.log"
+  # filePath   = "/home/frank/TMP/traefik/logs/traefikAccess.log"
+
+  format     = "json"
+  # format   = "common"
+
+  [accessLog.fields]
+    defaultMode = "keep"
+
+    [accessLog.fields.names]
+      "ClientAddr"            = "keep"
+      "ClientHost"            = "drop"
+      "ClientPort"            = "drop"
+      "ClientUsername"        = "drop"
+      "DownstreamContentSize" = "drop"
+      "DownstreamStatus"      = "keep"
+      "DownstreamStatusLine"  = "keep"
+      "Duration"              = "drop"
+      "GzipRatio"             = "drop"
+      "OriginContentSize"     = "drop"
+      "OriginDuration"        = "drop"
+      "OriginStatus"          = "keep"
+      "OriginStatusLine"      = "keep"
+      "Overhead"              = "drop"
+      "RequestAddr"           = "keep"
+      "RequestContentSize"    = "drop"
+      "RequestCount"          = "keep"
+      "RequestHost"           = "drop"
+      "RequestLine"           = "keep"
+      "RequestMethod"         = "keep"
+      "RequestPath"           = "keep"
+      "RequestPort"           = "keep"
+      "RequestProtocol"       = "keep"
+      "RequestScheme"         = "keep"
+      "RetryAttempts"         = "drop"
+      "RouterName"            = "keep"
+      "ServiceAddr"           = "drop"
+      "ServiceName"           = "keep"
+      "ServiceURL"            = "keep"
+      "StartLocal"            = "drop"
+      "StartUTC"              = "drop"
+      "TLSCipher"             = "drop"
+      "TLSVersion"            = "drop"
+      "entryPointName"        = "keep"
+      "level"                 = "keep"### cannot be dropped
+      "msg"                   = "keep"### cannot be dropped
+      "time"                  = "keep"### cannot be dropped
+
+    [accessLog.fields.headers]
+      defaultMode = "keep"
+      # defaultMode = "drop"
+
+      [accessLog.fields.headers.names]
+        "Accept"                = "drop"
+        "Authorization"         = "drop"
+        "Content-Length"        = "drop"
+        "Content-Type"          = "drop"
+        "Date"                  = "drop"
+        "User-Agent"            = "drop"
+        "X-Forwarded-Host"      = "keep"
+        "X-Forwarded-Port"      = "keep"
+        "X-Forwarded-Proto"     = "keep"
+        "X-Forwarded-Server"    = "keep"
+        "X-Real-Ip"             = "drop"
+
+        ### instead of:
+        # "downstream_Content-Type"       = "drop"
+        #     "origin_Content-Type"       = "drop"
+        # "downstream_X-Next-Page"        = "drop"
+        #     "origin_X-Next-Page"        = "drop"
+        # "request_Accept"                = "drop"
+        # "request_Accept-Encoding"       = "drop"
+        # "request_Accept-Language"       = "drop"
+        # "request_Connection"            = "drop"
+        # "request_Referer"               = "drop"
+        # "request_User-Agent"            = "drop"
+        # "request_X-Forwarded-Host"      = "drop"
+        # "request_X-Forwarded-Port"      = "drop"
+        # "request_X-Forwarded-Proto"     = "drop"
+        # "request_X-Forwarded-Server"    = "drop"
+        # "request_X-Real-Ip"             = "drop"
+
+  # [accessLog.filters]
+  #   # statusCodes = ["200", "300-302"]
+  #   retryAttempts = true
+  #   minDuration   = "10ms"
+
+[api]
+  ### https://doc.traefik.io/traefik/operations/api
+  insecure  = true
+  dashboard = true ### /dashboard
+  debug     = true ### /debug
+
+[ping]
+  entryPoint = "traefik"
+
+[providers.file]
+  directory                 = "/etc/traefik/conf/"
+  # directory                 = "/home/frank/DEVOS/nixos/profiles/domain/variable/dev/traefik"
+  debugLogGeneratedTemplate = true
+  watch                     = true
+
+
+
+### toggle(drop,keep) @d @k
+### predefined macros
+### load with C-X C-E on closing parenthesis
+### TODO extract to function which can be registered as safely evaluable
+### TOML files cannot contain control characters: '0x0d'
+# Local Variables:
+# eval: (evil-set-register 100 "dwidropfdbl")  ;; d
+# eval: (evil-set-register 107 "dwikeepfdbl")  ;; k
+# eval: (setq-local enable-local-variables :maybe)
+# End:

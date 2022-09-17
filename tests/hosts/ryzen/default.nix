@@ -13,13 +13,15 @@ let
   readFile       = builtins.readFile;
   budDir         = hostVariables.budLocalFlakeCloneLocation;
   defaultBrowser = hostVariables.users.${username}.defaultBrowser;
+  domain         = hostVariables.domain;
+  hostName       = host.config.networking.hostName;
 
 
   ### nixos.profiles.domain.variable
   ### TODO create module
-  domainVariableDEV   = rec {port = 32080; variant =   "dev"; subDomain =   "dev.${hostVariables.domain}";};
-  domainVariableSTAGE = rec {port = 31080; variant = "stage"; subDomain = "stage.${hostVariables.domain}";};
-  # domainVariablePROD  = rec {port = 30080; variant =  "prod"; subDomain =       "${hostVariables.domain}";};
+  domainVariableDEV   = rec {ports = { http = 32080; https = 32443;}; variant =   "dev"; subDomain =   "dev.${domain}";};
+  domainVariableSTAGE = rec {ports = { http = 31080; https = 31443;}; variant = "stage"; subDomain = "stage.${domain}";};
+  # domainVariablePROD  = rec {ports = { http = 30080; https = 30443;}; variant =  "prod"; subDomain =       "${domain}";};
 
 
   ### TODO call directly in test: only one statment to handle
@@ -135,7 +137,7 @@ let
 
   test = {
     nodes = {
-      machine = { colorscheme, inputs, pkgs, profiles, suites, variables, ... }:
+      machine = { colorscheme, inputs, lib, pkgs, profiles, suites, variables, ... }:
       {
         ### ARRANGE
         imports = with profiles; [
@@ -147,9 +149,9 @@ let
           ### TODO check if all systemd.tmpfiles can also be just imported -> check host~ and standalone~tests
 
           ### nixos.profiles.domain.variable create testserver as long as the kube is without declarative setup
-          (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableDEV)   port variant;})
-          (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariableSTAGE) port variant;})
-          # (import  ../../nixos/profiles/domain/variable/shared/testService {inherit inputs pkgs self; inherit (domainVariablePROD)  port variant;})
+          (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs lib pkgs self; inherit (domainVariableDEV)   ports variant;})
+          (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs lib pkgs self; inherit (domainVariableSTAGE) ports variant;})
+          # (import  ../../nixos/profiles/domain/variable/environment/shared/testService {inherit inputs pkgs self; inherit (domainVariablePROD)  port variant;})
 
         ];
 
@@ -208,26 +210,34 @@ let
 
         # ''${nixos-modules-colorscheme}                                                            ### TODO
 
-        ${(import ../../nixos/profiles/k8s/base/testScript.py.nix                           {inherit username;})}
-        ${(import ../../nixos/profiles/k8s/cdk8s/testScript.py.nix                          {inherit username;})}
-        ${(import ../../nixos/profiles/k8s/gui/testScript.py.nix                            {inherit username;})}
-        ${(import ../../nixos/profiles/k8s/k3d/testScript.py.nix                            {inherit username;})}
-        ${(import ../../nixos/profiles/k8s/k3s/testScript.py.nix                            {inherit username;})}
+        ${(import ../../nixos/profiles/k8s/base/testScript.py.nix                                   {inherit username;})}
+        ${(import ../../nixos/profiles/k8s/cdk8s/testScript.py.nix                                  {inherit username;})}
+        ${(import ../../nixos/profiles/k8s/gui/testScript.py.nix                                    {inherit username;})}
+        ${(import ../../nixos/profiles/k8s/k3d/testScript.py.nix                                    {inherit username;})}
+        ${(import ../../nixos/profiles/k8s/k3s/testScript.py.nix                                    {inherit username;})}
         # ''${nixos-modules-variables}                                                              ### TODO
 
 
         # ''${nixos-profiles-curSysPkgs}                                                            ### TODO
-        ${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix             {inherit (domainVariableDEV)   port subDomain variant;})} ### DEV
-        ${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix             {inherit (domainVariableSTAGE) port subDomain variant;})} ### STAGE
-        # ''${(import ../../nixos/profiles/domain/variable/shared/testScript.py.nix         {inherit (domainVariablePROD)  port subDomain variant;})} ### PROD
+        ${(import ../../nixos/profiles/domain/local/dash/testScript.py.nix                          {})}
+        ${(import ../../nixos/profiles/domain/local/doc/testScript.py.nix                           {})}
+        ${(import ../../nixos/profiles/domain/local/domain/testScript.py.nix                        {})}
+        ${(import ../../nixos/profiles/domain/server/testScript.py.nix                              {})}
+        # ''${(import ../../nixos/profiles/domain/variable/dash/testScript.py.nix                       {inherit domain hostName;})} ### TODO works as singleTest
+        ${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix         {inherit (domainVariableDEV)   ports subDomain variant;})} ### DEV
+        ${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix         {inherit (domainVariableSTAGE) ports subDomain variant;})} ### STAGE
+        # ''${(import ../../nixos/profiles/domain/variable/environment/shared/testScript.py.nix     {inherit (domainVariablePROD)  ports subDomain variant;})} ### PROD
+        # ''${(import ../../nixos/profiles/domain/variable/hostname/testScript.py.nix                   {inherit domain hostName;})} ### TODO works as singleTest
         # ''${nixos-profiles-editor-vim}                                                            ### TODO
         # ''${nixos-profiles-fonts}                                                                 ### TODO
         # ''${nixos-profiles-imageCommon}                                                           ### TODO
         # ''${nixos-profiles-manualActions}                                                         ### TODO
+        ${(import ../../nixos/profiles/networking/nameserver/regular/testScript.py.nix              {})}
         # ''${nixos-profiles-ranger}                                                                ### TODO
         # ''${nixos-profiles-security-age}                                                          ### TODO
         # ''${nixos-profiles-security-sopsNix}                                                      ### TODO
         # ''${nixos-profiles-services-ssh}                                                          ### TODO
+        # ''${(import ../../nixos/profiles/services/test8888/testScript.py.nix                          {})}
         # ''${nixos-profiles-sound-pipewire}                                                        ### TODO
         # ''${nixos-profiles-systemd-sleepDisable}                                                  ### TODO
         # ''${nixos-profiles-timezone}                                                              ### TODO
@@ -247,7 +257,7 @@ let
         # ''${nixos-profiles-tools-qalculate}                                                       ### TODO
         # ''${nixos-profiles-tools-revealjs}                                                        ### TODO
         # ''${nixos-profiles-tools-system}                                                          ### TODO
-        ${(import ../../nixos/profiles/tools/serialization/remarshal/testScript.py.nix {})}
+        ${(import ../../nixos/profiles/tools/serialization/remarshal/testScript.py.nix              {})}
         # ''${nixos-profiles-tools-usbutils}                                                        ### TODO
         # ''${nixos-profiles-tools-xorg}                                                            ### TODO
         # ''${nixos-profiles-tools-zathura}                                                         ### TODO
@@ -263,7 +273,7 @@ let
         # ''${nixos-suites-virtmanager}                                                             ### TODO
 
 
-        ${(import ../../home/profiles/actionButton/testScript.py.nix                        {inherit hmProfileDir username;})}
+        ${(import ../../home/profiles/actionButton/testScript.py.nix                                {inherit hmProfileDir username;})}
         # ''${home-profiles-alacritty}                                                              ### TODO
         # ''${home-profiles-bat}                                                                    ### TODO
         # ''${home-profiles-backup-kopia}                                                           ### TODO
@@ -279,10 +289,10 @@ let
         # ''${home-profiles-dotLocal}                                                               ### TODO
         # ''${home-profiles-exa}                                                                    ### TODO
         # ''${home-profiles-flameshot}                                                              ### TODO
-        ${(import ../../home/profiles/k8s/pulumi/testScript.py.nix                          {inherit hmProfileDir;})}
+        ${(import ../../home/profiles/k8s/pulumi/testScript.py.nix                                  {inherit hmProfileDir;})}
         # ''${home-profiles-languages-golang}                                                       ### TODO
         # ''${home-profiles-manualActions}                                                          ### TODO
-        ${(import ../../home/profiles/obs/testScript.py.nix                                 {inherit hmProfileDir;})}
+        ${(import ../../home/profiles/obs/testScript.py.nix                                         {inherit hmProfileDir;})}
         # ''${home-profiles-rofi}                                                                   ### TODO
         # ''${home-profiles-ripgrep}                                                                ### TODO
         # ''${home-profiles-security-age}                                                           ### TODO
@@ -292,7 +302,7 @@ let
         # ''${home-profiles-security-ssh}                                                           ### TODO
         # ''${home-profiles-security-summon}                                                        ### TODO
         # ''${home-profiles-shell-nushell}                                                          ### TODO
-        ${(import ../../home/profiles/tools/libreoffice/testScript.py.nix                   {inherit hmProfileDir;})}
+        ${(import ../../home/profiles/tools/libreoffice/testScript.py.nix                           {inherit hmProfileDir;})}
         # ''${home-profiles-tools-sound}                                                            ### TODO
         # ''${home-profiles-xdg}                                                                    ### TODO
 

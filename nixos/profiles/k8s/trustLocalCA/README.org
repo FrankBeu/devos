@@ -1,0 +1,14 @@
+* trustLocalCA
+
+** trust all certificates issued by a KUBE,
+the certificates must be obtained from the cluster
+*** obtain caCert
+#+BEGIN_SRC shell :results drawer
+  export ENV=DEV
+  # export ENV=STAGE
+  # export ENV=PROD
+  kubectl -n cert-manager get secret ca-local -ojsonpath='{.data.tls\.crt}' | base64 -d > ./crts/caKube${ENV}.crt
+#+END_SRC
+*** add to ~security.pki.certificateFiles~
+** renew
+*** if a new cluster created the process has to be repeated again.

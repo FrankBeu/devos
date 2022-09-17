@@ -1,0 +1,90 @@
+* traefik
+** watch
+*** if traefik will shutdown because of an error
+- traefik has to be restarted manually
+- check logs
+*** files can be disabled
+**** enabled
+=dashboard.toml=
+**** disabled
+=dashboard.tomlOFF=
+** toml
+*** quotes
+**** FAIL
+#+BEGIN_SRC toml
+[http.routers.dashboard]
+  service =  api@internal
+###         ^
+#+END_SRC
+**** success
+#+BEGIN_SRC toml
+[http.routers.dashboard]
+  service = "api@internal"
+###         ^
+#+END_SRC
+** debugging
+*** changes in the static configuration
+traefik must be restarted
+*** not-starting
+**** get error message from cli
+#+BEGIN_EXAMPLE shell
+sudo /nix/store/b20nrbj8f7k7r7q9srl39anwdr6b26n4-traefik-2.8.3/bin/traefik --configfile=/home/frank/DEVOS/nixos/profiles/domain/variable/dev/traefik.toml
+#+END_EXAMPLE
+*** logging
+**** follow json logs
+#+BEGIN_EXAMPLE shell
+tail ./traefik.log | jq
+#+END_EXAMPLE
+** logging
+#+BEGIN_SRC yaml toml
+    [accessLog.fields.names]
+      "ClientAddr"            = "drop"
+      "ClientHost"            = "drop"
+      "ClientPort"            = "drop"
+      "ClientUsername"        = "drop"
+      "DownstreamContentSize" = "drop"
+      "DownstreamStatus"      = "drop"
+      "Duration"              = "drop"
+      "OriginContentSize"     = "drop"
+      "OriginDuration"        = "drop"
+      "OriginStatus"          = "drop"
+      "Overhead"              = "drop"
+      "RequestAddr"           = "drop"
+      "RequestContentSize"    = "drop"
+      "RequestCount"          = "drop"
+      "RequestHost"           = "drop"
+      "RequestMethod"         = "drop"
+      "RequestPath"           = "drop"
+      "RequestPort"           = "drop"
+      "RequestProtocol"       = "drop"
+      "RequestScheme"         = "drop"
+      "RetryAttempts"         = "drop"
+      "RouterName"            = "drop"
+      "ServiceAddress"        = "drop"
+      "ServiceName"           = "drop"
+      "ServiceURL"            = "drop"
+      "StartLocal"            = "drop"
+      "StartUTC"              = "drop"
+      "entryPointName"        = "drop"
+      "level"                 = "keep"### cannot be dropped
+      "msg"                   = "keep"### cannot be dropped
+      "time"                  = "keep"### cannot be dropped
+#+END_SRC
+** devel
+
+*** toggle(drop,keep) @d @k
+TOML files cannot contain control characters: '0x0d'
+
+### LLocal Variables:
+### toggle(drop,keep) @d @k
+### predefined macros
+### load with C-X C-E on closing parenthesis
+### TODO extract to function which can be registered as safely evaluable
+### (evil-set-register 100 "dwidropfdbl")  ;; d
+### (evil-set-register 107 "dwikeepfdbl")  ;; k
+### (evil-set-register 100 "0/keepcwdropfd0l")  ;; d
+### (evil-set-register 107 "0/dropcwkeepfd0l")  ;; k
+### (evil-set-register 100 "0:s/keep/drop/l0")  ;; d
+### (evil-set-register 107 "0:s/drop/keep/l0")  ;; k
+### eval: (setq-local enable-local-variables :maybe)
+### EEnd:

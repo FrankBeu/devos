@@ -32,6 +32,7 @@ in
     profiles.fonts
     profiles.i18n.common
     profiles.networking.dhcp.true
+    profiles.networking.nameserver.regular
     # profiles.networking.nameserver.secure ### TODO
     profiles.shell.prompts.starship
     profiles.shell.zsh
@@ -43,7 +44,6 @@ in
     profiles.users.test
   ] ++
   suites.base       ++
-  suites.dnsRegular ++
   suites.i3         ++
   [];
 

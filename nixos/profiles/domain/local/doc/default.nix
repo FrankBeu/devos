@@ -1,6 +1,7 @@
 {
   imports = [
     # ./nginx
-    ./caddy
+    # ./caddy
+    ./traefik
   ];
 }

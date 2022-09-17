@@ -1,12 +1,18 @@
+{ config
+, lib
+, ...
+}:
 {
-  services.coredns = {
-    enable = true;
-    config = ''
-      . {
-        ### Cloudflare and Google
-        forward . 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
-        cache
-      }
-    '';
+  services.traefik = {
+    enable           = true;
+    staticConfigFile = ./traefik.toml;### setting dynamic-config-dir to /etc/traefik/conf
   };
+
+  ### TODO add to module
+  system.activationScripts.makeTraefikLogDir =
+    let logDir = "/var/log/traefik"; in
+    lib.stringAfter [ "var" ] ''
+      mkdir -p              ${logDir}
+      chown traefik:traefik ${logDir}
+    '';
 }

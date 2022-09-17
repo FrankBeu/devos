@@ -27,6 +27,15 @@ in
     profiles.console
     profiles.currentSystemPackages
     profiles.documentation
+    profiles.domain.local.dash
+    profiles.domain.local.doc
+    profiles.domain.local.domain
+    profiles.domain.server
+    profiles.domain.variable.dash
+    # profiles.domain.variable.environment.dev
+    # profiles.domain.variable.environment.stage
+    profiles.domain.variable.environment.prod
+    profiles.domain.variable.hostname
     profiles.editor.emacs
     profiles.editor.vim
     profiles.filemanager.ranger
@@ -34,6 +43,12 @@ in
     profiles.i18n.common
     # profiles.i18n.fcitx
     profiles.image.common
+    # profiles.k8s.cdk8s
+    # profiles.k8s.base
+    # profiles.k8s.gui
+    # profiles.k8s.k3d
+    profiles.k8s.k3s
+    # profiles.k8s.trustLocalCA
     # profiles.lutris                       ### TODO
     profiles.manualActions
     profiles.networking.dhcp.false
@@ -41,10 +56,11 @@ in
     # profiles.networking.nameserver.secure ### TODO
     profiles.security.agebox
     profiles.security.sopsNix
+    # profiles.security.gopassDependency
     # profiles.services.pipewire
     profiles.services.printing
     profiles.services.ssh
-    profiles.services.test8080
+    # profiles.services.test8888
     profiles.shell.prompts.starship
     profiles.shell.zsh
 
@@ -69,6 +85,7 @@ in
     profiles.tools.pdf
     profiles.tools.qalculate
     profiles.tools.revealjs
+    profiles.tools.serialization.remarshal
     profiles.tools.system
     profiles.tools.usbutils
     profiles.tools.xorg

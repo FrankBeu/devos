@@ -29,9 +29,15 @@ in
     profiles.console
     profiles.currentSystemPackages
     profiles.documentation
-    # profiles.domain.variable.dev
-    # profiles.domain.variable.stage
-    # profiles.domain.variable.prod
+    profiles.domain.local.dash
+    profiles.domain.local.doc
+    profiles.domain.local.domain
+    profiles.domain.server
+    profiles.domain.variable.dash
+    # profiles.domain.variable.environment.dev
+    # profiles.domain.variable.environment.stage
+    # profiles.domain.variable.environment.prod
+    profiles.domain.variable.hostname
     profiles.editor.emacs
     profiles.editor.vim
     profiles.filemanager.ranger
@@ -43,16 +49,20 @@ in
     profiles.k8s.base
     profiles.k8s.gui
     profiles.k8s.k3d
-    profiles.k8s.k3s
-    # profiles.lutris                       ### TODO
+    # profiles.k8s.k3s
+    profiles.k8s.trustLocalCA
+    # profiles.lutris                        ### TODO
     # profiles.manualActions
     profiles.networking.dhcp.true
-    # profiles.networking.nameserver.secure ### TODO
+    profiles.networking.nameserver.regular
+    # profiles.networking.nameserver.secure  ### TODO
     profiles.security.agebox
     profiles.security.sopsNix
-    # profiles.services.pipewire            ### TODO
-    # profiles.services.printing            ### TODO
+    # profiles.security.gopassDependency
+    # profiles.services.pipewire             ### TODO
+    # profiles.services.printing             ### TODO
     # profiles.services.ssh
+    # profiles.services.test8888
     profiles.shell.prompts.starship
     profiles.shell.zsh
 
@@ -77,6 +87,7 @@ in
     profiles.tools.pdf
     profiles.tools.qalculate
     profiles.tools.revealjs
+    profiles.tools.serialization.remarshal
     profiles.tools.system
     profiles.tools.usbutils
     profiles.tools.xorg
@@ -98,7 +109,6 @@ in
     profiles.users.frank
   ] ++
   suites.base        ++
-  suites.dnsRegular ++
   suites.docLocal    ++
   suites.i3          ++
   # suites.gnome     ++

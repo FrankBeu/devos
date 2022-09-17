@@ -28,7 +28,7 @@ contains:
 *** Homemanager
 Userspace (programs and config-files) is implemented using home-manager.
 *** Structural
-documentation for each section of DEVOS \\
+documentation for each section of DEVOS
 - doc (documentation's documentation)
 - home
 - hosts

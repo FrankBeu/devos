@@ -1,0 +1,126 @@
+* domainTestServer
+** TODO define domainName
+#+name: domainName
+: domain.test
+# : thesym.site
+** TODO create cert
+run with =SPC k B E=
+(org-babel-execute-buffer)
+** create directories
+#+BEGIN_SRC shell :results none
+mkdir -p cert/{ca,server}
+#+END_SRC
+** generate cert CA
+*** XOR
+**** generate key and cert one after the other
+***** generate key
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- ecparam -genkey -name secp384r1 -out cert/ca/ca.key
+#+END_SRC
+***** generate cert interactively
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- req -new -x509 -sha256 -key cert/ca/ca.key -out cert/ca/ca.crt -days 3650
+#+END_SRC
+***** generate cert
+#+BEGIN_SRC shell :results none :var DOMAIN_NAME=domainName :eval no
+nix run nixpkgs#openssl -- req \
+        -x509                  \
+        -sha256                \
+        -nodes                 \
+        -key   cert/ca/ca.key  \
+        -days  3650            \
+        -out   cert/ca/ca.crt  \
+        -subj "/C=DE/ST=BW/L=S/O=${DOMAIN_NAME}/CN=${DOMAIN_NAME} CA/emailAddress=admin@${DOMAIN_NAME}"
+#+END_SRC
+**** generate cert  w/key-creation
+#+BEGIN_SRC shell :results none :var DOMAIN_NAME=domainName
+nix run nixpkgs#openssl -- req               \
+        -x509                                \
+        -newkey  ec                          \
+        -pkeyopt ec_paramgen_curve:secp384r1 \
+        -nodes                               \
+        -sha256                              \
+        -days    3650                        \
+        -keyout  cert/ca/ca.key              \
+        -out     cert/ca/ca.crt              \
+        -subj   "/C=DE/ST=BW/L=S/O=${DOMAIN_NAME}/CN=${DOMAIN_NAME} CA/emailAddress=admin@${DOMAIN_NAME}"
+nix run nixpkgs#openssl -- x509 -in cert/ca/ca.crt -noout -text > cert/ca/ca.plain
+#+END_SRC
+** generate cert NODE
+*** generate key and CSR
+#+BEGIN_SRC shell :results none :var DOMAIN_NAME=domainName
+nix run nixpkgs#openssl -- req               \
+        -newkey  ec                          \
+        -pkeyopt ec_paramgen_curve:secp384r1 \
+        -nodes                               \
+        -keyout  cert/server/server.key      \
+        -out     cert/server/server.csr      \
+        -subj   "/C=DE/ST=BW/L=S/O=${DOMAIN_NAME}/CN=${DOMAIN_NAME}/emailAddress=admin@${DOMAIN_NAME}" \
+        -addext "subjectAltName=DNS:${DOMAIN_NAME},DNS:*.${DOMAIN_NAME},DNS:*.dev.${DOMAIN_NAME},DNS:*.stage.${DOMAIN_NAME}"
+nix run nixpkgs#openssl -- req -text -noout -verify -in cert/server/server.csr > cert/server/csr.plain
+#+END_SRC
+
+
+*** sign CSR
+#+BEGIN_SRC shell :results none :var DOMAIN_NAME=domainName
+nix run nixpkgs#openssl -- x509         \
+        -req                            \
+        -CAcreateserial                 \
+        -days    365000                 \
+        -in      cert/server/server.csr \
+        -out     cert/server/server.crt \
+        -CA      cert/ca/ca.crt         \
+        -CAkey   cert/ca/ca.key         \
+        -extfile <(printf "subjectAltName=DNS:${DOMAIN_NAME},DNS:*.${DOMAIN_NAME},DNS:*.dev.${DOMAIN_NAME},DNS:*.stage.${DOMAIN_NAME}")
+nix run nixpkgs#openssl -- x509 -in cert/server/server.crt -noout -text > cert/server/server.plain
+#+END_SRC
+        # -set_serial 01                \
+** inspect cert
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- x509 -in cert/ca/ca.crt         -noout -serial -text
+#+END_SRC
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- x509 -in cert/ca/ca.crt         -noout -serial -text > cert/ca/ca.plain
+#+END_SRC
+
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- x509 -in cert/server/server.crt -noout -serial -text
+#+END_SRC
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- x509 -in cert/server/server.crt -noout -serial -text > cert/server/server.plain
+#+END_SRC
+
+** verify
+#+BEGIN_SRC shell :results none :eval no
+nix run nixpkgs#openssl -- verify -CAfile cert/ca/ca.crt cert/server/server.crt
+#+END_SRC
+
+** nuke
+#+BEGIN_SRC shell :results none :eval no
+#+BEGIN_SRC shell :results none :eval ask
+rm -rf cert/ca/*
+rm -rf cert/server/*
+#+END_SRC
+
+#+BEGIN_SRC shell :results none :eval no
+rm -rf cert/ca/*
+#+END_SRC
+
+#+BEGIN_SRC shell :results none :eval no
+#+BEGIN_SRC shell :results none :eval ask
+rm -rf cert/server/*
+#+END_SRC
+
+** INFO
+[[https://mariadb.com/docs/security/data-in-transit-encryption/create-self-signed-certificates-keys-openssl/][Create Self-Signed Certificates and Keys with OpenSSL — MariaDB Enterprise Documentation]]
+[[https://www.cockroachlabs.com/docs/stable/create-security-certificates-openssl.html][Create Security Certificates using OpenSSL | CockroachDB Docs]]
+** USAGE
+*** tests
+**** server
+The server on the testVMs need access to the certs and keys.
+In order to make the tests domainName independent, certs and keys have to be delivered per host. ( test for profileTest, ryzenVM for hostTests, ...)
+secrets provide a per-host mechanism - so they were reused ( reminder: all secrets for host:test are public )
+**** CA
+In order to be trusted the caCerts have to be provided by ~security.pki.certificateFiles~.
+The certs are needed at evaluationTime and cannot be used as secrets.
+For the sake of completeness, key and certs are kept as secrets nevertheless.

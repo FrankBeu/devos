@@ -36,11 +36,15 @@ tests.nixos.profiles.currentSystemPackages
 # tests.nixos.profiles.display.gnome                ### TODO: needs hw-acceleration
 tests.nixos.profiles.display.i3
 tests.nixos.profiles.display.statusBar.i3statusBar
-# tests.nixos.profiles.domain.local                 ### TODO: reenable
+tests.nixos.profiles.domain.local.dash
+tests.nixos.profiles.domain.local.doc
+tests.nixos.profiles.domain.local.domain
 tests.nixos.profiles.domain.server
-tests.nixos.profiles.domain.variable.dev
-tests.nixos.profiles.domain.variable.stage
-tests.nixos.profiles.domain.variable.prod
+tests.nixos.profiles.domain.variable.dash
+tests.nixos.profiles.domain.variable.environment.dev
+tests.nixos.profiles.domain.variable.environment.stage
+tests.nixos.profiles.domain.variable.environment.prod
+tests.nixos.profiles.domain.variable.hostname
 tests.nixos.profiles.editor.emacs
 tests.nixos.profiles.editor.vim
 tests.nixos.profiles.filemanager.ranger
@@ -54,11 +58,13 @@ tests.nixos.profiles.k8s.gui
 tests.nixos.profiles.k8s.k3d
 tests.nixos.profiles.k8s.k3s
 tests.nixos.profiles.manualActions
+tests.nixos.profiles.networking.nameserver.regular
 tests.nixos.profiles.security.agebox
 tests.nixos.profiles.security.sopsNix
 tests.nixos.profiles.services.documentation
 # tests.nixos.profiles.services.printing            ### TODO: implement
 tests.nixos.profiles.services.ssh
+tests.nixos.profiles.services.test8888
 # tests.nixos.profiles.services.xserver             ### TODO: implement
 tests.nixos.profiles.shell.prompts.powerline
 tests.nixos.profiles.shell.prompts.starship
@@ -101,7 +107,6 @@ tests.nixos.profiles.virtualisation.libvirtd
 tests.nixos.profiles.virtualisation.virtmanager
 
 
-tests.nixos.suites.dnsRegular
 tests.nixos.suites.docLocal
 # tests.nixos.suites.gnome                          ### TODO: needs hw-acceleration
 # tests.nixos.suites.i3                             ### TODO: needs hw-acceleration

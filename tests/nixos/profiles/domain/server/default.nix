@@ -12,10 +12,7 @@ let
       machine = { suites, profiles, ... }:
       {
         imports = with profiles; [
-          autologin.variable
           domain.server
-          networking.nameserver.regular
-          tools.network                  ### DEV
         ];
       };
     };
@@ -34,7 +31,7 @@ let
 
   name = with builtins; baseNameOf (toString ./.);
 
-  testScriptExternal = builtins.readFile ./testScript.py;
+  testScriptExternal = (import ./testScript.py.nix {});
 
 in
 {
