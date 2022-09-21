@@ -199,9 +199,9 @@
       devshell = ./shell;
 
 
-      homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
+      homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations   ;
 
-      deploy.nodes = digga.lib.mkDeployNodes self.nixosConfigurations { };
+      deploy.nodes       = digga.lib.mkDeployNodes        self.nixosConfigurations {};
 
       defaultTemplate           = self.templates.bud;
       templates.bud.path        = ./.;

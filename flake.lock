@@ -225,7 +225,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-xGU3FdnmvaXWqs6yU4SjrP/Fbdwu3BUrFW8Q04eqxiQ=",
+        "narHash": "sha256-/lSN4lBuhqC12Xq0UJD4AQjdQds0uT4tciilbp7ux0I=",
         "path": "pkgs/sourcesLocal/domainTestServer",
         "type": "path"
       },
@@ -263,7 +263,7 @@
       },
       "locked": {
         "lastModified": 1660670757,
-        "narHash": "sha256-318pb6sU/PZCMNMLmZKAx9HHhW/o3Kery0Teyu/VEXI=",
+        "narHash": "sha256-9obptDoVefUK59X8V/fGxNQ32JOI3XAuOq9IBiZOa+s=",
         "type": "git",
         "url": "file:///home/frank/DEVOSEMACS"
       },
