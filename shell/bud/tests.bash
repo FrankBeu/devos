@@ -88,6 +88,7 @@ tests.nixos.profiles.tools.less
 tests.nixos.profiles.tools.lsof
 tests.nixos.profiles.tools.network
 tests.nixos.profiles.tools.nixTools
+tests.nixos.profiles.tools.openssl
 tests.nixos.profiles.tools.parted
 tests.nixos.profiles.tools.procs
 tests.nixos.profiles.tools.qalculate

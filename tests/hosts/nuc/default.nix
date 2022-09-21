@@ -238,6 +238,7 @@ let
         # ''${nixos-profiles-tools-lsof}                                                            ### TODO
         # ''${nixos-profiles-tools-network}                                                         ### TODO
         # ''${nixos-profiles-tools-nixTools}                                                        ### TODO
+        # ''${(import ../../nixos/profiles/tools/openssl/testScript.py.nix                              {})}
         # ''${nixos-profiles-tools-parted}                                                          ### TODO
         # ''${nixos-profiles-tools-pdf}                                                             ### TODO
         # ''${nixos-profiles-tools-qalculate}                                                       ### TODO

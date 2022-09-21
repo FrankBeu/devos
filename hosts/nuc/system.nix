@@ -81,6 +81,7 @@ in
     profiles.tools.lsof
     profiles.tools.network
     profiles.tools.nixTools
+    # profiles.tools.openssl
     profiles.tools.parted
     profiles.tools.pdf
     profiles.tools.qalculate
