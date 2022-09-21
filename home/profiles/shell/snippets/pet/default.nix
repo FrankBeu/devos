@@ -128,6 +128,11 @@ in {
           output      = "int";
         }
         {
+          command     = "ffmpeg -i IN.mkv -acodec copy -vcodec copy -ss 00:00:00 -to 00:01:00.000 OUT.mkv";
+          description = "ffmpeg:   Trim videoFile                        ";
+          output      = "videoFile";
+        }
+        {
           command     = "e +4:4 FILENAME";
           description = "emacs:    Open file with cursor at position     ";
           output      = "window";
